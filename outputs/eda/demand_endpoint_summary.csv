@@ -1,8 +1,8 @@
-﻿question,direction,demand_count,flexible_land_origin_count,flexible_land_destination_count,facility_to_facility_count,fixed_origin_A01_count,fixed_destination_A01_count,flexible_origin_nearest_A01_count,flexible_destination_nearest_A01_count,fixed_origin_A02_count,fixed_destination_A02_count,flexible_origin_nearest_A02_count,flexible_destination_nearest_A02_count,fixed_origin_A03_count,fixed_destination_A03_count,flexible_origin_nearest_A03_count,flexible_destination_nearest_A03_count
-q1,outbound,1600,1353,0,0,79,0,865,0,82,0,193,0,86,0,295,0
-q2,inbound,1600,0,1367,0,0,69,0,880,0,85,0,192,0,79,0,295
-q2,outbound,1600,1353,0,0,79,0,865,0,82,0,193,0,86,0,295,0
-q2,shuttle,800,0,0,800,0,0,0,0,0,0,0,0,0,0,0,0
-q3,inbound,1600,0,1367,0,0,69,0,880,0,85,0,192,0,79,0,295
-q3,outbound,1600,1353,0,0,79,0,865,0,82,0,193,0,86,0,295,0
-q3,shuttle,800,0,0,800,0,0,0,0,0,0,0,0,0,0,0,0
+﻿题目,运输方向,需求人数,起点为LAND人数,终点为LAND人数,设施间穿梭人数,固定起点A01人数,固定终点A01人数,LAND起点最近A01人数,LAND终点最近A01人数,固定起点A02人数,固定终点A02人数,LAND起点最近A02人数,LAND终点最近A02人数,固定起点A03人数,固定终点A03人数,LAND起点最近A03人数,LAND终点最近A03人数
+问题1,出海,1600,1353,0,0,79,0,865,0,82,0,193,0,86,0,295,0
+问题2,海返,1600,0,1367,0,0,69,0,880,0,85,0,192,0,79,0,295
+问题2,出海,1600,1353,0,0,79,0,865,0,82,0,193,0,86,0,295,0
+问题2,穿梭,800,0,0,800,0,0,0,0,0,0,0,0,0,0,0,0
+问题3,海返,1600,0,1367,0,0,69,0,880,0,85,0,192,0,79,0,295
+问题3,出海,1600,1353,0,0,79,0,865,0,82,0,193,0,86,0,295,0
+问题3,穿梭,800,0,0,800,0,0,0,0,0,0,0,0,0,0,0,0

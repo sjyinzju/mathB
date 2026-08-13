@@ -1,4 +1,4 @@
-﻿aircraft_type,airport,facility_count,closed_route_feasible_within_5_stops_count,closed_route_feasible_without_refuel_count,refuel_required_count,minimum_1_stop_count,minimum_2_stop_count,minimum_3_stop_count,minimum_4_stop_count,minimum_5_stop_count,unreachable_within_5_stops_count
+﻿机型,机场,设施数量,5次海上着陆内闭合可达设施数,无需加油闭合可达设施数,闭合航线必须加油设施数,最少1次海上着陆设施数,最少2次海上着陆设施数,最少3次海上着陆设施数,最少4次海上着陆设施数,最少5次海上着陆设施数,5次海上着陆内不可达设施数
 T1,A01,52,52,0,52,5,22,20,4,1,0
 T1,A02,52,52,0,52,4,16,27,4,1,0
 T1,A03,52,52,0,52,1,1,30,14,6,0

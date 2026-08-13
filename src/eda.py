@@ -11,6 +11,122 @@ from .data_pipeline import TIME_FORMAT, default_paths
 from .io_utils import read_csv, write_csv
 
 
+DISPLAY_HEADERS_ZH = {
+    "question": "题目",
+    "rank": "排名",
+    "origin": "起点",
+    "destination": "终点",
+    "direction": "运输方向",
+    "demand_count": "需求人数",
+    "demand_share": "需求占比",
+    "cumulative_share": "累计需求占比",
+    "person_ids": "人员ID列表",
+    "facility": "海上设施",
+    "inbound_people": "流入人数",
+    "outbound_people": "流出人数",
+    "net_flow": "净流量（流入-流出）",
+    "total_touch": "总触达人数",
+    "can_refuel": "是否可加油",
+    "flexible_land_origin_count": "起点为LAND人数",
+    "flexible_land_destination_count": "终点为LAND人数",
+    "facility_to_facility_count": "设施间穿梭人数",
+    "fixed_origin_A01_count": "固定起点A01人数",
+    "fixed_destination_A01_count": "固定终点A01人数",
+    "flexible_origin_nearest_A01_count": "LAND起点最近A01人数",
+    "flexible_destination_nearest_A01_count": "LAND终点最近A01人数",
+    "fixed_origin_A02_count": "固定起点A02人数",
+    "fixed_destination_A02_count": "固定终点A02人数",
+    "flexible_origin_nearest_A02_count": "LAND起点最近A02人数",
+    "flexible_destination_nearest_A02_count": "LAND终点最近A02人数",
+    "fixed_origin_A03_count": "固定起点A03人数",
+    "fixed_destination_A03_count": "固定终点A03人数",
+    "flexible_origin_nearest_A03_count": "LAND起点最近A03人数",
+    "flexible_destination_nearest_A03_count": "LAND终点最近A03人数",
+    "unique_od_count": "唯一OD数量",
+    "top_1_share": "前1个OD占比",
+    "top_5_share": "前5个OD占比",
+    "top_10_share": "前10个OD占比",
+    "top_20_share": "前20个OD占比",
+    "od_hhi": "OD集中度HHI",
+    "effective_od_count_inverse_hhi": "等效OD数量（HHI倒数）",
+    "task_type": "任务类型",
+    "count": "人数",
+    "window_min": "时间窗最小值（分钟）",
+    "window_p25": "时间窗25分位数（分钟）",
+    "window_median": "时间窗中位数（分钟）",
+    "window_mean": "时间窗均值（分钟）",
+    "window_p75": "时间窗75分位数（分钟）",
+    "window_max": "时间窗最大值（分钟）",
+    "slack_min": "松弛时间最小值（分钟）",
+    "slack_p25": "松弛时间25分位数（分钟）",
+    "slack_median": "松弛时间中位数（分钟）",
+    "slack_mean": "松弛时间均值（分钟）",
+    "slack_p75": "松弛时间75分位数（分钟）",
+    "slack_max": "松弛时间最大值（分钟）",
+    "negative_slack_count": "负松弛人数",
+    "slack_under_30_count": "松弛不足30分钟人数",
+    "slack_under_60_count": "松弛不足60分钟人数",
+    "date": "日期",
+    "earliest_demand_count": "按最早接载时间统计人数",
+    "timestamp_role": "时间字段",
+    "hour": "小时",
+    "person_id": "人员ID",
+    "earliest": "最早接载时间",
+    "latest": "最晚送达时间",
+    "window_minutes": "时间窗宽度（分钟）",
+    "technical_min_travel_minutes_lower_bound": "技术最短旅行时间下界（分钟）",
+    "slack_minutes": "松弛时间（分钟）",
+    "candidate_pair_count": "候选人员对数量",
+    "overlapping_window_pair_count": "时间窗重叠人员对数量",
+    "pairwise_overlap_rate": "两两时间窗重叠率",
+    "common_intersection_minutes": "共同时间窗长度（分钟）",
+    "aircraft_type": "机型",
+    "airport": "机场",
+    "facility_count": "设施数量",
+    "direct_leg_reachable_count": "满油单段可达设施数",
+    "direct_round_trip_reachable_count": "直接往返可达设施数",
+    "round_trip_refuel_dependent_count": "直接往返不可达设施数",
+    "closed_route_feasible_within_5_stops_count": "5次海上着陆内闭合可达设施数",
+    "closed_route_feasible_without_refuel_count": "无需加油闭合可达设施数",
+    "refuel_required_count": "闭合航线必须加油设施数",
+    "minimum_1_stop_count": "最少1次海上着陆设施数",
+    "minimum_2_stop_count": "最少2次海上着陆设施数",
+    "minimum_3_stop_count": "最少3次海上着陆设施数",
+    "minimum_4_stop_count": "最少4次海上着陆设施数",
+    "minimum_5_stop_count": "最少5次海上着陆设施数",
+    "unreachable_within_5_stops_count": "5次海上着陆内不可达设施数",
+}
+
+DISPLAY_VALUES_ZH = {
+    "q1": "问题1",
+    "q2": "问题2",
+    "q3": "问题3",
+    "outbound": "出海",
+    "inbound": "海返",
+    "shuttle": "穿梭",
+    "emergency": "紧急任务",
+    "production": "生产任务",
+    "shift": "倒班任务",
+    "temporary": "临时任务",
+    "ALL": "全部任务",
+    "earliest": "最早接载时间",
+    "latest": "最晚送达时间",
+}
+
+
+def _write_display_csv(path: Path, rows: list[dict[str, object]]) -> None:
+    """Write an EDA-facing CSV with Chinese headers while preserving values and order."""
+    source_fields = list(rows[0])
+    localized_rows = [
+        {
+            DISPLAY_HEADERS_ZH.get(field, field): DISPLAY_VALUES_ZH.get(str(row[field]), row[field])
+            for field in source_fields
+        }
+        for row in rows
+    ]
+    write_csv(path, list(localized_rows[0]), localized_rows)
+
+
 def _percentile(values: list[float], percentile: float) -> float:
     if not values:
         return math.nan
@@ -344,6 +460,8 @@ def _write_figures(
     figure_dir = eda_dir / "figures"
     figure_dir.mkdir(parents=True, exist_ok=True)
     plt.style.use("seaborn-v0_8-whitegrid")
+    plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei", "Noto Sans SC", "DejaVu Sans"]
+    plt.rcParams["axes.unicode_minus"] = False
 
     q2_direction = Counter()
     seen: set[tuple[str, int]] = set()
@@ -351,10 +469,11 @@ def _write_figures(
         if row["question"] == "q2":
             q2_direction[str(row["direction"])] += int(row["demand_count"])
     fig, ax = plt.subplots(figsize=(7, 4.2))
-    labels = ["outbound", "inbound", "shuttle"]
-    values = [q2_direction[label] for label in labels]
+    directions = ["outbound", "inbound", "shuttle"]
+    labels = ["出海", "海返", "穿梭"]
+    values = [q2_direction[direction] for direction in directions]
     ax.bar(labels, values, color=["#2563EB", "#0F766E", "#D97706"])
-    ax.set(title="Q2 Demand by Direction", ylabel="People")
+    ax.set(title="问题2各运输方向需求人数", ylabel="人数")
     for index, value in enumerate(values):
         ax.text(index, value + 25, f"{value:,}", ha="center")
     fig.tight_layout()
@@ -368,7 +487,7 @@ def _write_figures(
     colors = ["#2563EB" if int(row["net_flow"]) >= 0 else "#D97706" for row in top]
     ax.bar([str(row["facility"]) for row in top], [int(row["net_flow"]) for row in top], color=colors)
     ax.axhline(0, color="#1F2937", linewidth=0.8)
-    ax.set(title="Q2 Facilities with Largest Absolute Net Flow", ylabel="Inbound - Outbound")
+    ax.set(title="问题2净流量绝对值最大的20个海上设施", ylabel="净流量（流入－流出）")
     ax.tick_params(axis="x", rotation=55)
     fig.tight_layout()
     fig.savefig(figure_dir / "q2_facility_net_flow.png", dpi=180)
@@ -381,7 +500,7 @@ def _write_figures(
     dates = sorted(daily_total)
     values = [daily_total[date] for date in dates]
     ax.plot(dates, values, marker="o", color="#0F766E", linewidth=2)
-    ax.set(title="Q3 Earliest-Pickup Demand by Day", ylabel="People", xlabel="Date")
+    ax.set(title="问题3每日最早接载需求人数", ylabel="人数", xlabel="日期")
     ax.tick_params(axis="x", rotation=35)
     for date, value in zip(dates, values):
         ax.annotate(str(value), (date, value), xytext=(0, 6), textcoords="offset points", ha="center", fontsize=8)
@@ -391,10 +510,10 @@ def _write_figures(
 
     task_rows = [row for row in time_summary if row["task_type"] != "ALL"]
     fig, ax = plt.subplots(figsize=(8, 4.8))
-    tasks = [str(row["task_type"]) for row in task_rows]
+    tasks = [DISPLAY_VALUES_ZH.get(str(row["task_type"]), str(row["task_type"])) for row in task_rows]
     medians = [float(row["slack_median"]) / 60 for row in task_rows]
     ax.bar(tasks, medians, color=["#DC2626", "#EA580C", "#2563EB", "#6B7280"])
-    ax.set(title="Q3 Median Optimistic Slack by Task Type", ylabel="Minutes / 60 (hours)")
+    ax.set(title="问题3各任务类型乐观松弛时间中位数", ylabel="小时")
     ax.tick_params(axis="x", rotation=20)
     fig.tight_layout()
     fig.savefig(figure_dir / "q3_slack_by_task.png", dpi=180)
@@ -414,8 +533,8 @@ def _write_figures(
             label=aircraft_type,
         )
     ax.set_xticks(x, airports)
-    ax.set(title="Facilities Reachable by Direct Round Trip", ylabel="Facilities out of 52")
-    ax.legend()
+    ax.set(title="各机型从不同机场直接往返可达的设施数", ylabel="可达设施数（共52个）")
+    ax.legend(title="机型")
     fig.tight_layout()
     fig.savefig(figure_dir / "fuel_direct_roundtrip_coverage.png", dpi=180)
     plt.close(fig)
@@ -561,21 +680,17 @@ def run_eda(root: Path = ROOT) -> dict[str, int]:
     closed_route_rows = _closed_route_summary(paths.processed_dir)
     refuel_hub_rows = read_csv(paths.processed_dir / "features" / "refuel_hub_summary.csv")
 
-    write_csv(paths.eda_dir / "od_summary.csv", list(od_rows[0]), od_rows)
-    write_csv(paths.eda_dir / "facility_flow.csv", list(facility_rows[0]), facility_rows)
-    write_csv(paths.eda_dir / "demand_endpoint_summary.csv", list(endpoint_rows[0]), endpoint_rows)
-    write_csv(paths.eda_dir / "od_concentration.csv", list(concentration_rows[0]), concentration_rows)
-    write_csv(paths.eda_dir / "q3_time_window_summary.csv", list(time_rows[0]), time_rows)
-    write_csv(paths.eda_dir / "q3_daily_pressure.csv", list(daily_rows[0]), daily_rows)
-    write_csv(paths.eda_dir / "q3_hourly_pressure.csv", list(hourly_rows[0]), hourly_rows)
-    write_csv(paths.eda_dir / "q3_tightest_demands.csv", list(tight_rows[0]), tight_rows)
-    write_csv(paths.eda_dir / "q3_compatibility_summary.csv", list(compatibility_rows[0]), compatibility_rows)
-    write_csv(paths.eda_dir / "fuel_reachability_summary.csv", list(fuel_rows[0]), fuel_rows)
-    write_csv(
-        paths.eda_dir / "closed_route_reachability_summary.csv",
-        list(closed_route_rows[0]),
-        closed_route_rows,
-    )
+    _write_display_csv(paths.eda_dir / "od_summary.csv", od_rows)
+    _write_display_csv(paths.eda_dir / "facility_flow.csv", facility_rows)
+    _write_display_csv(paths.eda_dir / "demand_endpoint_summary.csv", endpoint_rows)
+    _write_display_csv(paths.eda_dir / "od_concentration.csv", concentration_rows)
+    _write_display_csv(paths.eda_dir / "q3_time_window_summary.csv", time_rows)
+    _write_display_csv(paths.eda_dir / "q3_daily_pressure.csv", daily_rows)
+    _write_display_csv(paths.eda_dir / "q3_hourly_pressure.csv", hourly_rows)
+    _write_display_csv(paths.eda_dir / "q3_tightest_demands.csv", tight_rows)
+    _write_display_csv(paths.eda_dir / "q3_compatibility_summary.csv", compatibility_rows)
+    _write_display_csv(paths.eda_dir / "fuel_reachability_summary.csv", fuel_rows)
+    _write_display_csv(paths.eda_dir / "closed_route_reachability_summary.csv", closed_route_rows)
 
     quality_md = _quality_markdown(quality)
     dataset_md = _dataset_markdown(

@@ -1,4 +1,4 @@
-﻿origin,destination,demand_count,candidate_pair_count,overlapping_window_pair_count,pairwise_overlap_rate,common_intersection_minutes
+﻿起点,终点,需求人数,候选人员对数量,时间窗重叠人员对数量,两两时间窗重叠率,共同时间窗长度（分钟）
 A01,F001,4,6,3,0.5,0
 A01,F002,7,21,7,0.3333333333333333,0
 A01,F003,4,6,3,0.5,0

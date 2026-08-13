@@ -1,4 +1,4 @@
-﻿aircraft_type,airport,facility_count,direct_leg_reachable_count,direct_round_trip_reachable_count,round_trip_refuel_dependent_count
+﻿机型,机场,设施数量,满油单段可达设施数,直接往返可达设施数,直接往返不可达设施数
 T1,A01,52,36,0,52
 T1,A02,52,32,0,52
 T1,A03,52,18,0,52
