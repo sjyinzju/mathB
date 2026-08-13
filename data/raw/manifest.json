@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "file": "distances.csv",
+      "source_path": "2026年度“策联杯”数学建模精英联赛-B题-附件\\2026年度“策联杯”数学建模精英联赛-B题-附件\\distances.csv",
+      "raw_path": "data\\raw\\distances.csv",
+      "size_bytes": 11690,
+      "sha256": "cdf385ca3e175c15ed25a8db764c5cf462c78bcefea97d0bff4762e12bfd8de8"
+    },
+    {
+      "file": "peopleQ1.csv",
+      "source_path": "2026年度“策联杯”数学建模精英联赛-B题-附件\\2026年度“策联杯”数学建模精英联赛-B题-附件\\peopleQ1.csv",
+      "raw_path": "data\\raw\\peopleQ1.csv",
+      "size_bytes": 25388,
+      "sha256": "3490903bf8fc1ce86e3510c74cea991e3c91fe1d3f29437719fd92baafea3770"
+    },
+    {
+      "file": "peopleQ2.csv",
+      "source_path": "2026年度“策联杯”数学建模精英联赛-B题-附件\\2026年度“策联杯”数学建模精英联赛-B题-附件\\peopleQ2.csv",
+      "raw_path": "data\\raw\\peopleQ2.csv",
+      "size_bytes": 63555,
+      "sha256": "359b9ff71e6c6e59aa83cc76ccfa039a57bd4175e16c3808204ac6a3bccc4165"
+    },
+    {
+      "file": "peopleQ3.csv",
+      "source_path": "2026年度“策联杯”数学建模精英联赛-B题-附件\\2026年度“策联杯”数学建模精英联赛-B题-附件\\peopleQ3.csv",
+      "raw_path": "data\\raw\\peopleQ3.csv",
+      "size_bytes": 226206,
+      "sha256": "57b399ffe7bb45f4d2557cc7256600157cb52612d9c24d97aaa1c3b9b1495f99"
+    }
+  ]
+}

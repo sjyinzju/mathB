@@ -1,0 +1,10 @@
+﻿aircraft_type,airport,facility_count,closed_route_feasible_within_5_stops_count,closed_route_feasible_without_refuel_count,refuel_required_count,minimum_1_stop_count,minimum_2_stop_count,minimum_3_stop_count,minimum_4_stop_count,minimum_5_stop_count,unreachable_within_5_stops_count
+T1,A01,52,52,0,52,5,22,20,4,1,0
+T1,A02,52,52,0,52,4,16,27,4,1,0
+T1,A03,52,52,0,52,1,1,30,14,6,0
+T2,A01,52,52,13,39,19,29,4,0,0,0
+T2,A02,52,52,7,45,14,35,3,0,0,0
+T2,A03,52,52,0,52,7,41,4,0,0,0
+T3,A01,52,52,32,20,36,16,0,0,0,0
+T3,A02,52,52,28,24,33,19,0,0,0,0
+T3,A03,52,52,14,38,22,30,0,0,0,0
