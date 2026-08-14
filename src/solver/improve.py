@@ -4,19 +4,17 @@ from dataclasses import dataclass
 from itertools import permutations
 from collections import Counter, defaultdict
 
-from ..rules import flight_minutes
+from .cache import SolverCache
 from .data import ProblemData
 from .evaluator import evaluate_route
 from .models import (
     PassengerAssignment,
-    AugmentationResult,
     RouteEvaluation,
     RoutePlan,
     Solution,
     SolverConfig,
     aggregate_evaluations,
 )
-from .technical_stops import augment_service_sequence
 
 
 @dataclass(frozen=True)
@@ -113,13 +111,22 @@ def _direct_time_lower_bound(
     base: str,
     aircraft_type: str,
     service_order: tuple[str, ...],
+    cache: SolverCache,
 ) -> int:
-    aircraft = data.config.aircraft_types[aircraft_type]
+    key = (base, aircraft_type, service_order)
+    cached = cache.direct_time.get(key)
+    if cached is not None:
+        cache.hit("direct_time")
+        return cached
+    cache.miss("direct_time")
+    physics = cache.physics
     nodes = (base, *service_order, base)
-    return sum(
-        flight_minutes(data.matrix[left][right], aircraft.speed_kmh)
+    total = sum(
+        physics.flight_minutes(aircraft_type, left, right)
         for left, right in zip(nodes, nodes[1:])
     ) + len(service_order) * data.config.stop_without_refuel_minutes
+    cache.direct_time[key] = total
+    return total
 
 
 def _assignment_signature(
@@ -133,13 +140,23 @@ def _route_lower_bound(
     base: str,
     assignments: tuple[PassengerAssignment, ...],
     data: ProblemData,
+    cache: SolverCache,
 ) -> int:
     if not assignments:
         return 0
+    signature = _assignment_signature(assignments)
+    bound_key = (base, signature)
+    cached = cache.lower_bound.get(bound_key)
+    if cached is not None:
+        cache.hit("lower_bound")
+        return cached
+    cache.miss("lower_bound")
     if any(item.origin_id not in {"LAND", base} for item in assignments):
+        cache.lower_bound[bound_key] = 10**9
         return 10**9
     service_nodes = tuple(sorted({item.destination_id for item in assignments}))
     if len(service_nodes) > data.config.max_sea_landings:
+        cache.lower_bound[bound_key] = 10**9
         return 10**9
     best = 10**9
     for service_order in permutations(service_nodes):
@@ -147,8 +164,9 @@ def _route_lower_bound(
             if len(assignments) <= aircraft.seats:
                 best = min(
                     best,
-                    _direct_time_lower_bound(data, base, aircraft_type, service_order),
+                    _direct_time_lower_bound(data, base, aircraft_type, service_order, cache),
                 )
+    cache.lower_bound[bound_key] = best
     return best
 
 
@@ -177,20 +195,17 @@ def _rebuild_route(
     assignments: tuple[PassengerAssignment, ...],
     data: ProblemData,
     secondary_order: tuple[str, ...],
-    augmentation_cache: dict[tuple[str, str, tuple[str, ...]], AugmentationResult],
-    skeleton_cache: dict[
-        tuple[str, tuple[tuple[str, str, int], ...]],
-        tuple[str, tuple, tuple[str, ...]] | None,
-    ],
+    cache: SolverCache,
 ) -> tuple[RoutePlan | None, RouteEvaluation | None, int]:
     if not assignments:
         return None, None, 0
     if any(item.origin_id not in {"LAND", base} for item in assignments):
         return None, None, 0
     signature = _assignment_signature(assignments)
-    cache_key = (base, signature)
-    cached = skeleton_cache.get(cache_key, "missing")
+    cache_key = (secondary_order, base, signature)
+    cached = cache.skeleton.get(cache_key, "missing")
     if cached != "missing":
+        cache.hit("skeleton")
         if cached is None:
             return None, None, 0
         aircraft_type, stops, service_order = cached
@@ -207,10 +222,11 @@ def _rebuild_route(
         )
         route = RoutePlan(base, aircraft_type, stops, rebuilt_assignments, service_order)
         return route, evaluate_route(route, matrix=data.matrix, config=data.config), 1
+    cache.miss("skeleton")
 
     service_nodes = tuple(sorted({item.destination_id for item in assignments}))
     if len(service_nodes) > data.config.max_sea_landings:
-        skeleton_cache[cache_key] = None
+        cache.skeleton[cache_key] = None
         return None, None, 0
     best: tuple[RoutePlan, RouteEvaluation] | None = None
     best_key: tuple[object, ...] | None = None
@@ -220,17 +236,7 @@ def _rebuild_route(
             aircraft = data.config.aircraft_types[aircraft_type]
             if len(assignments) > aircraft.seats:
                 continue
-            augment_key = (base, aircraft_type, service_order)
-            augmentation = augmentation_cache.get(augment_key)
-            if augmentation is None:
-                augmentation = augment_service_sequence(
-                    base,
-                    aircraft_type,
-                    service_order,
-                    matrix=data.matrix,
-                    config=data.config,
-                )
-                augmentation_cache[augment_key] = augmentation
+            augmentation = cache.augmentation_result(base, aircraft_type, service_order)
             if not augmentation.feasible:
                 continue
             locations = tuple(stop.facility_id for stop in augmentation.stops)
@@ -262,9 +268,9 @@ def _rebuild_route(
                 best = (route, evaluation)
                 best_key = candidate_key
     if best is None:
-        skeleton_cache[cache_key] = None
+        cache.skeleton[cache_key] = None
         return None, None, evaluation_count
-    skeleton_cache[cache_key] = (
+    cache.skeleton[cache_key] = (
         best[0].aircraft_type,
         best[0].stops,
         best[0].service_facilities,
@@ -296,7 +302,7 @@ def _merge_candidate(
     right: RoutePlan,
     old_aircraft_time: int,
     data: ProblemData,
-    augmentation_cache: dict[tuple[str, str, tuple[str, ...]], AugmentationResult],
+    cache: SolverCache,
 ) -> tuple[RoutePlan | None, RouteEvaluation | None, int]:
     assignments = left.assignments + right.assignments
     service_nodes = tuple(sorted(set(_service_nodes(left)) | set(_service_nodes(right))))
@@ -310,19 +316,12 @@ def _merge_candidate(
             aircraft = data.config.aircraft_types[aircraft_type]
             if len(assignments) > aircraft.seats:
                 continue
-            if _direct_time_lower_bound(data, left.base_airport, aircraft_type, service_order) > old_aircraft_time:
+            if (
+                _direct_time_lower_bound(data, left.base_airport, aircraft_type, service_order, cache)
+                > old_aircraft_time
+            ):
                 continue
-            cache_key = (left.base_airport, aircraft_type, service_order)
-            augmentation = augmentation_cache.get(cache_key)
-            if augmentation is None:
-                augmentation = augment_service_sequence(
-                    left.base_airport,
-                    aircraft_type,
-                    service_order,
-                    matrix=data.matrix,
-                    config=data.config,
-                )
-                augmentation_cache[cache_key] = augmentation
+            augmentation = cache.augmentation_result(left.base_airport, aircraft_type, service_order)
             if not augmentation.feasible:
                 continue
             locations = tuple(stop.facility_id for stop in augmentation.stops)
@@ -388,9 +387,11 @@ def improve_q1_savings(
     *,
     max_neighbors: int = 8,
     max_iterations: int = 100,
+    cache: SolverCache | None = None,
 ) -> Solution:
     """Deterministically merge under-filled same-base routes using exact evaluation."""
     solver_config = solver_config or SolverConfig()
+    cache = cache or SolverCache(data)
     routes = list(solution.routes)
     evaluations = [evaluate_route(route, matrix=data.matrix, config=data.config) for route in routes]
     if any(not item.feasible for item in evaluations):
@@ -399,7 +400,6 @@ def improve_q1_savings(
     pair_count = 0
     route_evaluation_count = 0
     accepted = 0
-    augmentation_cache: dict[tuple[str, str, tuple[str, ...]], AugmentationResult] = {}
 
     for _ in range(max_iterations):
         current_score = _score(evaluations, solver_config.secondary_order)
@@ -414,7 +414,7 @@ def improve_q1_savings(
                 + evaluations[right_index].total_aircraft_time_minutes
             )
             candidate, candidate_evaluation, count = _merge_candidate(
-                left, right, old_time, data, augmentation_cache
+                left, right, old_time, data, cache
             )
             route_evaluation_count += count
             if candidate is None or candidate_evaluation is None:
@@ -461,6 +461,7 @@ def improve_q1_batch_relocation(
     *,
     max_targets_per_batch: int = 4,
     max_iterations: int = 30,
+    cache: SolverCache | None = None,
 ) -> Solution:
     """Best-improvement VND step that moves demand batches between routes.
 
@@ -469,17 +470,13 @@ def improve_q1_batch_relocation(
     with joint service-order, aircraft, technical-stop and refuel optimization.
     """
     solver_config = solver_config or SolverConfig()
+    cache = cache or SolverCache(data)
     routes = list(solution.routes)
     evaluations = [evaluate_route(route, matrix=data.matrix, config=data.config) for route in routes]
     if any(not evaluation.feasible for evaluation in evaluations):
         raise ValueError("Input solution contains infeasible routes")
     initial_time = sum(item.total_aircraft_time_minutes for item in evaluations)
     maximum_capacity = max(aircraft.seats for aircraft in data.config.aircraft_types.values())
-    augmentation_cache: dict[tuple[str, str, tuple[str, ...]], AugmentationResult] = {}
-    skeleton_cache: dict[
-        tuple[str, tuple[tuple[str, str, int], ...]],
-        tuple[str, tuple, tuple[str, ...]] | None,
-    ] = {}
     candidate_moves = 0
     lower_bound_pruned = 0
     feasible_moves = 0
@@ -532,8 +529,8 @@ def improve_q1_batch_relocation(
                             + evaluations[target_index].total_aircraft_time_minutes
                         )
                         lower_bound = _route_lower_bound(
-                            source.base_airport, source_assignments, data
-                        ) + _route_lower_bound(target.base_airport, target_assignments, data)
+                            source.base_airport, source_assignments, data, cache
+                        ) + _route_lower_bound(target.base_airport, target_assignments, data, cache)
                         if lower_bound > old_pair_time:
                             lower_bound_pruned += 1
                             continue
@@ -542,16 +539,14 @@ def improve_q1_batch_relocation(
                             source_assignments,
                             data,
                             solver_config.secondary_order,
-                            augmentation_cache,
-                            skeleton_cache,
+                            cache,
                         )
                         rebuilt_target, target_evaluation, target_count = _rebuild_route(
                             target.base_airport,
                             target_assignments,
                             data,
                             solver_config.secondary_order,
-                            augmentation_cache,
-                            skeleton_cache,
+                            cache,
                         )
                         route_evaluations += source_count + target_count
                         if rebuilt_target is None or target_evaluation is None:
@@ -692,20 +687,17 @@ def improve_q1_route_ejection(
     *,
     max_targets: int = 6,
     max_iterations: int = 15,
+    cache: SolverCache | None = None,
 ) -> Solution:
     """Eliminate an all-LAND route by splitting it into two residual-capacity routes."""
     solver_config = solver_config or SolverConfig()
+    cache = cache or SolverCache(data)
     routes = list(solution.routes)
     evaluations = [evaluate_route(route, matrix=data.matrix, config=data.config) for route in routes]
     if any(not item.feasible for item in evaluations):
         raise ValueError("Input solution contains infeasible routes")
     initial_time = sum(item.total_aircraft_time_minutes for item in evaluations)
     maximum_capacity = max(aircraft.seats for aircraft in data.config.aircraft_types.values())
-    augmentation_cache: dict[tuple[str, str, tuple[str, ...]], AugmentationResult] = {}
-    skeleton_cache: dict[
-        tuple[str, tuple[tuple[str, str, int], ...]],
-        tuple[str, tuple, tuple[str, ...]] | None,
-    ] = {}
     candidate_chains = 0
     lower_bound_pruned = 0
     feasible_chains = 0
@@ -768,8 +760,8 @@ def improve_q1_route_ejection(
                             + evaluations[second_index].total_aircraft_time_minutes
                         )
                         lower_bound = _route_lower_bound(
-                            first.base_airport, first_assignments, data
-                        ) + _route_lower_bound(second.base_airport, second_assignments, data)
+                            first.base_airport, first_assignments, data, cache
+                        ) + _route_lower_bound(second.base_airport, second_assignments, data, cache)
                         if lower_bound > old_time:
                             lower_bound_pruned += 1
                             continue
@@ -778,16 +770,14 @@ def improve_q1_route_ejection(
                             first_assignments,
                             data,
                             solver_config.secondary_order,
-                            augmentation_cache,
-                            skeleton_cache,
+                            cache,
                         )
                         rebuilt_second, second_evaluation, second_count = _rebuild_route(
                             second.base_airport,
                             second_assignments,
                             data,
                             solver_config.secondary_order,
-                            augmentation_cache,
-                            skeleton_cache,
+                            cache,
                         )
                         route_evaluations += first_count + second_count
                         if (

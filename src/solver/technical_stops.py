@@ -8,64 +8,60 @@ from .models import AugmentationResult, RouteStop, ServiceVisit
 from .physics import LegPhysics
 
 
-class _Label:
-    """Pareto label; plain slots class to keep the hot search loop cheap.
-
-    Semantics are identical to the previous frozen dataclass: the dominance
-    predicate and all arithmetic are unchanged, and ``path_key`` is computed
-    once at construction instead of on every dominance comparison.
-    Intermediate paths are stored as ``(node, refuel, is_service)`` triples and
-    converted back to ``RouteStop`` objects only for the final result.
-    """
-
-    __slots__ = (
-        "node",
-        "service_index",
-        "stops_used",
-        "time_minutes",
-        "fuel_kg",
-        "fuel_burned_kg",
-        "path",
-        "path_key",
-    )
-
-    def __init__(
-        self,
-        node: str,
-        service_index: int,
-        stops_used: int,
-        time_minutes: int,
-        fuel_kg: float,
-        fuel_burned_kg: float,
-        path: tuple[tuple[str, bool, bool], ...],
-    ) -> None:
-        self.node = node
-        self.service_index = service_index
-        self.stops_used = stops_used
-        self.time_minutes = time_minutes
-        self.fuel_kg = fuel_kg
-        self.fuel_burned_kg = fuel_burned_kg
-        self.path = path
-        self.path_key = tuple((item[0], int(item[1])) for item in path)
+# Label layout: (node, service_index, stops_used, time_minutes, fuel_kg,
+#                fuel_burned_kg, path, path_key).
+# Plain tuples keep the hot search loop at C-level construction speed; the
+# dominance predicate and all arithmetic stay identical to the original
+# dataclass implementation. Intermediate paths are stored as
+# ``(node, refuel, is_service)`` triples and converted back to ``RouteStop``
+# objects only for the final result.
+_NODE = 0
+_SERVICE_INDEX = 1
+_STOPS_USED = 2
+_TIME = 3
+_FUEL = 4
+_BURNED = 5
+_PATH = 6
+_PATH_KEY = 7
 
 
-def _dominates(left: _Label, right: _Label) -> bool:
+def _dominates(left: tuple, right: tuple) -> bool:
     weak = (
-        left.time_minutes <= right.time_minutes
-        and left.fuel_kg + EPSILON >= right.fuel_kg
-        and left.fuel_burned_kg <= right.fuel_burned_kg + EPSILON
+        left[_TIME] <= right[_TIME]
+        and left[_FUEL] + EPSILON >= right[_FUEL]
+        and left[_BURNED] <= right[_BURNED] + EPSILON
     )
     strict = (
-        left.time_minutes < right.time_minutes
-        or left.fuel_kg > right.fuel_kg + EPSILON
-        or left.fuel_burned_kg + EPSILON < right.fuel_burned_kg
+        left[_TIME] < right[_TIME]
+        or left[_FUEL] > right[_FUEL] + EPSILON
+        or left[_BURNED] + EPSILON < right[_BURNED]
     )
-    return weak and (strict or left.path_key <= right.path_key)
+    return weak and (strict or left[_PATH_KEY] <= right[_PATH_KEY])
 
 
-def _insert_label(labels: list[_Label], candidate: _Label) -> None:
-    if any(_dominates(existing, candidate) for existing in labels):
-        return
+def _insert_label(labels: list[tuple], candidate: tuple) -> None:
+    # Inlined dominance checks avoid one Python call frame per compared pair;
+    # the predicate is exactly ``_dominates`` above.
+    cand_time = candidate[_TIME]
+    cand_fuel = candidate[_FUEL]
+    cand_burned = candidate[_BURNED]
+    cand_key = candidate[_PATH_KEY]
+    for existing in labels:
+        ex_time = existing[_TIME]
+        ex_fuel = existing[_FUEL]
+        ex_burned = existing[_BURNED]
+        weak = (
+            ex_time <= cand_time
+            and ex_fuel + EPSILON >= cand_fuel
+            and ex_burned <= cand_burned + EPSILON
+        )
+        if weak and (
+            ex_time < cand_time
+            or ex_fuel > cand_fuel + EPSILON
+            or ex_burned + EPSILON < cand_burned
+            or existing[_PATH_KEY] <= cand_key
+        ):
+            return
     labels[:] = [existing for existing in labels if not _dominates(candidate, existing)]
     labels.append(candidate)
 
@@ -134,33 +130,36 @@ def augment_service_sequence(
             options += ((True, dwell_refuel),)
         node_options[node] = options
 
-    start = _Label(
-        node=base_airport,
-        service_index=0,
-        stops_used=0,
-        time_minutes=0,
-        fuel_kg=tank_capacity,
-        fuel_burned_kg=0.0,
-        path=((base_airport, False, False),),
+    start = (
+        base_airport,
+        0,
+        0,
+        0,
+        tank_capacity,
+        0.0,
+        ((base_airport, False, False),),
+        ((base_airport, 0),),
     )
-    frontier: dict[tuple[str, int, int], list[_Label]] = {(base_airport, 0, 0): [start]}
-    completed: list[tuple[int, float, tuple[tuple[str, int], ...], _Label]] = []
+    frontier: dict[tuple[str, int, int], list[tuple]] = {(base_airport, 0, 0): [start]}
+    completed: list[tuple[int, float, tuple[tuple[str, int], ...], tuple]] = []
 
     for used in range(stop_limit):
-        next_frontier: dict[tuple[str, int, int], list[_Label]] = {}
+        next_frontier: dict[tuple[str, int, int], list[tuple]] = {}
         for labels in frontier.values():
             for label in labels:
-                if label.stops_used != used:
+                if label[_STOPS_USED] != used:
                     continue
-                remaining_services = suffix_services[label.service_index]
+                label_service_index = label[_SERVICE_INDEX]
+                remaining_services = suffix_services[label_service_index]
                 next_required = (
-                    service_nodes[label.service_index] if label.service_index < service_count else None
+                    service_nodes[label_service_index] if label_service_index < service_count else None
                 )
-                label_time = label.time_minutes
-                label_fuel = label.fuel_kg
-                label_burned = label.fuel_burned_kg
-                label_path = label.path
-                label_node = label.node
+                label_time = label[_TIME]
+                label_fuel = label[_FUEL]
+                label_burned = label[_BURNED]
+                label_path = label[_PATH]
+                label_path_key = label[_PATH_KEY]
+                label_node = label[_NODE]
                 for node in candidates:
                     if node == label_node:
                         continue
@@ -176,17 +175,19 @@ def augment_service_sequence(
                     if arrival_fuel + EPSILON < reserve:
                         continue
                     is_service = node == next_required
-                    new_service_index = label.service_index + int(is_service)
+                    new_service_index = label_service_index + int(is_service)
                     for refuel, dwell in node_options[node]:
                         departure_fuel = tank_capacity if refuel else arrival_fuel
-                        next_label = _Label(
-                            node=node,
-                            service_index=new_service_index,
-                            stops_used=used + 1,
-                            time_minutes=label_time + leg_minutes + dwell,
-                            fuel_kg=departure_fuel,
-                            fuel_burned_kg=label_burned + burned,
-                            path=label_path + ((node, refuel, is_service),),
+                        path = label_path + ((node, refuel, is_service),)
+                        next_label = (
+                            node,
+                            new_service_index,
+                            used + 1,
+                            label_time + leg_minutes + dwell,
+                            departure_fuel,
+                            label_burned + burned,
+                            path,
+                            label_path_key + ((node, int(refuel)),),
                         )
                         key = (node, new_service_index, used + 1)
                         bucket = next_frontier.setdefault(key, [])
@@ -200,9 +201,9 @@ def augment_service_sequence(
                                 return_burn = fuel_for_leg(return_distance, aircraft)
                                 return_minutes = flight_minutes(return_distance, speed)
                             if departure_fuel - return_burn + EPSILON >= reserve:
-                                total_time = next_label.time_minutes + return_minutes
-                                total_burn = next_label.fuel_burned_kg + return_burn
-                                path_key = next_label.path_key + ((base_airport, 0),)
+                                total_time = next_label[_TIME] + return_minutes
+                                total_burn = next_label[_BURNED] + return_burn
+                                path_key = next_label[_PATH_KEY] + ((base_airport, 0),)
                                 completed.append((total_time, total_burn, path_key, next_label))
         frontier = next_frontier
 
@@ -211,7 +212,7 @@ def augment_service_sequence(
     total_time, total_burn, _, best = min(completed, key=lambda item: (item[0], item[1], item[2]))
     stops = tuple(
         RouteStop(node, refuel=refuel, is_service=is_service)
-        for node, refuel, is_service in best.path
+        for node, refuel, is_service in best[_PATH]
     ) + (RouteStop(base_airport),)
     return AugmentationResult(
         feasible=True,

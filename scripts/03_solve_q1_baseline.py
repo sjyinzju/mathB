@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
 from src.config import DEFAULT_CONFIG_PATH
 from src.io_utils import sha256, write_csv, write_json
 from src.solver import (
+    SolverCache,
     export_q1_solution,
     improve_q1_batch_relocation,
     improve_q1_route_ejection,
@@ -98,6 +99,9 @@ def main() -> int:
     started = time.perf_counter()
     data = load_problem_data()
     solver_config = SolverConfig(seed=0)
+    # One shared run-scoped cache so static route physics computed in any
+    # stage (baseline / Savings / relocation / ejection) is reused everywhere.
+    cache = SolverCache(data)
     if args.start_best:
         solution = load_q1_solution(
             args.output_root / "best" / "q1-routes.csv",
@@ -106,7 +110,7 @@ def main() -> int:
             method="q1_resumed_best",
         )
     else:
-        solution = solve_q1_baseline(data, solver_config)
+        solution = solve_q1_baseline(data, solver_config, cache=cache)
     ran_savings = args.savings or (not args.start_best and (args.relocate or args.ejection))
     if ran_savings:
         solution = improve_q1_savings(
@@ -114,6 +118,7 @@ def main() -> int:
             data,
             solver_config,
             max_neighbors=args.max_neighbors,
+            cache=cache,
         )
     if args.relocate:
         solution = improve_q1_batch_relocation(
@@ -122,6 +127,7 @@ def main() -> int:
             solver_config,
             max_targets_per_batch=args.max_relocation_targets,
             max_iterations=args.max_relocation_iterations,
+            cache=cache,
         )
     if args.ejection:
         solution = improve_q1_route_ejection(
@@ -130,6 +136,7 @@ def main() -> int:
             solver_config,
             max_targets=args.max_ejection_targets,
             max_iterations=args.max_ejection_iterations,
+            cache=cache,
         )
     solve_seconds = time.perf_counter() - started
     export_q1_solution(
@@ -182,6 +189,7 @@ def main() -> int:
         "passenger_count": data.q1_passenger_count,
         "solve_seconds": round(solve_seconds, 6),
         "elapsed_seconds": round(elapsed_seconds, 6),
+        "performance": cache.stats(),
         "diagnostics": solution.diagnostics,
     }
     write_json(run_dir / "run_config.json", run_config)
