@@ -1,0 +1,3 @@
+﻿ranker,better_budget_count,never_worse,tuning_equal_lexicographic_quality,tuning_route_evaluation_reduction,tuning_runtime_reduction,decision,full_audit_invariant
+cluster_pam_k3,0,True,True,0.04530201342281881,-0.11642341389593391,abandon_mainline,True
+cluster_average_k3,1,False,False,-0.003355704697986628,-0.14862997229955321,abandon_mainline,True

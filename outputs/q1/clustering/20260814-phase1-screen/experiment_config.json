@@ -1,0 +1,48 @@
+{
+  "run_id": "20260814-phase1-screen",
+  "git_commit": "1bfa548ca7c74eee518d58e7150b55cb07c3d427",
+  "git_dirty": true,
+  "problem_config_sha256": "2a30f3db67ffcb32af1abb7107b58745587ca9295b6d4b01eeaea199fb928f1b",
+  "k_range": [
+    2,
+    10
+  ],
+  "budgets": [
+    25,
+    50,
+    75
+  ],
+  "tuning_budget": 50,
+  "stability_repeats": 50,
+  "timing_repeats": 5,
+  "full": true,
+  "baseline_seconds": 57.921192800000426,
+  "cluster_sweep_seconds": 50.00289259999954,
+  "legacy_reproduction_pass": true,
+  "selected_rankers": [
+    "cluster_pam_k3",
+    "cluster_average_k3"
+  ],
+  "decisions": [
+    {
+      "ranker": "cluster_pam_k3",
+      "better_budget_count": 0,
+      "never_worse": true,
+      "tuning_equal_lexicographic_quality": true,
+      "tuning_route_evaluation_reduction": 0.04530201342281881,
+      "tuning_runtime_reduction": -0.11642341389593391,
+      "decision": "abandon_mainline",
+      "full_audit_invariant": true
+    },
+    {
+      "ranker": "cluster_average_k3",
+      "better_budget_count": 1,
+      "never_worse": false,
+      "tuning_equal_lexicographic_quality": false,
+      "tuning_route_evaluation_reduction": -0.003355704697986628,
+      "tuning_runtime_reduction": -0.14862997229955321,
+      "decision": "abandon_mainline",
+      "full_audit_invariant": true
+    }
+  ]
+}
