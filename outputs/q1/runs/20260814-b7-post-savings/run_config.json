@@ -1,0 +1,36 @@
+{
+  "run_id": "20260814-b7-post-savings",
+  "method": "q1_b1_generalized_savings",
+  "git_commit": "1bfa548ca7c74eee518d58e7150b55cb07c3d427",
+  "git_dirty": true,
+  "problem_config_sha256": "0ef7bec7ea6c152aa2d11e754124fc3c7c3bdd211b0cadf0353ae7044f6fbf3b",
+  "seed": 0,
+  "secondary_order": [
+    "total_passenger_travel_time_minutes",
+    "total_flights",
+    "total_fuel_consumption_kg",
+    "seat_utilization"
+  ],
+  "savings": true,
+  "start_best": true,
+  "relocate": false,
+  "ejection": false,
+  "max_neighbors": 8,
+  "max_relocation_targets": 4,
+  "max_relocation_iterations": 30,
+  "max_ejection_targets": 6,
+  "max_ejection_iterations": 15,
+  "deterministic": true,
+  "passenger_count": 1600,
+  "solve_seconds": 0.019824,
+  "elapsed_seconds": 0.032026,
+  "diagnostics": {
+    "loaded_from": "D:\\Desktop\\B题\\outputs\\q1\\best",
+    "generalized_savings": {
+      "evaluated_pairs": 0,
+      "evaluated_routes": 0,
+      "accepted_merges": 0,
+      "primary_improvement_minutes": 0
+    }
+  }
+}

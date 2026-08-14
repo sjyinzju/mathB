@@ -1,0 +1,356 @@
+{
+  "run_id": "20260814-b3-ejection-v1",
+  "method": "q1_b3_route_ejection_vnd",
+  "git_commit": "1bfa548ca7c74eee518d58e7150b55cb07c3d427",
+  "git_dirty": true,
+  "problem_config_sha256": "0ef7bec7ea6c152aa2d11e754124fc3c7c3bdd211b0cadf0353ae7044f6fbf3b",
+  "seed": 0,
+  "secondary_order": [
+    "total_passenger_travel_time_minutes",
+    "total_flights",
+    "total_fuel_consumption_kg",
+    "seat_utilization"
+  ],
+  "savings": true,
+  "relocate": false,
+  "ejection": true,
+  "max_neighbors": 5,
+  "max_relocation_targets": 4,
+  "max_relocation_iterations": 30,
+  "max_ejection_targets": 4,
+  "max_ejection_iterations": 8,
+  "deterministic": true,
+  "passenger_count": 1600,
+  "solve_seconds": 108.605165,
+  "elapsed_seconds": 108.617349,
+  "diagnostics": {
+    "seed": 0,
+    "secondary_order": [
+      "total_passenger_travel_time_minutes",
+      "total_flights",
+      "total_fuel_consumption_kg",
+      "seat_utilization"
+    ],
+    "facility_airport_passengers": {
+      "F001": {
+        "A01": 42,
+        "A02": 0,
+        "A03": 0
+      },
+      "F002": {
+        "A01": 45,
+        "A02": 0,
+        "A03": 0
+      },
+      "F003": {
+        "A01": 19,
+        "A02": 0,
+        "A03": 0
+      },
+      "F004": {
+        "A01": 27,
+        "A02": 0,
+        "A03": 0
+      },
+      "F005": {
+        "A01": 27,
+        "A02": 0,
+        "A03": 0
+      },
+      "F006": {
+        "A01": 34,
+        "A02": 0,
+        "A03": 0
+      },
+      "F007": {
+        "A01": 28,
+        "A02": 0,
+        "A03": 0
+      },
+      "F008": {
+        "A01": 22,
+        "A02": 0,
+        "A03": 0
+      },
+      "F009": {
+        "A01": 27,
+        "A02": 0,
+        "A03": 0
+      },
+      "F010": {
+        "A01": 31,
+        "A02": 0,
+        "A03": 0
+      },
+      "F011": {
+        "A01": 29,
+        "A02": 0,
+        "A03": 0
+      },
+      "F012": {
+        "A01": 34,
+        "A02": 0,
+        "A03": 0
+      },
+      "F013": {
+        "A01": 31,
+        "A02": 0,
+        "A03": 0
+      },
+      "F014": {
+        "A01": 28,
+        "A02": 0,
+        "A03": 0
+      },
+      "F015": {
+        "A01": 23,
+        "A02": 0,
+        "A03": 0
+      },
+      "F016": {
+        "A01": 25,
+        "A02": 0,
+        "A03": 0
+      },
+      "F017": {
+        "A01": 27,
+        "A02": 0,
+        "A03": 0
+      },
+      "F018": {
+        "A01": 19,
+        "A02": 18,
+        "A03": 0
+      },
+      "F019": {
+        "A01": 32,
+        "A02": 12,
+        "A03": 0
+      },
+      "F020": {
+        "A01": 32,
+        "A02": 14,
+        "A03": 0
+      },
+      "F021": {
+        "A01": 38,
+        "A02": 13,
+        "A03": 0
+      },
+      "F022": {
+        "A01": 32,
+        "A02": 14,
+        "A03": 0
+      },
+      "F023": {
+        "A01": 0,
+        "A02": 25,
+        "A03": 0
+      },
+      "F024": {
+        "A01": 17,
+        "A02": 12,
+        "A03": 0
+      },
+      "F025": {
+        "A01": 19,
+        "A02": 7,
+        "A03": 0
+      },
+      "F026": {
+        "A01": 19,
+        "A02": 14,
+        "A03": 0
+      },
+      "F027": {
+        "A01": 19,
+        "A02": 16,
+        "A03": 0
+      },
+      "F028": {
+        "A01": 12,
+        "A02": 16,
+        "A03": 0
+      },
+      "F029": {
+        "A01": 12,
+        "A02": 12,
+        "A03": 0
+      },
+      "F030": {
+        "A01": 16,
+        "A02": 10,
+        "A03": 0
+      },
+      "F031": {
+        "A01": 0,
+        "A02": 29,
+        "A03": 0
+      },
+      "F032": {
+        "A01": 0,
+        "A02": 30,
+        "A03": 0
+      },
+      "F033": {
+        "A01": 19,
+        "A02": 12,
+        "A03": 0
+      },
+      "F034": {
+        "A01": 19,
+        "A02": 18,
+        "A03": 0
+      },
+      "F035": {
+        "A01": 16,
+        "A02": 5,
+        "A03": 0
+      },
+      "F036": {
+        "A01": 0,
+        "A02": 34,
+        "A03": 8
+      },
+      "F037": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 28
+      },
+      "F038": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 31
+      },
+      "F039": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 34
+      },
+      "F040": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 27
+      },
+      "F041": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 21
+      },
+      "F042": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 26
+      },
+      "F043": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 30
+      },
+      "F044": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 34
+      },
+      "F045": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 35
+      },
+      "F046": {
+        "A01": 0,
+        "A02": 19,
+        "A03": 1
+      },
+      "F047": {
+        "A01": 0,
+        "A02": 18,
+        "A03": 5
+      },
+      "F048": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 32
+      },
+      "F049": {
+        "A01": 0,
+        "A02": 19,
+        "A03": 14
+      },
+      "F050": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 27
+      },
+      "F051": {
+        "A01": 0,
+        "A02": 0,
+        "A03": 33
+      },
+      "F052": {
+        "A01": 0,
+        "A02": 16,
+        "A03": 11
+      }
+    },
+    "template_count": 468,
+    "generalized_savings": {
+      "evaluated_pairs": 738,
+      "evaluated_routes": 2112,
+      "accepted_merges": 10,
+      "primary_improvement_minutes": 1479
+    },
+    "route_ejection": {
+      "candidate_chains": 34,
+      "lower_bound_pruned": 0,
+      "feasible_chains": 34,
+      "accepted_chains": 4,
+      "eliminated_routes": 4,
+      "moved_passengers": 63,
+      "route_evaluations": 94,
+      "primary_improvement_minutes": 278
+    },
+    "route_ejection_moves": [
+      {
+        "iteration": 1,
+        "source_base": "A02",
+        "first_target_base": "A03",
+        "second_target_base": "A02",
+        "destination": "F036",
+        "first_passengers": 11,
+        "second_passengers": 4,
+        "aircraft_time_improvement_minutes": 129
+      },
+      {
+        "iteration": 2,
+        "source_base": "A01",
+        "first_target_base": "A02",
+        "second_target_base": "A01",
+        "destination": "F030",
+        "first_passengers": 9,
+        "second_passengers": 7,
+        "aircraft_time_improvement_minutes": 57
+      },
+      {
+        "iteration": 3,
+        "source_base": "A01",
+        "first_target_base": "A01",
+        "second_target_base": "A01",
+        "destination": "F017",
+        "first_passengers": 6,
+        "second_passengers": 10,
+        "aircraft_time_improvement_minutes": 53
+      },
+      {
+        "iteration": 4,
+        "source_base": "A01",
+        "first_target_base": "A01",
+        "second_target_base": "A01",
+        "destination": "F014",
+        "first_passengers": 8,
+        "second_passengers": 8,
+        "aircraft_time_improvement_minutes": 39
+      }
+    ]
+  }
+}
