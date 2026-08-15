@@ -32,6 +32,7 @@ from src.solver import (
     load_q1_solution,
 )
 from src.solver.models import SolverConfig
+from src.solver.relatedness import FrozenConsensus
 from src.validation import validate_solution
 
 import src.solver.alns as _alns_mod
@@ -79,6 +80,13 @@ def _stage_configs(args: argparse.Namespace, seed: int) -> tuple[Q1ALNSConfig, Q
             cooling_rate=args.cooling_rate,
             reaction_factor=args.reaction_factor,
             segment_length=args.segment_length,
+            related_destroy_mode=args.related_destroy_mode,
+            frozen_consensus=args.frozen_consensus,
+            context_repair_mode=args.context_repair_mode,
+            context_candidate_budget=args.context_candidate_budget,
+            context_components=args.context_components,
+            stagnation_limit_seconds=args.stagnation_seconds,
+            minimum_runtime_before_stagnation_stop=args.minimum_stagnation_runtime,
         )
         stage2 = Q1ALNSConfig(
             iterations=args.stage_iterations,
@@ -92,6 +100,13 @@ def _stage_configs(args: argparse.Namespace, seed: int) -> tuple[Q1ALNSConfig, Q
             cooling_rate=args.cooling_rate,
             reaction_factor=args.reaction_factor,
             segment_length=args.segment_length,
+            related_destroy_mode=args.related_destroy_mode,
+            frozen_consensus=args.frozen_consensus,
+            context_repair_mode=args.context_repair_mode,
+            context_candidate_budget=args.context_candidate_budget,
+            context_components=args.context_components,
+            stagnation_limit_seconds=args.stagnation_seconds,
+            minimum_runtime_before_stagnation_stop=args.minimum_stagnation_runtime,
         )
     else:
         stage1 = Q1ALNSConfig(
@@ -106,6 +121,13 @@ def _stage_configs(args: argparse.Namespace, seed: int) -> tuple[Q1ALNSConfig, Q
             cooling_rate=args.cooling_rate,
             reaction_factor=args.reaction_factor,
             segment_length=args.segment_length,
+            related_destroy_mode=args.related_destroy_mode,
+            frozen_consensus=args.frozen_consensus,
+            context_repair_mode=args.context_repair_mode,
+            context_candidate_budget=args.context_candidate_budget,
+            context_components=args.context_components,
+            stagnation_limit_seconds=args.stagnation_seconds,
+            minimum_runtime_before_stagnation_stop=args.minimum_stagnation_runtime,
         )
         stage2 = Q1ALNSConfig(
             iterations=10**6,
@@ -119,6 +141,13 @@ def _stage_configs(args: argparse.Namespace, seed: int) -> tuple[Q1ALNSConfig, Q
             cooling_rate=args.cooling_rate,
             reaction_factor=args.reaction_factor,
             segment_length=args.segment_length,
+            related_destroy_mode=args.related_destroy_mode,
+            frozen_consensus=args.frozen_consensus,
+            context_repair_mode=args.context_repair_mode,
+            context_candidate_budget=args.context_candidate_budget,
+            context_components=args.context_components,
+            stagnation_limit_seconds=args.stagnation_seconds,
+            minimum_runtime_before_stagnation_stop=args.minimum_stagnation_runtime,
         )
     return stage1, stage2
 
@@ -201,7 +230,7 @@ def _run_seed(args: argparse.Namespace, data, initial, seed: int, run_dir: Path)
     final_best_row = next(
         (
             row
-            for row in reversed(convergence_rows)
+            for row in convergence_rows
             if float(row["best_aircraft_time_minutes"]) == best_aircraft
         ),
         None,
@@ -210,6 +239,26 @@ def _run_seed(args: argparse.Namespace, data, initial, seed: int, run_dir: Path)
     accepted_total = sum(int(row["accepted"]) for row in convergence_rows)
     improved_total = sum(int(row["improved_current"]) for row in convergence_rows)
     global_best_total = sum(int(row["new_global_best"]) for row in convergence_rows)
+    repair_successes = sum(bool(row["repaired_routes"] != "") for row in convergence_rows)
+    repair_candidates_considered = sum(
+        int(row["repair_candidates_considered"] or 0) for row in convergence_rows
+    )
+    repair_candidates_selected = sum(
+        int(row["repair_candidates_selected"] or 0) for row in convergence_rows
+    )
+    repair_exact_candidate_builds = sum(
+        int(row["repair_exact_candidate_builds"] or 0) for row in convergence_rows
+    )
+
+    def time_to_threshold(threshold: float) -> float | None:
+        return next(
+            (
+                float(row["elapsed_seconds"])
+                for row in convergence_rows
+                if float(row["best_aircraft_time_minutes"]) <= threshold
+            ),
+            None,
+        )
 
     write_csv(
         run_dir / "q1-convergence.csv",
@@ -224,6 +273,9 @@ def _run_seed(args: argparse.Namespace, data, initial, seed: int, run_dir: Path)
             "removed_aircraft_time_minutes",
             "repair_variants",
             "repaired_routes",
+            "repair_candidates_considered",
+            "repair_candidates_selected",
+            "repair_exact_candidate_builds",
             "accepted",
             "improved_current",
             "new_global_best",
@@ -282,7 +334,23 @@ def _run_seed(args: argparse.Namespace, data, initial, seed: int, run_dir: Path)
         "new_global_best_count": global_best_total,
         "time_to_first_improvement_seconds": first_below,
         "time_to_final_best_seconds": round(time_to_final_best, 3),
+        "time_to_15118_seconds": time_to_threshold(15118),
+        "time_to_15052_seconds": time_to_threshold(15052),
         "evaluator_calls": _EVAL_CALLS["count"],
+        "repair_successes": repair_successes,
+        "repair_success_rate": round(
+            repair_successes / max(1, len(convergence_rows)), 6
+        ),
+        "repair_candidates_considered": repair_candidates_considered,
+        "repair_candidates_selected": repair_candidates_selected,
+        "repair_exact_candidate_builds": repair_exact_candidate_builds,
+        "candidate_selection_rate": round(
+            repair_candidates_selected / max(1, repair_candidates_considered), 6
+        ),
+        "improvement_per_evaluator_call": round(
+            (initial_aircraft - best_aircraft) / max(1, _EVAL_CALLS["count"]),
+            9,
+        ),
         "solver_cache_stats": cache.stats(),
         "variant_cache_size": solution.diagnostics.get("alns", {}).get("variant_cache_size"),
         "stage_configs": [
@@ -296,6 +364,22 @@ def _run_seed(args: argparse.Namespace, data, initial, seed: int, run_dir: Path)
                 "cooling_rate": config.cooling_rate,
                 "reaction_factor": config.reaction_factor,
                 "segment_length": config.segment_length,
+                "related_destroy_mode": config.related_destroy_mode,
+                "consensus_source": (
+                    str(args.consensus_path)
+                    if config.related_destroy_mode == "distance_consensus"
+                    else None
+                ),
+                "context_repair_mode": config.context_repair_mode,
+                "context_candidate_budget": config.context_candidate_budget,
+                "context_components": list(config.context_components),
+                "stagnation_limit_seconds": config.stagnation_limit_seconds,
+                "minimum_runtime_before_stagnation_stop": (
+                    config.minimum_runtime_before_stagnation_stop
+                ),
+                "stop_reason": stage_results[
+                    0 if config is stage1 else 1
+                ].solution.diagnostics.get("alns", {}).get("stop_reason"),
                 "seed": config.seed,
             }
             for config in (stage1, stage2)
@@ -320,6 +404,28 @@ def main() -> int:
     parser.add_argument("--cooling-rate", type=float, default=0.985)
     parser.add_argument("--reaction-factor", type=float, default=0.25)
     parser.add_argument("--segment-length", type=int, default=15)
+    parser.add_argument(
+        "--related-destroy-mode",
+        choices=("legacy", "distance", "distance_consensus"),
+        default="legacy",
+    )
+    parser.add_argument(
+        "--consensus-path",
+        type=Path,
+        default=ROOT / "data" / "q1-relatedness-consensus.csv",
+    )
+    parser.add_argument(
+        "--context-repair-mode",
+        choices=("none", "ranked"),
+        default="none",
+    )
+    parser.add_argument("--context-candidate-budget", type=int, default=0)
+    parser.add_argument(
+        "--context-components",
+        default="geometry,capacity,ejection,airport,route_state",
+    )
+    parser.add_argument("--stagnation-seconds", type=float)
+    parser.add_argument("--minimum-stagnation-runtime", type=float, default=0.0)
     parser.add_argument("--destroy-max-1", type=int, default=3)
     parser.add_argument("--destroy-min-2", type=int, default=3)
     parser.add_argument("--destroy-max-2", type=int, default=4)
@@ -335,6 +441,9 @@ def main() -> int:
     )
     parser.add_argument("--output-root", type=Path, default=ROOT / "outputs" / "q1" / "alns")
     args = parser.parse_args()
+    args.context_components = tuple(
+        item.strip() for item in args.context_components.split(",") if item.strip()
+    )
 
     seeds = [int(item) for item in args.seeds.split(",") if item.strip()]
     experiment_dir = args.output_root / args.experiment
@@ -343,6 +452,11 @@ def main() -> int:
     experiment_dir.mkdir(parents=True)
 
     data = load_problem_data()
+    args.frozen_consensus = (
+        FrozenConsensus.from_pair_csv(args.consensus_path, data.config.facilities)
+        if args.related_destroy_mode == "distance_consensus"
+        else None
+    )
     initial = load_q1_solution(
         args.initial_routes, args.initial_assignments, data, method="q1_alns_initial"
     )
@@ -389,6 +503,9 @@ def main() -> int:
                 "runtime_seconds": item["runtime_seconds"],
                 "improving_moves": item["improving_moves"],
                 "new_global_best_count": item["new_global_best_count"],
+                "evaluator_calls": item["evaluator_calls"],
+                "repair_candidates_considered": item["repair_candidates_considered"],
+                "repair_candidates_selected": item["repair_candidates_selected"],
                 "gate_pass": item["gate_pass"],
             }
             for item in summaries
@@ -413,6 +530,12 @@ def main() -> int:
             "time_to_first_improvement_seconds",
             "time_to_final_best_seconds",
             "evaluator_calls",
+            "repair_candidates_considered",
+            "repair_candidates_selected",
+            "repair_exact_candidate_builds",
+            "candidate_selection_rate",
+            "repair_success_rate",
+            "improvement_per_evaluator_call",
             "gate_pass",
             "beat_initial",
         ],

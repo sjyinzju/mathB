@@ -26,6 +26,7 @@ from src.solver import (
     solve_q1_baseline,
 )
 from src.solver.models import SolverConfig
+from src.solver.relatedness import FrozenConsensus
 from src.validation import validate_solution
 
 
@@ -88,6 +89,26 @@ def main() -> int:
     parser.add_argument("--max-service-nodes", type=int, default=2)
     parser.add_argument("--max-long-service-orders", type=int, default=40)
     parser.add_argument("--max-neighbors", type=int, default=5)
+    parser.add_argument(
+        "--related-destroy-mode",
+        choices=("legacy", "distance", "distance_consensus"),
+        default="legacy",
+    )
+    parser.add_argument(
+        "--consensus-path",
+        type=Path,
+        default=ROOT / "data" / "q1-relatedness-consensus.csv",
+    )
+    parser.add_argument(
+        "--context-repair-mode", choices=("none", "ranked"), default="none"
+    )
+    parser.add_argument("--context-candidate-budget", type=int, default=0)
+    parser.add_argument(
+        "--context-components",
+        default="geometry,capacity,ejection,airport,route_state",
+    )
+    parser.add_argument("--stagnation-seconds", type=float)
+    parser.add_argument("--minimum-stagnation-runtime", type=float, default=0.0)
     parser.add_argument("--initial-routes", type=Path)
     parser.add_argument("--initial-assignments", type=Path)
     parser.add_argument(
@@ -107,6 +128,23 @@ def main() -> int:
     data = load_problem_data()
     cache = SolverCache(data)
     solver_config = SolverConfig(seed=args.seed)
+    context_components = tuple(
+        item.strip() for item in args.context_components.split(",") if item.strip()
+    )
+    frozen_consensus = (
+        FrozenConsensus.from_pair_csv(args.consensus_path, data.config.facilities)
+        if args.related_destroy_mode == "distance_consensus"
+        else None
+    )
+    relatedness_options = {
+        "related_destroy_mode": args.related_destroy_mode,
+        "frozen_consensus": frozen_consensus,
+        "context_repair_mode": args.context_repair_mode,
+        "context_candidate_budget": args.context_candidate_budget,
+        "context_components": context_components,
+        "stagnation_limit_seconds": args.stagnation_seconds,
+        "minimum_runtime_before_stagnation_stop": args.minimum_stagnation_runtime,
+    }
     if bool(args.initial_routes) != bool(args.initial_assignments):
         raise ValueError("--initial-routes and --initial-assignments must be provided together")
     if args.initial_routes:
@@ -132,6 +170,7 @@ def main() -> int:
                 max_service_nodes=2,
                 repair_time_limit_seconds=3.0,
                 seed=args.seed,
+                **relatedness_options,
             ),
             Q1ALNSConfig(
                 iterations=60,
@@ -141,6 +180,7 @@ def main() -> int:
                 max_service_nodes=2,
                 repair_time_limit_seconds=5.0,
                 seed=args.seed + 1,
+                **relatedness_options,
             ),
         )
     else:
@@ -154,6 +194,7 @@ def main() -> int:
                 max_long_service_orders=args.max_long_service_orders,
                 repair_time_limit_seconds=args.repair_time_limit,
                 seed=args.seed,
+                **relatedness_options,
             ),
         )
     stage_results = []
@@ -227,6 +268,13 @@ def main() -> int:
             "elapsed_seconds",
             "operator",
             "destroyed_routes",
+            "destroyed_passengers",
+            "removed_aircraft_time_minutes",
+            "repair_variants",
+            "repaired_routes",
+            "repair_candidates_considered",
+            "repair_candidates_selected",
+            "repair_exact_candidate_builds",
             "accepted",
             "improved_current",
             "new_global_best",
@@ -286,6 +334,17 @@ def main() -> int:
                 "initial_assignments": (
                     str(args.initial_assignments) if args.initial_assignments else None
                 ),
+                "related_destroy_mode": args.related_destroy_mode,
+                "consensus_path": (
+                    str(args.consensus_path)
+                    if args.related_destroy_mode == "distance_consensus"
+                    else None
+                ),
+                "context_repair_mode": args.context_repair_mode,
+                "context_candidate_budget": args.context_candidate_budget,
+                "context_components": list(context_components),
+                "stagnation_seconds": args.stagnation_seconds,
+                "minimum_stagnation_runtime": args.minimum_stagnation_runtime,
             },
             "alns_stages": [
                 {
@@ -295,6 +354,14 @@ def main() -> int:
                     "min_destroy_routes": config.min_destroy_routes,
                     "max_destroy_routes": config.max_destroy_routes,
                     "max_service_nodes": config.max_service_nodes,
+                    "related_destroy_mode": config.related_destroy_mode,
+                    "context_repair_mode": config.context_repair_mode,
+                    "context_candidate_budget": config.context_candidate_budget,
+                    "context_components": list(config.context_components),
+                    "stagnation_limit_seconds": config.stagnation_limit_seconds,
+                    "minimum_runtime_before_stagnation_stop": (
+                        config.minimum_runtime_before_stagnation_stop
+                    ),
                     "seed": config.seed,
                 }
                 for config in stage_configs

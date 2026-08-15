@@ -64,6 +64,88 @@ def test_short_run_improves_and_is_deterministic(data, initial):
     ]
 
 
+def test_relatedness_disabled_is_exact_noop(data, initial):
+    default = _short_run(data, initial)
+    cache = SolverCache(data)
+    solution = initial
+    explicit = []
+    for offset in (0, 1):
+        config = Q1ALNSConfig(
+            iterations=1,
+            time_limit_seconds=10.0**9,
+            related_destroy_mode="legacy",
+            seed=offset,
+        )
+        result = improve_q1_alns(
+            solution, data, SolverConfig(seed=offset), config, cache=cache
+        )
+        explicit.append(result)
+        solution = result.solution
+    assert explicit[-1].solution.metrics.comparison_key(
+        SolverConfig().secondary_order
+    ) == default[-1].solution.metrics.comparison_key(
+        SolverConfig().secondary_order
+    )
+    def semantic_rows(result):
+        return tuple(
+            {key: value for key, value in row.items() if key != "elapsed_seconds"}
+            for row in result.convergence
+        )
+
+    assert semantic_rows(explicit[0]) == semantic_rows(default[0])
+
+
+def test_related_destroy_mode_validation():
+    with pytest.raises(ValueError, match="related_destroy_mode"):
+        Q1ALNSConfig(related_destroy_mode="unknown")
+
+
+def test_context_repair_validation():
+    with pytest.raises(ValueError, match="positive candidate budget"):
+        Q1ALNSConfig(context_repair_mode="ranked")
+    with pytest.raises(ValueError, match="context_components"):
+        Q1ALNSConfig(context_components=("unknown",))
+    with pytest.raises(ValueError, match="stagnation_limit_seconds"):
+        Q1ALNSConfig(stagnation_limit_seconds=0.0)
+
+
+def test_stagnation_stop_is_explicit_and_does_not_change_default(data, initial):
+    result = improve_q1_alns(
+        initial,
+        data,
+        SolverConfig(seed=0),
+        Q1ALNSConfig(
+            iterations=10,
+            time_limit_seconds=10.0**9,
+            stagnation_limit_seconds=1e-12,
+            seed=0,
+        ),
+        cache=SolverCache(data),
+    )
+    assert result.convergence == ()
+    assert result.solution.diagnostics["alns"]["stop_reason"] == "stagnation"
+
+
+def test_context_repair_prunes_candidates_without_bypassing_exact_repair(data, initial):
+    result = improve_q1_alns(
+        initial,
+        data,
+        SolverConfig(seed=0),
+        Q1ALNSConfig(
+            iterations=1,
+            time_limit_seconds=10.0**9,
+            context_repair_mode="ranked",
+            context_candidate_budget=24,
+            seed=0,
+        ),
+        cache=SolverCache(data),
+    )
+    row = result.convergence[0]
+    assert 0 < row["repair_candidates_selected"] < row["repair_candidates_considered"]
+    assert row["repair_exact_candidate_builds"] <= row["repair_candidates_selected"]
+    assert result.solution.metrics.served_passengers == data.q1_passenger_count
+
+
 def test_operator_diagnostics_fields_present(data, initial):
     result = _short_run(data, initial)[-1]
     required = {
@@ -90,6 +172,9 @@ def test_operator_diagnostics_fields_present(data, initial):
         "removed_aircraft_time_minutes",
         "repair_variants",
         "repaired_routes",
+        "repair_candidates_considered",
+        "repair_candidates_selected",
+        "repair_exact_candidate_builds",
     ):
         assert key in convergence_keys
     # one iteration never crosses a segment boundary, so the history is empty
