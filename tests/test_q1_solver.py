@@ -201,8 +201,12 @@ def test_checked_in_q1_baseline_serves_all_people_and_validates(config, raw_dir,
     roundtrip_routes = tmp_path / "q1-routes.csv"
     roundtrip_assignments = tmp_path / "q1-assignments.csv"
     export_q1_solution(restored, roundtrip_routes, roundtrip_assignments)
-    assert roundtrip_routes.read_bytes() == (best / "q1-routes.csv").read_bytes()
-    assert roundtrip_assignments.read_bytes() == (best / "q1-assignments.csv").read_bytes()
+    # Git may materialize tracked text as CRLF on Windows even though the index
+    # and exporter use LF.  Preserve the byte-stability assertion modulo the
+    # platform checkout convention.
+    normalized = lambda path: path.read_bytes().replace(b"\r\n", b"\n")
+    assert normalized(roundtrip_routes) == normalized(best / "q1-routes.csv")
+    assert normalized(roundtrip_assignments) == normalized(best / "q1-assignments.csv")
     result = validate_solution(
         "q1",
         best / "q1-routes.csv",

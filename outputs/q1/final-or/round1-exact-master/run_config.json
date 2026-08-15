@@ -1,0 +1,23 @@
+{
+  "run_id": "round1-exact-master",
+  "method": "q1_exact_allocated_route_pattern_master",
+  "git_commit": "38e2347c5915999d6c8a875873aa7180dc22d29f",
+  "git_branch": "codex/q1-final-or-intensification",
+  "git_dirty": true,
+  "runtime": {
+    "python": "3.11.9",
+    "scipy": "1.17.1",
+    "backend": "scipy.optimize.milp/linprog (HiGHS)"
+  },
+  "config": {
+    "maximum_source_objective": 15371,
+    "primary_seconds": 180.0,
+    "secondary_seconds": 30.0,
+    "primary_upper_bound": null
+  },
+  "elapsed_seconds": 271.514615,
+  "artifacts": {
+    "routes_sha256": "a9f566d7562b8e89e2c87b84eca9aec1fcc329dd349aeabea355d58fa50750f3",
+    "assignments_sha256": "007a0a9e12b75c128a94489059a99a262170390956fd3c33643068fed8d114d9"
+  }
+}
