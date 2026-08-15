@@ -1,0 +1,37 @@
+{
+  "pair_master": null,
+  "expanded_master": {
+    "primary_incumbent_minutes": 20222.0,
+    "primary_dual_bound_minutes": 15950.0,
+    "primary_mip_gap": 0.21125506873701907,
+    "primary_mip_gap_percent": 21.12550687370191,
+    "primary_status": 1,
+    "primary_proven_optimal": false,
+    "secondary_status": 1,
+    "secondary_mip_gap": null,
+    "secondary_proven_optimal": false,
+    "lexicographic_weights": {
+      "passenger_time": 527319720,
+      "flights": 2441295,
+      "fuel_deci_kg": 1
+    },
+    "final_objectives": {
+      "aircraft_time_minutes": 20222.0,
+      "passenger_time_minutes": 268012.00000000006,
+      "flights": 107.0,
+      "fuel_kg": 155313.3
+    },
+    "candidate_sequences": 437,
+    "candidate_variants": 3799,
+    "compatible_assignments": 31330,
+    "elapsed_seconds": 301.781783,
+    "gap_definition": "(incumbent-dual_bound)/abs(incumbent)"
+  },
+  "status_definition": {
+    "0": "在给定候选池上证明最优",
+    "1": "达到时间或迭代限制，保留当前最好可行解与对偶下界",
+    "2": "判定不可行",
+    "3": "判定无界",
+    "4": "数值或其他求解器错误"
+  }
+}
