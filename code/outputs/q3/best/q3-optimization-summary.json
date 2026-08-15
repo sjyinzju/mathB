@@ -1,4 +1,11 @@
 {
+  "status": "historical_mechanism_summary_with_current_incumbent_appended",
+  "current_canonical": {
+    "stage1_aircraft_time": 29659,
+    "stage2_aircraft_time": 29659,
+    "temporary": 158,
+    "stage2_globally_proven": false
+  },
   "initial_v5": {
     "T0": 31371,
     "temporary": 158,
@@ -11,7 +18,7 @@
   "deep_stage2": {
     "final_time": 30510,
     "temporary": 160,
-    "proven_optimal_temporary_count": true
+    "proven_optimal_temporary_count_for_historical_cap_only": true
   },
   "mechanisms": [
     "guided bottleneck OD construction",

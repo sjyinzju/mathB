@@ -29,44 +29,17 @@ from .q3 import (
     optimize_fixed_flight_assignments,
     schedule_comparison_key,
     schedule_metrics,
+    schedule_seat_utilization,
+    stage1_key,
+    stage2_key,
 )
 from .q3_timing import schedule_route_timing
 
 
 def _seat_utilization_proxy(flights: Sequence[Q3Flight]) -> float:
-    numerator = 0.0
-    denominator = 0.0
-    for flight in flights:
-        stops = flight.variant.source.route.stops
-        loads = [0] * (len(stops) - 1)
-        for pickup, delivery in flight.assignment_intervals.values():
-            for leg in range(pickup, delivery):
-                loads[leg] += 1
-        for leg, load in enumerate(loads):
-            airborne = flight.arrivals[leg + 1] - flight.departures[leg]
-            numerator += load * airborne
-            denominator += flight.variant.capacity * airborne
-    return numerator / denominator if denominator else 0.0
+    """Compatibility alias for the canonical actual-timing implementation."""
 
-
-def stage1_key(
-    flights: Sequence[Q3Flight], people: dict[str, Q3Person]
-) -> tuple[float, ...]:
-    metrics = schedule_metrics(flights, people)
-    return (
-        float(metrics["total_aircraft_time_minutes"]),
-        float(metrics["total_passenger_travel_time_minutes"]),
-        float(metrics["total_flights"]),
-        float(metrics["total_fuel_consumption_kg"]),
-        -_seat_utilization_proxy(flights),
-    )
-
-
-def stage2_key(
-    flights: Sequence[Q3Flight], people: dict[str, Q3Person]
-) -> tuple[float, ...]:
-    metrics = schedule_metrics(flights, people)
-    return (-float(metrics["served_optional"]),) + stage1_key(flights, people)
+    return schedule_seat_utilization(flights)
 
 
 def is_hard_person(

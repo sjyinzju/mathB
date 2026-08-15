@@ -29,6 +29,8 @@ from src.solver.q3 import (
     retype_and_rehome_flights,
     schedule_metrics,
     shorten_fixed_flight_routes,
+    stage1_key,
+    stage2_key,
 )
 from src.solver.q3_closure_p2 import (
     adaptive_structural_lns,
@@ -38,8 +40,6 @@ from src.solver.q3_closure_p2 import (
     generalized_multiflight_ruin_recreate,
     optional_feasibility_dossiers,
     route_cache_provenance,
-    stage1_key,
-    stage2_key,
     targeted_optional_recovery,
 )
 from src.validation import validate_solution

@@ -1650,6 +1650,7 @@ def schedule_metrics(
         "total_fuel_consumption_kg": round(
             sum(flight.variant.fuel_kg for flight in flights), 6
         ),
+        "seat_utilization": schedule_seat_utilization(flights),
         "served_mandatory": sum(
             person.mandatory and person_id in assigned
             for person_id, person in people.items()
@@ -1661,19 +1662,56 @@ def schedule_metrics(
     }
 
 
-def schedule_comparison_key(
-    flights: Sequence[Q3Flight], people: dict[str, Q3Person], *, stage: int = 1
+def schedule_seat_utilization(flights: Sequence[Q3Flight]) -> float:
+    """Return passenger-minutes flown divided by available seat-minutes.
+
+    All airborne leg durations come from the flight-specific actual timetable.
+    Template timing is used only when a flight has no dynamic timing, in which
+    case :class:`Q3Flight` exposes the template as its actual timetable.
+    """
+
+    occupied = 0.0
+    available = 0.0
+    for flight in flights:
+        loads = [0] * (len(flight.variant.source.route.stops) - 1)
+        for pickup, delivery in flight.assignment_intervals.values():
+            for leg in range(pickup, delivery):
+                loads[leg] += 1
+        for leg, load in enumerate(loads):
+            airborne = flight.arrivals[leg + 1] - flight.departures[leg]
+            occupied += load * airborne
+            available += flight.variant.capacity * airborne
+    return occupied / available if available else 0.0
+
+
+def stage1_key(
+    flights: Sequence[Q3Flight], people: dict[str, Q3Person]
 ) -> tuple[float, ...]:
+    """Canonical lexicographic Stage 1 objective for feasible schedules."""
+
     metrics = schedule_metrics(flights, people)
-    base = (
+    return (
         float(metrics["total_aircraft_time_minutes"]),
         float(metrics["total_passenger_travel_time_minutes"]),
         float(metrics["total_flights"]),
         float(metrics["total_fuel_consumption_kg"]),
+        -float(metrics["seat_utilization"]),
     )
-    if stage == 2:
-        return (-float(metrics["served_optional"]),) + base
-    return base
+
+
+def stage2_key(
+    flights: Sequence[Q3Flight], people: dict[str, Q3Person]
+) -> tuple[float, ...]:
+    """Canonical lexicographic Stage 2 objective for feasible schedules."""
+
+    metrics = schedule_metrics(flights, people)
+    return (-float(metrics["served_optional"]),) + stage1_key(flights, people)
+
+
+def schedule_comparison_key(
+    flights: Sequence[Q3Flight], people: dict[str, Q3Person], *, stage: int = 1
+) -> tuple[float, ...]:
+    return stage2_key(flights, people) if stage == 2 else stage1_key(flights, people)
 
 
 def load_q3_schedule(
