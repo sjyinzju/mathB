@@ -1,6 +1,6 @@
 # INTEGRATION APPROVAL PLAN（共享性能基座统一 + 算法分支集成审计）
 
-日期：2026-08-15 ｜ 状态：待批准 ｜ 批准方式：回复"批准 clustering" / "批准 ALNS@7d04432" / "两个都批准"
+日期：2026-08-15 ｜ 状态：**已批准并执行完毕（2026-08-15）** ｜ 批准方式：用户回复"两个都批准"
 
 ## 当前基线
 - main = `d28e982`（已吸收 performance/shared-infrastructure，15,371 gate 全过）
@@ -29,6 +29,10 @@ origin/platinumist_update = `c37ea9b` 包含 7d04432 之后的 Q2 commits（本�
 - 对 candidate ordering / objective / acceptance rule / 随机调用顺序的任何改动
 - ALNS golden 配置改从 15,371 起步的 multi-seed 重跑（列入下阶段）
 - push / rewrite / 删除任何正式分支
+
+## 执行结果（2026-08-15）
+- **clustering**：codex/q1-clustering 已 fast-forward 到 `7b900ae`（= main 按演练方式合入）。验证：pytest 48 项全过（与演练分支收集集合逐条一致）；postapproval-b25 回归与 Phase-1 存档字节级一致（raw/pam_k3/average_k3 均 15,683/99/120,949，candidate_events 与 routes 全同，gate PASS，decision 均 abandon_mainline）
+- **ALNS**：按方式 A 落地——新分支 `platinumist_update_alns_base` = `8263d51`（7d04432 + main 融合）；platinumist_update HEAD（c37ea9b）未改动。验证：pytest 41 项全过；固定 seed/iteration 前后对照语义一致、提速 2.5×
 
 ## 审计产物位置
 | 项 | 位置 |

@@ -7,7 +7,7 @@
 **阶段 A（已落地）**：main 已吸收共享性能基础设施（LegPhysics / SolverCache / technical_stops 提速），main = `d28e982`。
 15,371 回归 gate 全过：pytest 41 项、字节级 CSV 复现一致、--start-best 收敛 accepted_moves=0、Validator VALID、cache 统计正常（augmentation hits 1350 / misses 417）。
 
-**阶段 B（审计完成，等待批准）**：两个算法分支的非破坏性集成演练均已跑通，正式分支未做任何改动。
+**阶段 B（审计完成，已获批准并落地）**：两个算法分支的非破坏性集成演练均已跑通，随后按批准执行正式落地。
 - clustering：演练分支 `audit/q1-clustering-main-integration` @ `7b900ae`（worktree `%TEMP%\clustering-integration`）
 - ALNS（基线锁定 `7d04432`）：演练分支 `audit/q1-alns-main-integration` @ `8263d51`（worktree `%TEMP%\alns-audit-7d04432`）
 - 批准清单与执行方式见 INTEGRATION_APPROVAL_PLAN.md
@@ -26,11 +26,8 @@
 - ALNS golden 配置（seed 0/1，iter 60，两阶段）目前从 B1/15,743 起步；下阶段需改从 15,371（best）起步 multi-seed 重跑。
 - clustering Phase-1 结论本身未变：两个入选 ranker 均为 abandon_mainline，集成不改变该结论。
 
-## 下一步（按用户批准触发）
+## 下一步（批准后已于 2026-08-15 执行完毕）
 
-| 触发 | 动作 |
-|---|---|
-| "批准 clustering" | 在 codex/q1-clustering 上按 7b900ae 方式 merge main，重跑 50 项 pytest + b25 对照 |
-| "批准 ALNS@7d04432" | 按 8263d51 方式在 7d04432 基线落地（默认方式 A：新建分支，不动 platinumist_update HEAD） |
-| 两者皆批 | 依次执行上述两项 |
-| 下阶段 | ALNS 从 15,371 起步 multi-seed；Q2 commits（c37ea9b）单独审计 |
+- codex/q1-clustering 已 ff 到 `7b900ae`（pytest 48 全过 + postapproval-b25 与存档字节级一致）
+- 新分支 `platinumist_update_alns_base` = `8263d51`（pytest 41 全过；platinumist_update HEAD c37ea9b 未动）
+- **剩余下阶段工作**：ALNS 从 15,371 起步 multi-seed；Q2 commits（c37ea9b）单独审计后再决定与新基座分支合流
