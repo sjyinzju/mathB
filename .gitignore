@@ -1,3 +1,13 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# candidate logs exceeding GitHub's 100 MB file limit
+outputs/q2/runs/20260815-q2-round2-extended-finalist-s30/candidate-log.jsonl
+outputs/q2/runs/20260815-q2-round2-target5-trigger-s8/candidate-log.jsonl
+outputs/q2/runs/20260815-q2-round2-target5-control-s8/candidate-log.jsonl
+outputs/q2/runs/20260815-q2-round2-extended-round1-control-s30/candidate-log.jsonl
+outputs/q2/runs/20260815-q2-round2-target5-s8/candidate-log.jsonl
+outputs/q2/runs/20260815-q2-final-pool-recombine/candidate-log.jsonl
+outputs/q2/runs/20260815-q2-round2-finalist-s13/candidate-log.jsonl
+outputs/q2/runs/20260815-q2-round2-ml-logging-s23/candidate-log.jsonl

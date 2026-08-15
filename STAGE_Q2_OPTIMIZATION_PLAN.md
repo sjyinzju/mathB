@@ -84,6 +84,23 @@ repeated visits, heuristic column generation and Branch-and-Price were not
 promoted. The five-seed final benchmark reached best/median/worst
 17,958/18,043/18,102; `outputs/q2/best` serves 4,000/4,000 with Validator PASS.
 
+### Q2-7 — Round-2 final intensification and learning-data foundation
+
+Status: **COMPLETE**. Extended control first refreshed 17,958 to 17,853/17,854.
+Quality-constrained elite recombination, global-best restart and cross-exchange
+were adopted; targeted 5-route remained a low-frequency intensifier. Current
+fix-and-optimize, Local Branching feasibility, diversity-heavy partners and
+default geometry+context portfolio were rejected. The final extended control
+continuation produced a 4→3 route elimination and reached 17,595 minutes / 96
+flights, 4,000/4,000, Validator PASS.
+
+The learning-data foundation now contains 136,597 candidate events from six
+run-grouped experiments, including 12,467 exact-evaluated rows, 12,343 true
+negatives, 72 positives and 124,130 explicitly censored rows. Schema/split
+infrastructure is complete, but candidate-ranking ML remains **NOT_READY**
+because useful positives are concentrated in incumbent sequences. No model was
+trained. See `ML_READINESS.md` and `NEXT_STAGE_RECOMMENDATION.md`.
+
 ## Universal promotion gates
 
 - 4,000/4,000 people and zero Validator issues;

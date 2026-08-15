@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "labels": {
+    "POSITIVE": "exact-evaluated, MILP-selected, accepted useful repair",
+    "TRUE_NEGATIVE": "exact-evaluated but not useful",
+    "CENSORED": "not selected for exact evaluation",
+    "INVALID": "selected but no legal exact variant"
+  }
+}

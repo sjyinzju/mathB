@@ -1,0 +1,161 @@
+{
+  "fair_benchmark": {
+    "round1_algorithm_control": {
+      "values": [
+        17693,
+        17693,
+        17688
+      ],
+      "best": 17688,
+      "median": 17693,
+      "mean": 17691.333333,
+      "worst": 17693,
+      "std": 2.357023
+    },
+    "geometry_context_portfolio": {
+      "values": [
+        17679,
+        17693,
+        17693
+      ],
+      "best": 17679,
+      "median": 17693,
+      "mean": 17688.333333,
+      "worst": 17693,
+      "std": 6.599663
+    },
+    "round2_finalist": {
+      "values": [
+        17671,
+        17671,
+        17667
+      ],
+      "best": 17667,
+      "median": 17671,
+      "mean": 17669.666667,
+      "worst": 17671,
+      "std": 1.885618
+    },
+    "wall_clock_target_seconds": 90,
+    "same_initial_run": "20260815-q2-round2-cross-exchange-s10"
+  },
+  "extended": {
+    "round2_finalist": {
+      "total_aircraft_time_minutes": 17634,
+      "total_passenger_travel_time_minutes": 258049,
+      "total_flights": 97,
+      "total_fuel_consumption_kg": 136091.2,
+      "seat_utilization": 0.9092791852700846,
+      "served_passengers": 4000,
+      "unserved_optional_passengers": 0
+    },
+    "round1_algorithm_control": {
+      "total_aircraft_time_minutes": 17595,
+      "total_passenger_travel_time_minutes": 259487,
+      "total_flights": 96,
+      "total_fuel_consumption_kg": 135954.1,
+      "seat_utilization": 0.910212354617489,
+      "served_passengers": 4000,
+      "unserved_optional_passengers": 0
+    },
+    "wall_clock_target_seconds": 180,
+    "same_initial_run": "20260815-q2-round2-ml-logging-s22"
+  },
+  "flight_elimination_event": {
+    "iteration": 26,
+    "current_objective": 17595,
+    "best_objective": 17595,
+    "destroy_operator": "low_utilization_route",
+    "destroy_size": 4,
+    "targeted_trigger": null,
+    "stagnation_before": 0,
+    "operator_weight_before": 1.755712,
+    "operator_weight_after": 2.60457,
+    "repair_policy": "geometry_exact_local_milp",
+    "destroyed_routes": [
+      42,
+      27,
+      26,
+      25
+    ],
+    "affected_demand_groups": 13,
+    "facilities": [
+      "F006",
+      "F007",
+      "F010",
+      "F013"
+    ],
+    "candidate_sequences": 24,
+    "candidate_features": {
+      "ranking": "geometry"
+    },
+    "local_master_size": 1221,
+    "selected_columns": [
+      {
+        "base_airport": "A01",
+        "aircraft_type": "T3",
+        "service_order": [
+          "F006",
+          "F010",
+          "F007"
+        ],
+        "new_candidate": true,
+        "candidate_features": {
+          "route_distance_km": 532.0,
+          "geometry_percentile": 0.867925
+        }
+      },
+      {
+        "base_airport": "A01",
+        "aircraft_type": "T3",
+        "service_order": [
+          "F006",
+          "F013",
+          "F007",
+          "F010"
+        ],
+        "new_candidate": false,
+        "candidate_features": null
+      },
+      {
+        "base_airport": "A01",
+        "aircraft_type": "T3",
+        "service_order": [
+          "F010",
+          "F007",
+          "F013",
+          "F006"
+        ],
+        "new_candidate": true,
+        "candidate_features": {
+          "route_distance_km": 580.0,
+          "geometry_percentile": 0.45283
+        }
+      }
+    ],
+    "repair_success": true,
+    "accepted": true,
+    "new_best": true,
+    "acceptance_policy": "sa",
+    "temperature": 1.372982,
+    "sa_acceptance_probability": 1.0,
+    "accepted_deteriorating": false,
+    "primary_gain": 61,
+    "secondary_gain": 0,
+    "route_ejected": true,
+    "flight_delta": 1,
+    "selected_new_candidates": 2,
+    "selected_3_5_stop_candidates": 2,
+    "selected_4_stop_candidates": 1,
+    "runtime": 14.97532,
+    "evaluator_calls": 100,
+    "primary_status": 1,
+    "restricted_dual_bound": 642.0,
+    "restricted_gap": 0.05865102639296188,
+    "bound_scope": "restricted_local_master",
+    "enrichment_rounds": null
+  },
+  "final_primary_improvement_vs_17958": 363,
+  "final_primary_improvement_vs_19736": 2141,
+  "bound_scope": "restricted_local_master"
+}

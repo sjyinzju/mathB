@@ -1,0 +1,7 @@
+run_id,seed,split
+20260815-q2-round2-ml-logging-s21,21,train
+20260815-q2-round2-ml-logging-s22,22,test
+20260815-q2-round2-ml-logging-s23,23,test
+20260815-q2-round2-portfolio-mixed-s11,11,validation
+20260815-q2-round2-portfolio-mixed-s12,12,validation
+20260815-q2-round2-portfolio-mixed-s13,13,train

@@ -1,0 +1,49 @@
+{
+  "run_id": "20260815-q2-round2-elite-objective",
+  "method": "q2_elite_difference_exact_recombination",
+  "git_commit": "d431419a7f8e76a3a0eea4fc294802c7db5c7fb0",
+  "git_branch": "codex/q2-main-integration",
+  "git_dirty": true,
+  "runtime": {
+    "python": "3.11.9",
+    "scipy": "1.17.1",
+    "backend": "scipy.optimize.milp/HiGHS"
+  },
+  "source": {
+    "directory": "D:\\Desktop\\B题\\outputs\\q2\\runs\\20260815-q2-round2-extended-control-s5",
+    "routes_sha256": "66980e69300d5f45285b55c6476d3d9a424d4db3d9c64f52884e42f022ffac9b",
+    "assignments_sha256": "bb896a7593bf6e809944eefa3ea35d3f75a88350020c17ede7988686250f45b5"
+  },
+  "partner": {
+    "directory": "D:\\Desktop\\B题\\outputs\\q2\\runs\\20260815-q2-round2-extended-control-s6",
+    "routes_sha256": "cd0a478735ae5fdd5fc420ef26771be70f90f24478055849d98ea78babdbb611",
+    "assignments_sha256": "9794d73c583ce425719bbe345e97f2267dc23c355c0ce01531fe600c83ecb83f"
+  },
+  "elite_diversity": 0.133808251,
+  "config": {
+    "attempts": 4,
+    "neighborhood_size": 5,
+    "candidate_sequence_budget": 28,
+    "max_sequence_length": 5,
+    "local_primary_seconds": 15.0,
+    "seed": 20
+  },
+  "cache": {
+    "augmentation_hits": 252,
+    "augmentation_misses": 756,
+    "skeleton_hits": 0,
+    "skeleton_misses": 0,
+    "lower_bound_hits": 0,
+    "lower_bound_misses": 0,
+    "direct_time_hits": 0,
+    "direct_time_misses": 0,
+    "augmentation_entries": 756,
+    "skeleton_entries": 0,
+    "lower_bound_entries": 0,
+    "direct_time_entries": 0,
+    "leg_physics_entries": 9075
+  },
+  "accepted_recombinations": 2,
+  "candidate_rows": 30648,
+  "elapsed_seconds": 54.584926
+}

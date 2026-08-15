@@ -1,0 +1,11 @@
+{
+  "decision": "REJECT_FOR_ROUND2",
+  "final_flights": 96,
+  "routes_with_repeated_service_facility": 0,
+  "evidence": [
+    "The 97-to-96 elimination was achieved by the existing distinct-service model.",
+    "Round2 continued to find primary improvements through incumbent and bounded distinct 1-5-stop columns.",
+    "No logged accepted repair required a repeated service occurrence."
+  ],
+  "next_gate": "Reopen only if concrete residual-capacity/OD-chain cases show a revisit can remove another complete route while improving aircraft time."
+}

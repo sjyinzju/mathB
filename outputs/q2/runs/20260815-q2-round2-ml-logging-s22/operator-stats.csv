@@ -1,0 +1,5 @@
+﻿operator,uses,repair_success,accepted,primary_improvement,new_best,primary_gain_minutes,runtime_seconds,mean_local_master_size,max_local_master_size
+high_cost_route,5,5,5,0,0,0,27.446292,858,1024
+low_utilization_route,2,2,2,2,2,23,13.80572,1015.5,1109
+shared_facility_flow,1,1,1,0,0,0,4.169191,886,886
+land_heavy_route,2,2,2,0,0,0,15.784332,754.5,833

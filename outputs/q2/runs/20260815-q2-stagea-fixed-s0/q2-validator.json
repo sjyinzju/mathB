@@ -1,0 +1,15 @@
+{
+  "question": "q2",
+  "valid": true,
+  "issue_count": 0,
+  "issues": [],
+  "metrics": {
+    "total_aircraft_time_minutes": 18746,
+    "total_passenger_travel_time_minutes": 265659,
+    "total_flights": 102,
+    "total_fuel_consumption_kg": 144615.4,
+    "seat_utilization": 0.860161616893966,
+    "served_passengers": 4000,
+    "unserved_optional_passengers": 0
+  }
+}
