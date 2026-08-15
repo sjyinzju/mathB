@@ -1,0 +1,8 @@
+运行编号: 20260814-b3-ejection-v1
+方法: q1_b3_route_ejection_vnd
+路线数: 96
+服务人数: 1600
+Validator: PASS
+指标一致: True
+阶段门: PASS
+总耗时秒: 108.617

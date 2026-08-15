@@ -16,9 +16,13 @@ if str(ROOT) not in sys.path:
 from src.config import DEFAULT_CONFIG_PATH
 from src.io_utils import sha256, write_csv, write_json
 from src.solver import (
+    SolverCache,
     export_q1_solution,
+    improve_q1_batch_relocation,
+    improve_q1_route_ejection,
     improve_q1_savings,
     load_problem_data,
+    load_q1_solution,
     solve_q1_baseline,
 )
 from src.solver.models import SolverConfig
@@ -75,8 +79,15 @@ def main() -> int:
     parser.add_argument("--run-id", help="固定实验编号；默认使用时间戳")
     parser.add_argument("--output-root", type=Path, default=ROOT / "outputs" / "q1")
     parser.add_argument("--promote", action="store_true", help="若优于当前 best，则提升为最佳合法方案")
+    parser.add_argument("--start-best", action="store_true", help="从 outputs/q1/best 恢复方案，跳过 B0 重建")
     parser.add_argument("--savings", action="store_true", help="在 B0 后运行确定性 Generalized Savings")
+    parser.add_argument("--relocate", action="store_true", help="在 Savings 后运行批量重分配局部搜索")
+    parser.add_argument("--ejection", action="store_true", help="运行双目标路线吸收的 LAND ejection 链")
     parser.add_argument("--max-neighbors", type=int, default=8, help="每条路线最多精确评价的相邻路线数")
+    parser.add_argument("--max-relocation-targets", type=int, default=4)
+    parser.add_argument("--max-relocation-iterations", type=int, default=30)
+    parser.add_argument("--max-ejection-targets", type=int, default=6)
+    parser.add_argument("--max-ejection-iterations", type=int, default=15)
     args = parser.parse_args()
 
     run_id = args.run_id or datetime.now().strftime("%Y%m%d-%H%M%S") + "-b0"
@@ -88,13 +99,44 @@ def main() -> int:
     started = time.perf_counter()
     data = load_problem_data()
     solver_config = SolverConfig(seed=0)
-    solution = solve_q1_baseline(data, solver_config)
-    if args.savings:
+    # One shared run-scoped cache so static route physics computed in any
+    # stage (baseline / Savings / relocation / ejection) is reused everywhere.
+    cache = SolverCache(data)
+    if args.start_best:
+        solution = load_q1_solution(
+            args.output_root / "best" / "q1-routes.csv",
+            args.output_root / "best" / "q1-assignments.csv",
+            data,
+            method="q1_resumed_best",
+        )
+    else:
+        solution = solve_q1_baseline(data, solver_config, cache=cache)
+    ran_savings = args.savings or (not args.start_best and (args.relocate or args.ejection))
+    if ran_savings:
         solution = improve_q1_savings(
             solution,
             data,
             solver_config,
             max_neighbors=args.max_neighbors,
+            cache=cache,
+        )
+    if args.relocate:
+        solution = improve_q1_batch_relocation(
+            solution,
+            data,
+            solver_config,
+            max_targets_per_batch=args.max_relocation_targets,
+            max_iterations=args.max_relocation_iterations,
+            cache=cache,
+        )
+    if args.ejection:
+        solution = improve_q1_route_ejection(
+            solution,
+            data,
+            solver_config,
+            max_targets=args.max_ejection_targets,
+            max_iterations=args.max_ejection_iterations,
+            cache=cache,
         )
     solve_seconds = time.perf_counter() - started
     export_q1_solution(
@@ -134,12 +176,20 @@ def main() -> int:
         "problem_config_sha256": sha256(DEFAULT_CONFIG_PATH),
         "seed": solver_config.seed,
         "secondary_order": list(solver_config.secondary_order),
-        "savings": args.savings,
+        "savings": ran_savings,
+        "start_best": args.start_best,
+        "relocate": args.relocate,
+        "ejection": args.ejection,
         "max_neighbors": args.max_neighbors,
+        "max_relocation_targets": args.max_relocation_targets,
+        "max_relocation_iterations": args.max_relocation_iterations,
+        "max_ejection_targets": args.max_ejection_targets,
+        "max_ejection_iterations": args.max_ejection_iterations,
         "deterministic": True,
         "passenger_count": data.q1_passenger_count,
         "solve_seconds": round(solve_seconds, 6),
         "elapsed_seconds": round(elapsed_seconds, 6),
+        "performance": cache.stats(),
         "diagnostics": solution.diagnostics,
     }
     write_json(run_dir / "run_config.json", run_config)
@@ -155,10 +205,11 @@ def main() -> int:
         },
     )
     savings_stats = solution.diagnostics.get("generalized_savings", {})
-    write_csv(
-        run_dir / "operator_stats.csv",
-        ["operator", "calls", "accepted", "improved", "total_improvement_minutes"],
-        [
+    relocation_stats = solution.diagnostics.get("batch_relocation", {})
+    ejection_stats = solution.diagnostics.get("route_ejection", {})
+    operator_rows = []
+    if ran_savings:
+        operator_rows.append(
             {
                 "operator": "generalized_savings_merge",
                 "calls": savings_stats.get("evaluated_pairs", 0),
@@ -166,9 +217,31 @@ def main() -> int:
                 "improved": savings_stats.get("accepted_merges", 0),
                 "total_improvement_minutes": savings_stats.get("primary_improvement_minutes", 0),
             }
-        ]
-        if args.savings
-        else [],
+        )
+    if args.relocate:
+        operator_rows.append(
+            {
+                "operator": "batch_relocation_rebuild",
+                "calls": relocation_stats.get("candidate_moves", 0),
+                "accepted": relocation_stats.get("accepted_moves", 0),
+                "improved": relocation_stats.get("accepted_moves", 0),
+                "total_improvement_minutes": relocation_stats.get("primary_improvement_minutes", 0),
+            }
+        )
+    if args.ejection:
+        operator_rows.append(
+            {
+                "operator": "land_route_ejection_chain",
+                "calls": ejection_stats.get("candidate_chains", 0),
+                "accepted": ejection_stats.get("accepted_chains", 0),
+                "improved": ejection_stats.get("accepted_chains", 0),
+                "total_improvement_minutes": ejection_stats.get("primary_improvement_minutes", 0),
+            }
+        )
+    write_csv(
+        run_dir / "operator_stats.csv",
+        ["operator", "calls", "accepted", "improved", "total_improvement_minutes"],
+        operator_rows,
     )
     (run_dir / "run.log").write_text(
         "\n".join(

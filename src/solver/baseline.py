@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from ..rules import flight_minutes, minimum_stop_minutes
+from .cache import SolverCache
 from .data import ProblemData
 from .evaluator import evaluate_route
 from .models import (
@@ -12,7 +13,6 @@ from .models import (
     SolverConfig,
     aggregate_evaluations,
 )
-from .technical_stops import augment_service_sequence
 
 
 class BaselineConstructionError(RuntimeError):
@@ -65,14 +65,9 @@ def _template(
     base: str,
     destination: str,
     aircraft_type: str,
+    cache: SolverCache,
 ) -> _Template | None:
-    result = augment_service_sequence(
-        base,
-        aircraft_type,
-        (destination,),
-        matrix=data.matrix,
-        config=data.config,
-    )
+    result = cache.augmentation_result(base, aircraft_type, (destination,))
     if not result.feasible:
         return None
     locations = tuple(stop.facility_id for stop in result.stops)
@@ -216,8 +211,14 @@ def _empty_pool(origin: str, destination: str):
     return DemandPool(origin, destination, ())
 
 
-def solve_q1_baseline(data: ProblemData, solver_config: SolverConfig | None = None) -> Solution:
+def solve_q1_baseline(
+    data: ProblemData,
+    solver_config: SolverConfig | None = None,
+    *,
+    cache: SolverCache | None = None,
+) -> Solution:
     solver_config = solver_config or SolverConfig()
+    cache = cache or SolverCache(data)
     destinations = sorted({destination for _, destination in data.q1_pools})
     all_routes: list[RoutePlan] = []
     evaluations = []
@@ -227,7 +228,7 @@ def solve_q1_baseline(data: ProblemData, solver_config: SolverConfig | None = No
         templates: dict[tuple[str, str], _Template] = {}
         for airport in data.config.airports:
             for aircraft_type in data.config.aircraft_types:
-                candidate = _template(data, airport, destination, aircraft_type)
+                candidate = _template(data, airport, destination, aircraft_type, cache)
                 if candidate is not None:
                     templates[(airport, aircraft_type)] = candidate
         people_by_airport, plans = _allocate_facility(

@@ -21,6 +21,8 @@ Q1 已进入可执行基线阶段。Stage 1 的原始距离、清洗需求、规
 python -m pytest -q
 python scripts/03_solve_q1_baseline.py --promote
 python scripts/03_solve_q1_baseline.py --savings --promote
+python scripts/03_solve_q1_baseline.py --relocate --max-neighbors 5 --promote
+python scripts/03_solve_q1_baseline.py --ejection --max-neighbors 5 --promote
 python scripts/validate_solution.py --question q1 --routes outputs/q1/best/q1-routes.csv --assignments outputs/q1/best/q1-assignments.csv
 ```
 
