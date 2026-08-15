@@ -1,0 +1,41 @@
+{
+  "experiment": "extended-standard-a2-seed4-from14772",
+  "mode": "wallclock",
+  "created_utc": "2026-08-15T13:47:36",
+  "git_commit": "7ddd2f740b4fff6b25e9779d26ddea1b4d8d75a0",
+  "seeds": [
+    4
+  ],
+  "initial_comparison_key": [
+    14772.0,
+    121652.0,
+    89.0,
+    118645.9,
+    -0.49346360383406435
+  ],
+  "initial_aircraft_time_minutes": 14772.0,
+  "best_of_seeds_aircraft_time_minutes": 14770.0,
+  "median_aircraft_time_minutes": 14770.0,
+  "mean_aircraft_time_minutes": 14770.0,
+  "worst_aircraft_time_minutes": 14770.0,
+  "stdev_aircraft_time_minutes": 0.0,
+  "median_passenger_time_minutes": 120845.0,
+  "beat_initial_count": 1,
+  "beat_initial_rate": 1.0,
+  "gate_pass_all": true,
+  "per_seed": [
+    {
+      "seed": 4,
+      "best_aircraft_time_minutes": 14770.0,
+      "passenger_time_minutes": 120845,
+      "flights": 89,
+      "runtime_seconds": 604.658,
+      "improving_moves": 4,
+      "new_global_best_count": 3,
+      "evaluator_calls": 17712,
+      "repair_candidates_considered": 39093,
+      "repair_candidates_selected": 39093,
+      "gate_pass": true
+    }
+  ]
+}

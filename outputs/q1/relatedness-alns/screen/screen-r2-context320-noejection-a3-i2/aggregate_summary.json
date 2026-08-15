@@ -1,0 +1,69 @@
+{
+  "experiment": "screen-r2-context320-noejection-a3-i2",
+  "mode": "iteration",
+  "created_utc": "2026-08-15T12:11:19",
+  "git_commit": "7ddd2f740b4fff6b25e9779d26ddea1b4d8d75a0",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "initial_comparison_key": [
+    15371.0,
+    120870.0,
+    95.0,
+    123081.7,
+    -0.4822550211643148
+  ],
+  "initial_aircraft_time_minutes": 15371.0,
+  "best_of_seeds_aircraft_time_minutes": 15356.0,
+  "median_aircraft_time_minutes": 15358.0,
+  "mean_aircraft_time_minutes": 15358.333,
+  "worst_aircraft_time_minutes": 15361.0,
+  "stdev_aircraft_time_minutes": 2.517,
+  "median_passenger_time_minutes": 120829.0,
+  "beat_initial_count": 3,
+  "beat_initial_rate": 1.0,
+  "gate_pass_all": true,
+  "per_seed": [
+    {
+      "seed": 0,
+      "best_aircraft_time_minutes": 15358.0,
+      "passenger_time_minutes": 120668,
+      "flights": 95,
+      "runtime_seconds": 52.753,
+      "improving_moves": 2,
+      "new_global_best_count": 2,
+      "evaluator_calls": 1482,
+      "repair_candidates_considered": 1776,
+      "repair_candidates_selected": 1280,
+      "gate_pass": true
+    },
+    {
+      "seed": 1,
+      "best_aircraft_time_minutes": 15356.0,
+      "passenger_time_minutes": 120876,
+      "flights": 95,
+      "runtime_seconds": 59.303,
+      "improving_moves": 2,
+      "new_global_best_count": 2,
+      "evaluator_calls": 1268,
+      "repair_candidates_considered": 1461,
+      "repair_candidates_selected": 1090,
+      "gate_pass": true
+    },
+    {
+      "seed": 2,
+      "best_aircraft_time_minutes": 15361.0,
+      "passenger_time_minutes": 120829,
+      "flights": 95,
+      "runtime_seconds": 44.662,
+      "improving_moves": 2,
+      "new_global_best_count": 1,
+      "evaluator_calls": 1348,
+      "repair_candidates_considered": 2274,
+      "repair_candidates_selected": 1185,
+      "gate_pass": true
+    }
+  ]
+}

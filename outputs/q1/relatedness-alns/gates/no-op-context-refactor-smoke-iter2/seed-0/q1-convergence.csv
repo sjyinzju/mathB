@@ -1,0 +1,5 @@
+﻿stage,global_iteration,iteration,elapsed_seconds,operator,destroyed_routes,destroyed_passengers,removed_aircraft_time_minutes,repair_variants,repaired_routes,repair_candidates_considered,repair_candidates_selected,repair_exact_candidate_builds,accepted,improved_current,new_global_best,current_aircraft_time_minutes,best_aircraft_time_minutes,current_passenger_time_minutes,best_passenger_time_minutes,current_flights,best_flights,temperature
+1,1,1,4.374875,worst_time_per_person,3,50,773,124,3,144,144,144,1,0,0,15371,15371,120870,120870,95,95,0.002
+1,2,2,6.476785,low_utilization,2,26,283,75,2,75,75,75,1,0,0,15371,15371,120870,120870,95,95,0.00197
+2,3,1,11.025863,land_reassignment,3,54,388,144,3,144,144,144,1,1,1,15361,15361,120829,120829,95,95,0.002
+2,4,2,14.544109,random_routes,4,73,680,130,4,144,144,144,1,0,0,15361,15361,120829,120829,95,95,0.00197

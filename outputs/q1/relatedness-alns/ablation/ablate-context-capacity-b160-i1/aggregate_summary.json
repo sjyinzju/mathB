@@ -1,0 +1,41 @@
+{
+  "experiment": "ablate-context-capacity-b160-i1",
+  "mode": "iteration",
+  "created_utc": "2026-08-15T12:06:49",
+  "git_commit": "7ddd2f740b4fff6b25e9779d26ddea1b4d8d75a0",
+  "seeds": [
+    0
+  ],
+  "initial_comparison_key": [
+    15371.0,
+    120870.0,
+    95.0,
+    123081.7,
+    -0.4822550211643148
+  ],
+  "initial_aircraft_time_minutes": 15371.0,
+  "best_of_seeds_aircraft_time_minutes": 15361.0,
+  "median_aircraft_time_minutes": 15361.0,
+  "mean_aircraft_time_minutes": 15361.0,
+  "worst_aircraft_time_minutes": 15361.0,
+  "stdev_aircraft_time_minutes": 0.0,
+  "median_passenger_time_minutes": 120778.0,
+  "beat_initial_count": 1,
+  "beat_initial_rate": 1.0,
+  "gate_pass_all": true,
+  "per_seed": [
+    {
+      "seed": 0,
+      "best_aircraft_time_minutes": 15361.0,
+      "passenger_time_minutes": 120778,
+      "flights": 95,
+      "runtime_seconds": 14.736,
+      "improving_moves": 2,
+      "new_global_best_count": 2,
+      "evaluator_calls": 533,
+      "repair_candidates_considered": 894,
+      "repair_candidates_selected": 326,
+      "gate_pass": true
+    }
+  ]
+}
