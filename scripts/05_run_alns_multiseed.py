@@ -70,39 +70,55 @@ def _stage_configs(args: argparse.Namespace, seed: int) -> tuple[Q1ALNSConfig, Q
         stage1 = Q1ALNSConfig(
             iterations=args.stage_iterations,
             time_limit_seconds=10.0**9,
-            min_destroy_routes=2,
-            max_destroy_routes=3,
+            min_destroy_routes=args.destroy_min_1,
+            max_destroy_routes=args.destroy_max_1,
             max_service_nodes=2,
             repair_time_limit_seconds=args.repair_time_limit_1,
             seed=seed,
+            initial_temperature=args.temperature,
+            cooling_rate=args.cooling_rate,
+            reaction_factor=args.reaction_factor,
+            segment_length=args.segment_length,
         )
         stage2 = Q1ALNSConfig(
             iterations=args.stage_iterations,
             time_limit_seconds=10.0**9,
-            min_destroy_routes=3,
-            max_destroy_routes=4,
+            min_destroy_routes=args.destroy_min_2,
+            max_destroy_routes=args.destroy_max_2,
             max_service_nodes=2,
             repair_time_limit_seconds=args.repair_time_limit_2,
             seed=seed + 1,
+            initial_temperature=args.temperature,
+            cooling_rate=args.cooling_rate,
+            reaction_factor=args.reaction_factor,
+            segment_length=args.segment_length,
         )
     else:
         stage1 = Q1ALNSConfig(
             iterations=10**6,
             time_limit_seconds=args.wall_budget * 0.5,
-            min_destroy_routes=2,
-            max_destroy_routes=3,
+            min_destroy_routes=args.destroy_min_1,
+            max_destroy_routes=args.destroy_max_1,
             max_service_nodes=2,
             repair_time_limit_seconds=args.repair_time_limit_1,
             seed=seed,
+            initial_temperature=args.temperature,
+            cooling_rate=args.cooling_rate,
+            reaction_factor=args.reaction_factor,
+            segment_length=args.segment_length,
         )
         stage2 = Q1ALNSConfig(
             iterations=10**6,
             time_limit_seconds=args.wall_budget * 0.5,
-            min_destroy_routes=3,
-            max_destroy_routes=4,
+            min_destroy_routes=args.destroy_min_2,
+            max_destroy_routes=args.destroy_max_2,
             max_service_nodes=2,
             repair_time_limit_seconds=args.repair_time_limit_2,
             seed=seed + 1,
+            initial_temperature=args.temperature,
+            cooling_rate=args.cooling_rate,
+            reaction_factor=args.reaction_factor,
+            segment_length=args.segment_length,
         )
     return stage1, stage2
 
@@ -276,6 +292,10 @@ def _run_seed(args: argparse.Namespace, data, initial, seed: int, run_dir: Path)
                 "min_destroy_routes": config.min_destroy_routes,
                 "max_destroy_routes": config.max_destroy_routes,
                 "repair_time_limit_seconds": config.repair_time_limit_seconds,
+                "initial_temperature": config.initial_temperature,
+                "cooling_rate": config.cooling_rate,
+                "reaction_factor": config.reaction_factor,
+                "segment_length": config.segment_length,
                 "seed": config.seed,
             }
             for config in (stage1, stage2)
@@ -295,6 +315,14 @@ def main() -> int:
     parser.add_argument("--wall-budget", type=float, default=300.0)
     parser.add_argument("--repair-time-limit-1", type=float, default=3.0)
     parser.add_argument("--repair-time-limit-2", type=float, default=5.0)
+    parser.add_argument("--destroy-min-1", type=int, default=2)
+    parser.add_argument("--temperature", type=float, default=0.002)
+    parser.add_argument("--cooling-rate", type=float, default=0.985)
+    parser.add_argument("--reaction-factor", type=float, default=0.25)
+    parser.add_argument("--segment-length", type=int, default=15)
+    parser.add_argument("--destroy-max-1", type=int, default=3)
+    parser.add_argument("--destroy-min-2", type=int, default=3)
+    parser.add_argument("--destroy-max-2", type=int, default=4)
     parser.add_argument(
         "--initial-routes",
         type=Path,
