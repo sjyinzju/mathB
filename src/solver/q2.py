@@ -34,6 +34,7 @@ class Q2MasterConfig:
     secondary_time_limit_seconds: float = 105.0
     mip_relative_gap: float = 0.0
     primary_upper_bound_minutes: int | None = None
+    maximum_flights: int | None = None
 
     def __post_init__(self) -> None:
         if self.nearest_neighbors < 0 or self.high_demand_nodes < 0:
@@ -49,6 +50,8 @@ class Q2MasterConfig:
             and self.primary_upper_bound_minutes < 0
         ):
             raise ValueError("primary_upper_bound_minutes must be nonnegative")
+        if self.maximum_flights is not None and self.maximum_flights < 1:
+            raise ValueError("maximum_flights must be positive when provided")
 
 
 @dataclass(frozen=True)
@@ -430,6 +433,14 @@ def _solve_master_arrays(
                 coo_matrix(primary.reshape(1, -1)).tocsr(),
                 -np.inf,
                 float(config.primary_upper_bound_minutes),
+            )
+        )
+    if config.maximum_flights is not None:
+        constraints.append(
+            LinearConstraint(
+                coo_matrix(flights.reshape(1, -1)).tocsr(),
+                -np.inf,
+                float(config.maximum_flights),
             )
         )
 

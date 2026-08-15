@@ -49,6 +49,16 @@ from .q2_learning import (
     flatten_q2_candidate_event,
     grouped_q2_splits,
 )
+from .q2_round3 import (
+    ROUND3_SCHEMA_VERSION,
+    PromisingLocalMaster,
+    PromisingLocalMasterQueue,
+    absorption_potential_ranking,
+    audit_q2_solution,
+    deepen_promising_master,
+    q2_basin_fingerprint,
+    select_absorption_neighborhood,
+)
 from .q2_flow import (
     Q2DirectedFlowGraph,
     Q2SequenceFeatures,
@@ -102,6 +112,14 @@ __all__ = [
     "classify_q2_candidate_event",
     "flatten_q2_candidate_event",
     "grouped_q2_splits",
+    "ROUND3_SCHEMA_VERSION",
+    "PromisingLocalMaster",
+    "PromisingLocalMasterQueue",
+    "absorption_potential_ranking",
+    "audit_q2_solution",
+    "deepen_promising_master",
+    "q2_basin_fingerprint",
+    "select_absorption_neighborhood",
     "Q2DirectedFlowGraph",
     "Q2SequenceFeatures",
     "build_q2_directed_flow_graph",

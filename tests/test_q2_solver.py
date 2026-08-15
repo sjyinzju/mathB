@@ -9,8 +9,11 @@ from src.solver import (
     Q2LnsConfig,
     Q2EliteEntry,
     Q2ElitePool,
+    PromisingLocalMasterQueue,
     SolverCache,
     adaptive_q2_destroy_size,
+    absorption_potential_ranking,
+    audit_q2_solution,
     build_q2_local_data,
     build_q2_directed_flow_graph,
     classify_q2_candidate_event,
@@ -22,9 +25,11 @@ from src.solver import (
     load_problem_data,
     load_q2_solution,
     q2_solution_diversity,
+    q2_basin_fingerprint,
     q2_local_branching_feasibility,
     rank_q2_local_sequences,
     select_q2_neighborhood,
+    select_absorption_neighborhood,
 )
 from src.validation import validate_solution
 from src.solver.q2 import (
@@ -405,6 +410,57 @@ def test_q2_learning_splits_are_run_grouped_and_deterministic() -> None:
     assert first == second
     assert set(first) == {"run-a", "run-b", "run-c"}
     assert set(first.values()) == {"train", "validation", "test"}
+
+
+def test_q2_learning_splits_keep_lineages_together() -> None:
+    rows = [
+        {"run_id": "a-1", "lineage_id": "a"},
+        {"run_id": "a-2", "lineage_id": "a"},
+        {"run_id": "b-1", "lineage_id": "b"},
+        {"run_id": "c-1", "lineage_id": "c"},
+    ]
+    splits = grouped_q2_splits(rows)
+    assert splits["a-1"] == splits["a-2"]
+    assert set(splits.values()) == {"train", "validation", "test"}
+
+
+def test_q2_round3_audit_absorption_and_fingerprint_are_deterministic() -> None:
+    data = load_problem_data()
+    best = ROOT / "outputs" / "q2" / "best"
+    solution = load_q2_solution(best / "q2-routes.csv", best / "q2-assignments.csv", data)
+    route_rows, pair_rows = audit_q2_solution(solution, data)
+    ranking = absorption_potential_ranking(route_rows, pair_rows)
+    assert len(route_rows) == 96
+    assert len(pair_rows) == 96 * 95
+    assert len(ranking) == 96
+    assert sorted(int(row["absorption_rank"]) for row in ranking) == list(range(1, 97))
+    source = int(ranking[0]["route_index"])
+    neighborhood = select_absorption_neighborhood(source, pair_rows, route_count=6)
+    assert neighborhood[0] == source
+    assert len(neighborhood) == len(set(neighborhood)) == 6
+    assert q2_basin_fingerprint(solution) == q2_basin_fingerprint(solution)
+
+
+def test_q2_promising_master_queue_requires_gap_or_structure() -> None:
+    queue = PromisingLocalMasterQueue()
+    from src.solver.q2_lns import Q2LocalRepair
+
+    assert not queue.add_from_repair(Q2LocalRepair(None, {"primary_mip_gap": 0.0, "destroyed_routes": [1, 2]}))
+    assert queue.add_from_repair(
+        Q2LocalRepair(
+            None,
+            {
+                "primary_mip_gap": 0.05,
+                "primary_dual_bound": 500.0,
+                "primary_status": 1,
+                "after_aircraft_minutes": 550,
+                "destroyed_routes": [1, 2, 3, 4],
+                "candidate_pool_hash": "abc",
+                "selected_new_candidates": 1,
+            },
+        )
+    )
+    assert len(queue.entries) == 1
 
 
 def test_q2_solution_diversity_is_symmetric_and_zero_for_identity() -> None:
