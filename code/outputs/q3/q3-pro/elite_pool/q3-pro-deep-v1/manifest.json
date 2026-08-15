@@ -1,0 +1,32 @@
+{
+  "run_id": "q3-pro-deep-v1",
+  "internal_elite_pool_size": 9,
+  "persisted_independently_validated_elites": 3,
+  "note": "The deep run retained nine in-memory elite states. Three structurally distinct audit anchors were persisted; every persisted entry has an independent zero-issue Validator report. Future runs export every elite automatically.",
+  "records": [
+    {
+      "directory": "elite-000-final-29155",
+      "source": "q3-pro-deep-v1 final",
+      "aircraft_time_minutes": 29155,
+      "passenger_time_minutes": 241018,
+      "flights": 165,
+      "validator": "valid, zero issues"
+    },
+    {
+      "directory": "elite-001-baseline-29659",
+      "source": "canonical baseline",
+      "aircraft_time_minutes": 29659,
+      "passenger_time_minutes": 241073,
+      "flights": 168,
+      "validator": "valid, zero issues"
+    },
+    {
+      "directory": "elite-002-diverse-30180",
+      "source": "P0/P1 diverse seed",
+      "aircraft_time_minutes": 30180,
+      "passenger_time_minutes": 240363,
+      "flights": 171,
+      "validator": "valid, zero issues"
+    }
+  ]
+}

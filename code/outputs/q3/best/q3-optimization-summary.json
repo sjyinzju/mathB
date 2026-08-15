@@ -1,9 +1,9 @@
 {
   "status": "historical_mechanism_summary_with_current_incumbent_appended",
   "current_canonical": {
-    "stage1_aircraft_time": 29659,
-    "stage2_aircraft_time": 29659,
-    "temporary": 158,
+    "stage1_aircraft_time": 29155,
+    "stage2_aircraft_time": 29155,
+    "temporary": 157,
     "stage2_globally_proven": false
   },
   "initial_v5": {

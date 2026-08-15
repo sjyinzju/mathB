@@ -1,24 +1,25 @@
 {
   "stage1": {
-    "incumbent_aircraft_time_minutes": 29659,
+    "incumbent_aircraft_time_minutes": 29155,
     "seat_km_transport_lower_bound_minutes": 12389,
     "layered_multicommodity_flow_lower_bound_minutes": 14125,
     "enhanced_global_lower_bound_minutes": 14125,
-    "conservative_gap_percent": 52.375333,
-    "certified_gap_percent": 52.375333,
-    "incumbent_excess_over_lower_bound_percent": 109.975221,
+    "conservative_gap_percent": 51.552049,
+    "certified_gap_percent": 51.552049,
+    "incumbent_excess_over_lower_bound_percent": 106.40708,
     "finite_candidate_pool_lp_reference_minutes": 15198,
-    "finite_candidate_pool_reference_gap_percent": 48.757544,
+    "finite_candidate_pool_reference_gap_percent": 47.87172,
     "candidate_pool_reference_is_global_bound": false,
-    "incumbent_upper_bound_minutes": 29659
+    "incumbent_upper_bound_minutes": 29155
   },
   "stage2": {
-    "served_optional_incumbent": 158,
+    "served_optional_incumbent": 157,
     "optional_upper_bound": 160,
-    "absolute_gap": 2,
+    "absolute_gap": 3,
     "proven_optimal": false,
     "proven_optimal_for_original_problem": false,
     "fixed_flight_assignment_optimal_only": true,
-    "aircraft_time_slack_minutes": 0
+    "aircraft_time_slack_minutes": 0,
+    "unserved_ids": ["P1102", "P2239", "P3290"]
   }
 }

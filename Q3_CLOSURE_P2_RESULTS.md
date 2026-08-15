@@ -1,5 +1,8 @@
 # Q3 Closure--P2正式结果（v9）
 
+> 历史结果：已被 Q3 PRO 的 29155 min Stage 1 / 157-of-160 Stage 2 合法结果取代。
+> 当前正式报告见 `code/outputs/q3/q3-pro/reports/Q3_PRO_FINAL_REPORT.md`。
+
 ## 最终指标
 
 | 阶段 | 必运人员 | 临时人员 | 飞机时间/min | 人员在途/min | 架次 | 燃油/kg | 利用率 | Validator |

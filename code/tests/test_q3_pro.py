@@ -54,7 +54,7 @@ def test_canonical_objective_api_includes_all_lexicographic_terms() -> None:
     assert len(stage2_key(stage2, people)) == 6
     assert stage1_key(stage1, people)[0] == metrics["total_aircraft_time_minutes"]
     assert stage1_key(stage1, people)[-1] == -metrics["seat_utilization"]
-    assert stage2_key(stage2, people)[0] == -158
+    assert stage2_key(stage2, people)[0] == -157
 
 
 def test_preprocessing_dominance_is_semantics_safe_and_cache_is_hot() -> None:

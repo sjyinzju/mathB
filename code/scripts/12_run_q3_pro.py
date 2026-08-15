@@ -365,10 +365,19 @@ def main() -> int:
     shutil.copy2(run_dir / "q3-pro-base-validator.json", run_dir / "q3-base-validator.json")
     shutil.copy2(run_dir / "q3-pro-final-validator.json", run_dir / "q3-validator.json")
 
-    for record in elite_pool.records:
-        if record.signature == solution_signature(stage1):
-            record.validator_status = "independent_validator_zero_issues"
+    elite_export = args.output_root / "elite_pool" / run_id
+    elite_export.mkdir(parents=True, exist_ok=True)
+    for index, record in enumerate(elite_pool.records):
+        elite_result, _routes, _assignments = validate_export(
+            f"elite-{index:03d}", record.flights, people, data, elite_export
+        )
+        record.validator_status = (
+            "independent_validator_zero_issues"
+            if elite_result.valid
+            else "validator_failed"
+        )
     write_json(run_dir / "elite-pool.json", elite_pool.summary())
+    write_json(elite_export / "manifest.json", elite_pool.summary())
     route_library = build_route_library(
         filtered_variants,
         stage1,

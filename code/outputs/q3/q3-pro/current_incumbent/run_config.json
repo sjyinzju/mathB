@@ -1,0 +1,26 @@
+{
+  "run_id": "q3-pro-deep-v1",
+  "output_root": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00623-03a1-79d1-9a2e-6530cc2c1165\\q3-pro-worktree\\code\\outputs\\q3\\q3-pro",
+  "source_best": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00623-03a1-79d1-9a2e-6530cc2c1165\\q3-pro-worktree\\code\\outputs\\q3\\best",
+  "diverse_seed": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00623-03a1-79d1-9a2e-6530cc2c1165\\q3-pro-worktree\\code\\outputs\\q3\\p0_p1_best",
+  "variant_cache": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00623-03a1-79d1-9a2e-6530cc2c1165\\q3-pro-worktree\\code\\outputs\\q2\\pair_n3_h10.pkl",
+  "iterations": 500,
+  "wall_time": 5400.0,
+  "restart_threshold": 60,
+  "master_seed": 20260816,
+  "assignment_milp_time": 10.0,
+  "exact_windows": 12,
+  "path_pairs": 6,
+  "stage2_trials": 40,
+  "run_global_bound": true,
+  "promote": true,
+  "source_commit": "643a4c784c277ab74122033eeb70b74177d4045e",
+  "route_cache": {
+    "path": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00623-03a1-79d1-9a2e-6530cc2c1165\\q3-pro-worktree\\code\\outputs\\q2\\pair_n3_h10.pkl",
+    "size_bytes": 2350607,
+    "mtime_epoch": 1786809583.8013349,
+    "sha256": "04df605cfdd57e6f45c0bb62709c2f96808a23f511fa1a6dda2eac70aeec7a85",
+    "variant_count": 3116
+  },
+  "total_elapsed_seconds": 2913.519957
+}

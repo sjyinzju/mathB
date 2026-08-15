@@ -1,0 +1,9 @@
+{
+  "route_count": 3116,
+  "used_by_final": 143,
+  "source_counts": {
+    "q2-read-only-cache": 2973,
+    "q3-pro:q3-pro-deep-v1": 143
+  },
+  "path": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00623-03a1-79d1-9a2e-6530cc2c1165\\q3-pro-worktree\\code\\outputs\\q3\\q3-pro\\route_library\\routes.json"
+}
