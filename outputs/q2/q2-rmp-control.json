@@ -1,0 +1,26 @@
+{
+  "control_name": "Q2-RMP-Control",
+  "source": "outputs/q2/baseline-19736",
+  "source_ref": "c37ea9b:code/outputs/q2/runs/20260815-q2-bounded-lex-pair",
+  "candidate_pool_hash": "3ccc374360b9f227923b2fa68690b1291931276e050c19aece75a6c0eadbc882",
+  "candidate_sequences": 357,
+  "candidate_variants": 3116,
+  "compatible_assignments": 23251,
+  "runtime": {
+    "python": "3.11.9",
+    "scipy": "1.17.1",
+    "backend": "scipy.optimize.milp/HiGHS"
+  },
+  "metrics": {
+    "total_aircraft_time_minutes": 19736,
+    "total_passenger_travel_time_minutes": 270734,
+    "total_flights": 107,
+    "total_fuel_consumption_kg": 152910.4,
+    "seat_utilization": 0.8182982554006456,
+    "served_passengers": 4000
+  },
+  "validator": "PASS",
+  "selection": "Strict lexicographic best among canonical artifact replay, A0 195+105, E1 300+0, and E2 270+30.",
+  "bound_scope": "restricted_master",
+  "scope_note": "The candidate pool hash identifies the finite restricted master used for calibration; it is not an unrestricted Q2 optimality certificate."
+}

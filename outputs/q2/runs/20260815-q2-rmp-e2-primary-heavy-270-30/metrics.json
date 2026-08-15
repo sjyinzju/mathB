@@ -1,0 +1,29 @@
+{
+  "gate_pass": true,
+  "metrics_match": true,
+  "passenger_count": 4000,
+  "internal_metrics": {
+    "total_aircraft_time_minutes": 20275,
+    "total_passenger_travel_time_minutes": 261763,
+    "total_flights": 109,
+    "total_fuel_consumption_kg": 157594.0,
+    "seat_utilization": 0.768639197898519,
+    "served_passengers": 4000
+  },
+  "validator_metrics": {
+    "total_aircraft_time_minutes": 20275,
+    "total_passenger_travel_time_minutes": 261763,
+    "total_flights": 109,
+    "total_fuel_consumption_kg": 157594.0,
+    "seat_utilization": 0.768639197898519,
+    "served_passengers": 4000,
+    "unserved_optional_passengers": 0
+  },
+  "comparison_key": [
+    20275.0,
+    261763.0,
+    109.0,
+    157594.0,
+    -0.768639197898519
+  ]
+}

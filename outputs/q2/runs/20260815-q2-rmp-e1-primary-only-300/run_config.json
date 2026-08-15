@@ -1,0 +1,79 @@
+{
+  "run_id": "20260815-q2-rmp-e1-primary-only-300",
+  "method": "q2_q2_1_restricted_route_master",
+  "git_commit": "8c11c7e40478ea046d8c74d24c688c384c76d5c9",
+  "git_branch": "codex/q2-main-integration",
+  "git_dirty": true,
+  "runtime": {
+    "python": "3.11.9",
+    "scipy": "1.17.1",
+    "backend": "scipy.optimize.milp/HiGHS"
+  },
+  "q1_inputs": {
+    "source_ref": "c37ea9b:code/outputs/q1/best",
+    "routes": "C:\\Users\\shiju\\AppData\\Local\\Temp\\codex-q2-opt-20260815\\code\\outputs\\q1\\best\\q1-routes.csv",
+    "assignments": "C:\\Users\\shiju\\AppData\\Local\\Temp\\codex-q2-opt-20260815\\code\\outputs\\q1\\best\\q1-assignments.csv",
+    "routes_sha256": "90c0fe19930bdb7662a41c1b84ec4aa33764ba32ad27924dbe3d9f1ca7596ad7",
+    "assignments_sha256": "5e9f8d464d30e46907cca6e64204b4115826c2d5b97558860754e39d1dfb254c"
+  },
+  "replay_inputs": null,
+  "candidate_sequences": 357,
+  "candidate_variants": 3116,
+  "candidate_pool_hash": "3ccc374360b9f227923b2fa68690b1291931276e050c19aece75a6c0eadbc882",
+  "variant_generation_seconds": 96.055796,
+  "variant_cache": {
+    "path": "C:\\Users\\shiju\\AppData\\Local\\Temp\\codex-q2-opt-20260815\\pair-n3-h10.pkl",
+    "loaded": false,
+    "committable": false
+  },
+  "primary_time_limit_seconds": 300.0,
+  "secondary_time_limit_seconds": 0.0,
+  "mip_relative_gap": 0.0,
+  "total_elapsed_seconds": 399.087732,
+  "cache": {
+    "augmentation_hits": 0,
+    "augmentation_misses": 3213,
+    "skeleton_hits": 0,
+    "skeleton_misses": 0,
+    "lower_bound_hits": 0,
+    "lower_bound_misses": 0,
+    "direct_time_hits": 0,
+    "direct_time_misses": 0,
+    "augmentation_entries": 3213,
+    "skeleton_entries": 0,
+    "lower_bound_entries": 0,
+    "direct_time_entries": 0,
+    "leg_physics_entries": 9075
+  },
+  "diagnostics": {
+    "q2_master": {
+      "demand_groups": 264,
+      "candidate_sequences": 357,
+      "candidate_variants": 3116,
+      "compatible_assignments": 23251,
+      "candidate_pool_hash": "3ccc374360b9f227923b2fa68690b1291931276e050c19aece75a6c0eadbc882",
+      "bound_scope": "restricted_master",
+      "primary_status": 1,
+      "primary_objective": 20275.0,
+      "primary_dual_bound": 16292.0,
+      "primary_mip_gap": 0.1964488286066583,
+      "primary_proven_optimal": false,
+      "primary_time_limit_seconds": 300.0,
+      "primary_elapsed_seconds": 300.653313,
+      "secondary_status": null,
+      "secondary_mip_gap": null,
+      "secondary_proven_optimal": null,
+      "secondary_time_limit_seconds": 0.0,
+      "secondary_elapsed_seconds": 0.0,
+      "lexicographic_weights": null,
+      "final_objectives": {
+        "aircraft_time_minutes": 20274.999999999996,
+        "passenger_time_minutes": 261763.0,
+        "flights": 108.99999999999997,
+        "fuel_kg": 157594.0
+      },
+      "elapsed_seconds": 302.749899
+    }
+  },
+  "bound_scope": "restricted_master"
+}

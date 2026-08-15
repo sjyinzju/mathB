@@ -1,0 +1,29 @@
+{
+  "master": {
+    "bound_scope": "restricted_master",
+    "scope_note": "The incumbent, dual bound and MIP gap certify only this finite candidate-route master, not the unrestricted Q2 problem.",
+    "primary_incumbent_minutes": 20275.0,
+    "primary_dual_bound_minutes": 16292.0,
+    "primary_mip_gap": 0.1964488286066583,
+    "primary_status": 1,
+    "primary_proven_optimal": false,
+    "secondary_status": null,
+    "secondary_mip_gap": null,
+    "secondary_proven_optimal": null,
+    "candidate_sequences": 357,
+    "candidate_variants": 3116,
+    "compatible_assignments": 23251,
+    "candidate_pool_hash": "3ccc374360b9f227923b2fa68690b1291931276e050c19aece75a6c0eadbc882",
+    "primary_time_limit_seconds": 300.0,
+    "secondary_time_limit_seconds": 0.0,
+    "primary_elapsed_seconds": 300.653313,
+    "secondary_elapsed_seconds": 0.0,
+    "final_objectives": {
+      "aircraft_time_minutes": 20274.999999999996,
+      "passenger_time_minutes": 261763.0,
+      "flights": 108.99999999999997,
+      "fuel_kg": 157594.0
+    },
+    "gap_definition": "(incumbent-dual_bound)/abs(incumbent)"
+  }
+}
