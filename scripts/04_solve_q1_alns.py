@@ -17,6 +17,7 @@ from src.config import DEFAULT_CONFIG_PATH
 from src.io_utils import sha256, write_csv, write_json
 from src.solver import (
     Q1ALNSConfig,
+    SolverCache,
     export_q1_solution,
     improve_q1_alns,
     improve_q1_savings,
@@ -104,6 +105,7 @@ def main() -> int:
 
     started = time.perf_counter()
     data = load_problem_data()
+    cache = SolverCache(data)
     solver_config = SolverConfig(seed=args.seed)
     if bool(args.initial_routes) != bool(args.initial_assignments):
         raise ValueError("--initial-routes and --initial-assignments must be provided together")
@@ -116,9 +118,9 @@ def main() -> int:
         )
         baseline = None
     else:
-        baseline = solve_q1_baseline(data, solver_config)
+        baseline = solve_q1_baseline(data, solver_config, cache=cache)
         savings = improve_q1_savings(
-            baseline, data, solver_config, max_neighbors=args.max_neighbors
+            baseline, data, solver_config, max_neighbors=args.max_neighbors, cache=cache
         )
     if args.balanced:
         stage_configs = (
@@ -163,6 +165,7 @@ def main() -> int:
             data,
             stage_solver_config,
             stage_config,
+            cache=cache,
         )
         stage_results.append(stage_result)
         stage_input = stage_result.solution

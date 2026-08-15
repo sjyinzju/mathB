@@ -23,7 +23,7 @@ from .models import (
     SolverConfig,
     aggregate_evaluations,
 )
-from .technical_stops import augment_service_sequence
+from .cache import SolverCache
 
 
 @dataclass(frozen=True)
@@ -110,17 +110,12 @@ def _build_variant(
     aircraft_type: str,
     service_order: tuple[str, ...],
     cache: dict[tuple[str, str, tuple[str, ...]], RouteVariant | None],
+    solver_cache: SolverCache,
 ) -> RouteVariant | None:
     key = (base_airport, aircraft_type, service_order)
     if key in cache:
         return cache[key]
-    augmented = augment_service_sequence(
-        base_airport,
-        aircraft_type,
-        service_order,
-        matrix=data.matrix,
-        config=data.config,
-    )
+    augmented = solver_cache.augmentation_result(base_airport, aircraft_type, service_order)
     if not augmented.feasible:
         cache[key] = None
         return None
@@ -212,6 +207,7 @@ def _variant_pool(
     data: ProblemData,
     config: Q1ALNSConfig,
     cache: dict[tuple[str, str, tuple[str, ...]], RouteVariant | None],
+    solver_cache: SolverCache,
 ) -> list[RouteVariant]:
     destinations = sorted({destination for _, destination in groups})
     variants: dict[tuple[object, ...], RouteVariant] = {}
@@ -251,6 +247,7 @@ def _variant_pool(
                         aircraft_type,
                         service_order,
                         cache,
+                        solver_cache,
                     )
                     if variant is not None:
                         variants[variant.key] = variant
@@ -471,6 +468,7 @@ def _repair_neighborhood(
     data: ProblemData,
     config: Q1ALNSConfig,
     cache: dict[tuple[str, str, tuple[str, ...]], RouteVariant | None],
+    solver_cache: SolverCache,
 ) -> tuple[list[RoutePlan], list[RouteEvaluation]] | None:
     groups: dict[tuple[str, str], list[PassengerAssignment]] = defaultdict(list)
     for route in destroyed_routes:
@@ -485,6 +483,7 @@ def _repair_neighborhood(
         data,
         config,
         cache,
+        solver_cache,
     )
     solved = _solve_repair_milp(
         groups,
@@ -591,9 +590,11 @@ def improve_q1_alns(
     data: ProblemData,
     solver_config: SolverConfig | None = None,
     alns_config: Q1ALNSConfig | None = None,
+    cache: SolverCache | None = None,
 ) -> ALNSRunResult:
     solver_config = solver_config or SolverConfig()
     alns_config = alns_config or Q1ALNSConfig(seed=solver_config.seed)
+    solver_cache = cache or SolverCache(data)
     rng = random.Random(alns_config.seed)
     current_routes = list(solution.routes)
     current_evaluations = [
@@ -653,6 +654,7 @@ def improve_q1_alns(
             data,
             alns_config,
             variant_cache,
+            solver_cache,
         )
         accepted = False
         improved = False

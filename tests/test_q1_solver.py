@@ -6,9 +6,12 @@ from src.config import ROOT
 from src.data_pipeline import load_distance_matrix
 from src.io_utils import write_csv
 from src.solver.evaluator import evaluate_route
-from src.solver.exporter import export_q1_solution
-from src.solver.improve import improve_q1_savings
-from src.solver.importer import load_q1_solution
+from src.solver.exporter import export_q1_solution, load_q1_solution
+from src.solver.improve import (
+    improve_q1_batch_relocation,
+    improve_q1_route_ejection,
+    improve_q1_savings,
+)
 from src.solver.data import load_problem_data
 from src.solver.models import (
     PassengerAssignment,
@@ -133,25 +136,73 @@ def test_generalized_savings_uses_exact_route_evaluation(config, raw_dir):
     assert improved.metrics.total_aircraft_time_minutes < baseline.metrics.total_aircraft_time_minutes
 
 
-def test_checked_in_q1_baseline_serves_all_people_and_validates(config, raw_dir):
-    best = ROOT / "outputs" / "q1" / "best"
-    result = validate_solution(
-        "q1",
-        best / "q1-routes.csv",
-        best / "q1-assignments.csv",
-        data_dir=raw_dir,
-        config=config,
-    )
-    assert result.valid, [str(issue) for issue in result.issues]
-    assert result.metrics is not None
-    assert result.metrics.served_passengers == 1600
-    assert result.metrics.total_flights <= 110
-    assert result.metrics.total_aircraft_time_minutes <= 17222
-
-
-def test_checked_in_q1_alns_solution_validates_and_imports(config, raw_dir):
+def test_land_ejection_chain_can_cross_neutral_intermediate_state(config):
     data = load_problem_data(config=config)
-    best = ROOT / "outputs" / "q1" / "alns_best"
+    specifications = (
+        ("A02", 15, "LAND", "F036"),
+        ("A03", 8, "A03", "F036"),
+        ("A02", 12, "LAND", "F033"),
+    )
+    routes = []
+    evaluations = []
+    for base, count, origin, destination in specifications:
+        augmented = augment_service_sequence(
+            base, "T3", (destination,), matrix=data.matrix, config=config
+        )
+        locations = [stop.facility_id for stop in augmented.stops]
+        assignments = tuple(
+            PassengerAssignment(
+                f"{base}-{destination}-{index}", origin, destination, 0, locations.index(destination)
+            )
+            for index in range(count)
+        )
+        route = RoutePlan(base, "T3", augmented.stops, assignments, (destination,))
+        routes.append(route)
+        evaluations.append(evaluate_route(route, matrix=data.matrix, config=config))
+    baseline = Solution(tuple(routes), aggregate_evaluations(evaluations, served=35))
+    improved = improve_q1_route_ejection(baseline, data, max_targets=4, max_iterations=3)
+    assert len(improved.routes) == 2
+    assert improved.metrics.total_aircraft_time_minutes < baseline.metrics.total_aircraft_time_minutes
+    assert improved.diagnostics["route_ejection"]["accepted_chains"] == 1
+
+
+def test_batch_relocation_rebuilds_both_routes_and_reoptimizes_types(config):
+    data = load_problem_data(config=config)
+    routes = []
+    evaluations = []
+    for aircraft_type, destination, count in (("T3", "F044", 18), ("T2", "F043", 14)):
+        augmented = augment_service_sequence(
+            "A03", aircraft_type, (destination,), matrix=data.matrix, config=config
+        )
+        locations = [stop.facility_id for stop in augmented.stops]
+        assignments = tuple(
+            PassengerAssignment(
+                f"{destination}-{index}", "LAND", destination, 0, locations.index(destination)
+            )
+            for index in range(count)
+        )
+        route = RoutePlan("A03", aircraft_type, augmented.stops, assignments, (destination,))
+        routes.append(route)
+        evaluations.append(evaluate_route(route, matrix=data.matrix, config=config))
+    baseline = Solution(tuple(routes), aggregate_evaluations(evaluations, served=32))
+    improved = improve_q1_batch_relocation(
+        baseline, data, max_targets_per_batch=2, max_iterations=1
+    )
+    assert improved.metrics.total_aircraft_time_minutes == baseline.metrics.total_aircraft_time_minutes - 21
+    assert improved.diagnostics["batch_relocation"]["accepted_moves"] == 1
+
+
+def test_checked_in_q1_baseline_serves_all_people_and_validates(config, raw_dir, tmp_path):
+    best = ROOT / "outputs" / "q1" / "best"
+    restored = load_q1_solution(
+        best / "q1-routes.csv", best / "q1-assignments.csv", load_problem_data(config=config)
+    )
+    assert restored.metrics.served_passengers == 1600
+    roundtrip_routes = tmp_path / "q1-routes.csv"
+    roundtrip_assignments = tmp_path / "q1-assignments.csv"
+    export_q1_solution(restored, roundtrip_routes, roundtrip_assignments)
+    assert roundtrip_routes.read_bytes() == (best / "q1-routes.csv").read_bytes()
+    assert roundtrip_assignments.read_bytes() == (best / "q1-assignments.csv").read_bytes()
     result = validate_solution(
         "q1",
         best / "q1-routes.csv",
@@ -162,12 +213,5 @@ def test_checked_in_q1_alns_solution_validates_and_imports(config, raw_dir):
     assert result.valid, [str(issue) for issue in result.issues]
     assert result.metrics is not None
     assert result.metrics.served_passengers == 1600
-    assert result.metrics.total_aircraft_time_minutes == 15418
-    imported = load_q1_solution(
-        best / "q1-routes.csv",
-        best / "q1-assignments.csv",
-        data,
-        method="test_import",
-    )
-    assert imported.metrics.total_aircraft_time_minutes == 15418
-    assert imported.metrics.total_flights == 95
+    assert result.metrics.total_flights <= 95
+    assert result.metrics.total_aircraft_time_minutes <= 15371
