@@ -50,7 +50,7 @@ def _comparison_key(metrics: dict[str, object]) -> tuple[float, ...]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Q2 strict-improvement LNS with exact local MILP repair"
+        description="Q2 adaptive ALNS with exact local MILP repair"
     )
     parser.add_argument("--run-id")
     parser.add_argument("--output-root", type=Path, default=ROOT / "outputs" / "q2")
@@ -58,7 +58,15 @@ def main() -> int:
         "--start-dir", type=Path, default=ROOT / "outputs" / "q2" / "best"
     )
     parser.add_argument("--iterations", type=int, default=24)
+    parser.add_argument("--wall-clock-limit", type=float)
     parser.add_argument("--neighborhood-size", type=int, default=3)
+    parser.add_argument(
+        "--destroy-size-policy", choices=("fixed", "adaptive"), default="fixed"
+    )
+    parser.add_argument("--adaptive-destroy-sizes", default="2,3,4")
+    parser.add_argument("--medium-stagnation", type=int, default=3)
+    parser.add_argument("--large-stagnation", type=int, default=6)
+    parser.add_argument("--large-neighborhood-frequency", type=int, default=4)
     parser.add_argument("--source-pool-size", type=int, default=24)
     parser.add_argument("--target-pool-size", type=int, default=8)
     parser.add_argument("--max-sequence-length", type=int, default=2)
@@ -68,12 +76,12 @@ def main() -> int:
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument(
         "--candidate-policy",
-        choices=("geometry", "flow", "enrichment"),
+        choices=("geometry", "flow", "context", "enrichment"),
         default="geometry",
     )
     parser.add_argument(
         "--operators",
-        default=",".join(DESTROY_OPERATORS),
+        default=",".join(DESTROY_OPERATORS[:4]),
         help="Comma-separated destroy operators",
     )
     parser.add_argument(
@@ -82,6 +90,14 @@ def main() -> int:
         default="round_robin",
     )
     parser.add_argument("--adaptive-reaction", type=float, default=0.2)
+    parser.add_argument(
+        "--acceptance-policy", choices=("strict", "sa"), default="strict"
+    )
+    parser.add_argument("--sa-initial-temperature", type=float, default=12.0)
+    parser.add_argument("--sa-cooling-rate", type=float, default=0.92)
+    parser.add_argument("--sa-min-temperature", type=float, default=0.5)
+    parser.add_argument("--targeted-four-stop", action="store_true")
+    parser.add_argument("--no-candidate-logging", action="store_true")
     parser.add_argument("--promote", action="store_true")
     args = parser.parse_args()
 
@@ -99,9 +115,24 @@ def main() -> int:
         method="q2_rmp_control",
     )
     operators = tuple(value.strip() for value in args.operators.split(",") if value.strip())
+    adaptive_destroy_sizes = tuple(
+        sorted(
+            {
+                int(value.strip())
+                for value in args.adaptive_destroy_sizes.split(",")
+                if value.strip()
+            }
+        )
+    )
     config = Q2LnsConfig(
         iterations=args.iterations,
+        max_wall_seconds=args.wall_clock_limit,
         neighborhood_size=args.neighborhood_size,
+        destroy_size_policy=args.destroy_size_policy,
+        adaptive_destroy_sizes=adaptive_destroy_sizes,
+        medium_stagnation=args.medium_stagnation,
+        large_stagnation=args.large_stagnation,
+        large_neighborhood_frequency=args.large_neighborhood_frequency,
         source_pool_size=args.source_pool_size,
         target_pool_size=args.target_pool_size,
         max_sequence_length=args.max_sequence_length,
@@ -113,6 +144,12 @@ def main() -> int:
         operators=operators,
         operator_selection=args.operator_selection,
         adaptive_reaction=args.adaptive_reaction,
+        acceptance_policy=args.acceptance_policy,
+        sa_initial_temperature=args.sa_initial_temperature,
+        sa_cooling_rate=args.sa_cooling_rate,
+        sa_min_temperature=args.sa_min_temperature,
+        targeted_four_stop=args.targeted_four_stop,
+        candidate_logging=not args.no_candidate_logging,
     )
     cache = SolverCache(data)
     result = solve_q2_lns(initial, data, config=config, cache=cache)
@@ -161,6 +198,12 @@ def main() -> int:
     with (run_dir / "search-log.jsonl").open("w", encoding="utf-8") as stream:
         for row in result.iteration_log:
             stream.write(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n")
+    with (run_dir / "candidate-log.jsonl").open("w", encoding="utf-8") as stream:
+        for row in result.candidate_log:
+            payload = {**row, "run_id": run_id}
+            stream.write(
+                json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n"
+            )
     operator_fields = (
         "operator",
         "uses",
@@ -201,7 +244,13 @@ def main() -> int:
             },
             "config": {
                 "iterations": config.iterations,
+                "max_wall_seconds": config.max_wall_seconds,
                 "neighborhood_size": config.neighborhood_size,
+                "destroy_size_policy": config.destroy_size_policy,
+                "adaptive_destroy_sizes": list(config.adaptive_destroy_sizes),
+                "medium_stagnation": config.medium_stagnation,
+                "large_stagnation": config.large_stagnation,
+                "large_neighborhood_frequency": config.large_neighborhood_frequency,
                 "source_pool_size": config.source_pool_size,
                 "target_pool_size": config.target_pool_size,
                 "max_sequence_length": config.max_sequence_length,
@@ -213,6 +262,12 @@ def main() -> int:
                 "operators": list(config.operators),
                 "operator_selection": config.operator_selection,
                 "adaptive_reaction": config.adaptive_reaction,
+                "acceptance_policy": config.acceptance_policy,
+                "sa_initial_temperature": config.sa_initial_temperature,
+                "sa_cooling_rate": config.sa_cooling_rate,
+                "sa_min_temperature": config.sa_min_temperature,
+                "targeted_four_stop": config.targeted_four_stop,
+                "candidate_logging": config.candidate_logging,
             },
             "bound_scope": "restricted_local_master",
             "scope_note": (
@@ -221,6 +276,39 @@ def main() -> int:
             ),
             "cache": cache.stats(),
             "operator_stats": list(result.operator_stats),
+            "search_statistics": {
+                "iterations_completed": len(result.iteration_log),
+                "candidate_rows": len(result.candidate_log),
+                "censored_candidate_rows": sum(
+                    int(bool(row.get("label_censored")))
+                    for row in result.candidate_log
+                ),
+                "exact_evaluated_candidate_rows": sum(
+                    int(row.get("evaluation_state") == "exact_evaluated")
+                    for row in result.candidate_log
+                ),
+                "milp_selected_candidate_rows": sum(
+                    int(bool(row.get("milp_selected")))
+                    for row in result.candidate_log
+                ),
+                "evaluator_calls": sum(
+                    int(row.get("evaluator_calls", 0))
+                    for row in result.iteration_log
+                ),
+                "technical_stop_augmentations": cache.stats()["augmentation_misses"],
+                "accepted_moves": sum(
+                    int(bool(row.get("accepted"))) for row in result.iteration_log
+                ),
+                "route_ejections": sum(
+                    int(bool(row.get("accepted") and row.get("route_ejected")))
+                    for row in result.iteration_log
+                ),
+                "selected_4_stop_candidates": sum(
+                    int(row.get("selected_4_stop_candidates", 0))
+                    for row in result.iteration_log
+                    if row.get("accepted")
+                ),
+            },
             "lns_elapsed_seconds": round(result.elapsed_seconds, 6),
             "total_elapsed_seconds": round(elapsed, 6),
         },

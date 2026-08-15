@@ -8,6 +8,7 @@ from src.config import ROOT
 from src.solver import (
     Q2LnsConfig,
     SolverCache,
+    adaptive_q2_destroy_size,
     build_q2_local_data,
     build_q2_directed_flow_graph,
     exact_q2_local_repair,
@@ -16,6 +17,8 @@ from src.solver import (
     flow_aware_local_sequences,
     load_problem_data,
     load_q2_solution,
+    q2_solution_diversity,
+    rank_q2_local_sequences,
     select_q2_neighborhood,
 )
 from src.validation import validate_solution
@@ -195,6 +198,110 @@ def test_q2_destroy_neighborhood_is_seed_deterministic() -> None:
     assert first == second
     assert len(first) == config.neighborhood_size
     assert len(set(first)) == config.neighborhood_size
+
+
+def test_q2_adaptive_destroy_size_is_explainable_and_deterministic() -> None:
+    config = Q2LnsConfig(
+        destroy_size_policy="adaptive",
+        adaptive_destroy_sizes=(2, 3, 4),
+        medium_stagnation=2,
+        large_stagnation=4,
+        large_neighborhood_frequency=2,
+    )
+    assert adaptive_q2_destroy_size(
+        config,
+        iteration=0,
+        stagnation=0,
+        recent_success_rate=1.0,
+        recent_mean_runtime=0.0,
+    ) == 2
+    assert adaptive_q2_destroy_size(
+        config,
+        iteration=1,
+        stagnation=2,
+        recent_success_rate=0.5,
+        recent_mean_runtime=0.0,
+    ) == 3
+    assert adaptive_q2_destroy_size(
+        config,
+        iteration=4,
+        stagnation=4,
+        recent_success_rate=0.0,
+        recent_mean_runtime=0.0,
+    ) == 4
+
+
+def test_q2_ejection_chain_neighborhood_is_deterministic() -> None:
+    data = load_problem_data()
+    best = ROOT / "outputs" / "q2" / "best"
+    solution = load_q2_solution(
+        best / "q2-routes.csv", best / "q2-assignments.csv", data
+    )
+    config = Q2LnsConfig(
+        operators=("ejection_chain",),
+        neighborhood_size=4,
+        seed=3,
+    )
+    first = select_q2_neighborhood(
+        solution,
+        data,
+        operator="ejection_chain",
+        iteration=5,
+        config=config,
+        neighborhood_size=4,
+    )
+    second = select_q2_neighborhood(
+        solution,
+        data,
+        operator="ejection_chain",
+        iteration=5,
+        config=config,
+        neighborhood_size=4,
+    )
+    assert first == second
+    assert len(first) == len(set(first)) == 4
+
+
+def test_q2_context_ranking_logs_selected_and_censored_candidates() -> None:
+    data = load_problem_data()
+    best = ROOT / "outputs" / "q2" / "best"
+    solution = load_q2_solution(
+        best / "q2-routes.csv", best / "q2-assignments.csv", data
+    )
+    routes = solution.routes[48:52]
+    local = build_q2_local_data(data, routes)
+    sequences, features, rows = rank_q2_local_sequences(
+        local,
+        routes,
+        max_sequence_length=4,
+        budget=12,
+        policy="context",
+        flow_graph=build_q2_directed_flow_graph(data),
+        prioritize_four_stop=True,
+    )
+    assert sequences
+    assert features
+    assert any(row["top_k_selected"] for row in rows)
+    assert any(row["label_censored"] for row in rows)
+    assert all(
+        row["evaluation_state"] == "not_evaluated"
+        for row in rows
+        if row["label_censored"]
+    )
+    assert any(len(sequence) == 4 for sequence in sequences)
+
+
+def test_q2_solution_diversity_is_symmetric_and_zero_for_identity() -> None:
+    data = load_problem_data()
+    best = ROOT / "outputs" / "q2" / "best"
+    control = ROOT / "outputs" / "q2" / "runs" / "20260815-q2-alns-seed2"
+    left = load_q2_solution(best / "q2-routes.csv", best / "q2-assignments.csv", data)
+    right = load_q2_solution(
+        control / "q2-routes.csv", control / "q2-assignments.csv", data
+    )
+    assert q2_solution_diversity(left, left) == 0.0
+    assert q2_solution_diversity(left, right) == q2_solution_diversity(right, left)
+    assert q2_solution_diversity(left, right) > 0.0
 
 
 def test_q2_exact_local_repair_only_returns_primary_improvement() -> None:

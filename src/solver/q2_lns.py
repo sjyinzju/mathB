@@ -19,7 +19,12 @@ from .q2 import (
     candidate_service_sequences,
     solve_q2_master,
 )
-from .q2_flow import Q2DirectedFlowGraph, build_q2_directed_flow_graph, flow_aware_local_sequences
+from .q2_flow import (
+    Q2DirectedFlowGraph,
+    build_q2_directed_flow_graph,
+    flow_aware_local_sequences,
+    q2_sequence_features,
+)
 
 
 DESTROY_OPERATORS = (
@@ -27,6 +32,7 @@ DESTROY_OPERATORS = (
     "low_utilization_route",
     "shared_facility_flow",
     "land_heavy_route",
+    "ejection_chain",
 )
 
 
@@ -44,7 +50,19 @@ class Q2LnsConfig:
     candidate_policy: str = "geometry"
     operator_selection: str = "round_robin"
     adaptive_reaction: float = 0.2
-    operators: tuple[str, ...] = DESTROY_OPERATORS
+    operators: tuple[str, ...] = DESTROY_OPERATORS[:4]
+    max_wall_seconds: float | None = None
+    destroy_size_policy: str = "fixed"
+    adaptive_destroy_sizes: tuple[int, ...] = (2, 3, 4)
+    medium_stagnation: int = 3
+    large_stagnation: int = 6
+    large_neighborhood_frequency: int = 4
+    acceptance_policy: str = "strict"
+    sa_initial_temperature: float = 12.0
+    sa_cooling_rate: float = 0.92
+    sa_min_temperature: float = 0.5
+    targeted_four_stop: bool = False
+    candidate_logging: bool = True
 
     def __post_init__(self) -> None:
         if self.iterations < 0:
@@ -64,12 +82,32 @@ class Q2LnsConfig:
             raise ValueError(f"Unknown Q2 destroy operators: {sorted(unknown)}")
         if not self.operators:
             raise ValueError("At least one destroy operator is required")
-        if self.candidate_policy not in {"geometry", "flow", "enrichment"}:
-            raise ValueError("candidate_policy must be geometry, flow, or enrichment")
+        if self.candidate_policy not in {"geometry", "flow", "context", "enrichment"}:
+            raise ValueError(
+                "candidate_policy must be geometry, flow, context, or enrichment"
+            )
         if self.operator_selection not in {"round_robin", "adaptive_roulette"}:
             raise ValueError("operator_selection must be round_robin or adaptive_roulette")
         if not 0.0 < self.adaptive_reaction <= 1.0:
             raise ValueError("adaptive_reaction must be in (0, 1]")
+        if self.max_wall_seconds is not None and self.max_wall_seconds <= 0:
+            raise ValueError("max_wall_seconds must be positive when provided")
+        if self.destroy_size_policy not in {"fixed", "adaptive"}:
+            raise ValueError("destroy_size_policy must be fixed or adaptive")
+        if not self.adaptive_destroy_sizes or min(self.adaptive_destroy_sizes) < 2:
+            raise ValueError("adaptive_destroy_sizes must contain route counts >= 2")
+        if tuple(sorted(set(self.adaptive_destroy_sizes))) != self.adaptive_destroy_sizes:
+            raise ValueError("adaptive_destroy_sizes must be sorted and unique")
+        if self.medium_stagnation < 1 or self.large_stagnation < self.medium_stagnation:
+            raise ValueError("adaptive stagnation thresholds are invalid")
+        if self.large_neighborhood_frequency < 1:
+            raise ValueError("large_neighborhood_frequency must be positive")
+        if self.acceptance_policy not in {"strict", "sa"}:
+            raise ValueError("acceptance_policy must be strict or sa")
+        if self.sa_initial_temperature <= 0 or self.sa_min_temperature <= 0:
+            raise ValueError("SA temperatures must be positive")
+        if not 0.0 < self.sa_cooling_rate < 1.0:
+            raise ValueError("sa_cooling_rate must be in (0, 1)")
 
 
 @dataclass(frozen=True)
@@ -82,6 +120,7 @@ class Q2LocalRepair:
 class Q2LnsResult:
     solution: Solution
     iteration_log: tuple[dict[str, object], ...]
+    candidate_log: tuple[dict[str, object], ...]
     operator_stats: tuple[dict[str, object], ...]
     elapsed_seconds: float
 
@@ -108,6 +147,44 @@ def _land_share(route: RoutePlan) -> float:
         for assignment in route.assignments
     )
     return land / len(route.assignments)
+
+
+def _route_residual_capacity(route: RoutePlan, data: ProblemData) -> int:
+    evaluation = _route_evaluation(route, data)
+    capacity = data.config.aircraft_types[route.aircraft_type].seats
+    peak = max((leg.departure_load for leg in evaluation.legs), default=0)
+    return capacity - peak
+
+
+def _ejection_potential_key(
+    solution: Solution,
+    data: ProblemData,
+    index: int,
+) -> tuple[float, ...]:
+    """Cheap, deterministic route-level priority for exact chain repacking.
+
+    The tuple deliberately uses ranks/ordering rather than a brittle weighted
+    surrogate.  A promising source is lightly loaded, overlaps other routes,
+    carries flexible LAND demand and is expensive relative to its passenger
+    count.  Exact local repair remains the feasibility and value decision.
+    """
+    route = solution.routes[index]
+    evaluation = _route_evaluation(route, data)
+    facilities = _route_facilities(route, data)
+    overlap = sum(
+        len(facilities & _route_facilities(other, data))
+        for other_index, other in enumerate(solution.routes)
+        if other_index != index
+    )
+    passengers = max(1, route.passenger_count)
+    return (
+        float(route.passenger_count),
+        evaluation.seat_utilization,
+        -float(overlap),
+        -_land_share(route),
+        -float(evaluation.total_aircraft_time_minutes / passengers),
+        float(index),
+    )
 
 
 def _source_order(
@@ -145,6 +222,8 @@ def _source_order(
             evaluations[index].seat_utilization,
             index,
         )
+    elif operator == "ejection_chain":
+        key = lambda index: _ejection_potential_key(solution, data, index)
     else:  # protected by Q2LnsConfig validation
         raise ValueError(operator)
     return sorted(range(len(solution.routes)), key=key)
@@ -200,6 +279,75 @@ def _target_order(
     )
 
 
+def _ejection_chain_targets(
+    solution: Solution,
+    data: ProblemData,
+    source_index: int,
+    *,
+    count: int,
+) -> list[int]:
+    """Build a route-level repacking chain A -> B -> C deterministically."""
+    if count <= 0:
+        return []
+    selected: list[int] = []
+    remaining = set(range(len(solution.routes))) - {source_index}
+    anchor_facilities = set(_route_facilities(solution.routes[source_index], data))
+    source_airport = solution.routes[source_index].base_airport
+    while remaining and len(selected) < count:
+        def key(index: int) -> tuple[float, ...]:
+            route = solution.routes[index]
+            facilities = _route_facilities(route, data)
+            return (
+                -float(len(anchor_facilities & facilities)),
+                -float(_flow_between(frozenset(anchor_facilities), facilities, data)),
+                -float(route.base_airport == source_airport),
+                -float(_route_residual_capacity(route, data)),
+                _route_evaluation(route, data).seat_utilization,
+                float(index),
+            )
+
+        chosen = min(remaining, key=key)
+        selected.append(chosen)
+        remaining.remove(chosen)
+        anchor_facilities.update(_route_facilities(solution.routes[chosen], data))
+    return selected
+
+
+def adaptive_q2_destroy_size(
+    config: Q2LnsConfig,
+    *,
+    iteration: int,
+    stagnation: int,
+    recent_success_rate: float,
+    recent_mean_runtime: float,
+) -> int:
+    """Classical, interpretable destroy-scale controller.
+
+    Fixed mode reproduces the Standard ALNS control exactly.  Adaptive mode
+    normally uses the smallest neighborhood, moves to the middle size after
+    stagnation, and only attempts the largest size periodically.  Expensive
+    recent repairs or a fresh improvement pull the scale back down.
+    """
+    if config.destroy_size_policy == "fixed":
+        return config.neighborhood_size
+    sizes = config.adaptive_destroy_sizes
+    small = sizes[0]
+    medium = sizes[min(1, len(sizes) - 1)]
+    large = sizes[-1]
+    if stagnation == 0:
+        return small
+    if recent_mean_runtime > 1.25 * config.local_primary_seconds:
+        return small
+    if (
+        stagnation >= config.large_stagnation
+        and iteration % config.large_neighborhood_frequency == 0
+    ):
+        return large
+    if stagnation >= config.medium_stagnation or recent_success_rate < 0.2:
+        return medium
+    return small
+
+
 def select_q2_neighborhood(
     solution: Solution,
     data: ProblemData,
@@ -207,23 +355,33 @@ def select_q2_neighborhood(
     operator: str,
     iteration: int,
     config: Q2LnsConfig,
+    neighborhood_size: int | None = None,
 ) -> tuple[int, ...]:
     """Select one source route and related targets reproducibly for a seed."""
     sources = _source_order(solution, data, operator)[: config.source_pool_size]
     source_slot = (iteration // len(config.operators) + config.seed) % len(sources)
     source = sources[source_slot]
-    targets = _target_order(solution, data, source)[: config.target_pool_size]
+    size = neighborhood_size or config.neighborhood_size
+    if operator == "ejection_chain":
+        targets = _ejection_chain_targets(
+            solution,
+            data,
+            source,
+            count=min(config.target_pool_size, size - 1),
+        )
+    else:
+        targets = _target_order(solution, data, source)[: config.target_pool_size]
     rng = random.Random((config.seed + 1) * 1_000_003 + iteration * 97)
     # Preserve the strongest related target and diversify the remaining slots.
     selected = targets[:1]
     tail = targets[1:]
     rng.shuffle(tail)
-    selected.extend(tail[: max(0, config.neighborhood_size - 2)])
-    if len(selected) < config.neighborhood_size - 1:
+    selected.extend(tail[: max(0, size - 2)])
+    if len(selected) < size - 1:
         selected.extend(
             target for target in targets if target not in selected
         )
-    return tuple([source, *selected[: config.neighborhood_size - 1]])
+    return tuple([source, *selected[: size - 1]])
 
 
 def build_q2_local_data(
@@ -273,20 +431,18 @@ def _geometry_score(sequence: tuple[str, ...], data: ProblemData) -> tuple[float
     return (best, float(len(sequence)), *sequence)
 
 
-def geometry_local_sequences(
+def _local_sequence_universe(
     data: ProblemData,
     routes: Sequence[RoutePlan],
     *,
     max_sequence_length: int,
-    budget: int,
-) -> tuple[tuple[str, ...], ...]:
-    """Bounded raw/geometry candidate control for local exact repair."""
+) -> tuple[
+    set[tuple[str, ...]],
+    set[tuple[str, ...]],
+    set[tuple[str, ...]],
+]:
     facilities = sorted(
-        {
-            node
-            for route in routes
-            for node in _route_facilities(route, data)
-        }
+        {node for route in routes for node in _route_facilities(route, data)}
     )
     required = {
         tuple(route.service_facilities)
@@ -302,20 +458,202 @@ def geometry_local_sequences(
             high_demand_nodes=0,
         )
     )
-    generated: list[tuple[str, ...]] = []
-    for length in range(2, min(max_sequence_length, len(facilities)) + 1):
-        generated.extend(
-            sequence
-            for sequence in permutations(facilities, length)
-            if _sequence_supports_local_demand(sequence, data)
+    generated = {
+        sequence
+        for length in range(2, min(max_sequence_length, len(facilities)) + 1)
+        for sequence in permutations(facilities, length)
+        if _sequence_supports_local_demand(sequence, data)
+    }
+    return required, base, generated
+
+
+def _sequence_local_demand(sequence: tuple[str, ...], data: ProblemData) -> int:
+    positions = {node: index for index, node in enumerate(sequence)}
+    airports = set(data.config.airports)
+    supported = 0
+    for (origin, destination), pool in data.q2_pools.items():
+        origin_ok = origin == "LAND" or origin in airports or origin in positions
+        destination_ok = destination == "LAND" or destination in airports or destination in positions
+        if not origin_ok or not destination_ok:
+            continue
+        if origin in positions and destination in positions and positions[origin] >= positions[destination]:
+            continue
+        supported += pool.quantity
+    return supported
+
+
+def _rank_percentiles(
+    values: dict[tuple[str, ...], float],
+    *,
+    higher_is_better: bool,
+) -> dict[tuple[str, ...], float]:
+    ordered = sorted(
+        values,
+        key=lambda item: (
+            -values[item] if higher_is_better else values[item],
+            len(item),
+            item,
+        ),
+    )
+    denominator = max(1, len(ordered) - 1)
+    return {sequence: 1.0 - rank / denominator for rank, sequence in enumerate(ordered)}
+
+
+def rank_q2_local_sequences(
+    data: ProblemData,
+    routes: Sequence[RoutePlan],
+    *,
+    max_sequence_length: int,
+    budget: int,
+    policy: str,
+    flow_graph: Q2DirectedFlowGraph | None = None,
+    prioritize_four_stop: bool = False,
+) -> tuple[
+    tuple[tuple[str, ...], ...],
+    dict[tuple[str, ...], dict[str, object]],
+    list[dict[str, object]],
+]:
+    """Rank the complete bounded local sequence universe and retain Top-K.
+
+    Context ranking uses equal-weight percentile components.  This keeps the
+    first version interpretable and makes every unselected sequence an
+    explicit censored observation rather than a false negative.
+    """
+    required, base, generated = _local_sequence_universe(
+        data,
+        routes,
+        max_sequence_length=max_sequence_length,
+    )
+    incumbent = required | base
+    exploratory = sorted(generated - incumbent, key=lambda item: (len(item), item))
+    feature_rows: dict[tuple[str, ...], dict[str, object]] = {}
+    geometry_values = {
+        sequence: float(_geometry_score(sequence, data)[0]) for sequence in exploratory
+    }
+    geometry_rank = _rank_percentiles(geometry_values, higher_is_better=False)
+    if policy == "context":
+        if flow_graph is None:
+            raise ValueError("context candidate policy requires a directed flow graph")
+        raw_flow = {
+            sequence: q2_sequence_features(sequence, data, flow_graph)
+            for sequence in exploratory
+        }
+        demand_values = {
+            sequence: float(_sequence_local_demand(sequence, data))
+            for sequence in exploratory
+        }
+        coverage_values = {
+            sequence: sum(
+                len(set(sequence) & set(route.service_facilities))
+                / max(1, len(set(route.service_facilities)))
+                for route in routes
+            )
+            for sequence in exploratory
+        }
+        capacity_values = {
+            sequence: raw_flow[sequence].capacity_fit for sequence in exploratory
+        }
+        flow_values = {
+            sequence: float(
+                raw_flow[sequence].directed_shuttle_flow
+                + raw_flow[sequence].flow_complementarity
+            )
+            for sequence in exploratory
+        }
+        airport_values = {
+            sequence: float(raw_flow[sequence].fixed_airport_affinity)
+            for sequence in exploratory
+        }
+        component_ranks = {
+            "geometry": geometry_rank,
+            "capacity": _rank_percentiles(capacity_values, higher_is_better=True),
+            "ejection_coverage": _rank_percentiles(coverage_values, higher_is_better=True),
+            "local_demand": _rank_percentiles(demand_values, higher_is_better=True),
+            "flow_context": _rank_percentiles(flow_values, higher_is_better=True),
+            "airport": _rank_percentiles(airport_values, higher_is_better=True),
+        }
+        for sequence in exploratory:
+            components = {
+                name: round(values[sequence], 6)
+                for name, values in component_ranks.items()
+            }
+            context_score = mean(components.values())
+            feature_rows[sequence] = {
+                **raw_flow[sequence].to_dict(),
+                "local_supported_demand": int(demand_values[sequence]),
+                "ejection_coverage": round(coverage_values[sequence], 6),
+                "context_components": components,
+                "context_score": round(context_score, 6),
+            }
+        ranked = sorted(
+            exploratory,
+            key=lambda item: (-float(feature_rows[item]["context_score"]), len(item), item),
         )
-    ranked = sorted(set(generated) - required - base, key=lambda item: _geometry_score(item, data))
-    incumbent_sequences = required | base
-    room = max(0, budget - len(incumbent_sequences))
-    chosen = incumbent_sequences | set(ranked[:room])
-    # Required/current sequences are never dropped even if they exceed the
-    # exploratory budget; this preserves a feasible incumbent representation.
-    return tuple(sorted(chosen, key=lambda item: (len(item), item)))
+    else:
+        for sequence in exploratory:
+            feature_rows[sequence] = {
+                "route_distance_km": round(geometry_values[sequence], 6),
+                "geometry_percentile": round(geometry_rank[sequence], 6),
+            }
+        ranked = sorted(exploratory, key=lambda item: _geometry_score(item, data))
+
+    room = max(0, budget - len(incumbent))
+    selected_exploratory: list[tuple[str, ...]] = []
+    if prioritize_four_stop and room:
+        reserved = min(max(1, room // 4), 4)
+        selected_exploratory.extend(
+            sequence for sequence in ranked if len(sequence) == 4
+        )
+        selected_exploratory = selected_exploratory[:reserved]
+    selected_exploratory.extend(
+        sequence for sequence in ranked if sequence not in selected_exploratory
+    )
+    selected_exploratory = selected_exploratory[:room]
+    selected = incumbent | set(selected_exploratory)
+    rank_lookup = {sequence: rank + 1 for rank, sequence in enumerate(ranked)}
+    candidate_rows = []
+    for sequence in sorted(incumbent | set(exploratory), key=lambda item: (len(item), item)):
+        chosen = sequence in selected
+        candidate_rows.append(
+            {
+                "candidate_sequence": list(sequence),
+                "candidate_variant": None,
+                "airport": None,
+                "aircraft_type": None,
+                "features": feature_rows.get(sequence, {"incumbent_sequence": True}),
+                "rank_before_exact": rank_lookup.get(sequence, 0),
+                "passed_cheap_filter": True,
+                "top_k_selected": chosen,
+                "exact_variant_generated": False,
+                "milp_candidate": False,
+                "milp_selected": False,
+                "evaluation_state": "pending_exact" if chosen else "not_evaluated",
+                "label_censored": not chosen,
+            }
+        )
+    return (
+        tuple(sorted(selected, key=lambda item: (len(item), item))),
+        feature_rows,
+        candidate_rows,
+    )
+
+
+def geometry_local_sequences(
+    data: ProblemData,
+    routes: Sequence[RoutePlan],
+    *,
+    max_sequence_length: int,
+    budget: int,
+) -> tuple[tuple[str, ...], ...]:
+    """Bounded raw/geometry candidate control for local exact repair."""
+    sequences, _, _ = rank_q2_local_sequences(
+        data,
+        routes,
+        max_sequence_length=max_sequence_length,
+        budget=budget,
+        policy="geometry",
+    )
+    return sequences
 
 
 def _combine_solution(
@@ -351,20 +689,26 @@ def exact_q2_local_repair(
     cache: SolverCache,
     config: Q2LnsConfig,
     flow_graph: Q2DirectedFlowGraph | None = None,
+    require_primary_improvement: bool = True,
+    allowed_primary_deterioration_minutes: int = 0,
+    prioritize_four_stop: bool = False,
+    candidate_seed_routes: Sequence[RoutePlan] = (),
 ) -> Q2LocalRepair:
     started = time.perf_counter()
     destroyed = tuple(sorted(set(route_indices)))
     if len(destroyed) < 2 or destroyed[-1] >= len(current.routes):
         raise ValueError("Invalid Q2 local-repair route indices")
     affected_routes = tuple(current.routes[index] for index in destroyed)
+    ranking_routes = (*affected_routes, *candidate_seed_routes)
     local_data = build_q2_local_data(data, affected_routes)
     sequence_features: dict[tuple[str, ...], object] = {}
+    candidate_rows: list[dict[str, object]] = []
     if config.candidate_policy == "flow":
         if flow_graph is None:
             raise ValueError("flow candidate policy requires a directed flow graph")
         sequences, raw_features = flow_aware_local_sequences(
             local_data,
-            affected_routes,
+            ranking_routes,
             flow_graph,
             max_sequence_length=config.max_sequence_length,
             budget=config.candidate_sequence_budget,
@@ -373,11 +717,14 @@ def exact_q2_local_repair(
             sequence: feature.to_dict() for sequence, feature in raw_features.items()
         }
     else:
-        sequences = geometry_local_sequences(
+        sequences, sequence_features, candidate_rows = rank_q2_local_sequences(
             local_data,
-            affected_routes,
+            ranking_routes,
             max_sequence_length=config.max_sequence_length,
             budget=config.candidate_sequence_budget,
+            policy=config.candidate_policy,
+            flow_graph=flow_graph,
+            prioritize_four_stop=prioritize_four_stop,
         )
     variants = build_q2_variant_pool(
         local_data,
@@ -401,10 +748,61 @@ def exact_q2_local_repair(
         "before_aircraft_minutes": before_aircraft,
         "before_passenger_minutes": before_passenger,
     }
+    if candidate_rows:
+        selected_sequences = {
+            tuple(row["candidate_sequence"])
+            for row in candidate_rows
+            if row["top_k_selected"]
+        }
+        expanded_rows: list[dict[str, object]] = [
+            row for row in candidate_rows if not row["top_k_selected"]
+        ]
+        variants_by_sequence: dict[tuple[str, ...], list[object]] = defaultdict(list)
+        for variant in variants:
+            variants_by_sequence[variant.service_order].append(variant)
+        for sequence in sorted(selected_sequences, key=lambda item: (len(item), item)):
+            matches = variants_by_sequence.get(sequence, [])
+            template = next(
+                row
+                for row in candidate_rows
+                if tuple(row["candidate_sequence"]) == sequence
+            )
+            if not matches:
+                expanded_rows.append(
+                    {
+                        **template,
+                        "exact_variant_generated": False,
+                        "evaluation_state": "exact_evaluated",
+                        "label_censored": False,
+                    }
+                )
+                continue
+            for variant in matches:
+                expanded_rows.append(
+                    {
+                        **template,
+                        "candidate_variant": [
+                            [stop.facility_id, int(stop.refuel)]
+                            for stop in variant.route.stops
+                        ],
+                        "airport": variant.base_airport,
+                        "aircraft_type": variant.aircraft_type,
+                        "exact_variant_generated": True,
+                        "milp_candidate": True,
+                        "evaluation_state": "exact_evaluated",
+                        "label_censored": False,
+                    }
+                )
+        candidate_rows = expanded_rows
     if not variants:
         return Q2LocalRepair(
             None,
-            {**base_diagnostics, "repair_success": False, "reason": "no_variants"},
+            {
+                **base_diagnostics,
+                "repair_success": False,
+                "reason": "no_variants",
+                "candidate_log": candidate_rows,
+            },
         )
     try:
         local_solution = solve_q2_master(
@@ -415,7 +813,11 @@ def exact_q2_local_repair(
                 high_demand_nodes=0,
                 primary_time_limit_seconds=config.local_primary_seconds,
                 secondary_time_limit_seconds=config.local_secondary_seconds,
-                primary_upper_bound_minutes=before_aircraft - 1,
+                primary_upper_bound_minutes=(
+                    before_aircraft - 1
+                    if require_primary_improvement
+                    else before_aircraft + max(0, allowed_primary_deterioration_minutes)
+                ),
             ),
             method="q2_local_exact_master",
         )
@@ -427,6 +829,7 @@ def exact_q2_local_repair(
                 "repair_success": False,
                 "reason": "no_milp_incumbent",
                 "runtime_seconds": round(time.perf_counter() - started, 6),
+                "candidate_log": candidate_rows,
             },
         )
     master = local_solution.diagnostics["q2_master"]
@@ -448,6 +851,21 @@ def exact_q2_local_repair(
         }
         for route in local_solution.routes
     ]
+    selected_keys = {
+        (
+            route.base_airport,
+            route.aircraft_type,
+            tuple(route.service_facilities),
+        )
+        for route in local_solution.routes
+    }
+    for row in candidate_rows:
+        row["milp_selected"] = (
+            row.get("airport"),
+            row.get("aircraft_type"),
+            tuple(row["candidate_sequence"]),
+        ) in selected_keys
+        row["repair_feasible"] = True
     return Q2LocalRepair(
         combined,
         {
@@ -470,8 +888,125 @@ def exact_q2_local_repair(
                 int(column["new_candidate"] and len(column["service_order"]) >= 3)
                 for column in selected_columns
             ),
+            "selected_4_stop_candidates": sum(
+                int(column["new_candidate"] and len(column["service_order"]) == 4)
+                for column in selected_columns
+            ),
             "runtime_seconds": round(time.perf_counter() - started, 6),
             "evaluator_calls": len(local_solution.routes) + len(current.routes),
+            "candidate_log": candidate_rows,
+        },
+    )
+
+
+def _route_passengers(route: RoutePlan) -> frozenset[str]:
+    return frozenset(assignment.person_id for assignment in route.assignments)
+
+
+def _route_structure_similarity(left: RoutePlan, right: RoutePlan) -> float:
+    left_people = _route_passengers(left)
+    right_people = _route_passengers(right)
+    people_union = left_people | right_people
+    passenger_jaccard = (
+        len(left_people & right_people) / len(people_union) if people_union else 1.0
+    )
+    left_facilities = set(left.service_facilities)
+    right_facilities = set(right.service_facilities)
+    facility_union = left_facilities | right_facilities
+    facility_jaccard = (
+        len(left_facilities & right_facilities) / len(facility_union)
+        if facility_union
+        else 1.0
+    )
+    metadata = mean(
+        (
+            float(left.base_airport == right.base_airport),
+            float(left.aircraft_type == right.aircraft_type),
+            float(tuple(left.service_facilities) == tuple(right.service_facilities)),
+        )
+    )
+    return 0.6 * passenger_jaccard + 0.25 * facility_jaccard + 0.15 * metadata
+
+
+def q2_solution_diversity(left: Solution, right: Solution) -> float:
+    """Symmetric route-composition distance for a compact elite pool."""
+    if not left.routes or not right.routes:
+        return 1.0
+    left_match = mean(
+        max(_route_structure_similarity(route, other) for other in right.routes)
+        for route in left.routes
+    )
+    right_match = mean(
+        max(_route_structure_similarity(route, other) for other in left.routes)
+        for route in right.routes
+    )
+    return round(1.0 - 0.5 * (left_match + right_match), 9)
+
+
+def exact_q2_elite_recombination(
+    current: Solution,
+    partner: Solution,
+    data: ProblemData,
+    *,
+    cache: SolverCache,
+    config: Q2LnsConfig,
+    iteration: int = 0,
+) -> Q2LocalRepair:
+    """Destroy one elite-difference region and repair with both route vocabularies."""
+    source_order = sorted(
+        range(len(current.routes)),
+        key=lambda index: (
+            max(
+                _route_structure_similarity(current.routes[index], other)
+                for other in partner.routes
+            ),
+            -_route_evaluation(current.routes[index], data).total_aircraft_time_minutes,
+            index,
+        ),
+    )
+    source = source_order[iteration % min(len(source_order), config.source_pool_size)]
+    targets = _target_order(current, data, source)
+    size = max(2, config.neighborhood_size)
+    neighborhood = tuple([source, *targets[: size - 1]])
+    affected_people = set().union(
+        *(_route_passengers(current.routes[index]) for index in neighborhood)
+    )
+    affected_facilities = set().union(
+        *(_route_facilities(current.routes[index], data) for index in neighborhood)
+    )
+    partner_ranked = sorted(
+        partner.routes,
+        key=lambda route: (
+            -len(affected_people & _route_passengers(route)),
+            -len(affected_facilities & _route_facilities(route, data)),
+            tuple(route.service_facilities),
+            route.base_airport,
+            route.aircraft_type,
+        ),
+    )
+    partner_seeds = tuple(partner_ranked[: max(size, 2 * size)])
+    repair = exact_q2_local_repair(
+        current,
+        data,
+        neighborhood,
+        cache=cache,
+        config=config,
+        flow_graph=(
+            build_q2_directed_flow_graph(data)
+            if config.candidate_policy == "context"
+            else None
+        ),
+        candidate_seed_routes=partner_seeds,
+        prioritize_four_stop=config.targeted_four_stop,
+    )
+    return Q2LocalRepair(
+        repair.solution,
+        {
+            **repair.diagnostics,
+            "repair_policy": "elite_difference_exact_recombination",
+            "elite_diversity": q2_solution_diversity(current, partner),
+            "partner_seed_routes": len(partner_seeds),
+            "elite_neighborhood": list(neighborhood),
         },
     )
 
@@ -584,13 +1119,19 @@ def solve_q2_lns(
     config: Q2LnsConfig | None = None,
     cache: SolverCache | None = None,
 ) -> Q2LnsResult:
-    """Strict-improvement LNS with exact local MILP repacking."""
+    """Adaptive ALNS with exact local MILP repacking and immutable best."""
     config = config or Q2LnsConfig()
     cache = cache or SolverCache(data)
     started = time.perf_counter()
     current = initial
-    flow_graph = build_q2_directed_flow_graph(data) if config.candidate_policy == "flow" else None
+    best = initial
+    flow_graph = (
+        build_q2_directed_flow_graph(data)
+        if config.candidate_policy in {"flow", "context"}
+        else None
+    )
     logs: list[dict[str, object]] = []
+    candidate_logs: list[dict[str, object]] = []
     stats: dict[str, dict[str, object]] = {
         operator: {
             "operator": operator,
@@ -609,7 +1150,29 @@ def solve_q2_lns(
     time_to_best_seconds: float | None = None
     operator_weights = {operator: 1.0 for operator in config.operators}
     operator_rng = random.Random((config.seed + 1) * 9_999_991)
+    acceptance_rng = random.Random((config.seed + 1) * 15_485_863)
+    stagnation = 0
+    temperature = config.sa_initial_temperature
+    size_stats: dict[int, dict[str, float]] = defaultdict(
+        lambda: {
+            "uses": 0,
+            "repair_success": 0,
+            "accepted": 0,
+            "primary_gain_minutes": 0,
+            "new_best": 0,
+            "runtime_seconds": 0.0,
+            "local_master_size_sum": 0.0,
+        }
+    )
+    accepted_deteriorating_moves = 0
+    deteriorating_minutes = 0
+    best_after_deterioration = 0
     for iteration in range(config.iterations):
+        if (
+            config.max_wall_seconds is not None
+            and time.perf_counter() - started >= config.max_wall_seconds
+        ):
+            break
         if config.operator_selection == "adaptive_roulette":
             operator = operator_rng.choices(
                 config.operators,
@@ -619,12 +1182,29 @@ def solve_q2_lns(
         else:
             operator = config.operators[iteration % len(config.operators)]
         weight_before = operator_weights[operator]
+        recent = logs[-5:]
+        recent_success_rate = (
+            mean(float(bool(row["repair_success"])) for row in recent)
+            if recent
+            else 1.0
+        )
+        recent_mean_runtime = (
+            mean(float(row["runtime"]) for row in recent) if recent else 0.0
+        )
+        destroy_size = adaptive_q2_destroy_size(
+            config,
+            iteration=iteration,
+            stagnation=stagnation,
+            recent_success_rate=recent_success_rate,
+            recent_mean_runtime=recent_mean_runtime,
+        )
         neighborhood = select_q2_neighborhood(
             current,
             data,
             operator=operator,
             iteration=iteration,
             config=config,
+            neighborhood_size=destroy_size,
         )
         before = current.metrics
         if config.candidate_policy == "enrichment":
@@ -643,17 +1223,54 @@ def solve_q2_lns(
                 cache=cache,
                 config=config,
                 flow_graph=flow_graph,
+                require_primary_improvement=config.acceptance_policy == "strict",
+                allowed_primary_deterioration_minutes=math.ceil(temperature),
+                prioritize_four_stop=(
+                    config.targeted_four_stop
+                    and (destroy_size >= 4 or operator == "ejection_chain")
+                ),
             )
         candidate = repair.solution
-        accepted = bool(
-            candidate is not None
-            and candidate.metrics.comparison_key() < current.metrics.comparison_key()
-        )
+        temperature_before = temperature
         primary_gain = (
             before.total_aircraft_time_minutes
             - candidate.metrics.total_aircraft_time_minutes
             if candidate is not None
             else 0
+        )
+        strict_accept = bool(
+            candidate is not None
+            and candidate.metrics.comparison_key() < current.metrics.comparison_key()
+        )
+        deterioration = max(0, -primary_gain)
+        if candidate is not None and deterioration == 0 and not strict_accept:
+            deterioration = max(
+                0,
+                math.ceil(
+                    (
+                        candidate.metrics.total_passenger_travel_time_minutes
+                        - before.total_passenger_travel_time_minutes
+                    )
+                    / 1000.0
+                ),
+            )
+        sa_probability = (
+            math.exp(-max(1, deterioration) / max(temperature, config.sa_min_temperature))
+            if candidate is not None and not strict_accept
+            else 1.0 if strict_accept else 0.0
+        )
+        accepted = bool(
+            strict_accept
+            or (
+                config.acceptance_policy == "sa"
+                and candidate is not None
+                and acceptance_rng.random() < sa_probability
+            )
+        )
+        new_best = bool(
+            accepted
+            and candidate is not None
+            and candidate.metrics.comparison_key() < best.metrics.comparison_key()
         )
         secondary_gain = (
             before.total_passenger_travel_time_minutes
@@ -668,7 +1285,22 @@ def solve_q2_lns(
             current = candidate
             if first_improvement_seconds is None:
                 first_improvement_seconds = elapsed
+        if new_best:
+            best = candidate
             time_to_best_seconds = elapsed
+            if accepted_deteriorating_moves:
+                best_after_deterioration += 1
+            stagnation = 0
+        else:
+            stagnation += 1
+        if accepted and not strict_accept:
+            accepted_deteriorating_moves += 1
+            deteriorating_minutes += max(0, -primary_gain)
+        if config.acceptance_policy == "sa":
+            temperature = max(
+                config.sa_min_temperature,
+                temperature * config.sa_cooling_rate,
+            )
         if accepted and primary_gain > 0:
             reward = 6.0
         elif accepted:
@@ -687,7 +1319,7 @@ def solve_q2_lns(
         op["primary_improvement"] = int(op["primary_improvement"]) + int(
             accepted and primary_gain > 0
         )
-        op["new_best"] = int(op["new_best"]) + int(accepted)
+        op["new_best"] = int(op["new_best"]) + int(new_best)
         op["primary_gain_minutes"] = int(op["primary_gain_minutes"]) + max(
             0, primary_gain if accepted else 0
         )
@@ -697,12 +1329,43 @@ def solve_q2_lns(
         sizes = op["local_master_sizes"]
         assert isinstance(sizes, list)
         sizes.append(int(repair.diagnostics.get("compatible_assignments", 0)))
+        size_row = size_stats[destroy_size]
+        size_row["uses"] += 1
+        size_row["repair_success"] += int(candidate is not None)
+        size_row["accepted"] += int(accepted)
+        size_row["primary_gain_minutes"] += max(0, primary_gain if accepted else 0)
+        size_row["new_best"] += int(new_best)
+        size_row["runtime_seconds"] += float(repair.diagnostics.get("runtime_seconds", 0.0))
+        size_row["local_master_size_sum"] += int(
+            repair.diagnostics.get("compatible_assignments", 0)
+        )
+        repair_candidate_rows = repair.diagnostics.get("candidate_log", [])
+        if config.candidate_logging and isinstance(repair_candidate_rows, list):
+            for row in repair_candidate_rows:
+                candidate_logs.append(
+                    {
+                        "run_id": None,
+                        "seed": config.seed,
+                        "iteration": iteration,
+                        "destroy_operator": operator,
+                        "destroy_size": destroy_size,
+                        "source_routes": list(neighborhood),
+                        **row,
+                        "repair_feasible": candidate is not None,
+                        "repair_accepted": accepted,
+                        "primary_gain": primary_gain if accepted else 0,
+                        "secondary_gain": secondary_gain if accepted else 0,
+                        "new_global_best": new_best,
+                    }
+                )
         logs.append(
             {
                 "iteration": iteration,
                 "current_objective": current.metrics.total_aircraft_time_minutes,
-                "best_objective": current.metrics.total_aircraft_time_minutes,
+                "best_objective": best.metrics.total_aircraft_time_minutes,
                 "destroy_operator": operator,
+                "destroy_size": destroy_size,
+                "stagnation_before": max(0, stagnation - (0 if new_best else 1)),
                 "operator_weight_before": round(weight_before, 6),
                 "operator_weight_after": round(operator_weights[operator], 6),
                 "repair_policy": f"{config.candidate_policy}_exact_local_milp",
@@ -719,6 +1382,11 @@ def solve_q2_lns(
                 "selected_columns": repair.diagnostics.get("selected_columns", []),
                 "repair_success": repair.diagnostics.get("repair_success", False),
                 "accepted": accepted,
+                "new_best": new_best,
+                "acceptance_policy": config.acceptance_policy,
+                "temperature": round(temperature_before, 6),
+                "sa_acceptance_probability": round(sa_probability, 9),
+                "accepted_deteriorating": bool(accepted and not strict_accept),
                 "primary_gain": primary_gain if accepted else 0,
                 "secondary_gain": secondary_gain if accepted else 0,
                 "route_ejected": bool(repair.diagnostics.get("route_ejected", False)),
@@ -727,6 +1395,9 @@ def solve_q2_lns(
                 ),
                 "selected_3_5_stop_candidates": repair.diagnostics.get(
                     "selected_3_5_stop_candidates", 0
+                ),
+                "selected_4_stop_candidates": repair.diagnostics.get(
+                    "selected_4_stop_candidates", 0
                 ),
                 "runtime": repair.diagnostics.get("runtime_seconds", 0.0),
                 "evaluator_calls": repair.diagnostics.get("evaluator_calls", 0),
@@ -753,14 +1424,38 @@ def solve_q2_lns(
             }
         )
     elapsed = time.perf_counter() - started
+    destroy_size_rows = []
+    for size in sorted(size_stats):
+        values = size_stats[size]
+        uses = int(values["uses"])
+        destroy_size_rows.append(
+            {
+                "destroy_size": size,
+                "uses": uses,
+                "repair_success": int(values["repair_success"]),
+                "accepted": int(values["accepted"]),
+                "primary_gain_minutes": int(values["primary_gain_minutes"]),
+                "new_best": int(values["new_best"]),
+                "runtime_seconds": round(values["runtime_seconds"], 6),
+                "mean_local_master_size": round(
+                    values["local_master_size_sum"] / uses, 3
+                ) if uses else 0.0,
+            }
+        )
     final = replace(
-        current,
+        best,
         diagnostics={
-            **current.diagnostics,
+            **best.diagnostics,
             "q2_lns": {
                 "config": {
                     "iterations": config.iterations,
+                    "max_wall_seconds": config.max_wall_seconds,
                     "neighborhood_size": config.neighborhood_size,
+                    "destroy_size_policy": config.destroy_size_policy,
+                    "adaptive_destroy_sizes": list(config.adaptive_destroy_sizes),
+                    "medium_stagnation": config.medium_stagnation,
+                    "large_stagnation": config.large_stagnation,
+                    "large_neighborhood_frequency": config.large_neighborhood_frequency,
                     "max_sequence_length": config.max_sequence_length,
                     "candidate_sequence_budget": config.candidate_sequence_budget,
                     "local_primary_seconds": config.local_primary_seconds,
@@ -769,13 +1464,29 @@ def solve_q2_lns(
                     "candidate_policy": config.candidate_policy,
                     "operator_selection": config.operator_selection,
                     "adaptive_reaction": config.adaptive_reaction,
+                    "acceptance_policy": config.acceptance_policy,
+                    "sa_initial_temperature": config.sa_initial_temperature,
+                    "sa_cooling_rate": config.sa_cooling_rate,
+                    "sa_min_temperature": config.sa_min_temperature,
+                    "targeted_four_stop": config.targeted_four_stop,
+                    "candidate_logging": config.candidate_logging,
                     "operators": list(config.operators),
                 },
                 "initial_metrics": initial.metrics.to_dict(),
-                "final_metrics": current.metrics.to_dict(),
+                "final_metrics": best.metrics.to_dict(),
+                "terminal_current_metrics": current.metrics.to_dict(),
                 "first_improvement_seconds": first_improvement_seconds,
                 "time_to_best_seconds": time_to_best_seconds,
                 "operator_stats": operator_rows,
+                "destroy_size_stats": destroy_size_rows,
+                "sa": {
+                    "accepted_deteriorating_moves": accepted_deteriorating_moves,
+                    "average_deterioration_minutes": round(
+                        deteriorating_minutes / accepted_deteriorating_moves, 6
+                    ) if accepted_deteriorating_moves else 0.0,
+                    "new_best_after_deterioration": best_after_deterioration,
+                    "final_temperature": round(temperature, 6),
+                },
                 "final_operator_weights": {
                     key: round(value, 6) for key, value in operator_weights.items()
                 },
@@ -784,4 +1495,10 @@ def solve_q2_lns(
             },
         },
     )
-    return Q2LnsResult(final, tuple(logs), tuple(operator_rows), elapsed)
+    return Q2LnsResult(
+        final,
+        tuple(logs),
+        tuple(candidate_logs),
+        tuple(operator_rows),
+        elapsed,
+    )
