@@ -85,6 +85,11 @@ class _OperatorState:
     best: int = 0
     segment_calls: int = 0
     segment_reward: float = 0.0
+    feasible_repairs: int = 0
+    failed_repairs: int = 0
+    total_gain_minutes: int = 0
+    runtime_seconds: float = 0.0
+    destroyed_routes_total: int = 0
 
 
 @dataclass(frozen=True)
@@ -92,6 +97,7 @@ class ALNSRunResult:
     solution: Solution
     convergence: tuple[dict[str, object], ...]
     operator_stats: tuple[dict[str, object], ...]
+    weight_history: tuple[dict[str, object], ...] = ()
 
 
 def _solution_key(solution: Solution, order: tuple[str, ...]) -> tuple[float, ...]:
@@ -493,7 +499,10 @@ def _repair_neighborhood(
     )
     if solved is None:
         return None
-    return _materialize_repair(groups, variants, solved[0], solved[1], data)
+    materialized = _materialize_repair(groups, variants, solved[0], solved[1], data)
+    if materialized is None:
+        return None
+    return materialized[0], materialized[1], len(variants)
 
 
 def _route_relatedness(left: RoutePlan, right: RoutePlan, data: ProblemData) -> float:
@@ -622,6 +631,7 @@ def improve_q1_alns(
         )
     }
     convergence: list[dict[str, object]] = []
+    weight_history: list[dict[str, object]] = []
     variant_cache: dict[tuple[str, str, tuple[str, ...]], RouteVariant | None] = {}
     temperature = alns_config.initial_temperature
     started = time.perf_counter()
@@ -648,6 +658,12 @@ def improve_q1_alns(
         )
         destroyed_routes = [current_routes[index] for index in indices]
         destroyed_evaluations = [current_evaluations[index] for index in indices]
+        destroyed_passengers = sum(len(route.assignments) for route in destroyed_routes)
+        removed_aircraft_time = sum(
+            evaluation.total_aircraft_time_minutes for evaluation in destroyed_evaluations
+        )
+        state.destroyed_routes_total += len(indices)
+        repair_started = time.perf_counter()
         repaired = _repair_neighborhood(
             destroyed_routes,
             destroyed_evaluations,
@@ -656,6 +672,11 @@ def improve_q1_alns(
             variant_cache,
             solver_cache,
         )
+        state.runtime_seconds += time.perf_counter() - repair_started
+        if repaired is None:
+            state.failed_repairs += 1
+        else:
+            state.feasible_repairs += 1
         accepted = False
         improved = False
         global_best = False
@@ -682,6 +703,11 @@ def improve_q1_alns(
             )
             if improved:
                 accepted = True
+                state.total_gain_minutes += max(
+                    0,
+                    current.metrics.total_aircraft_time_minutes
+                    - candidate.metrics.total_aircraft_time_minutes,
+                )
             else:
                 deterioration = _relative_deterioration(
                     candidate,
@@ -716,6 +742,10 @@ def improve_q1_alns(
                 "elapsed_seconds": round(time.perf_counter() - started, 6),
                 "operator": operator,
                 "destroyed_routes": len(indices),
+                "destroyed_passengers": destroyed_passengers,
+                "removed_aircraft_time_minutes": removed_aircraft_time,
+                "repair_variants": repaired[2] if repaired is not None else "",
+                "repaired_routes": len(repaired[0]) if repaired is not None else "",
                 "accepted": int(accepted),
                 "improved_current": int(improved),
                 "new_global_best": int(global_best),
@@ -730,7 +760,7 @@ def improve_q1_alns(
         )
         temperature *= alns_config.cooling_rate
         if iteration % alns_config.segment_length == 0:
-            for operator_state in operators.values():
+            for operator_name, operator_state in operators.items():
                 observed = operator_state.segment_reward / max(1, operator_state.segment_calls)
                 operator_state.weight = max(
                     0.05,
@@ -739,6 +769,13 @@ def improve_q1_alns(
                 )
                 operator_state.segment_calls = 0
                 operator_state.segment_reward = 0.0
+                weight_history.append(
+                    {
+                        "iteration": iteration,
+                        "operator": operator_name,
+                        "weight": round(operator_state.weight, 6),
+                    }
+                )
 
     final_metrics = aggregate_evaluations(best_evaluations, solution.metrics.served_passengers)
     diagnostics = {
@@ -770,7 +807,19 @@ def improve_q1_alns(
             "accepted": state.accepted,
             "improved": state.improved,
             "new_global_best": state.best,
+            "feasible_repairs": state.feasible_repairs,
+            "failed_repairs": state.failed_repairs,
+            "total_gain_minutes": state.total_gain_minutes,
+            "mean_gain_when_improving": round(
+                state.total_gain_minutes / max(1, state.improved), 3
+            ),
+            "runtime_seconds": round(state.runtime_seconds, 3),
+            "mean_destroyed_routes": round(
+                state.destroyed_routes_total / max(1, state.calls), 3
+            ),
         }
         for name, state in sorted(operators.items())
     )
-    return ALNSRunResult(best_solution, tuple(convergence), operator_rows)
+    return ALNSRunResult(
+        best_solution, tuple(convergence), operator_rows, tuple(weight_history)
+    )

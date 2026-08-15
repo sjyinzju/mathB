@@ -204,6 +204,10 @@ def _run_seed(args: argparse.Namespace, data, initial, seed: int, run_dir: Path)
             "elapsed_seconds",
             "operator",
             "destroyed_routes",
+            "destroyed_passengers",
+            "removed_aircraft_time_minutes",
+            "repair_variants",
+            "repaired_routes",
             "accepted",
             "improved_current",
             "new_global_best",
@@ -219,8 +223,20 @@ def _run_seed(args: argparse.Namespace, data, initial, seed: int, run_dir: Path)
     )
     write_csv(
         run_dir / "operator_stats.csv",
-        ["stage", "operator", "weight", "calls", "accepted", "improved", "new_global_best"],
+        ["stage", "operator", "weight", "calls", "accepted", "improved", "new_global_best",
+         "feasible_repairs", "failed_repairs", "total_gain_minutes",
+         "mean_gain_when_improving", "runtime_seconds", "mean_destroyed_routes"],
         operator_rows,
+    )
+    weight_rows: list[dict[str, object]] = []
+    for stage_number, stage_result in enumerate(stage_results, start=1):
+        weight_rows.extend(
+            {"stage": stage_number, **row} for row in stage_result.weight_history
+        )
+    write_csv(
+        run_dir / "weight_history.csv",
+        ["stage", "iteration", "operator", "weight"],
+        weight_rows,
     )
     write_json(run_dir / "validator.json", validation.to_dict())
 
