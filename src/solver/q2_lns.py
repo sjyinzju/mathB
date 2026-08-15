@@ -3,6 +3,7 @@ from __future__ import annotations
 import math
 import random
 import time
+import hashlib
 from collections import Counter, defaultdict
 from dataclasses import dataclass, replace
 from itertools import permutations
@@ -25,6 +26,7 @@ from .q2_flow import (
     flow_aware_local_sequences,
     q2_sequence_features,
 )
+from .q2_learning import classify_q2_candidate_event
 
 
 DESTROY_OPERATORS = (
@@ -33,6 +35,9 @@ DESTROY_OPERATORS = (
     "shared_facility_flow",
     "land_heavy_route",
     "ejection_chain",
+    "flight_elimination",
+    "fix_and_optimize",
+    "cross_exchange",
 )
 
 
@@ -62,6 +67,13 @@ class Q2LnsConfig:
     sa_cooling_rate: float = 0.92
     sa_min_temperature: float = 0.5
     targeted_four_stop: bool = False
+    targeted_five_stop: bool = False
+    five_stop_min_stagnation: int = 6
+    five_stop_frequency: int = 5
+    portfolio_geometry_slots: int = 14
+    portfolio_context_slots: int = 6
+    exploration_slots: int = 0
+    run_purpose: str = "optimization"
     candidate_logging: bool = True
 
     def __post_init__(self) -> None:
@@ -82,9 +94,11 @@ class Q2LnsConfig:
             raise ValueError(f"Unknown Q2 destroy operators: {sorted(unknown)}")
         if not self.operators:
             raise ValueError("At least one destroy operator is required")
-        if self.candidate_policy not in {"geometry", "flow", "context", "enrichment"}:
+        if self.candidate_policy not in {
+            "geometry", "flow", "context", "portfolio", "enrichment"
+        }:
             raise ValueError(
-                "candidate_policy must be geometry, flow, context, or enrichment"
+                "candidate_policy must be geometry, flow, context, portfolio, or enrichment"
             )
         if self.operator_selection not in {"round_robin", "adaptive_roulette"}:
             raise ValueError("operator_selection must be round_robin or adaptive_roulette")
@@ -108,6 +122,16 @@ class Q2LnsConfig:
             raise ValueError("SA temperatures must be positive")
         if not 0.0 < self.sa_cooling_rate < 1.0:
             raise ValueError("sa_cooling_rate must be in (0, 1)")
+        if self.five_stop_min_stagnation < 1 or self.five_stop_frequency < 1:
+            raise ValueError("targeted five-stop trigger values must be positive")
+        if min(
+            self.portfolio_geometry_slots,
+            self.portfolio_context_slots,
+            self.exploration_slots,
+        ) < 0:
+            raise ValueError("portfolio slot counts must be nonnegative")
+        if self.run_purpose not in {"optimization", "ml_logging"}:
+            raise ValueError("run_purpose must be optimization or ml_logging")
 
 
 @dataclass(frozen=True)
@@ -222,8 +246,27 @@ def _source_order(
             evaluations[index].seat_utilization,
             index,
         )
-    elif operator == "ejection_chain":
+    elif operator in {"ejection_chain", "flight_elimination"}:
         key = lambda index: _ejection_potential_key(solution, data, index)
+    elif operator == "fix_and_optimize":
+        frequency = Counter(
+            facility
+            for route in solution.routes
+            for facility in _route_facilities(route, data)
+        )
+        key = lambda index: (
+            -evaluations[index].total_aircraft_time_minutes,
+            evaluations[index].seat_utilization,
+            -sum(frequency[node] for node in _route_facilities(solution.routes[index], data)),
+            index,
+        )
+    elif operator == "cross_exchange":
+        key = lambda index: (
+            -len(_route_facilities(solution.routes[index], data)),
+            evaluations[index].seat_utilization,
+            -_land_share(solution.routes[index]),
+            index,
+        )
     else:  # protected by Q2LnsConfig validation
         raise ValueError(operator)
     return sorted(range(len(solution.routes)), key=key)
@@ -362,7 +405,7 @@ def select_q2_neighborhood(
     source_slot = (iteration // len(config.operators) + config.seed) % len(sources)
     source = sources[source_slot]
     size = neighborhood_size or config.neighborhood_size
-    if operator == "ejection_chain":
+    if operator in {"ejection_chain", "flight_elimination"}:
         targets = _ejection_chain_targets(
             solution,
             data,
@@ -508,6 +551,10 @@ def rank_q2_local_sequences(
     policy: str,
     flow_graph: Q2DirectedFlowGraph | None = None,
     prioritize_four_stop: bool = False,
+    portfolio_geometry_slots: int = 14,
+    portfolio_context_slots: int = 6,
+    exploration_slots: int = 0,
+    selection_seed: int = 0,
 ) -> tuple[
     tuple[tuple[str, ...], ...],
     dict[tuple[str, ...], dict[str, object]],
@@ -531,7 +578,9 @@ def rank_q2_local_sequences(
         sequence: float(_geometry_score(sequence, data)[0]) for sequence in exploratory
     }
     geometry_rank = _rank_percentiles(geometry_values, higher_is_better=False)
-    if policy == "context":
+    context_rank: dict[tuple[str, ...], float] = {}
+    context_ranked: list[tuple[str, ...]] = []
+    if policy in {"context", "portfolio"}:
         if flow_graph is None:
             raise ValueError("context candidate policy requires a directed flow graph")
         raw_flow = {
@@ -589,6 +638,11 @@ def rank_q2_local_sequences(
             exploratory,
             key=lambda item: (-float(feature_rows[item]["context_score"]), len(item), item),
         )
+        context_ranked = ranked
+        context_rank = _rank_percentiles(
+            {sequence: float(feature_rows[sequence]["context_score"]) for sequence in exploratory},
+            higher_is_better=True,
+        )
     else:
         for sequence in exploratory:
             feature_rows[sequence] = {
@@ -599,15 +653,45 @@ def rank_q2_local_sequences(
 
     room = max(0, budget - len(incumbent))
     selected_exploratory: list[tuple[str, ...]] = []
-    if prioritize_four_stop and room:
+    portfolio_source: dict[tuple[str, ...], str] = {}
+    if policy == "portfolio":
+        geometry_ranked = sorted(exploratory, key=lambda item: _geometry_score(item, data))
+        exploration_reserve = min(exploration_slots, room)
+        exploit_limit = max(0, room - exploration_reserve)
+        for sequence in geometry_ranked[: min(exploit_limit, portfolio_geometry_slots)]:
+            selected_exploratory.append(sequence)
+            portfolio_source[sequence] = "geometry"
+        for sequence in context_ranked:
+            if len(selected_exploratory) >= min(
+                exploit_limit, portfolio_geometry_slots + portfolio_context_slots
+            ):
+                break
+            if sequence not in selected_exploratory:
+                selected_exploratory.append(sequence)
+                portfolio_source[sequence] = "context"
+        remaining = [
+            sequence for sequence in exploratory if sequence not in selected_exploratory
+        ]
+        random.Random(selection_seed).shuffle(remaining)
+        for sequence in remaining[: min(exploration_reserve, max(0, room - len(selected_exploratory)))]:
+            selected_exploratory.append(sequence)
+            portfolio_source[sequence] = "exploration"
+        for sequence in geometry_ranked:
+            if len(selected_exploratory) >= room:
+                break
+            if sequence not in selected_exploratory:
+                selected_exploratory.append(sequence)
+                portfolio_source[sequence] = "geometry_fill"
+    if prioritize_four_stop and room and policy != "portfolio":
         reserved = min(max(1, room // 4), 4)
         selected_exploratory.extend(
             sequence for sequence in ranked if len(sequence) == 4
         )
         selected_exploratory = selected_exploratory[:reserved]
-    selected_exploratory.extend(
-        sequence for sequence in ranked if sequence not in selected_exploratory
-    )
+    if policy != "portfolio":
+        selected_exploratory.extend(
+            sequence for sequence in ranked if sequence not in selected_exploratory
+        )
     selected_exploratory = selected_exploratory[:room]
     selected = incumbent | set(selected_exploratory)
     rank_lookup = {sequence: rank + 1 for rank, sequence in enumerate(ranked)}
@@ -622,9 +706,20 @@ def rank_q2_local_sequences(
                 "aircraft_type": None,
                 "features": feature_rows.get(sequence, {"incumbent_sequence": True}),
                 "rank_before_exact": rank_lookup.get(sequence, 0),
+                "rank_score_geometry": round(geometry_rank.get(sequence, 0.0), 6),
+                "rank_score_context": round(context_rank.get(sequence, 0.0), 6),
+                "portfolio_source": (
+                    "incumbent" if sequence in incumbent else portfolio_source.get(
+                        sequence, policy
+                    )
+                ),
+                "stage_generated": True,
+                "stage_ranked": sequence not in incumbent,
                 "passed_cheap_filter": True,
                 "top_k_selected": chosen,
+                "selected_for_exact": chosen,
                 "exact_variant_generated": False,
+                "entered_local_master": False,
                 "milp_candidate": False,
                 "milp_selected": False,
                 "evaluation_state": "pending_exact" if chosen else "not_evaluated",
@@ -693,6 +788,8 @@ def exact_q2_local_repair(
     allowed_primary_deterioration_minutes: int = 0,
     prioritize_four_stop: bool = False,
     candidate_seed_routes: Sequence[RoutePlan] = (),
+    selection_seed: int = 0,
+    search_context: dict[str, object] | None = None,
 ) -> Q2LocalRepair:
     started = time.perf_counter()
     destroyed = tuple(sorted(set(route_indices)))
@@ -725,6 +822,10 @@ def exact_q2_local_repair(
             policy=config.candidate_policy,
             flow_graph=flow_graph,
             prioritize_four_stop=prioritize_four_stop,
+            portfolio_geometry_slots=config.portfolio_geometry_slots,
+            portfolio_context_slots=config.portfolio_context_slots,
+            exploration_slots=config.exploration_slots,
+            selection_seed=selection_seed,
         )
     variants = build_q2_variant_pool(
         local_data,
@@ -735,6 +836,53 @@ def exact_q2_local_repair(
     before_evaluations = [_route_evaluation(route, data) for route in affected_routes]
     before_aircraft = sum(item.total_aircraft_time_minutes for item in before_evaluations)
     before_passenger = sum(item.total_passenger_travel_time_minutes for item in before_evaluations)
+    route_context = {
+        "current_duration_minutes": before_aircraft,
+        "current_route_count": len(affected_routes),
+        "current_route_passengers": sum(route.passenger_count for route in affected_routes),
+        "current_mean_utilization": round(
+            mean(item.seat_utilization for item in before_evaluations), 6
+        ),
+        "current_mean_stop_count": round(
+            mean(len(route.service_facilities) for route in affected_routes), 6
+        ),
+        "current_min_residual_slack": min(
+            _route_residual_capacity(route, data) for route in affected_routes
+        ),
+        "current_mean_residual_slack": round(
+            mean(_route_residual_capacity(route, data) for route in affected_routes), 6
+        ),
+        "current_land_fraction": round(
+            mean(_land_share(route) for route in affected_routes), 6
+        ),
+        "current_aircraft_types": sorted({route.aircraft_type for route in affected_routes}),
+        "current_base_airports": sorted({route.base_airport for route in affected_routes}),
+    }
+    for row in candidate_rows:
+        sequence = tuple(row["candidate_sequence"])
+        features = dict(row.get("features", {}))
+        if flow_graph is not None and sequence:
+            features.update(q2_sequence_features(sequence, local_data, flow_graph).to_dict())
+        pairwise = [
+            data.matrix[left][right]
+            for left_index, left in enumerate(sequence)
+            for right in sequence[left_index + 1 :]
+        ]
+        airport_profile = [
+            min(data.matrix[airport][node] for airport in data.config.airports)
+            for node in sequence
+        ]
+        features.update(
+            {
+                "service_node_count": len(sequence),
+                "min_pairwise_distance_km": min(pairwise, default=0.0),
+                "max_pairwise_distance_km": max(pairwise, default=0.0),
+                "min_airport_distance_km": min(airport_profile, default=0.0),
+                "max_airport_distance_km": max(airport_profile, default=0.0),
+                **route_context,
+            }
+        )
+        row["features"] = features
     base_diagnostics: dict[str, object] = {
         "destroyed_routes": list(destroyed),
         "affected_people": local_data.q2_passenger_count,
@@ -787,13 +935,22 @@ def exact_q2_local_repair(
                         ],
                         "airport": variant.base_airport,
                         "aircraft_type": variant.aircraft_type,
+                        "technical_stop_augmentation_count": sum(
+                            int(not stop.is_service) for stop in variant.route.stops[1:-1]
+                        ),
+                        "refuel_involvement": any(
+                            stop.refuel for stop in variant.route.stops
+                        ),
                         "exact_variant_generated": True,
                         "milp_candidate": True,
+                        "entered_local_master": True,
                         "evaluation_state": "exact_evaluated",
                         "label_censored": False,
                     }
                 )
         candidate_rows = expanded_rows
+    for row in candidate_rows:
+        row["search_context"] = search_context or {}
     if not variants:
         return Q2LocalRepair(
             None,
@@ -866,6 +1023,10 @@ def exact_q2_local_repair(
             tuple(row["candidate_sequence"]),
         ) in selected_keys
         row["repair_feasible"] = True
+        row["search_context"] = search_context or {}
+        row["evaluation_cost_ms"] = round(
+            1000.0 * (time.perf_counter() - started) / max(1, len(candidate_rows)), 6
+        )
     return Q2LocalRepair(
         combined,
         {
@@ -993,7 +1154,7 @@ def exact_q2_elite_recombination(
         config=config,
         flow_graph=(
             build_q2_directed_flow_graph(data)
-            if config.candidate_policy == "context"
+            if config.candidate_policy in {"context", "portfolio"}
             else None
         ),
         candidate_seed_routes=partner_seeds,
@@ -1127,7 +1288,8 @@ def solve_q2_lns(
     best = initial
     flow_graph = (
         build_q2_directed_flow_graph(data)
-        if config.candidate_policy in {"flow", "context"}
+        if config.candidate_policy in {"flow", "context", "portfolio"}
+        or config.candidate_logging
         else None
     )
     logs: list[dict[str, object]] = []
@@ -1198,6 +1360,18 @@ def solve_q2_lns(
             recent_success_rate=recent_success_rate,
             recent_mean_runtime=recent_mean_runtime,
         )
+        trigger_reason: str | None = None
+        if (
+            config.targeted_five_stop
+            and config.max_sequence_length >= 5
+            and stagnation >= config.five_stop_min_stagnation
+            and iteration % config.five_stop_frequency == 0
+        ):
+            destroy_size = max(destroy_size, 5)
+            trigger_reason = "long_stagnation"
+        if operator == "flight_elimination":
+            destroy_size = max(destroy_size, 5)
+            trigger_reason = "high_flight_elimination_potential"
         neighborhood = select_q2_neighborhood(
             current,
             data,
@@ -1229,6 +1403,19 @@ def solve_q2_lns(
                     config.targeted_four_stop
                     and (destroy_size >= 4 or operator == "ejection_chain")
                 ),
+                selection_seed=(config.seed + 1) * 1_000_003 + iteration * 97,
+                search_context={
+                    "iteration": iteration,
+                    "destroy_operator": operator,
+                    "destroy_size": destroy_size,
+                    "sa_temperature": round(temperature, 6),
+                    "current_objective": current.metrics.total_aircraft_time_minutes,
+                    "best_objective": best.metrics.total_aircraft_time_minutes,
+                    "stagnation_length": stagnation,
+                    "elite_restart_status": False,
+                    "run_purpose": config.run_purpose,
+                    "targeted_trigger": trigger_reason,
+                },
             )
         candidate = repair.solution
         temperature_before = temperature
@@ -1342,8 +1529,22 @@ def solve_q2_lns(
         repair_candidate_rows = repair.diagnostics.get("candidate_log", [])
         if config.candidate_logging and isinstance(repair_candidate_rows, list):
             for row in repair_candidate_rows:
-                candidate_logs.append(
-                    {
+                sequence = tuple(row.get("candidate_sequence", ()))
+                variant = row.get("candidate_variant")
+                event_key = repr(
+                    (
+                        config.seed,
+                        iteration,
+                        operator,
+                        neighborhood,
+                        sequence,
+                        variant,
+                        row.get("airport"),
+                        row.get("aircraft_type"),
+                    )
+                ).encode("utf-8")
+                event = {
+                        "candidate_id": hashlib.sha256(event_key).hexdigest()[:24],
                         "run_id": None,
                         "seed": config.seed,
                         "iteration": iteration,
@@ -1357,7 +1558,8 @@ def solve_q2_lns(
                         "secondary_gain": secondary_gain if accepted else 0,
                         "new_global_best": new_best,
                     }
-                )
+                event["label_class"] = classify_q2_candidate_event(event)
+                candidate_logs.append(event)
         logs.append(
             {
                 "iteration": iteration,
@@ -1365,6 +1567,7 @@ def solve_q2_lns(
                 "best_objective": best.metrics.total_aircraft_time_minutes,
                 "destroy_operator": operator,
                 "destroy_size": destroy_size,
+                "targeted_trigger": trigger_reason,
                 "stagnation_before": max(0, stagnation - (0 if new_best else 1)),
                 "operator_weight_before": round(weight_before, 6),
                 "operator_weight_after": round(operator_weights[operator], 6),
@@ -1390,6 +1593,12 @@ def solve_q2_lns(
                 "primary_gain": primary_gain if accepted else 0,
                 "secondary_gain": secondary_gain if accepted else 0,
                 "route_ejected": bool(repair.diagnostics.get("route_ejected", False)),
+                "flight_delta": (
+                    int(repair.diagnostics.get("before_routes", 0))
+                    - int(repair.diagnostics.get("after_routes", 0))
+                    if repair.diagnostics.get("repair_success")
+                    else 0
+                ),
                 "selected_new_candidates": repair.diagnostics.get(
                     "selected_new_candidates", 0
                 ),
@@ -1469,6 +1678,13 @@ def solve_q2_lns(
                     "sa_cooling_rate": config.sa_cooling_rate,
                     "sa_min_temperature": config.sa_min_temperature,
                     "targeted_four_stop": config.targeted_four_stop,
+                    "targeted_five_stop": config.targeted_five_stop,
+                    "five_stop_min_stagnation": config.five_stop_min_stagnation,
+                    "five_stop_frequency": config.five_stop_frequency,
+                    "portfolio_geometry_slots": config.portfolio_geometry_slots,
+                    "portfolio_context_slots": config.portfolio_context_slots,
+                    "exploration_slots": config.exploration_slots,
+                    "run_purpose": config.run_purpose,
                     "candidate_logging": config.candidate_logging,
                     "operators": list(config.operators),
                 },

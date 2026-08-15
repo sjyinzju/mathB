@@ -76,7 +76,7 @@ def main() -> int:
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument(
         "--candidate-policy",
-        choices=("geometry", "flow", "context", "enrichment"),
+        choices=("geometry", "flow", "context", "portfolio", "enrichment"),
         default="geometry",
     )
     parser.add_argument(
@@ -97,6 +97,15 @@ def main() -> int:
     parser.add_argument("--sa-cooling-rate", type=float, default=0.92)
     parser.add_argument("--sa-min-temperature", type=float, default=0.5)
     parser.add_argument("--targeted-four-stop", action="store_true")
+    parser.add_argument("--targeted-five-stop", action="store_true")
+    parser.add_argument("--five-stop-min-stagnation", type=int, default=6)
+    parser.add_argument("--five-stop-frequency", type=int, default=5)
+    parser.add_argument("--portfolio-geometry-slots", type=int, default=14)
+    parser.add_argument("--portfolio-context-slots", type=int, default=6)
+    parser.add_argument("--exploration-slots", type=int, default=0)
+    parser.add_argument(
+        "--run-purpose", choices=("optimization", "ml_logging"), default="optimization"
+    )
     parser.add_argument("--no-candidate-logging", action="store_true")
     parser.add_argument("--promote", action="store_true")
     args = parser.parse_args()
@@ -149,6 +158,13 @@ def main() -> int:
         sa_cooling_rate=args.sa_cooling_rate,
         sa_min_temperature=args.sa_min_temperature,
         targeted_four_stop=args.targeted_four_stop,
+        targeted_five_stop=args.targeted_five_stop,
+        five_stop_min_stagnation=args.five_stop_min_stagnation,
+        five_stop_frequency=args.five_stop_frequency,
+        portfolio_geometry_slots=args.portfolio_geometry_slots,
+        portfolio_context_slots=args.portfolio_context_slots,
+        exploration_slots=args.exploration_slots,
+        run_purpose=args.run_purpose,
         candidate_logging=not args.no_candidate_logging,
     )
     cache = SolverCache(data)
@@ -267,6 +283,13 @@ def main() -> int:
                 "sa_cooling_rate": config.sa_cooling_rate,
                 "sa_min_temperature": config.sa_min_temperature,
                 "targeted_four_stop": config.targeted_four_stop,
+                "targeted_five_stop": config.targeted_five_stop,
+                "five_stop_min_stagnation": config.five_stop_min_stagnation,
+                "five_stop_frequency": config.five_stop_frequency,
+                "portfolio_geometry_slots": config.portfolio_geometry_slots,
+                "portfolio_context_slots": config.portfolio_context_slots,
+                "exploration_slots": config.exploration_slots,
+                "run_purpose": config.run_purpose,
                 "candidate_logging": config.candidate_logging,
             },
             "bound_scope": "restricted_local_master",
@@ -289,6 +312,18 @@ def main() -> int:
                 ),
                 "milp_selected_candidate_rows": sum(
                     int(bool(row.get("milp_selected")))
+                    for row in result.candidate_log
+                ),
+                "positive_candidate_rows": sum(
+                    int(row.get("label_class") == "POSITIVE")
+                    for row in result.candidate_log
+                ),
+                "true_negative_candidate_rows": sum(
+                    int(row.get("label_class") == "TRUE_NEGATIVE")
+                    for row in result.candidate_log
+                ),
+                "invalid_candidate_rows": sum(
+                    int(row.get("label_class") == "INVALID")
                     for row in result.candidate_log
                 ),
                 "evaluator_calls": sum(

@@ -36,6 +36,19 @@ from .q2_lns import (
     solve_q2_lns,
 )
 from .q2_artifacts import atomic_promote_q2_run
+from .q2_round2 import (
+    Q2EliteEntry,
+    Q2ElitePool,
+    elite_pair_diagnostics,
+    q2_difference_path_relink,
+    q2_local_branching_feasibility,
+)
+from .q2_learning import (
+    build_q2_learning_dataset,
+    classify_q2_candidate_event,
+    flatten_q2_candidate_event,
+    grouped_q2_splits,
+)
 from .q2_flow import (
     Q2DirectedFlowGraph,
     Q2SequenceFeatures,
@@ -80,6 +93,15 @@ __all__ = [
     "select_q2_neighborhood",
     "solve_q2_lns",
     "atomic_promote_q2_run",
+    "Q2EliteEntry",
+    "Q2ElitePool",
+    "elite_pair_diagnostics",
+    "q2_difference_path_relink",
+    "q2_local_branching_feasibility",
+    "build_q2_learning_dataset",
+    "classify_q2_candidate_event",
+    "flatten_q2_candidate_event",
+    "grouped_q2_splits",
     "Q2DirectedFlowGraph",
     "Q2SequenceFeatures",
     "build_q2_directed_flow_graph",

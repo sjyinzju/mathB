@@ -7,17 +7,22 @@ from pathlib import Path
 from src.config import ROOT
 from src.solver import (
     Q2LnsConfig,
+    Q2EliteEntry,
+    Q2ElitePool,
     SolverCache,
     adaptive_q2_destroy_size,
     build_q2_local_data,
     build_q2_directed_flow_graph,
+    classify_q2_candidate_event,
     exact_q2_local_repair,
     export_q1_solution,
     geometry_local_sequences,
+    grouped_q2_splits,
     flow_aware_local_sequences,
     load_problem_data,
     load_q2_solution,
     q2_solution_diversity,
+    q2_local_branching_feasibility,
     rank_q2_local_sequences,
     select_q2_neighborhood,
 )
@@ -289,6 +294,113 @@ def test_q2_context_ranking_logs_selected_and_censored_candidates() -> None:
         if row["label_censored"]
     )
     assert any(len(sequence) == 4 for sequence in sequences)
+
+
+def test_q2_portfolio_budget_is_deterministic_and_keeps_exploration_distinct() -> None:
+    data = load_problem_data()
+    best = ROOT / "outputs" / "q2" / "best"
+    solution = load_q2_solution(
+        best / "q2-routes.csv", best / "q2-assignments.csv", data
+    )
+    routes = solution.routes[48:52]
+    local = build_q2_local_data(data, routes)
+    kwargs = {
+        "max_sequence_length": 5,
+        "budget": 24,
+        "policy": "portfolio",
+        "flow_graph": build_q2_directed_flow_graph(data),
+        "portfolio_geometry_slots": 10,
+        "portfolio_context_slots": 6,
+        "exploration_slots": 2,
+        "selection_seed": 91,
+    }
+    first, _, rows_a = rank_q2_local_sequences(local, routes, **kwargs)
+    second, _, rows_b = rank_q2_local_sequences(local, routes, **kwargs)
+    assert first == second
+    assert rows_a == rows_b
+    assert len(first) <= 24
+    selected_sources = {
+        row["portfolio_source"] for row in rows_a if row["top_k_selected"]
+    }
+    assert "geometry" in selected_sources
+    assert "context" in selected_sources
+    assert "exploration" in selected_sources
+
+
+def test_q2_structured_neighborhoods_are_deterministic() -> None:
+    data = load_problem_data()
+    best = ROOT / "outputs" / "q2" / "best"
+    solution = load_q2_solution(
+        best / "q2-routes.csv", best / "q2-assignments.csv", data
+    )
+    for operator in ("flight_elimination", "fix_and_optimize", "cross_exchange"):
+        config = Q2LnsConfig(operators=(operator,), neighborhood_size=5, seed=4)
+        first = select_q2_neighborhood(
+            solution, data, operator=operator, iteration=3, config=config
+        )
+        second = select_q2_neighborhood(
+            solution, data, operator=operator, iteration=3, config=config
+        )
+        assert first == second
+        assert len(first) == len(set(first)) == 5
+
+
+def test_q2_elite_pool_keeps_quality_and_diversity() -> None:
+    data = load_problem_data()
+    best = ROOT / "outputs" / "q2" / "best"
+    partner_dir = ROOT / "outputs" / "q2" / "runs" / "20260815-q2-final-elite-diverse"
+    left = load_q2_solution(best / "q2-routes.csv", best / "q2-assignments.csv", data)
+    partner = load_q2_solution(
+        partner_dir / "q2-routes.csv", partner_dir / "q2-assignments.csv", data
+    )
+    pool = Q2ElitePool(max_size=3, min_diversity=0.0, quality_slack_minutes=200)
+    assert pool.promote(Q2EliteEntry("best", left, str(best)))
+    assert pool.promote(Q2EliteEntry("partner", partner, str(partner_dir)))
+    assert not pool.promote(Q2EliteEntry("best", left, str(best)))
+    assert pool.select_partner(left, diversity_aware=True).solution_id == "partner"
+
+
+def test_q2_local_branching_gate_does_not_claim_unsupported_semantics() -> None:
+    assessment = q2_local_branching_feasibility()
+    assert assessment["decision"] == "REJECT"
+    assert not assessment["feasible_without_master_refactor"]
+
+
+def test_q2_candidate_labels_do_not_treat_censored_as_negative() -> None:
+    assert classify_q2_candidate_event({"evaluation_state": "not_evaluated"}) == "CENSORED"
+    assert classify_q2_candidate_event(
+        {"evaluation_state": "exact_evaluated", "exact_variant_generated": False}
+    ) == "INVALID"
+    assert classify_q2_candidate_event(
+        {
+            "evaluation_state": "exact_evaluated",
+            "exact_variant_generated": True,
+            "milp_selected": False,
+        }
+    ) == "TRUE_NEGATIVE"
+    assert classify_q2_candidate_event(
+        {
+            "evaluation_state": "exact_evaluated",
+            "exact_variant_generated": True,
+            "milp_selected": True,
+            "repair_accepted": True,
+            "primary_gain": 1,
+        }
+    ) == "POSITIVE"
+
+
+def test_q2_learning_splits_are_run_grouped_and_deterministic() -> None:
+    rows = [
+        {"run_id": "run-a", "seed": 0},
+        {"run_id": "run-b", "seed": 1},
+        {"run_id": "run-c", "seed": 2},
+        {"run_id": "run-a", "seed": 0},
+    ]
+    first = grouped_q2_splits(rows)
+    second = grouped_q2_splits(rows)
+    assert first == second
+    assert set(first) == {"run-a", "run-b", "run-c"}
+    assert set(first.values()) == {"train", "validation", "test"}
 
 
 def test_q2_solution_diversity_is_symmetric_and_zero_for_identity() -> None:
