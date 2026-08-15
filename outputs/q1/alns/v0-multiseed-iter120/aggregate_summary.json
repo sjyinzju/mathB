@@ -1,0 +1,82 @@
+{
+  "experiment": "v0-multiseed-iter120",
+  "mode": "iteration",
+  "created_utc": "2026-08-15T04:14:28",
+  "git_commit": "a93de021d207a99969350a8e3cdaa3fee53f13f1",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "initial_comparison_key": [
+    15371.0,
+    120870.0,
+    95.0,
+    123081.7,
+    -0.4822550211643148
+  ],
+  "initial_aircraft_time_minutes": 15371.0,
+  "best_of_seeds_aircraft_time_minutes": 15307.0,
+  "median_aircraft_time_minutes": 15334.0,
+  "mean_aircraft_time_minutes": 15336.2,
+  "worst_aircraft_time_minutes": 15361.0,
+  "stdev_aircraft_time_minutes": 24.591,
+  "median_passenger_time_minutes": 120276.0,
+  "beat_initial_count": 5,
+  "beat_initial_rate": 1.0,
+  "gate_pass_all": true,
+  "per_seed": [
+    {
+      "seed": 0,
+      "best_aircraft_time_minutes": 15334.0,
+      "passenger_time_minutes": 120569,
+      "flights": 95,
+      "runtime_seconds": 301.746,
+      "improving_moves": 8,
+      "new_global_best_count": 8,
+      "gate_pass": true
+    },
+    {
+      "seed": 1,
+      "best_aircraft_time_minutes": 15361.0,
+      "passenger_time_minutes": 120276,
+      "flights": 95,
+      "runtime_seconds": 187.5,
+      "improving_moves": 2,
+      "new_global_best_count": 2,
+      "gate_pass": true
+    },
+    {
+      "seed": 2,
+      "best_aircraft_time_minutes": 15307.0,
+      "passenger_time_minutes": 119924,
+      "flights": 95,
+      "runtime_seconds": 219.693,
+      "improving_moves": 11,
+      "new_global_best_count": 4,
+      "gate_pass": true
+    },
+    {
+      "seed": 3,
+      "best_aircraft_time_minutes": 15318.0,
+      "passenger_time_minutes": 119948,
+      "flights": 95,
+      "runtime_seconds": 259.443,
+      "improving_moves": 13,
+      "new_global_best_count": 13,
+      "gate_pass": true
+    },
+    {
+      "seed": 4,
+      "best_aircraft_time_minutes": 15361.0,
+      "passenger_time_minutes": 120539,
+      "flights": 95,
+      "runtime_seconds": 181.468,
+      "improving_moves": 5,
+      "new_global_best_count": 4,
+      "gate_pass": true
+    }
+  ]
+}

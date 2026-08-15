@@ -1,0 +1,60 @@
+{
+  "experiment": "ms-a3-from-b0-17222",
+  "mode": "wallclock",
+  "created_utc": "2026-08-15T10:45:04",
+  "git_commit": "2ce54cf6fb2f2a3466a83c59a08b150ab19274be",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "initial_comparison_key": [
+    17222.0,
+    120609.0,
+    110.0,
+    142601.0,
+    -0.4304743332506707
+  ],
+  "initial_aircraft_time_minutes": 17222.0,
+  "best_of_seeds_aircraft_time_minutes": 15753.0,
+  "median_aircraft_time_minutes": 16033.0,
+  "mean_aircraft_time_minutes": 15959.667,
+  "worst_aircraft_time_minutes": 16093.0,
+  "stdev_aircraft_time_minutes": 181.475,
+  "median_passenger_time_minutes": 124619.0,
+  "beat_initial_count": 3,
+  "beat_initial_rate": 1.0,
+  "gate_pass_all": true,
+  "per_seed": [
+    {
+      "seed": 0,
+      "best_aircraft_time_minutes": 15753.0,
+      "passenger_time_minutes": 126320,
+      "flights": 96,
+      "runtime_seconds": 342.567,
+      "improving_moves": 19,
+      "new_global_best_count": 19,
+      "gate_pass": true
+    },
+    {
+      "seed": 1,
+      "best_aircraft_time_minutes": 16093.0,
+      "passenger_time_minutes": 124619,
+      "flights": 99,
+      "runtime_seconds": 319.962,
+      "improving_moves": 12,
+      "new_global_best_count": 11,
+      "gate_pass": true
+    },
+    {
+      "seed": 2,
+      "best_aircraft_time_minutes": 16033.0,
+      "passenger_time_minutes": 124051,
+      "flights": 100,
+      "runtime_seconds": 305.905,
+      "improving_moves": 9,
+      "new_global_best_count": 7,
+      "gate_pass": true
+    }
+  ]
+}

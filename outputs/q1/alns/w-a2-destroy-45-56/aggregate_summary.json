@@ -1,0 +1,82 @@
+{
+  "experiment": "w-a2-destroy-45-56",
+  "mode": "wallclock",
+  "created_utc": "2026-08-15T09:56:26",
+  "git_commit": "2ce54cf6fb2f2a3466a83c59a08b150ab19274be",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "initial_comparison_key": [
+    15371.0,
+    120870.0,
+    95.0,
+    123081.7,
+    -0.4822550211643148
+  ],
+  "initial_aircraft_time_minutes": 15371.0,
+  "best_of_seeds_aircraft_time_minutes": 15225.0,
+  "median_aircraft_time_minutes": 15318.0,
+  "mean_aircraft_time_minutes": 15294.2,
+  "worst_aircraft_time_minutes": 15361.0,
+  "stdev_aircraft_time_minutes": 59.554,
+  "median_passenger_time_minutes": 120829.0,
+  "beat_initial_count": 5,
+  "beat_initial_rate": 1.0,
+  "gate_pass_all": true,
+  "per_seed": [
+    {
+      "seed": 0,
+      "best_aircraft_time_minutes": 15361.0,
+      "passenger_time_minutes": 120829,
+      "flights": 95,
+      "runtime_seconds": 314.15,
+      "improving_moves": 3,
+      "new_global_best_count": 2,
+      "gate_pass": true
+    },
+    {
+      "seed": 1,
+      "best_aircraft_time_minutes": 15225.0,
+      "passenger_time_minutes": 121507,
+      "flights": 94,
+      "runtime_seconds": 308.388,
+      "improving_moves": 5,
+      "new_global_best_count": 5,
+      "gate_pass": true
+    },
+    {
+      "seed": 2,
+      "best_aircraft_time_minutes": 15318.0,
+      "passenger_time_minutes": 122358,
+      "flights": 94,
+      "runtime_seconds": 307.221,
+      "improving_moves": 4,
+      "new_global_best_count": 4,
+      "gate_pass": true
+    },
+    {
+      "seed": 3,
+      "best_aircraft_time_minutes": 15329.0,
+      "passenger_time_minutes": 120727,
+      "flights": 95,
+      "runtime_seconds": 325.855,
+      "improving_moves": 5,
+      "new_global_best_count": 5,
+      "gate_pass": true
+    },
+    {
+      "seed": 4,
+      "best_aircraft_time_minutes": 15238.0,
+      "passenger_time_minutes": 120739,
+      "flights": 94,
+      "runtime_seconds": 315.006,
+      "improving_moves": 8,
+      "new_global_best_count": 6,
+      "gate_pass": true
+    }
+  ]
+}

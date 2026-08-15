@@ -1,0 +1,11 @@
+﻿stage,operator,weight,calls,accepted,improved,new_global_best,feasible_repairs,failed_repairs,total_gain_minutes,mean_gain_when_improving,runtime_seconds,mean_destroyed_routes
+1,land_reassignment,1.0,1,1,1,1,1,0,0,0.0,2.72,5.0
+1,low_utilization,1.0,2,2,2,2,2,0,108,54.0,51.166,5.5
+1,random_routes,1.0,1,1,0,0,1,0,0,0.0,12.492,5.0
+1,related_routes,1.0,2,1,1,1,2,0,42,42.0,33.021,5.5
+1,worst_time_per_person,1.0,4,3,2,2,4,0,15,7.5,59.852,5.5
+2,land_reassignment,1.0,1,1,0,0,1,0,0,0.0,5.144,6.0
+2,low_utilization,1.0,2,1,1,1,2,0,191,191.0,44.231,7.0
+2,random_routes,1.0,1,1,1,1,1,0,16,16.0,26.829,8.0
+2,related_routes,1.0,0,0,0,0,0,0,0,0.0,0.0,0.0
+2,worst_time_per_person,1.0,3,1,0,0,3,0,0,0.0,82.619,7.667

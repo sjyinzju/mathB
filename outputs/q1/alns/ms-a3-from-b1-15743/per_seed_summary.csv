@@ -1,0 +1,4 @@
+﻿seed,best_aircraft_time_minutes,passenger_time_minutes,flights,fuel_kg,seat_utilization,runtime_seconds,iterations_completed,accepted_moves,improving_moves,accepted_deteriorating_moves,new_global_best_count,time_to_first_improvement_seconds,time_to_final_best_seconds,evaluator_calls,gate_pass,beat_initial
+0,15460.0,120678,97,125407.6,0.479996447482153,318.104,17,12,8,4,8,26.318541,318.091,6151,True,True
+1,15584.0,122923,96,125989.3,0.4781195886074776,307.523,23,17,6,11,6,113.841758,307.509,5240,True,True
+2,15499.0,125999,94,125273.4,0.4872573103653371,302.632,23,18,7,11,6,18.699973,302.619,7153,True,True

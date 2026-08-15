@@ -1,0 +1,11 @@
+﻿stage,operator,weight,calls,accepted,improved,new_global_best
+1,land_reassignment,2.160156,18,18,1,1
+1,low_utilization,0.75,6,6,0,0
+1,random_routes,1.0,11,11,0,0
+1,related_routes,2.533371,20,20,4,4
+1,worst_time_per_person,0.859375,5,5,0,0
+2,land_reassignment,0.753906,3,3,0,0
+2,low_utilization,1.232031,12,12,1,1
+2,random_routes,1.0,8,8,0,0
+2,related_routes,3.257292,14,14,3,3
+2,worst_time_per_person,2.328683,23,22,4,4

@@ -1,0 +1,6 @@
+﻿stage,iteration,operator,weight
+1,15,random_routes,2.375
+1,15,related_routes,2.375
+1,15,low_utilization,3.75
+1,15,worst_time_per_person,3.75
+1,15,land_reassignment,2.375

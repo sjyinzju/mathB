@@ -1,0 +1,48 @@
+{
+  "run_id": "load-best-gate",
+  "method": "q1_b2_alns",
+  "git_commit": "8263d51e5b9f7dc7e5a6f3a887e939349754f3a7",
+  "git_dirty": true,
+  "problem_config_sha256": "2a30f3db67ffcb32af1abb7107b58745587ca9295b6d4b01eeaea199fb928f1b",
+  "seed": 0,
+  "deterministic_given_seed": true,
+  "solve_seconds": 4.258051,
+  "elapsed_seconds": 4.418411,
+  "max_neighbors": 5,
+  "balanced_profile": false,
+  "alns_config": {
+    "iterations": 1,
+    "time_limit_seconds": 1.0,
+    "repair_time_limit_seconds": 4.0,
+    "min_destroy_routes": 2,
+    "max_destroy_routes": 3,
+    "max_service_nodes": 2,
+    "max_long_service_orders": 40,
+    "max_neighbors": 5,
+    "initial_routes": "outputs\\q1\\best\\q1-routes.csv",
+    "initial_assignments": "outputs\\q1\\best\\q1-assignments.csv"
+  },
+  "alns_stages": [
+    {
+      "iterations": 1,
+      "time_limit_seconds": 1.0,
+      "repair_time_limit_seconds": 4.0,
+      "min_destroy_routes": 2,
+      "max_destroy_routes": 3,
+      "max_service_nodes": 2,
+      "seed": 0
+    }
+  ],
+  "diagnostics": {
+    "loaded_from": "outputs\\q1\\best",
+    "alns": {
+      "seed": 0,
+      "iterations_completed": 1,
+      "elapsed_seconds": 4.238768,
+      "initial_aircraft_time_minutes": 15371,
+      "best_aircraft_time_minutes": 15371,
+      "primary_improvement_minutes": 0,
+      "variant_cache_size": 144
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "experiment": "v0-multiseed-iter120",
+  "mode": "iteration",
+  "seed": 1,
+  "git_commit": "a93de021d207a99969350a8e3cdaa3fee53f13f1",
+  "initial_routes": "C:\\Users\\shiju\\AppData\\Local\\Temp\\alns-audit-7d04432\\outputs\\q1\\best\\q1-routes.csv",
+  "initial_aircraft_time_minutes": 15371.0,
+  "best_aircraft_time_minutes": 15361.0,
+  "final_comparison_key": [
+    15361.0,
+    120276.0,
+    95.0,
+    123095.3,
+    -0.4820702761940433
+  ],
+  "passenger_time_minutes": 120276,
+  "flights": 95,
+  "fuel_kg": 123095.3,
+  "seat_utilization": 0.4820702761940433,
+  "served_passengers": 1600,
+  "gate_pass": true,
+  "metrics_match": true,
+  "validator_valid": true,
+  "beat_initial": true,
+  "runtime_seconds": 187.5,
+  "iterations_completed": 120,
+  "accepted_moves": 120,
+  "improving_moves": 2,
+  "accepted_deteriorating_moves": 118,
+  "new_global_best_count": 2,
+  "time_to_first_improvement_seconds": 3.794211,
+  "time_to_final_best_seconds": 187.49,
+  "evaluator_calls": 6700,
+  "solver_cache_stats": {
+    "augmentation_hits": 1299,
+    "augmentation_misses": 4950,
+    "skeleton_hits": 0,
+    "skeleton_misses": 0,
+    "lower_bound_hits": 0,
+    "lower_bound_misses": 0,
+    "direct_time_hits": 0,
+    "direct_time_misses": 0,
+    "augmentation_entries": 4950,
+    "skeleton_entries": 0,
+    "lower_bound_entries": 0,
+    "direct_time_entries": 0,
+    "leg_physics_entries": 9075
+  },
+  "variant_cache_size": 4086,
+  "stage_configs": [
+    {
+      "iterations": 60,
+      "time_limit_seconds": 1000000000.0,
+      "min_destroy_routes": 2,
+      "max_destroy_routes": 3,
+      "repair_time_limit_seconds": 3.0,
+      "seed": 1
+    },
+    {
+      "iterations": 60,
+      "time_limit_seconds": 1000000000.0,
+      "min_destroy_routes": 3,
+      "max_destroy_routes": 4,
+      "repair_time_limit_seconds": 5.0,
+      "seed": 2
+    }
+  ],
+  "operator_stats": [
+    {
+      "stage": 1,
+      "operator": "land_reassignment",
+      "weight": 1.232031,
+      "calls": 23,
+      "accepted": 23,
+      "improved": 1,
+      "new_global_best": 1
+    },
+    {
+      "stage": 1,
+      "operator": "low_utilization",
+      "weight": 0.859375,
+      "calls": 7,
+      "accepted": 7,
+      "improved": 0,
+      "new_global_best": 0
+    },
+    {
+      "stage": 1,
+      "operator": "random_routes",
+      "weight": 1.0,
+      "calls": 10,
+      "accepted": 10,
+      "improved": 0,
+      "new_global_best": 0
+    },
+    {
+      "stage": 1,
+      "operator": "related_routes",
+      "weight": 1.0,
+      "calls": 10,
+      "accepted": 10,
+      "improved": 0,
+      "new_global_best": 0
+    },
+    {
+      "stage": 1,
+      "operator": "worst_time_per_person",
+      "weight": 1.0,
+      "calls": 10,
+      "accepted": 10,
+      "improved": 0,
+      "new_global_best": 0
+    },
+    {
+      "stage": 2,
+      "operator": "land_reassignment",
+      "weight": 1.0,
+      "calls": 11,
+      "accepted": 11,
+      "improved": 0,
+      "new_global_best": 0
+    },
+    {
+      "stage": 2,
+      "operator": "low_utilization",
+      "weight": 1.0,
+      "calls": 8,
+      "accepted": 8,
+      "improved": 0,
+      "new_global_best": 0
+    },
+    {
+      "stage": 2,
+      "operator": "random_routes",
+      "weight": 1.0,
+      "calls": 15,
+      "accepted": 15,
+      "improved": 0,
+      "new_global_best": 0
+    },
+    {
+      "stage": 2,
+      "operator": "related_routes",
+      "weight": 1.309375,
+      "calls": 13,
+      "accepted": 13,
+      "improved": 1,
+      "new_global_best": 1
+    },
+    {
+      "stage": 2,
+      "operator": "worst_time_per_person",
+      "weight": 1.0,
+      "calls": 13,
+      "accepted": 13,
+      "improved": 0,
+      "new_global_best": 0
+    }
+  ]
+}

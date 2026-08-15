@@ -1,0 +1,137 @@
+{
+  "control_version": "ALNS-Control-V0",
+  "description": "Unmodified Standard ALNS (commit a93de02, pre-instrumentation semantics) started from the official 15,371 classical best. Adopted as the new Standard ALNS baseline for the controlled ablation phase.",
+  "git_commit": "a93de021d207a99969350a8e3cdaa3fee53f13f1",
+  "initial_solution": {
+    "source": "outputs/q1/best (official classical best)",
+    "aircraft_time_minutes": 15371.0,
+    "passenger_time_minutes": 120870,
+    "flights": 95
+  },
+  "adopted_best": {
+    "experiment": "v0-multiseed-wall300",
+    "mode": "wallclock",
+    "wall_budget_seconds": 300,
+    "seed": 1,
+    "stage2_seed": 2,
+    "iterations_completed": 297,
+    "runtime_seconds": 301.0,
+    "best_aircraft_time_minutes": 15278.0,
+    "passenger_time_minutes": 119864,
+    "flights": 95,
+    "fuel_kg": 123091.3,
+    "seat_utilization": 0.4842991370169502,
+    "validator": "PASS (gate_pass=true, 1600/1600 served, metrics reconcile)",
+    "improvement_vs_initial_minutes": 93.0
+  },
+  "iteration_mode_reference": {
+    "experiment": "v0-multiseed-iter120",
+    "mode": "iteration",
+    "stage_iterations": "60 + 60",
+    "seed": 2,
+    "best_aircraft_time_minutes": 15307.0,
+    "runtime_seconds": 219.7,
+    "note": "15,307 found by related_routes destroy=4 at stage-2 iteration 81 (global 81), passenger tie broken by random_routes at global 83"
+  },
+  "multi_seed_summary": {
+    "wallclock_300s": {
+      "best": 15278,
+      "median": 15313,
+      "mean": 15303.8,
+      "worst": 15325,
+      "stdev": 23.102,
+      "beat_rate": "5/5"
+    },
+    "iteration_120": {
+      "best": 15307,
+      "median": 15334,
+      "mean": 15336.2,
+      "worst": 15361,
+      "stdev": 24.591,
+      "beat_rate": "5/5"
+    }
+  },
+  "operator_trajectory_to_best": [
+    {
+      "stage": 1,
+      "global_iteration": 1,
+      "operator": "land_reassignment",
+      "destroyed_routes": 2,
+      "best_aircraft_time_minutes": 15361.0,
+      "best_passenger_time_minutes": 120836.0,
+      "elapsed_seconds": 2.4
+    },
+    {
+      "stage": 1,
+      "global_iteration": 77,
+      "operator": "worst_time_per_person",
+      "destroyed_routes": 3,
+      "best_aircraft_time_minutes": 15354.0,
+      "best_passenger_time_minutes": 121134.0,
+      "elapsed_seconds": 86.3
+    },
+    {
+      "stage": 1,
+      "global_iteration": 117,
+      "operator": "related_routes",
+      "destroyed_routes": 3,
+      "best_aircraft_time_minutes": 15354.0,
+      "best_passenger_time_minutes": 120844.0,
+      "elapsed_seconds": 109.6
+    },
+    {
+      "stage": 1,
+      "global_iteration": 172,
+      "operator": "related_routes",
+      "destroyed_routes": 3,
+      "best_aircraft_time_minutes": 15354.0,
+      "best_passenger_time_minutes": 120284.0,
+      "elapsed_seconds": 137.8
+    },
+    {
+      "stage": 1,
+      "global_iteration": 177,
+      "operator": "related_routes",
+      "destroyed_routes": 2,
+      "best_aircraft_time_minutes": 15354.0,
+      "best_passenger_time_minutes": 120277.0,
+      "elapsed_seconds": 143.0
+    },
+    {
+      "stage": 1,
+      "global_iteration": 203,
+      "operator": "related_routes",
+      "destroyed_routes": 3,
+      "best_aircraft_time_minutes": 15301.0,
+      "best_passenger_time_minutes": 120023.0,
+      "elapsed_seconds": 150.7
+    },
+    {
+      "stage": 2,
+      "global_iteration": 223,
+      "operator": "related_routes",
+      "destroyed_routes": 3,
+      "best_aircraft_time_minutes": 15297.0,
+      "best_passenger_time_minutes": 119921.0,
+      "elapsed_seconds": 187.6
+    },
+    {
+      "stage": 2,
+      "global_iteration": 245,
+      "operator": "random_routes",
+      "destroyed_routes": 4,
+      "best_aircraft_time_minutes": 15297.0,
+      "best_passenger_time_minutes": 119891.0,
+      "elapsed_seconds": 229.0
+    },
+    {
+      "stage": 2,
+      "global_iteration": 294,
+      "operator": "related_routes",
+      "destroyed_routes": 4,
+      "best_aircraft_time_minutes": 15278.0,
+      "best_passenger_time_minutes": 119864.0,
+      "elapsed_seconds": 298.0
+    }
+  ]
+}

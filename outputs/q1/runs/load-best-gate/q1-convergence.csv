@@ -1,0 +1,2 @@
+﻿stage,global_iteration,iteration,elapsed_seconds,operator,destroyed_routes,accepted,improved_current,new_global_best,current_aircraft_time_minutes,best_aircraft_time_minutes,current_passenger_time_minutes,best_passenger_time_minutes,current_flights,best_flights,temperature
+1,1,1,4.238751,worst_time_per_person,3,1,0,0,15371,15371,120870,120870,95,95,0.002

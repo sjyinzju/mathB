@@ -1,0 +1,82 @@
+{
+  "experiment": "w-v0-control",
+  "mode": "wallclock",
+  "created_utc": "2026-08-15T09:30:14",
+  "git_commit": "2ce54cf6fb2f2a3466a83c59a08b150ab19274be",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "initial_comparison_key": [
+    15371.0,
+    120870.0,
+    95.0,
+    123081.7,
+    -0.4822550211643148
+  ],
+  "initial_aircraft_time_minutes": 15371.0,
+  "best_of_seeds_aircraft_time_minutes": 15276.0,
+  "median_aircraft_time_minutes": 15354.0,
+  "mean_aircraft_time_minutes": 15331.6,
+  "worst_aircraft_time_minutes": 15361.0,
+  "stdev_aircraft_time_minutes": 37.004,
+  "median_passenger_time_minutes": 120201.0,
+  "beat_initial_count": 5,
+  "beat_initial_rate": 1.0,
+  "gate_pass_all": true,
+  "per_seed": [
+    {
+      "seed": 0,
+      "best_aircraft_time_minutes": 15354.0,
+      "passenger_time_minutes": 121033,
+      "flights": 95,
+      "runtime_seconds": 306.323,
+      "improving_moves": 4,
+      "new_global_best_count": 4,
+      "gate_pass": true
+    },
+    {
+      "seed": 1,
+      "best_aircraft_time_minutes": 15276.0,
+      "passenger_time_minutes": 120201,
+      "flights": 95,
+      "runtime_seconds": 306.398,
+      "improving_moves": 7,
+      "new_global_best_count": 7,
+      "gate_pass": true
+    },
+    {
+      "seed": 2,
+      "best_aircraft_time_minutes": 15356.0,
+      "passenger_time_minutes": 120061,
+      "flights": 95,
+      "runtime_seconds": 304.305,
+      "improving_moves": 6,
+      "new_global_best_count": 5,
+      "gate_pass": true
+    },
+    {
+      "seed": 3,
+      "best_aircraft_time_minutes": 15311.0,
+      "passenger_time_minutes": 119528,
+      "flights": 95,
+      "runtime_seconds": 301.21,
+      "improving_moves": 16,
+      "new_global_best_count": 14,
+      "gate_pass": true
+    },
+    {
+      "seed": 4,
+      "best_aircraft_time_minutes": 15361.0,
+      "passenger_time_minutes": 120539,
+      "flights": 95,
+      "runtime_seconds": 303.747,
+      "improving_moves": 5,
+      "new_global_best_count": 4,
+      "gate_pass": true
+    }
+  ]
+}

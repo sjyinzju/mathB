@@ -1,0 +1,173 @@
+{
+  "control_version": "ALNS-Control-V1",
+  "promoted_from": "ALNS-Control-V0 by evidence-driven destroy-size ablation (P1)",
+  "git_commit": "2ce54cf6fb2f2a3466a83c59a08b150ab19274be",
+  "configuration": {
+    "change_vs_v0": "destroy size only: stage1 2-3 -> 5-6, stage2 3-4 -> 6-8",
+    "stage1": {
+      "destroy": "5-6",
+      "repair_time_limit_s": 3.0
+    },
+    "stage2": {
+      "destroy": "6-8",
+      "repair_time_limit_s": 5.0,
+      "seed": "seed+1"
+    },
+    "unchanged": "5 destroy operators, MILP two-phase repair, SA (T0=0.002, cooling=0.985), adaptive weights (reaction=0.25, segment=15), max_service_nodes=2",
+    "runner_command": "python scripts/05_run_alns_multiseed.py --experiment w-a3-destroy-56-68 --mode wallclock --seeds 0,1,2,3,4 --wall-budget 300 --destroy-min-1 5 --destroy-max-1 6 --destroy-min-2 6 --destroy-max-2 8"
+  },
+  "initial_solution": {
+    "source": "outputs/q1/best",
+    "aircraft_time_minutes": 15371.0
+  },
+  "promotion_gate_300s_wallclock": {
+    "candidate_a3": {
+      "best": 15118,
+      "median": 15185,
+      "mean": 15208.4,
+      "worst": 15281,
+      "stdev": 69.0,
+      "beat_rate": "5/5"
+    },
+    "v0_control": {
+      "best": 15276,
+      "median": 15354,
+      "mean": 15331.6,
+      "worst": 15361,
+      "stdev": 37.0,
+      "beat_rate": "5/5"
+    },
+    "a2_45_56": {
+      "best": 15225,
+      "median": 15318,
+      "mean": 15294.2,
+      "worst": 15361,
+      "stdev": 59.6,
+      "beat_rate": "5/5"
+    },
+    "verdict": "A3 dominates control on best/median/mean/worst; gate PASS"
+  },
+  "adopted_best": {
+    "experiment": "w-a3-destroy-56-68",
+    "seed": 2,
+    "stage2_seed": 3,
+    "wall_budget_seconds": 300,
+    "best_aircraft_time_minutes": 15118.0,
+    "passenger_time_minutes": 122061,
+    "flights": 92,
+    "fuel_kg": 121682.9,
+    "seat_utilization": 0.48445549718239983,
+    "validator": "independent Validator PASS (1600/1600, metrics reconcile)",
+    "improvement_vs_initial_minutes": 253.0,
+    "iterations_completed": 29
+  },
+  "iteration_mode_reference": {
+    "note": "fixed 60+60 iterations: V0 mean 15336.2 -> A1b 15283.8 -> A2 15154.2; A3 partial seeds 0-2: 15131/15093/15196 but ~30min/seed runtime (cost-inefficient in iteration mode)"
+  },
+  "operator_trajectory_to_best": [
+    {
+      "stage": 1,
+      "iteration": 2,
+      "operator": "land_reassignment",
+      "destroyed_routes": 5,
+      "best_aircraft_time_minutes": 15361.0,
+      "elapsed_seconds": 18.9
+    },
+    {
+      "stage": 1,
+      "iteration": 3,
+      "operator": "worst_time_per_person",
+      "destroyed_routes": 6,
+      "best_aircraft_time_minutes": 15361.0,
+      "elapsed_seconds": 27.1
+    },
+    {
+      "stage": 1,
+      "iteration": 7,
+      "operator": "worst_time_per_person",
+      "destroyed_routes": 6,
+      "best_aircraft_time_minutes": 15256.0,
+      "elapsed_seconds": 85.0
+    },
+    {
+      "stage": 1,
+      "iteration": 12,
+      "operator": "related_routes",
+      "destroyed_routes": 6,
+      "best_aircraft_time_minutes": 15226.0,
+      "elapsed_seconds": 123.6
+    },
+    {
+      "stage": 1,
+      "iteration": 13,
+      "operator": "related_routes",
+      "destroyed_routes": 5,
+      "best_aircraft_time_minutes": 15205.0,
+      "elapsed_seconds": 133.8
+    },
+    {
+      "stage": 2,
+      "iteration": 1,
+      "operator": "low_utilization",
+      "destroyed_routes": 8,
+      "best_aircraft_time_minutes": 15194.0,
+      "elapsed_seconds": 175.5
+    },
+    {
+      "stage": 2,
+      "iteration": 2,
+      "operator": "related_routes",
+      "destroyed_routes": 8,
+      "best_aircraft_time_minutes": 15148.0,
+      "elapsed_seconds": 178.5
+    },
+    {
+      "stage": 2,
+      "iteration": 3,
+      "operator": "random_routes",
+      "destroyed_routes": 8,
+      "best_aircraft_time_minutes": 15148.0,
+      "elapsed_seconds": 198.4
+    },
+    {
+      "stage": 2,
+      "iteration": 4,
+      "operator": "land_reassignment",
+      "destroyed_routes": 7,
+      "best_aircraft_time_minutes": 15144.0,
+      "elapsed_seconds": 203.4
+    },
+    {
+      "stage": 2,
+      "iteration": 8,
+      "operator": "related_routes",
+      "destroyed_routes": 8,
+      "best_aircraft_time_minutes": 15126.0,
+      "elapsed_seconds": 251.3
+    },
+    {
+      "stage": 2,
+      "iteration": 9,
+      "operator": "random_routes",
+      "destroyed_routes": 6,
+      "best_aircraft_time_minutes": 15126.0,
+      "elapsed_seconds": 262.7
+    },
+    {
+      "stage": 2,
+      "iteration": 10,
+      "operator": "land_reassignment",
+      "destroyed_routes": 7,
+      "best_aircraft_time_minutes": 15118.0,
+      "elapsed_seconds": 270.9
+    },
+    {
+      "stage": 2,
+      "iteration": 11,
+      "operator": "land_reassignment",
+      "destroyed_routes": 6,
+      "best_aircraft_time_minutes": 15118.0,
+      "elapsed_seconds": 275.9
+    }
+  ]
+}
