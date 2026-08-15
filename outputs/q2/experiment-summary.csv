@@ -1,0 +1,7 @@
+experiment,status,implementation,seed,primary_seconds,secondary_seconds,candidate_sequences,candidate_variants,compatible_assignments,pool_hash,aircraft_time_minutes,dual_bound_minutes,restricted_mip_gap,passenger_time_minutes,flights,fuel_kg,seat_utilization,validator,notes
+canonical-artifact-replay,PASS,main-integration,c37ea9b-q2-canonical,0,0,,,,,19736,,,270734,107,152910.4,0.8182982554006456,PASS,Canonical artifact replayed and independently validated on main
+fresh-a0-old-seed-195-105,GATE_FAIL,main-integration,c37ea9b-q1-15418,195,105,357,3116,23251,3ccc374360b9f227923b2fa68690b1291931276e050c19aece75a6c0eadbc882,20275,16292,0.1964488286066583,261763,109,157594.0,0.768639197898519,PASS,Legal solve but worse than 19736 fresh-solve gate
+old-code-current-environment,CONFIRMATION,c37ea9b-original,c37ea9b-q1-15418,195,105,357,3116,23251,3ccc374360b9f227923b2fa68690b1291931276e050c19aece75a6c0eadbc882,20275,16292,0.1964488286066583,261763,109,157594.0,0.768639197898519,PASS,Exact match to integrated run proves no integration semantic drift
+primary-heavy-270-30,SKIPPED,main-integration,c37ea9b-q1-15418,270,30,,,,,,,,,,,,,Fresh A0 gate failed
+primary-only-300-0,SKIPPED,main-integration,c37ea9b-q1-15418,300,0,,,,,,,,,,,,,Fresh A0 gate failed
+old-vs-new-q1-seed-ab,SKIPPED,main-integration,15418-vs-15371,,,,,,,,,,,,,,,Fresh A0 gate failed before seed experiment

@@ -1,0 +1,52 @@
+{
+  "run_id": "20260815-q2-q2-1-baseline-19736",
+  "method": "q2_canonical_19736_replay",
+  "git_commit": "eabfcfe96f4f1a420d37e2728f40199d3d63f061",
+  "git_branch": "codex/q2-main-integration",
+  "git_dirty": true,
+  "runtime": {
+    "python": "3.11.9",
+    "scipy": "1.17.1",
+    "backend": "scipy.optimize.milp/HiGHS"
+  },
+  "q1_inputs": null,
+  "replay_inputs": {
+    "source_ref": "c37ea9b:code/outputs/q2/runs/20260815-q2-bounded-lex-pair",
+    "routes": null,
+    "assignments": null,
+    "routes_sha256": "2ca1a8a1b49d820c68ed8b6af0e60ecf26edb25e8ee0f651d9c3aaf61a4f9aea",
+    "assignments_sha256": "07cd99a268234bb940021a301bf3a704f05318276d314648899336184780e147"
+  },
+  "candidate_sequences": 0,
+  "candidate_variants": 0,
+  "candidate_pool_hash": null,
+  "variant_generation_seconds": 0.0,
+  "variant_cache": {
+    "path": null,
+    "loaded": false,
+    "committable": false
+  },
+  "primary_time_limit_seconds": 195.0,
+  "secondary_time_limit_seconds": 105.0,
+  "mip_relative_gap": 0.0,
+  "total_elapsed_seconds": 0.065707,
+  "cache": {
+    "augmentation_hits": 0,
+    "augmentation_misses": 0,
+    "skeleton_hits": 0,
+    "skeleton_misses": 0,
+    "lower_bound_hits": 0,
+    "lower_bound_misses": 0,
+    "direct_time_hits": 0,
+    "direct_time_misses": 0,
+    "augmentation_entries": 0,
+    "skeleton_entries": 0,
+    "lower_bound_entries": 0,
+    "direct_time_entries": 0,
+    "leg_physics_entries": 9075
+  },
+  "diagnostics": {
+    "loaded_from_ref": "c37ea9b:code/outputs/q2/runs/20260815-q2-bounded-lex-pair"
+  },
+  "bound_scope": null
+}

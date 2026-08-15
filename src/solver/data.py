@@ -15,10 +15,15 @@ class ProblemData:
     config: ProblemConfig
     matrix: dict[str, dict[str, float]]
     q1_pools: dict[tuple[str, str], DemandPool]
+    q2_pools: dict[tuple[str, str], DemandPool]
 
     @property
     def q1_passenger_count(self) -> int:
         return sum(pool.quantity for pool in self.q1_pools.values())
+
+    @property
+    def q2_passenger_count(self) -> int:
+        return sum(pool.quantity for pool in self.q2_pools.values())
 
 
 def load_problem_data(
@@ -42,8 +47,31 @@ def load_problem_data(
         if destination not in config.facilities:
             raise ValueError(f"Q1 destination must be a sea facility, got {destination}")
         grouped[(origin, destination)].append(row["person_id"])
-    pools = {
+    q1_pools = {
         key: DemandPool(key[0], key[1], tuple(sorted(person_ids)))
         for key, person_ids in grouped.items()
     }
-    return ProblemData(config=config, matrix=matrix, q1_pools=pools)
+
+    q2_rows = read_csv(processed_dir / "demands_q2.csv")
+    q2_grouped: dict[tuple[str, str], list[str]] = defaultdict(list)
+    valid_nodes = set(config.airports) | set(config.facilities) | {"LAND"}
+    for row in q2_rows:
+        origin = row["origin"]
+        destination = row["destination"]
+        if origin not in valid_nodes or destination not in valid_nodes:
+            raise ValueError(f"Unknown Q2 endpoint: {origin}->{destination}")
+        if origin == destination:
+            raise ValueError(f"Q2 demand must have distinct endpoints: {origin}")
+        if origin in config.airports and destination in config.airports:
+            raise ValueError(f"Q2 demand cannot connect two airports: {origin}->{destination}")
+        q2_grouped[(origin, destination)].append(row["person_id"])
+    q2_pools = {
+        key: DemandPool(key[0], key[1], tuple(sorted(person_ids)))
+        for key, person_ids in q2_grouped.items()
+    }
+    return ProblemData(
+        config=config,
+        matrix=matrix,
+        q1_pools=q1_pools,
+        q2_pools=q2_pools,
+    )
