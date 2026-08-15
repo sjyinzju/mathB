@@ -1,77 +1,46 @@
-# Q2 ML Readiness
+# Q2 ML Readiness — Round 3
 
-## Decision: NOT_READY
+## Decision: READY
 
-Round-2 已完成可复现的数据与接口基础，但当前数据还不足以公平训练 candidate/repair
-ranker。本轮没有训练 Logistic Regression、LightGBM、Random Forest 或其他模型。
+本轮只采集/治理数据，没有训练 Logistic Regression、LightGBM、Random Forest 或任何神经网络。
 
-## Dataset
+## Dataset V2
 
-目录：`outputs/q2/ml-data/`
+目录：`outputs/q2/ml-data-round3/`，schema version 2。
 
 | 统计 | 数量 |
 |---|---:|
-| Candidate rows | 136,597 |
-| Exact-evaluated | 12,467 |
-| True negatives | 12,343 |
-| Positives | 72 |
-| Invalid | 52 |
-| Censored / not evaluated | 124,130 |
-| Accepted repairs | 60 |
-| New-best repairs | 11 |
-| Independent runs | 6 |
+| Candidate rows | 663,504 |
+| Exact evaluated | 309,785 |
+| Positives | 1,863 |
+| Novel / non-incumbent positives | **89** |
+| True negatives | 306,904 |
+| Censored | 353,719 |
+| Invalid | 1,018 |
+| Runs | 11 |
+| Parent-chain lineage groups | **3** |
 
-已生成：
+Parent/child runs 被归并到同一 lineage root。train / validation / test positive 数为
+495 / 1,026 / 342；novel positive 数为 **26 / 51 / 12**。三个 split 均包含 novel
+positives，且无 run/lineage leakage、0 duplicate candidate IDs。
 
-- `candidate_events.csv`
-- `repair_events.csv`
-- `run_manifest.csv`
-- `split_manifest.csv`
-- `feature_schema.json`
-- `label_schema.json`
-- `dataset_diagnostics.json`
+## Coverage
 
-## Correctness properties
+- geometry top/mid/low exact coverage：107,231 / 11,370 / 6,800；
+- geometry top/mid/low positives：80 / 6 / 3；
+- candidate-source positives：INCUMBENT 1,774，GEOMETRY_TOP 66，GEOMETRY_MID 2，
+  EXPLORATION_RANDOM 20，CROSS_EXCHANGE 1；
+- novel 3/4/5-stop positives：34 / 19 / 6（另有 30 个 novel 2-stop）；
+- positives 跨 low-utilization、high-cost、shared-flow、LAND-heavy、cross-exchange 与
+  flight-elimination operators；
+- absorption/context-only/path-relink positives 均为 0，因此这些 source 不应获得高
+  exploration 配额。
 
-- candidate ID 由 run/seed/iteration/destroy/neighborhood/sequence/variant/airport/type
-  的稳定 key 生成，本数据集中 0 duplicates；
-- CENSORED 与 TRUE_NEGATIVE 严格分离；
-- INVALID 单独标注；
-- feature schema 排除 exact/MILP/acceptance/outcome 字段；
-- split 按 run 分组，不做 candidate-level random split；
-- train/validation/test positive 数分别为 32/24/16；
-- 46 个 feature/search-context 字段，核心 geometry/flow/capacity/route/search 字段完整；
-- context composite 对 incumbent rows 为可预期缺失，targeted trigger 仅在触发时非空。
+CENSORED 始终不作为 negative；TRUE_NEGATIVE 仅来自 exact-evaluated candidates。
+features 在 exact/MILP/acceptance outcome 前生成，schema 明确排除 outcome fields。
 
-## Why NOT_READY
+最可信 target：
+`P(MILP-selected AND accepted useful repair | exact-evaluated candidate, context)`。
 
-72 个 useful positives 虽跨多个 run/split，但几乎都来自 incumbent service sequences。
-三个 exploration logging runs 中只有 1 个 exploration variant 被 local MILP 选中，且
-没有成为 useful positive；context-only candidates 也没有贡献 accepted new-best。
-
-因此当前数据足以学习“incumbent variant 在 exact repair 中是否会被复用”，但不足以
-学习真正需要的“未见候选是否值得进入 exact evaluation”。若现在训练，模型很可能
-学习 incumbent/selection policy，而不是候选的真实改进价值。
-
-## Most credible target
-
-当前最可信但仍需更多覆盖的 target：
-
-`P(MILP-selected AND accepted useful repair | exact-evaluated candidate, context)`
-
-即 label `POSITIVE`。训练时只能在 exact-evaluated 样本上使用 TRUE_NEGATIVE；不得把
-CENSORED 当 negative。次选 target 是 `expected primary gain / evaluation cost`，但当前
-positive 数量和 gain 分布不足。
-
-## Readiness unlock condition
-
-继续少量 run-grouped exploration logging，要求：
-
-- 多个独立 runs 出现非-incumbent、context/exploration candidate positives；
-- positives 不集中于单一初始解或单一 operator；
-- train/validation/test 均包含这类 novel positives；
-- exact-evaluated coverage 足以比较 geometry rank bins 与 exploration rank bins；
-- 特征仍在 outcome 前生成。
-
-达到后，先做 Logistic Regression 可解释基线，再做 LightGBM/ranking 公平 A/B；Random
-Forest optional。继续不考虑 GNN、Transformer、Deep RL。
+下一阶段先训练可解释 Logistic Regression baseline，再做 LightGBM ranking 公平 A/B；
+Random Forest optional。仍不考虑 GNN、Transformer、Deep RL。

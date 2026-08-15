@@ -116,6 +116,7 @@ def main() -> int:
     parser.add_argument("--elite-origin")
     parser.add_argument("--restart-type", default="direct")
     parser.add_argument("--no-candidate-logging", action="store_true")
+    parser.add_argument("--censored-log-limit", type=int, default=240)
     parser.add_argument("--promote", action="store_true")
     args = parser.parse_args()
 
@@ -177,6 +178,7 @@ def main() -> int:
         exploration_slots=args.exploration_slots,
         run_purpose=args.run_purpose,
         candidate_logging=not args.no_candidate_logging,
+        censored_log_limit=args.censored_log_limit,
         lineage_id=args.lineage_id or run_id,
         parent_run_id=args.parent_run_id,
         parent_solution_hash=args.parent_solution_hash,
@@ -342,6 +344,7 @@ def main() -> int:
                 "exploration_slots": config.exploration_slots,
                 "run_purpose": config.run_purpose,
                 "candidate_logging": config.candidate_logging,
+                "censored_log_limit": config.censored_log_limit,
                 "lineage_id": config.lineage_id,
                 "parent_run_id": config.parent_run_id,
                 "parent_solution_hash": config.parent_solution_hash,

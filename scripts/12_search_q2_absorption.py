@@ -57,7 +57,15 @@ def _materialize(solution, directory: Path, data) -> dict[str, object]:
     )
     write_json(directory / "q2-validator.json", validation.to_dict())
     metrics = validation.metrics.to_dict() if validation.metrics else None
-    gate = bool(validation.valid and metrics and metrics == solution.metrics.to_dict())
+    internal = solution.metrics.to_dict()
+    gate = bool(
+        validation.valid
+        and metrics
+        and all(
+            abs(float(metrics[key]) - float(value)) <= 1.0e-6
+            for key, value in internal.items()
+        )
+    )
     write_json(
         directory / "metrics.json",
         {"gate_pass": gate, "internal_metrics": solution.metrics.to_dict(), "validator_metrics": metrics},
@@ -84,6 +92,7 @@ def main() -> int:
     parser.add_argument("--allowed-deterioration", type=int, default=800)
     parser.add_argument("--seed", type=int, default=300)
     parser.add_argument("--lineage-id", default="round3-absorption-control")
+    parser.add_argument("--censored-log-limit", type=int, default=160)
     args = parser.parse_args()
     run_id = args.run_id or datetime.now().strftime("%Y%m%d-%H%M%S") + "-q2-r3-absorption"
     run_dir = args.output_root / "runs" / run_id
@@ -119,6 +128,7 @@ def main() -> int:
         targeted_five_stop=True,
         run_purpose="optimization",
         lineage_id=args.lineage_id,
+        censored_log_limit=args.censored_log_limit,
     )
     source_rows = ranking[: args.top_sources]
     candidate_stream = (run_dir / "candidate-log.jsonl").open("w", encoding="utf-8")
@@ -270,6 +280,13 @@ def main() -> int:
                     "runtime_seconds": round(time.perf_counter() - attempt_started, 6),
                 }
             )
+            with (run_dir / "absorption-attempts.jsonl").open(
+                "a", encoding="utf-8"
+            ) as attempt_stream:
+                attempt_stream.write(
+                    json.dumps(attempts[-1], separators=(",", ":")) + "\n"
+                )
+            candidate_stream.flush()
     candidate_stream.close()
     queue.save(run_dir / "promising-master-queue.json")
 

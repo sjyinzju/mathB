@@ -1,0 +1,187 @@
+{
+  "total_candidate_rows": 663504,
+  "exact_evaluated_rows": 309785,
+  "censored_rows": 353719,
+  "true_negative_rows": 306904,
+  "positive_rows": 1863,
+  "invalid_rows": 1018,
+  "accepted_repairs": 757,
+  "new_best_repairs": 352,
+  "run_count": 11,
+  "label_distribution_by_run": {
+    "20260815-q2-round3-long-s401": {
+      "CENSORED": 58880,
+      "TRUE_NEGATIVE": 54466,
+      "POSITIVE": 348,
+      "INVALID": 3
+    },
+    "20260816-q2-round3-final-geometry-s505": {
+      "CENSORED": 20879,
+      "TRUE_NEGATIVE": 19564,
+      "POSITIVE": 84,
+      "INVALID": 2
+    },
+    "20260816-q2-round3-finalist-s404": {
+      "CENSORED": 19080,
+      "TRUE_NEGATIVE": 16666,
+      "POSITIVE": 62,
+      "INVALID": 5
+    },
+    "20260816-q2-round3-long-s402": {
+      "CENSORED": 59880,
+      "TRUE_NEGATIVE": 56904,
+      "POSITIVE": 265,
+      "INVALID": 15
+    },
+    "20260816-q2-round3-long-s403": {
+      "CENSORED": 24720,
+      "TRUE_NEGATIVE": 22878,
+      "INVALID": 10,
+      "POSITIVE": 100
+    },
+    "20260816-q2-round3-ml501": {
+      "CENSORED": 7000,
+      "TRUE_NEGATIVE": 6804,
+      "INVALID": 39,
+      "POSITIVE": 28
+    },
+    "20260816-q2-round3-ml502": {
+      "CENSORED": 6000,
+      "TRUE_NEGATIVE": 4545,
+      "INVALID": 34,
+      "POSITIVE": 16
+    },
+    "20260816-q2-round3-ml503": {
+      "CENSORED": 19400,
+      "TRUE_NEGATIVE": 16528,
+      "INVALID": 108,
+      "POSITIVE": 123
+    },
+    "20260816-q2-round3-ml601-cont": {
+      "CENSORED": 8440,
+      "TRUE_NEGATIVE": 6724,
+      "POSITIVE": 48,
+      "INVALID": 44
+    },
+    "20260816-q2-round3-ml601-independent": {
+      "CENSORED": 67560,
+      "TRUE_NEGATIVE": 53691,
+      "POSITIVE": 447,
+      "INVALID": 400
+    },
+    "20260816-q2-round3-ml602-independent": {
+      "CENSORED": 61880,
+      "TRUE_NEGATIVE": 48134,
+      "POSITIVE": 342,
+      "INVALID": 358
+    }
+  },
+  "positive_distribution_by_split": {
+    "validation": 1026,
+    "train": 495,
+    "test": 342
+  },
+  "novel_positive_rows": 89,
+  "non_incumbent_positive_rows": 89,
+  "positive_lineage_count": 3,
+  "novel_positive_lineage_count": 3,
+  "novel_positive_distribution_by_split": {
+    "validation": 51,
+    "train": 26,
+    "test": 12
+  },
+  "exact_distribution_by_candidate_source": {
+    "INCUMBENT": 184384,
+    "GEOMETRY_TOP": 92548,
+    "GEOMETRY_MID": 1880,
+    "GEOMETRY_LOW": 305,
+    "CROSS_EXCHANGE": 4398,
+    "TARGETED_5_ROUTE": 803,
+    "EXPLORATION_RANDOM": 24536,
+    "ABSORPTION": 931
+  },
+  "positive_distribution_by_candidate_source": {
+    "INCUMBENT": 1774,
+    "GEOMETRY_TOP": 66,
+    "GEOMETRY_MID": 2,
+    "EXPLORATION_RANDOM": 20,
+    "CROSS_EXCHANGE": 1
+  },
+  "geometry_rank_bin_exact_coverage": {
+    "incumbent": 184384,
+    "top": 107231,
+    "mid": 11370,
+    "low": 6800
+  },
+  "geometry_rank_bin_positive_coverage": {
+    "incumbent": 1774,
+    "top": 80,
+    "mid": 6,
+    "low": 3
+  },
+  "duplicate_candidate_ids": 0,
+  "missing_feature_counts": {
+    "feature_bidirectional_flow": 0,
+    "feature_capacity_fit": 0,
+    "feature_context_components": 444125,
+    "feature_context_score": 444125,
+    "feature_current_aircraft_types": 0,
+    "feature_current_base_airports": 0,
+    "feature_current_duration_minutes": 0,
+    "feature_current_land_fraction": 0,
+    "feature_current_mean_residual_slack": 0,
+    "feature_current_mean_stop_count": 0,
+    "feature_current_mean_utilization": 0,
+    "feature_current_min_residual_slack": 0,
+    "feature_current_route_count": 0,
+    "feature_current_route_passengers": 0,
+    "feature_detour_ratio": 0,
+    "feature_directed_shuttle_flow": 0,
+    "feature_ejection_coverage": 444125,
+    "feature_fixed_airport_affinity": 0,
+    "feature_flow_complementarity": 0,
+    "feature_geometry_percentile": 403763,
+    "feature_inbound_flow": 0,
+    "feature_incumbent_sequence": 479120,
+    "feature_land_flexible_flow": 0,
+    "feature_local_supported_demand": 444125,
+    "feature_max_airport_distance_km": 0,
+    "feature_max_pairwise_distance_km": 0,
+    "feature_min_airport_distance_km": 0,
+    "feature_min_pairwise_distance_km": 0,
+    "feature_outbound_flow": 0,
+    "feature_refuel_facilities": 0,
+    "feature_reverse_shuttle_flow": 0,
+    "feature_route_distance_km": 0,
+    "feature_score": 0,
+    "feature_seat_reuse_proxy": 0,
+    "feature_sequence": 0,
+    "feature_service_node_count": 0,
+    "feature_technical_stop_complexity_proxy": 0,
+    "search_best_objective": 0,
+    "search_candidate_source": 619838,
+    "search_cross_exchange_flag": 0,
+    "search_current_objective": 0,
+    "search_destroy_operator": 0,
+    "search_destroy_size": 0,
+    "search_elite_origin": 415436,
+    "search_elite_restart_status": 0,
+    "search_iteration": 0,
+    "search_lineage_id": 0,
+    "search_parent_run_id": 346509,
+    "search_parent_solution_hash": 663504,
+    "search_relink_flag": 0,
+    "search_restart_type": 0,
+    "search_run_purpose": 0,
+    "search_sa_temperature": 0,
+    "search_stagnation_length": 0,
+    "search_targeted_trigger": 651134,
+    "search_warm_start_flights": 0,
+    "search_warm_start_hash": 0,
+    "search_warm_start_objective": 0
+  },
+  "feature_count": 58,
+  "run_group_leakage": false,
+  "lineage_group_leakage": false,
+  "outcome_fields_excluded_from_feature_schema": true
+}

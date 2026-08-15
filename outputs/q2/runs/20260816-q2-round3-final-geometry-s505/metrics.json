@@ -4,10 +4,10 @@
   "passenger_count": 4000,
   "initial_metrics": {
     "total_aircraft_time_minutes": 17218,
-    "total_passenger_travel_time_minutes": 254656,
+    "total_passenger_travel_time_minutes": 255180,
     "total_flights": 95,
     "total_fuel_consumption_kg": 132473.9,
-    "seat_utilization": 0.9270255505126912,
+    "seat_utilization": 0.9282045535197325,
     "served_passengers": 4000
   },
   "internal_metrics": {

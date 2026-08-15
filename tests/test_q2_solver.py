@@ -356,7 +356,13 @@ def test_q2_structured_neighborhoods_are_deterministic() -> None:
 
 def test_q2_elite_pool_keeps_quality_and_diversity() -> None:
     data = load_problem_data()
-    best = ROOT / "outputs" / "q2" / "best"
+    best = (
+        ROOT
+        / "outputs"
+        / "q2"
+        / "runs"
+        / "20260815-q2-round2-final-repro"
+    )
     partner_dir = ROOT / "outputs" / "q2" / "runs" / "20260815-q2-final-elite-diverse"
     left = load_q2_solution(best / "q2-routes.csv", best / "q2-assignments.csv", data)
     partner = load_q2_solution(
@@ -422,6 +428,13 @@ def test_q2_learning_splits_keep_lineages_together() -> None:
     splits = grouped_q2_splits(rows)
     assert splits["a-1"] == splits["a-2"]
     assert set(splits.values()) == {"train", "validation", "test"}
+    grouped = grouped_q2_splits(
+        [
+            {"run_id": "root", "lineage_id": "root"},
+            {"run_id": "child", "lineage_id": "child", "lineage_group_id": "root"},
+        ]
+    )
+    assert grouped["root"] == grouped["child"]
 
 
 def test_q2_round3_audit_absorption_and_fingerprint_are_deterministic() -> None:
@@ -430,10 +443,13 @@ def test_q2_round3_audit_absorption_and_fingerprint_are_deterministic() -> None:
     solution = load_q2_solution(best / "q2-routes.csv", best / "q2-assignments.csv", data)
     route_rows, pair_rows = audit_q2_solution(solution, data)
     ranking = absorption_potential_ranking(route_rows, pair_rows)
-    assert len(route_rows) == 96
-    assert len(pair_rows) == 96 * 95
-    assert len(ranking) == 96
-    assert sorted(int(row["absorption_rank"]) for row in ranking) == list(range(1, 97))
+    route_count = solution.metrics.total_flights
+    assert len(route_rows) == route_count
+    assert len(pair_rows) == route_count * (route_count - 1)
+    assert len(ranking) == route_count
+    assert sorted(int(row["absorption_rank"]) for row in ranking) == list(
+        range(1, route_count + 1)
+    )
     source = int(ranking[0]["route_index"])
     neighborhood = select_absorption_neighborhood(source, pair_rows, route_count=6)
     assert neighborhood[0] == source

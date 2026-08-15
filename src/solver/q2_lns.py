@@ -75,6 +75,7 @@ class Q2LnsConfig:
     exploration_slots: int = 0
     run_purpose: str = "optimization"
     candidate_logging: bool = True
+    censored_log_limit: int = 240
     stagnation_patience: int | None = None
     checkpoint_interval: int = 5
     lineage_id: str | None = None
@@ -146,6 +147,8 @@ class Q2LnsConfig:
             raise ValueError("stagnation_patience must be positive when provided")
         if self.checkpoint_interval < 1:
             raise ValueError("checkpoint_interval must be positive")
+        if self.censored_log_limit < 0:
+            raise ValueError("censored_log_limit must be nonnegative")
 
 
 @dataclass(frozen=True)
@@ -972,9 +975,31 @@ def exact_q2_local_repair(
             for row in candidate_rows
             if row["top_k_selected"]
         }
-        expanded_rows: list[dict[str, object]] = [
-            row for row in candidate_rows if not row["top_k_selected"]
-        ]
+        censored_rows = [row for row in candidate_rows if not row["top_k_selected"]]
+        if len(censored_rows) > config.censored_log_limit:
+            strata: dict[tuple[object, ...], list[dict[str, object]]] = defaultdict(list)
+            for row in censored_rows:
+                strata[
+                    (
+                        row.get("candidate_source"),
+                        row.get("geometry_rank_bin"),
+                        len(row.get("candidate_sequence", [])),
+                    )
+                ].append(row)
+            sampled: list[dict[str, object]] = []
+            ordered_strata = sorted(strata, key=repr)
+            cursor = 0
+            while len(sampled) < config.censored_log_limit and ordered_strata:
+                key = ordered_strata[cursor % len(ordered_strata)]
+                bucket = strata[key]
+                if bucket:
+                    sampled.append(bucket.pop(0))
+                if not bucket:
+                    ordered_strata.remove(key)
+                    cursor -= 1
+                cursor += 1
+            censored_rows = sampled
+        expanded_rows: list[dict[str, object]] = censored_rows
         variants_by_sequence: dict[tuple[str, ...], list[object]] = defaultdict(list)
         for variant in variants:
             variants_by_sequence[variant.service_order].append(variant)
@@ -1806,6 +1831,7 @@ def solve_q2_lns(
                     "exploration_slots": config.exploration_slots,
                     "run_purpose": config.run_purpose,
                     "candidate_logging": config.candidate_logging,
+                    "censored_log_limit": config.censored_log_limit,
                     "stagnation_patience": config.stagnation_patience,
                     "checkpoint_interval": config.checkpoint_interval,
                     "lineage_id": config.lineage_id,

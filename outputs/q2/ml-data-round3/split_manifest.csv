@@ -1,0 +1,12 @@
+lineage_group_id,lineage_id,run_id,seed,split
+round3-global-best-401,round3-global-best-401,20260815-q2-round3-long-s401,401,validation
+round3-global-best-401,round3-final-505,20260816-q2-round3-final-geometry-s505,505,validation
+round3-global-best-401,round3-finalist-404,20260816-q2-round3-finalist-s404,404,validation
+round3-global-best-401,round3-global-best-402,20260816-q2-round3-long-s402,402,validation
+round3-global-best-401,round3-best95-403,20260816-q2-round3-long-s403,403,validation
+round3-global-best-401,round3-ml501,20260816-q2-round3-ml501,501,validation
+round3-global-best-401,round3-ml502,20260816-q2-round3-ml502,502,validation
+round3-global-best-401,round3-ml503,20260816-q2-round3-ml503,503,validation
+round3-independent-elite-diverse,round3-independent-elite-diverse,20260816-q2-round3-ml601-cont,603,train
+round3-independent-elite-diverse,round3-independent-elite-diverse,20260816-q2-round3-ml601-independent,601,train
+round3-independent-ml21,round3-independent-ml21,20260816-q2-round3-ml602-independent,602,test

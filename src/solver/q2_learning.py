@@ -61,7 +61,16 @@ def flatten_q2_candidate_event(row: dict[str, object]) -> dict[str, object]:
 
 def grouped_q2_splits(run_rows: Iterable[dict[str, object]]) -> dict[str, str]:
     rows = tuple(run_rows)
-    groups = sorted({str(row.get("lineage_id") or row["run_id"]) for row in rows})
+    groups = sorted(
+        {
+            str(
+                row.get("lineage_group_id")
+                or row.get("lineage_id")
+                or row["run_id"]
+            )
+            for row in rows
+        }
+    )
     run_ids = sorted({str(row["run_id"]) for row in rows})
     if not run_ids:
         return {}
@@ -79,7 +88,13 @@ def grouped_q2_splits(run_rows: Iterable[dict[str, object]]) -> dict[str, str]:
             for index, group in enumerate(ordered)
         }
     return {
-        str(row["run_id"]): by_group[str(row.get("lineage_id") or row["run_id"])]
+        str(row["run_id"]): by_group[
+            str(
+                row.get("lineage_group_id")
+                or row.get("lineage_id")
+                or row["run_id"]
+            )
+        ]
         for row in rows
     }
 
@@ -132,9 +147,25 @@ def build_q2_learning_dataset(
                 row = json.loads(line)
                 repair_rows.append({"run_id": run_id, **{key: _scalar(value) for key, value in row.items()}})
 
+    by_id = {str(row["run_id"]): row for row in run_rows}
+
+    def lineage_root(run_id: str) -> str:
+        current = run_id
+        seen: set[str] = set()
+        while current not in seen:
+            seen.add(current)
+            row = by_id[current]
+            parent = row.get("parent_run_id")
+            if not parent or str(parent) not in by_id:
+                return str(row.get("lineage_id") or current)
+            current = str(parent)
+        raise ValueError(f"Cycle in Q2 run lineage at {run_id}")
+
+    for row in run_rows:
+        row["lineage_group_id"] = lineage_root(str(row["run_id"]))
     splits = grouped_q2_splits(run_rows)
     split_rows = [
-        {"run_id": row["run_id"], "lineage_id": row["lineage_id"], "seed": row["seed"], "split": splits[str(row["run_id"])]}
+        {"run_id": row["run_id"], "lineage_id": row["lineage_id"], "lineage_group_id": row["lineage_group_id"], "seed": row["seed"], "split": splits[str(row["run_id"])]}
         for row in run_rows
     ]
     labels = Counter(str(row["label_class"]) for row in candidate_rows)
@@ -155,7 +186,7 @@ def build_q2_learning_dataset(
     novel_positive_rows = [
         row for row in positive_rows
         if float(row.get("sequence_novelty") or 0) > 0
-        or not bool(row.get("is_incumbent_sequence"))
+        or row.get("is_incumbent_sequence") is False
     ]
     split_novel_positive = Counter()
     source_exact = Counter()
@@ -173,8 +204,9 @@ def build_q2_learning_dataset(
             rank_bin_positive[rank_bin] += 1
     for row in novel_positive_rows:
         split_novel_positive[splits[str(row["run_id"])]] += 1
-    positive_lineages = {str(row.get("search_lineage_id") or row["run_id"]) for row in positive_rows}
-    novel_positive_lineages = {str(row.get("search_lineage_id") or row["run_id"]) for row in novel_positive_rows}
+    run_group = {str(row["run_id"]): str(row["lineage_group_id"]) for row in run_rows}
+    positive_lineages = {run_group[str(row["run_id"])] for row in positive_rows}
+    novel_positive_lineages = {run_group[str(row["run_id"])] for row in novel_positive_rows}
     diagnostics = {
         "total_candidate_rows": len(candidate_rows),
         "exact_evaluated_rows": labels["POSITIVE"] + labels["TRUE_NEGATIVE"] + labels["INVALID"],
@@ -188,7 +220,9 @@ def build_q2_learning_dataset(
         "label_distribution_by_run": {key: dict(value) for key, value in sorted(by_run.items())},
         "positive_distribution_by_split": dict(split_positive),
         "novel_positive_rows": len(novel_positive_rows),
-        "non_incumbent_positive_rows": sum(int(not bool(row.get("is_incumbent_sequence"))) for row in positive_rows),
+        "non_incumbent_positive_rows": sum(
+            int(row.get("is_incumbent_sequence") is False) for row in positive_rows
+        ),
         "positive_lineage_count": len(positive_lineages),
         "novel_positive_lineage_count": len(novel_positive_lineages),
         "novel_positive_distribution_by_split": dict(split_novel_positive),
