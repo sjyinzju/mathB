@@ -1,0 +1,578 @@
+[
+  {
+    "mode": "priority",
+    "seed": 20260815,
+    "feasible": true,
+    "missing_mandatory": 0,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 31882,
+      "total_passenger_travel_time_minutes": 267376,
+      "total_flights": 177,
+      "total_fuel_consumption_kg": 249290.1,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 31506,
+      "total_passenger_travel_time_minutes": 241720,
+      "total_flights": 177,
+      "total_fuel_consumption_kg": 248283.4,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "runtime_seconds": 64.143013,
+    "construction": {
+      "method": "q3_interval_list_priority",
+      "seed": 20260815,
+      "feasible": true,
+      "mandatory_people": 3840,
+      "flights": 177,
+      "aircraft_time_minutes": 31882,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": 157.34119,
+      "runtime_seconds": 61.186268,
+      "conflict_count": 0,
+      "candidate_variants": 23251,
+      "failed_person_id": null
+    },
+    "assignment": {
+      "variables": 9048,
+      "constraints": 4463,
+      "stage1_status": 0,
+      "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "stage2_status": 0,
+      "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "served_temporary": 0,
+      "temporary_upper_bound": 0,
+      "fixed_flight_optimal": true,
+      "all_optional_served": true
+    },
+    "screen_rr": {
+      "enabled": false
+    }
+  },
+  {
+    "mode": "deadline",
+    "seed": 20260816,
+    "feasible": true,
+    "missing_mandatory": 0,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 31371,
+      "total_passenger_travel_time_minutes": 265819,
+      "total_flights": 173,
+      "total_fuel_consumption_kg": 245586.6,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 30965,
+      "total_passenger_travel_time_minutes": 241652,
+      "total_flights": 173,
+      "total_fuel_consumption_kg": 244979.1,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "runtime_seconds": 68.876342,
+    "construction": {
+      "method": "q3_interval_list_deadline",
+      "seed": 20260816,
+      "feasible": true,
+      "mandatory_people": 3840,
+      "flights": 173,
+      "aircraft_time_minutes": 31371,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": 153.216563,
+      "runtime_seconds": 65.892271,
+      "conflict_count": 0,
+      "candidate_variants": 23251,
+      "failed_person_id": null
+    },
+    "assignment": {
+      "variables": 8619,
+      "constraints": 4460,
+      "stage1_status": 0,
+      "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "stage2_status": 0,
+      "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "served_temporary": 0,
+      "temporary_upper_bound": 0,
+      "fixed_flight_optimal": true,
+      "all_optional_served": true
+    },
+    "screen_rr": {
+      "enabled": false
+    }
+  },
+  {
+    "mode": "slack",
+    "seed": 20260817,
+    "feasible": true,
+    "missing_mandatory": 0,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 34691,
+      "total_passenger_travel_time_minutes": 269445,
+      "total_flights": 192,
+      "total_fuel_consumption_kg": 272822.3,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 33995,
+      "total_passenger_travel_time_minutes": 245101,
+      "total_flights": 192,
+      "total_fuel_consumption_kg": 270550.3,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "runtime_seconds": 54.104706,
+    "construction": {
+      "method": "q3_interval_list_slack",
+      "seed": 20260817,
+      "feasible": true,
+      "mandatory_people": 3840,
+      "flights": 192,
+      "aircraft_time_minutes": 34691,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": 180.014529,
+      "runtime_seconds": 50.884906,
+      "conflict_count": 0,
+      "candidate_variants": 23251,
+      "failed_person_id": null
+    },
+    "assignment": {
+      "variables": 9856,
+      "constraints": 4531,
+      "stage1_status": 0,
+      "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "stage2_status": 0,
+      "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "served_temporary": 0,
+      "temporary_upper_bound": 0,
+      "fixed_flight_optimal": true,
+      "all_optional_served": true
+    },
+    "screen_rr": {
+      "enabled": false
+    }
+  },
+  {
+    "mode": "day_scarcity",
+    "seed": 20260818,
+    "feasible": true,
+    "missing_mandatory": 0,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 31931,
+      "total_passenger_travel_time_minutes": 266983,
+      "total_flights": 178,
+      "total_fuel_consumption_kg": 249799.5,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 31595,
+      "total_passenger_travel_time_minutes": 240403,
+      "total_flights": 178,
+      "total_fuel_consumption_kg": 248590.2,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "runtime_seconds": 65.869334,
+    "construction": {
+      "method": "q3_interval_list_day_scarcity",
+      "seed": 20260818,
+      "feasible": true,
+      "mandatory_people": 3840,
+      "flights": 178,
+      "aircraft_time_minutes": 31931,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": 157.736702,
+      "runtime_seconds": 62.701967,
+      "conflict_count": 0,
+      "candidate_variants": 23251,
+      "failed_person_id": null
+    },
+    "assignment": {
+      "variables": 8988,
+      "constraints": 4463,
+      "stage1_status": 0,
+      "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "stage2_status": 0,
+      "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "served_temporary": 0,
+      "temporary_upper_bound": 0,
+      "fixed_flight_optimal": true,
+      "all_optional_served": true
+    },
+    "screen_rr": {
+      "enabled": false
+    }
+  },
+  {
+    "mode": "route_scarcity",
+    "seed": 20260819,
+    "feasible": false,
+    "missing_mandatory": 8,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 33865,
+      "total_passenger_travel_time_minutes": 270727,
+      "total_flights": 187,
+      "total_fuel_consumption_kg": 268978.2,
+      "served_mandatory": 3832,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 33865,
+      "total_passenger_travel_time_minutes": 270727,
+      "total_flights": 187,
+      "total_fuel_consumption_kg": 268978.2,
+      "served_mandatory": 3832,
+      "served_optional": 0
+    },
+    "runtime_seconds": 10.618423,
+    "construction": {
+      "method": "q3_interval_list_route_scarcity",
+      "seed": 20260819,
+      "feasible": false,
+      "mandatory_people": 3832,
+      "flights": 187,
+      "aircraft_time_minutes": 33865,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": Infinity,
+      "runtime_seconds": 10.596789,
+      "conflict_count": 2,
+      "candidate_variants": 23251,
+      "failed_person_id": "P0096"
+    }
+  },
+  {
+    "mode": "criticality",
+    "seed": 20260820,
+    "feasible": true,
+    "missing_mandatory": 0,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 32431,
+      "total_passenger_travel_time_minutes": 268969,
+      "total_flights": 181,
+      "total_fuel_consumption_kg": 253446.5,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 32126,
+      "total_passenger_travel_time_minutes": 242708,
+      "total_flights": 181,
+      "total_fuel_consumption_kg": 255563.7,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "runtime_seconds": 40.657716,
+    "construction": {
+      "method": "q3_interval_list_criticality",
+      "seed": 20260820,
+      "feasible": true,
+      "mandatory_people": 3840,
+      "flights": 181,
+      "aircraft_time_minutes": 32431,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": 161.77254,
+      "runtime_seconds": 37.841102,
+      "conflict_count": 0,
+      "candidate_variants": 23251,
+      "failed_person_id": null
+    },
+    "assignment": {
+      "variables": 9256,
+      "constraints": 4489,
+      "stage1_status": 0,
+      "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "stage2_status": 0,
+      "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "served_temporary": 0,
+      "temporary_upper_bound": 0,
+      "fixed_flight_optimal": true,
+      "all_optional_served": true
+    },
+    "screen_rr": {
+      "enabled": false
+    }
+  },
+  {
+    "mode": "od_density",
+    "seed": 20260821,
+    "feasible": true,
+    "missing_mandatory": 0,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 32375,
+      "total_passenger_travel_time_minutes": 265248,
+      "total_flights": 181,
+      "total_fuel_consumption_kg": 257011.9,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 32057,
+      "total_passenger_travel_time_minutes": 240668,
+      "total_flights": 181,
+      "total_fuel_consumption_kg": 257638.0,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "runtime_seconds": 83.70041,
+    "construction": {
+      "method": "q3_interval_list_od_density",
+      "seed": 20260821,
+      "feasible": true,
+      "mandatory_people": 3840,
+      "flights": 181,
+      "aircraft_time_minutes": 32375,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": 161.320526,
+      "runtime_seconds": 80.438158,
+      "conflict_count": 0,
+      "candidate_variants": 23251,
+      "failed_person_id": null
+    },
+    "assignment": {
+      "variables": 9317,
+      "constraints": 4485,
+      "stage1_status": 0,
+      "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "stage2_status": 0,
+      "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "served_temporary": 0,
+      "temporary_upper_bound": 0,
+      "fixed_flight_optimal": true,
+      "all_optional_served": true
+    },
+    "screen_rr": {
+      "enabled": false
+    }
+  },
+  {
+    "mode": "regret_proxy",
+    "seed": 20260822,
+    "feasible": false,
+    "missing_mandatory": 147,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 29895,
+      "total_passenger_travel_time_minutes": 263450,
+      "total_flights": 163,
+      "total_fuel_consumption_kg": 236582.9,
+      "served_mandatory": 3693,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 29895,
+      "total_passenger_travel_time_minutes": 263450,
+      "total_flights": 163,
+      "total_fuel_consumption_kg": 236582.9,
+      "served_mandatory": 3693,
+      "served_optional": 0
+    },
+    "runtime_seconds": 49.142793,
+    "construction": {
+      "method": "q3_interval_list_regret_proxy",
+      "seed": 20260822,
+      "feasible": false,
+      "mandatory_people": 3693,
+      "flights": 163,
+      "aircraft_time_minutes": 29895,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": Infinity,
+      "runtime_seconds": 49.132402,
+      "conflict_count": 2,
+      "candidate_variants": 23251,
+      "failed_person_id": "P0419"
+    }
+  },
+  {
+    "mode": "randomized_deadline",
+    "seed": 20260823,
+    "feasible": true,
+    "missing_mandatory": 0,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 31371,
+      "total_passenger_travel_time_minutes": 265819,
+      "total_flights": 173,
+      "total_fuel_consumption_kg": 245586.6,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 30965,
+      "total_passenger_travel_time_minutes": 241652,
+      "total_flights": 173,
+      "total_fuel_consumption_kg": 244979.1,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "runtime_seconds": 70.536151,
+    "construction": {
+      "method": "q3_interval_list_randomized_deadline",
+      "seed": 20260823,
+      "feasible": true,
+      "mandatory_people": 3840,
+      "flights": 173,
+      "aircraft_time_minutes": 31371,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": 153.216563,
+      "runtime_seconds": 67.486316,
+      "conflict_count": 0,
+      "candidate_variants": 23251,
+      "failed_person_id": null
+    },
+    "assignment": {
+      "variables": 8619,
+      "constraints": 4460,
+      "stage1_status": 0,
+      "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "stage2_status": 0,
+      "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "served_temporary": 0,
+      "temporary_upper_bound": 0,
+      "fixed_flight_optimal": true,
+      "all_optional_served": true
+    },
+    "screen_rr": {
+      "enabled": false
+    }
+  },
+  {
+    "mode": "randomized_criticality",
+    "seed": 20260824,
+    "feasible": true,
+    "missing_mandatory": 0,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 32431,
+      "total_passenger_travel_time_minutes": 268969,
+      "total_flights": 181,
+      "total_fuel_consumption_kg": 253446.5,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 32126,
+      "total_passenger_travel_time_minutes": 242708,
+      "total_flights": 181,
+      "total_fuel_consumption_kg": 255563.7,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "runtime_seconds": 40.541246,
+    "construction": {
+      "method": "q3_interval_list_randomized_criticality",
+      "seed": 20260824,
+      "feasible": true,
+      "mandatory_people": 3840,
+      "flights": 181,
+      "aircraft_time_minutes": 32431,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": 161.77254,
+      "runtime_seconds": 37.535452,
+      "conflict_count": 0,
+      "candidate_variants": 23251,
+      "failed_person_id": null
+    },
+    "assignment": {
+      "variables": 9256,
+      "constraints": 4489,
+      "stage1_status": 0,
+      "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "stage2_status": 0,
+      "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "served_temporary": 0,
+      "temporary_upper_bound": 0,
+      "fixed_flight_optimal": true,
+      "all_optional_served": true
+    },
+    "screen_rr": {
+      "enabled": false
+    }
+  },
+  {
+    "mode": "flexible_regret",
+    "seed": 20260825,
+    "feasible": false,
+    "missing_mandatory": 165,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 38831,
+      "total_passenger_travel_time_minutes": 250862,
+      "total_flights": 226,
+      "total_fuel_consumption_kg": 317577.0,
+      "served_mandatory": 3675,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 38831,
+      "total_passenger_travel_time_minutes": 250862,
+      "total_flights": 226,
+      "total_fuel_consumption_kg": 317577.0,
+      "served_mandatory": 3675,
+      "served_optional": 0
+    },
+    "runtime_seconds": 26.821376,
+    "construction": {
+      "feasible": false,
+      "phase": "fleet_slot",
+      "failed_people": [
+        "P3176"
+      ],
+      "hard_count": 637,
+      "zero_cost_inserted": 1902,
+      "dynamic_flights": 107,
+      "runtime_seconds": 26.811966
+    }
+  },
+  {
+    "mode": "priority",
+    "seed": 20260826,
+    "feasible": true,
+    "missing_mandatory": 0,
+    "raw_metrics": {
+      "total_aircraft_time_minutes": 31882,
+      "total_passenger_travel_time_minutes": 267376,
+      "total_flights": 177,
+      "total_fuel_consumption_kg": 249290.1,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "screen_metrics": {
+      "total_aircraft_time_minutes": 31506,
+      "total_passenger_travel_time_minutes": 241720,
+      "total_flights": 177,
+      "total_fuel_consumption_kg": 248283.4,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "runtime_seconds": 66.405201,
+    "construction": {
+      "method": "q3_interval_list_priority",
+      "seed": 20260826,
+      "feasible": true,
+      "mandatory_people": 3840,
+      "flights": 177,
+      "aircraft_time_minutes": 31882,
+      "lower_bound_minutes": 12389,
+      "lower_bound_gap_percent": 157.34119,
+      "runtime_seconds": 63.105621,
+      "conflict_count": 0,
+      "candidate_variants": 23251,
+      "failed_person_id": null
+    },
+    "assignment": {
+      "variables": 9048,
+      "constraints": 4463,
+      "stage1_status": 0,
+      "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "stage2_status": 0,
+      "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "served_temporary": 0,
+      "temporary_upper_bound": 0,
+      "fixed_flight_optimal": true,
+      "all_optional_served": true
+    },
+    "screen_rr": {
+      "enabled": false
+    }
+  }
+]

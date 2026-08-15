@@ -299,6 +299,51 @@ def _fleet_slot(
     return aircraft_id, slot
 
 
+def _schedule_candidate_on_aircraft(
+    variant: Q3Variant,
+    assignments: dict[str, tuple[int, int]],
+    people: dict[str, Q3Person],
+    day: int,
+    aircraft_id: str,
+    calendars: dict[str, list[tuple[int, int]]],
+    config: ProblemConfig,
+) -> Q3FlightTiming | None:
+    """Place a route using its actual time-aware timetable.
+
+    Candidate event boundaries are the daily departure limit and the starts of
+    already fixed flights.  Final feasibility and conflicts use the propagated
+    arrivals/departures (including offshore waiting), never the Q2 template
+    clock.  This helper is deliberately shared by shortening, rehome/retype and
+    the closure/P2 structural neighbourhoods.
+    """
+
+    uppers = {day * 1440 + 1080}
+    for start, _end in calendars.get(aircraft_id, []):
+        if start // 1440 == day:
+            uppers.add(start - config.turnaround_minutes)
+    for upper in sorted(uppers, reverse=True):
+        timing = schedule_route_timing(
+            variant,
+            assignments,
+            people,
+            day,
+            config,
+            start_upper=upper,
+        )
+        if timing is None:
+            continue
+        if any(
+            not (
+                timing.arrivals[-1] + config.turnaround_minutes <= start
+                or end + config.turnaround_minutes <= timing.departures[0]
+            )
+            for start, end in calendars.get(aircraft_id, [])
+        ):
+            continue
+        return timing
+    return None
+
+
 def _seed_key(
     person: Q3Person,
     mode: str,
@@ -981,7 +1026,10 @@ def shorten_fixed_flight_routes(
         aircraft_calendar.remove(current_interval)
         day = flight.start // 1440
         best: tuple[
-            tuple[object, ...], Q3Variant, int, dict[str, tuple[int, int]]
+            tuple[object, ...],
+            Q3Variant,
+            Q3FlightTiming,
+            dict[str, tuple[int, int]],
         ] | None = None
         pool = pools[(flight.variant.base_airport, flight.variant.aircraft_type)]
         for candidate in pool:
@@ -989,9 +1037,6 @@ def shorten_fixed_flight_routes(
                 break
             assignments: dict[str, tuple[int, int]] = {}
             loads = [0] * (len(candidate.source.route.stops) - 1)
-            lower = day * 1440 + 360
-            upper = min(day * 1440 + 1080, day * 1440 + 1200 - candidate.duration)
-            passenger_time = 0
             feasible = True
             for person_id in flight.person_ids:
                 person = people[person_id]
@@ -1012,11 +1057,6 @@ def shorten_fixed_flight_routes(
                 if interval is None:
                     feasible = False
                     break
-                lower = max(lower, interval[0])
-                upper = min(upper, interval[1])
-                if lower > upper:
-                    feasible = False
-                    break
                 pickup, delivery = assignment
                 for leg in range(pickup, delivery):
                     loads[leg] += 1
@@ -1025,44 +1065,51 @@ def shorten_fixed_flight_routes(
                         break
                 if not feasible:
                     break
-                passenger_time += (
-                    candidate.source.arrivals[delivery]
-                    - candidate.source.departures[pickup]
-                )
                 assignments[person_id] = assignment
             if not feasible:
                 continue
-            start = _first_calendar_slot(
-                aircraft_calendar,
-                lower,
-                upper,
-                candidate.duration,
-                config.turnaround_minutes,
+            timing = _schedule_candidate_on_aircraft(
+                candidate,
+                assignments,
+                people,
+                day,
+                flight.aircraft_id,
+                calendars,
+                config,
             )
-            if start is None:
+            if timing is None or timing.duration >= flight.duration:
                 continue
-            score = (candidate.duration, passenger_time, candidate.fuel_kg, start)
+            passenger_time = sum(
+                timing.arrivals[delivery] - timing.departures[pickup]
+                for pickup, delivery in assignments.values()
+            )
+            score = (
+                timing.duration,
+                passenger_time,
+                candidate.fuel_kg,
+                timing.departures[0],
+            )
             if best is None or score < best[0]:
-                best = (score, candidate, start, assignments)
+                best = (score, candidate, timing, assignments)
         if best is None:
             aircraft_calendar.append(current_interval)
             aircraft_calendar.sort()
             continue
-        _, candidate, start, assignments = best
+        _, candidate, timing, assignments = best
         old_duration = flight.duration
         old_key = flight.variant.key
         flight.variant = candidate
-        flight.start = start
+        flight.start = timing.departures[0]
         flight.assignment_intervals = assignments
-        flight.timing = None
+        flight.timing = timing
         aircraft_calendar.append((flight.start, flight.end))
         aircraft_calendar.sort()
         replacements.append(
             {
                 "aircraft_id": flight.aircraft_id,
                 "old_duration": old_duration,
-                "new_duration": candidate.duration,
-                "saved_minutes": old_duration - candidate.duration,
+                "new_duration": timing.duration,
+                "saved_minutes": old_duration - timing.duration,
                 "old_route_key": repr(old_key),
                 "new_route_key": repr(candidate.key),
             }
@@ -1121,7 +1168,7 @@ def retype_and_rehome_flights(
                 tuple[object, ...],
                 Q3Variant,
                 str,
-                int,
+                Q3FlightTiming,
                 dict[str, tuple[int, int]],
             ] | None = None
             for candidate in unique:
@@ -1129,12 +1176,6 @@ def retype_and_rehome_flights(
                     break
                 assignments: dict[str, tuple[int, int]] = {}
                 loads = [0] * (len(candidate.source.route.stops) - 1)
-                lower = day * 1440 + 360
-                upper = min(
-                    day * 1440 + 1080,
-                    day * 1440 + 1200 - candidate.duration,
-                )
-                passenger_time = 0
                 feasible = True
                 for person_id in flight.person_ids:
                     person = people[person_id]
@@ -1155,11 +1196,6 @@ def retype_and_rehome_flights(
                     if interval is None:
                         feasible = False
                         break
-                    lower = max(lower, interval[0])
-                    upper = min(upper, interval[1])
-                    if lower > upper:
-                        feasible = False
-                        break
                     pickup, delivery = assignment
                     for leg in range(pickup, delivery):
                         loads[leg] += 1
@@ -1168,39 +1204,53 @@ def retype_and_rehome_flights(
                             break
                     if not feasible:
                         break
-                    passenger_time += (
-                        candidate.source.arrivals[delivery]
-                        - candidate.source.departures[pickup]
-                    )
                     assignments[person_id] = assignment
                 if not feasible:
                     continue
-                fleet = _fleet_slot(calendars, config, candidate, lower, upper)
-                if fleet is None:
-                    continue
-                aircraft_id, start = fleet
-                score = (
-                    candidate.duration,
-                    passenger_time,
-                    candidate.fuel_kg,
-                    start,
-                    aircraft_id,
-                )
-                if best is None or score < best[0]:
-                    best = (score, candidate, aircraft_id, start, assignments)
+                for aircraft_id in _compatible_aircraft(config, candidate):
+                    timing = _schedule_candidate_on_aircraft(
+                        candidate,
+                        assignments,
+                        people,
+                        day,
+                        aircraft_id,
+                        calendars,
+                        config,
+                    )
+                    if timing is None or timing.duration >= flight.duration:
+                        continue
+                    passenger_time = sum(
+                        timing.arrivals[delivery] - timing.departures[pickup]
+                        for pickup, delivery in assignments.values()
+                    )
+                    score = (
+                        timing.duration,
+                        passenger_time,
+                        candidate.fuel_kg,
+                        timing.departures[0],
+                        aircraft_id,
+                    )
+                    if best is None or score < best[0]:
+                        best = (
+                            score,
+                            candidate,
+                            aircraft_id,
+                            timing,
+                            assignments,
+                        )
             if best is None:
                 calendars[old_aircraft].append(old_interval)
                 calendars[old_aircraft].sort()
                 continue
-            _, candidate, aircraft_id, start, assignments = best
+            _, candidate, aircraft_id, timing, assignments = best
             old_duration = flight.duration
             old_base = flight.variant.base_airport
             old_type = flight.variant.aircraft_type
             flight.variant = candidate
             flight.aircraft_id = aircraft_id
-            flight.start = start
+            flight.start = timing.departures[0]
             flight.assignment_intervals = assignments
-            flight.timing = None
+            flight.timing = timing
             calendars[aircraft_id].append((flight.start, flight.end))
             calendars[aircraft_id].sort()
             pass_moves += 1
@@ -1214,8 +1264,8 @@ def retype_and_rehome_flights(
                     "old_aircraft_type": old_type,
                     "new_aircraft_type": candidate.aircraft_type,
                     "old_duration": old_duration,
-                    "new_duration": candidate.duration,
-                    "saved_minutes": old_duration - candidate.duration,
+                    "new_duration": timing.duration,
+                    "saved_minutes": old_duration - timing.duration,
                 }
             )
         if pass_moves == 0:

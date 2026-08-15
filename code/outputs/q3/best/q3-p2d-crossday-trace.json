@@ -1,0 +1,54 @@
+{
+  "stage1": {
+    "trials": 2,
+    "accepted": 1,
+    "moves": [
+      {
+        "removed_aircraft": "A01-T1-H01",
+        "removed_start": 3240,
+        "moved_passengers": [
+          "P0363",
+          "P0472",
+          "P0792",
+          "P1285",
+          "P3549"
+        ],
+        "saved_minutes": 116
+      }
+    ]
+  },
+  "fixed_stage2": {
+    "variables": 8646,
+    "constraints": 4577,
+    "stage1_status": 0,
+    "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "stage2_status": 0,
+    "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "served_temporary": 158,
+    "temporary_upper_bound": 160,
+    "fixed_flight_optimal": true,
+    "all_optional_served": false
+  },
+  "stage2": {
+    "trials": 2,
+    "accepted": 1,
+    "moves": [
+      {
+        "removed_aircraft": "A03-T2-H03",
+        "removed_start": 7962,
+        "moved_passengers": [
+          "P0119",
+          "P0135",
+          "P1212",
+          "P1396",
+          "P2327",
+          "P2804",
+          "P3065",
+          "P3183",
+          "P3645"
+        ],
+        "saved_minutes": 194
+      }
+    ]
+  }
+}

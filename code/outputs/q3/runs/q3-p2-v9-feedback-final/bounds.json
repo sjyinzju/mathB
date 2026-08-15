@@ -1,0 +1,15 @@
+{
+  "stage1": {
+    "incumbent_upper_bound_minutes": 29659,
+    "enhanced_global_lower_bound_minutes": 14125,
+    "certified_gap_percent": 52.375333,
+    "finite_candidate_pool_reference_minutes": 15198,
+    "candidate_pool_reference_is_global_bound": false
+  },
+  "stage2": {
+    "served_optional_incumbent": 158,
+    "optional_upper_bound": 160,
+    "proven_optimal_for_original_problem": false,
+    "fixed_flight_assignment_optimal_only": true
+  }
+}

@@ -57,8 +57,7 @@ def test_project_mandatory_only_removes_optional_only() -> None:
 def test_projection_cannot_increase_aircraft_time() -> None:
     _data, people, _variants, flights = _loaded_best()
     projected = project_mandatory_only(flights, people)
-    assert schedule_metrics(projected, people)["total_aircraft_time_minutes"] == 30510
-    assert schedule_metrics(flights, people)["total_aircraft_time_minutes"] == 30510
+    assert schedule_metrics(projected, people)["total_aircraft_time_minutes"] == schedule_metrics(flights, people)["total_aircraft_time_minutes"]
 
 
 def test_extended_seed_modes_are_deterministic() -> None:

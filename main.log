@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.7.13)  15 AUG 2026 17:08
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.7.13)  15 AUG 2026 21:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/王智铠/Desktop/B题论文模板/main.tex
-(c:/Users/王智铠/Desktop/B题论文模板/main.tex
+**./main.tex
+(main.tex
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-06-18>
 (D:\CTEX\MiKTeX\tex/latex/ctex\ctexart.cls
@@ -1213,58 +1213,72 @@ File: figures/q3_gantt.pdf Graphic file (type pdf)
 <use figures/q3_gantt.pdf>
 File: figures/q3_time_window_margin.pdf Graphic file (type pdf)
 <use figures/q3_time_window_margin.pdf>
+ [35]
 File: figures/q3_aircraft_utilization.pdf Graphic file (type pdf)
 <use figures/q3_aircraft_utilization.pdf>
- [35] [36] [37] (main.bbl) [38] [39
+ [36] [37] (main.bbl [38]) [39] [40
 
 ]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 2528.
- (code/scripts/04_solve_q1_alns.py [40] [41] [42] [43] [44] [45] [46] [47] [48]
-) (code/src/solver/baseline.py
-[49] [50] [51] [52] [53] [54] [55] [56] [57] [58]) (code/src/solver/improve.py
-[59] [60] [61] [62] [63] [64] [65]) (code/src/solver/alns.py [66] [67] [68]
-[69] [70] [71] [72] [73] [74] [75] [76] [77] [78] [79] [80] [81] [82] [83]
-[84] [85] [86] [87] [88]) (code/src/solver/technical_stops.py [89] [90]
-[91] [92] [93] [94]) (code/src/solver/evaluator.py [95] [96] [97] [98])
-(code/src/solver/models.py [99] [100] [101] [102] [103])
-(code/src/solver/exporter.py [104] [105])
-(code/src/validation/solution_validator.py [106] [107] [108] [109] [110]
-[111] [112] [113] [114] [115] [116] [117] [118] [119] [120] [121] [122]
-[123] [124] [125] [126]) (code/scripts/plot_q1_alns.py [127] [128] [129]
-[130]) [131] (code/src/solver/q2.py [132] [133] [134] [135] [136] [137]
-[138] [139] [140] [141] [142] [143] [144] [145] [146] [147] [148] [149]
-[150] [151] [152] [153]) (code/scripts/05_solve_q2.py [154] [155] [156]
-[157] [158] [159] [160] [161] [162] [163] [164])
-(code/scripts/plot_q2_results.py [165] [166] [167] [168] [169] [170] [171])
-(code/src/solver/q3.py [172] [173] [174] [175] [176] [177] [178] [179] [180]
-[181] [182] [183] [184] [185] [186] [187] [188] [189] [190] [191] [192]
-[193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203] [204]
-[205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215] [216]
-[217] [218] [219] [220] [221] [222] [223] [224] [225] [226])
-(code/scripts/06_solve_q3.py [227] [228] [229] [230] [231] [232] [233] [234]
-[235] [236] [237]
-Overfull \hbox (73.05931pt too wide) in paragraph at lines 361--362
-[][][][] 
- []
+nput line 2530.
 
-[238]) [239] (code/scripts/07_finalize_q3_results.py [240] [241] [242] [243]
+(code/scripts/04_solve_q1_alns.py [41] [42] [43] [44] [45] [46] [47] [48]
+[49]) (code/src/solver/baseline.py [50] [51] [52] [53] [54] [55] [56] [57]
+[58] [59]) (code/src/solver/improve.py [60] [61] [62] [63] [64] [65] [66])
+(code/src/solver/alns.py [67] [68] [69] [70] [71] [72] [73] [74] [75] [76]
+[77] [78] [79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89])
+(code/src/solver/technical_stops.py [90] [91] [92] [93] [94] [95])
+(code/src/solver/evaluator.py [96] [97] [98] [99]) (code/src/solver/models.py
+[100] [101] [102] [103] [104]) (code/src/solver/exporter.py [105] [106])
+(code/src/validation/solution_validator.py [107] [108] [109] [110] [111]
+[112] [113] [114] [115] [116] [117] [118] [119] [120] [121] [122] [123]
+[124] [125] [126] [127]) [128] (code/scripts/plot_q1_alns.py [129] [130]
+[131] [132]) (code/src/solver/q2.py [133] [134] [135] [136] [137] [138]
+[139] [140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150]
+[151] [152] [153] [154]) (code/scripts/05_solve_q2.py [155] [156] [157]
+[158] [159] [160] [161] [162] [163] [164] [165])
+(code/scripts/plot_q2_results.py [166] [167] [168] [169] [170] [171] [172])
+(code/src/solver/q3.py [173] [174] [175] [176] [177] [178] [179] [180] [181]
+[182] [183] [184] [185] [186] [187] [188] [189] [190] [191] [192] [193]
+[194] [195] [196] [197] [198] [199] [200] [201] [202] [203] [204] [205]
+[206] [207] [208] [209] [210] [211] [212] [213] [214] [215] [216] [217]
+[218] [219] [220] [221] [222] [223] [224] [225] [226] [227] [228] [229])
+(code/scripts/06_solve_q3.py [230] [231] [232] [233] [234] [235] [236] [237]
+[238] [239] [240] [241] [242] [243] [244] [245] [246] [247] [248] [249]
+[250] [251] [252]) (code/scripts/07_finalize_q3_results.py [253] [254] [255]
+[256]
 Overfull \hbox (73.05931pt too wide) in paragraph at lines 124--125
 [][][][] 
  []
 
-[244]) [245] (code/src/solver/q3_bounds.py [246] [247] [248] [249] [250]
-[251] [252] [253] [254] [255] [256])
-(code/scripts/08_compute_q3_enhanced_bounds.py [257] [258] [259]
+[257] [258]) (code/src/solver/q3_bounds.py [259] [260] [261] [262] [263]
+[264] [265] [266] [267] [268] [269] [270])
+(code/scripts/08_compute_q3_enhanced_bounds.py [271] [272] [273]
 Overfull \hbox (15.24278pt too wide) in paragraph at lines 97--98
 [][][][] 
  []
 
-[260]) (code/src/solver/q3_timing.py [261] [262] [263] [264])
-(code/scripts/09_optimize_q3_p0_p1.py [265] [266] [267] [268] [269] [270]
-[271] [272] [273] [274] [275] [276] [277] [278] [279] [280] [281])
-(code/scripts/plot_q3_results.py [282] [283] [284] [285] [286] [287]) [288]
-[289] (main.aux)
+[274]) (code/src/solver/q3_timing.py [275] [276] [277])
+(code/scripts/09_optimize_q3_p0_p1.py [278] [279] [280] [281] [282] [283]
+[284] [285] [286] [287] [288] [289] [290] [291] [292] [293] [294])
+(code/src/solver/q3_closure_p2.py [295] [296] [297] [298] [299] [300] [301]
+[302] [303] [304] [305] [306] [307] [308] [309] [310] [311] [312] [313]
+[314] [315] [316]
+Overfull \hbox (29.69691pt too wide) in paragraph at lines 746--747
+[][] 
+ []
+
+
+Overfull \hbox (29.69691pt too wide) in paragraph at lines 750--751
+[][] 
+ []
+
+[317] [318] [319] [320] [321] [322] [323] [324] [325] [326] [327] [328]
+[329] [330]) (code/scripts/10_resume_q3_p2.py [331] [332] [333] [334] [335]
+[336] [337] [338] [339] [340] [341] [342] [343])
+(code/scripts/11_finalize_q3_p2_feedback.py [344] [345] [346] [347] [348]
+[349] [350]) (code/scripts/plot_q3_results.py [351] [352] [353] [354] [355]
+[356] [357]) [358] (main.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026/07/01>
@@ -1273,12 +1287,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 43463BF1985E72A4FD8CDBF27BDB1955;10369.
  ) 
 Here is how much of TeX's memory you used:
- 25529 strings out of 404571
- 530099 string characters out of 5472518
- 1370617 words of memory out of 5000000
- 54091 multiletter control sequences out of 15000+600000
+ 25755 strings out of 404571
+ 534235 string characters out of 5472518
+ 1373617 words of memory out of 5000000
+ 54309 multiletter control sequences out of 15000+600000
  638805 words of font info for 124 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 93i,12n,111p,3265b,5392s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,12n,111p,3239b,5506s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (289 pages).
+Output written on main.pdf (358 pages).
