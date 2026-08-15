@@ -1,0 +1,127 @@
+[
+  {
+    "round": 1,
+    "before_stage1": {
+      "total_aircraft_time_minutes": 30180,
+      "total_passenger_travel_time_minutes": 240363,
+      "total_flights": 171,
+      "total_fuel_consumption_kg": 239702.3,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "after_stage1": {
+      "total_aircraft_time_minutes": 30180,
+      "total_passenger_travel_time_minutes": 240363,
+      "total_flights": 171,
+      "total_fuel_consumption_kg": 239702.3,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "stage1_validator": true,
+    "stage1_polish": {
+      "rounds": [
+        {
+          "round": 1,
+          "before": {
+            "total_aircraft_time_minutes": 30180,
+            "total_passenger_travel_time_minutes": 240363,
+            "total_flights": 171,
+            "total_fuel_consumption_kg": 239702.3,
+            "served_mandatory": 3840,
+            "served_optional": 0
+          },
+          "after": {
+            "total_aircraft_time_minutes": 30180,
+            "total_passenger_travel_time_minutes": 240363,
+            "total_flights": 171,
+            "total_fuel_consumption_kg": 239702.3,
+            "served_mandatory": 3840,
+            "served_optional": 0
+          },
+          "assignment": {
+            "variables": 8165,
+            "constraints": 4423,
+            "stage1_status": 0,
+            "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+            "stage2_status": 0,
+            "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+            "served_temporary": 0,
+            "temporary_upper_bound": 0,
+            "fixed_flight_optimal": true,
+            "all_optional_served": true
+          },
+          "shortening": {
+            "replacement_count": 0,
+            "saved_aircraft_time_minutes": 0,
+            "replacements": []
+          },
+          "retype_rehome": {
+            "move_count": 0,
+            "saved_aircraft_time_minutes": 0,
+            "moves": []
+          }
+        }
+      ],
+      "destroy_repair": {
+        "trial_count": 10,
+        "accepted_move_count": 0,
+        "saved_aircraft_time_minutes": 0,
+        "moves": []
+      },
+      "multiflight_rr": {
+        "trials": 10,
+        "accepted_count": 0,
+        "two_to_one_count": 0,
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 0.453178,
+        "rejection_reasons": {
+          "no_concrete_option": 9,
+          "no_route_candidates": 1
+        },
+        "moves": []
+      },
+      "final_assignment": {
+        "variables": 8165,
+        "constraints": 4423,
+        "stage1_status": 0,
+        "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "stage2_status": 0,
+        "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "served_temporary": 0,
+        "temporary_upper_bound": 0,
+        "fixed_flight_optimal": true,
+        "all_optional_served": true
+      },
+      "runtime_seconds": 12.010302
+    },
+    "stage2": {
+      "total_aircraft_time_minutes": 30180,
+      "total_passenger_travel_time_minutes": 250013,
+      "total_flights": 171,
+      "total_fuel_consumption_kg": 239702.3,
+      "served_mandatory": 3840,
+      "served_optional": 158
+    },
+    "stage2_validator": true,
+    "stage2_trace": {
+      "selected": "previous_stage2",
+      "cap": 30180,
+      "details": {
+        "warm_start": true,
+        "multiflight_rr": {
+          "trials": 10,
+          "accepted_count": 0,
+          "two_to_one_count": 0,
+          "saved_aircraft_time_minutes": 0,
+          "runtime_seconds": 0.467308,
+          "rejection_reasons": {
+            "no_concrete_option": 9,
+            "no_route_candidates": 1
+          },
+          "moves": []
+        }
+      }
+    },
+    "projection_strictly_improves_stage1": false
+  }
+]

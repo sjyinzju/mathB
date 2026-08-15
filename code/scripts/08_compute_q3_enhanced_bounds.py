@@ -29,6 +29,12 @@ def main() -> int:
     parser.add_argument(
         "--bounds-summary", type=Path, default=ROOT / "outputs/q3/best/q3-bounds.json"
     )
+    parser.add_argument(
+        "--incumbent-metrics",
+        type=Path,
+        default=ROOT / "outputs/q3/best/metrics.json",
+        help="用于计算相对间隙的现行解 metrics.json",
+    )
     parser.add_argument("--time-limit", type=float, default=300.0)
     args = parser.parse_args()
 
@@ -44,7 +50,7 @@ def main() -> int:
         mandatory, variants, data, time_limit_seconds=args.time_limit
     )
     incumbent = json.loads(
-        (ROOT / "outputs/q3/best/metrics.json").read_text(encoding="utf-8")
+        args.incumbent_metrics.read_text(encoding="utf-8")
     )["baseline_metrics"]["total_aircraft_time_minutes"]
     global_lower_bound = max(passenger_work, network.objective_minutes_integer_ceiling)
     payload = {

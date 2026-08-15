@@ -18,6 +18,7 @@ from ..data_pipeline import TIME_FORMAT
 from ..io_utils import write_csv
 from .data import ProblemData
 from .q2 import Q2RouteVariant, assignment_interval
+from .q3_timing import Q3FlightTiming, schedule_route_timing
 
 
 @dataclass(frozen=True)
@@ -76,10 +77,27 @@ class Q3Flight:
     person_ids: list[str] = field(default_factory=list)
     assignment_intervals: dict[str, tuple[int, int]] = field(default_factory=dict)
     flight_no: int = 0
+    timing: Q3FlightTiming | None = None
+
+    @property
+    def duration(self) -> int:
+        return self.timing.duration if self.timing is not None else self.variant.duration
+
+    @property
+    def arrivals(self) -> tuple[int, ...]:
+        if self.timing is not None:
+            return self.timing.arrivals
+        return tuple(self.start + value for value in self.variant.source.arrivals)
+
+    @property
+    def departures(self) -> tuple[int, ...]:
+        if self.timing is not None:
+            return self.timing.departures
+        return tuple(self.start + value for value in self.variant.source.departures)
 
     @property
     def end(self) -> int:
-        return self.start + self.variant.duration
+        return self.arrivals[-1]
 
 @dataclass(frozen=True)
 class Q3ScheduleStats:
@@ -98,6 +116,47 @@ class Q3ScheduleStats:
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class Q3PersonFlexibility:
+    feasible_day_count: int
+    compatible_variant_count: int
+    best_duration: int
+    second_best_duration: int
+    regret_proxy: int
+    od_demand: int
+    window_width: int
+
+
+def build_flexibility_profiles(
+    people: Iterable[Q3Person],
+    variants: dict[tuple[str, str], tuple[Q3Variant, ...]],
+    config: ProblemConfig,
+) -> dict[str, Q3PersonFlexibility]:
+    people_list = list(people)
+    od_demand = Counter(person.od for person in people_list if person.mandatory)
+    profiles: dict[str, Q3PersonFlexibility] = {}
+    for person in people_list:
+        compatible = variants[person.od]
+        feasible_days = {
+            day
+            for variant in compatible
+            for day, _lower, _upper in _person_day_intervals(person, variant, config)
+        }
+        durations = sorted({variant.duration for variant in compatible})
+        best = durations[0]
+        second = durations[1] if len(durations) > 1 else best + 10**6
+        profiles[person.person_id] = Q3PersonFlexibility(
+            feasible_day_count=len(feasible_days),
+            compatible_variant_count=len(compatible),
+            best_duration=best,
+            second_best_duration=second,
+            regret_proxy=second - best,
+            od_demand=od_demand[person.od],
+            window_width=person.latest - person.earliest,
+        )
+    return profiles
 
 
 def load_q3_people(path: Path, config: ProblemConfig) -> dict[str, Q3Person]:
@@ -240,10 +299,83 @@ def _fleet_slot(
     return aircraft_id, slot
 
 
-def _seed_key(person: Q3Person, mode: str, rng: random.Random) -> tuple[object, ...]:
+def _seed_key(
+    person: Q3Person,
+    mode: str,
+    rng: random.Random,
+    profile: Q3PersonFlexibility | None = None,
+    *,
+    hard_day_threshold: int = 1,
+    hard_window_minutes: int = 720,
+) -> tuple[object, ...]:
     slack = person.latest - person.earliest
     noise = rng.random()
+    if profile is not None:
+        if mode == "day_scarcity":
+            return (
+                profile.feasible_day_count,
+                person.priority,
+                person.latest,
+                slack,
+                noise,
+                person.person_id,
+            )
+        if mode == "route_scarcity":
+            return (
+                profile.compatible_variant_count,
+                profile.feasible_day_count,
+                person.latest,
+                noise,
+                person.person_id,
+            )
+        if mode in {"criticality", "randomized_criticality"}:
+            return (
+                person.priority,
+                profile.feasible_day_count,
+                profile.compatible_variant_count,
+                slack,
+                person.latest,
+                noise if mode.startswith("randomized") else 0.0,
+                person.person_id,
+            )
+        if mode == "od_density":
+            return (
+                person.priority,
+                -profile.od_demand,
+                profile.feasible_day_count,
+                person.latest,
+                noise,
+                person.person_id,
+            )
+        if mode == "regret_proxy":
+            return (
+                -profile.regret_proxy,
+                profile.feasible_day_count,
+                person.priority,
+                person.latest,
+                noise,
+                person.person_id,
+            )
+        if mode == "flexible_regret":
+            hard = (
+                person.task_type in {"emergency", "production"}
+                or profile.feasible_day_count <= hard_day_threshold
+                or profile.window_width <= hard_window_minutes
+                or profile.compatible_variant_count <= 2
+            )
+            return (
+                0 if hard else 1,
+                -profile.regret_proxy,
+                profile.feasible_day_count,
+                person.priority,
+                person.latest,
+                -profile.od_demand,
+                noise,
+                person.person_id,
+            )
     if mode == "deadline":
+        return person.latest, person.priority, slack, noise, person.person_id
+    if mode == "randomized_deadline":
         return person.latest, person.priority, slack, noise, person.person_id
     if mode == "slack":
         return slack, person.priority, person.latest, noise, person.person_id
@@ -398,6 +530,9 @@ def build_mandatory_schedule(
     mode: str = "priority",
     seed: int = 0,
     guide_optional_ids: Sequence[str] = (),
+    flexibility_profiles: dict[str, Q3PersonFlexibility] | None = None,
+    hard_day_threshold: int = 1,
+    hard_window_minutes: int = 720,
 ) -> tuple[list[Q3Flight], Q3ScheduleStats]:
     started = time.perf_counter()
     mandatory = {pid: person for pid, person in people.items() if person.mandatory}
@@ -411,7 +546,23 @@ def build_mandatory_schedule(
     for person in mandatory.values():
         by_od[person.od].add(person.person_id)
     rng = random.Random(seed)
-    heap = [(_seed_key(person, mode, rng), person.person_id) for person in mandatory.values()]
+    profiles = flexibility_profiles or build_flexibility_profiles(
+        mandatory.values(), variants, data.config
+    )
+    heap = [
+        (
+            _seed_key(
+                person,
+                mode,
+                rng,
+                profiles.get(person.person_id),
+                hard_day_threshold=hard_day_threshold,
+                hard_window_minutes=hard_window_minutes,
+            ),
+            person.person_id,
+        )
+        for person in mandatory.values()
+    ]
     heapq.heapify(heap)
     calendars: dict[str, list[tuple[int, int]]] = {
         aircraft_id: [] for aircraft_id in data.config.fleet_ids
@@ -518,12 +669,12 @@ def _flight_accepts_person(
     assignment = _assignment_for_person(person, flight.variant, config)
     if assignment is None:
         return None
-    if not any(
-        lo <= flight.start <= hi
-        for _, lo, hi in _person_day_intervals(person, flight.variant, config, assignment)
+    pickup, delivery = assignment
+    if (
+        flight.departures[pickup] < person.earliest
+        or flight.arrivals[delivery] > person.latest
     ):
         return None
-    pickup, delivery = assignment
     loads = [0] * (len(flight.variant.source.route.stops) - 1)
     for existing_pickup, existing_delivery in flight.assignment_intervals.values():
         for leg in range(existing_pickup, existing_delivery):
@@ -555,8 +706,8 @@ def insert_optional_people(
                 choices,
                 key=lambda item: (
                     item[0].variant.capacity - len(item[0].person_ids),
-                    item[0].variant.source.arrivals[item[1][1]]
-                    - item[0].variant.source.departures[item[1][0]],
+                    item[0].arrivals[item[1][1]]
+                    - item[0].departures[item[1][0]],
                     item[0].start,
                     item[0].aircraft_id,
                 ),
@@ -576,12 +727,8 @@ def insert_optional_people(
             flight
             for flight in flights
             if (assignment := _assignment_for_person(person, flight.variant, config)) is not None
-            and any(
-                lo <= flight.start <= hi
-                for _, lo, hi in _person_day_intervals(
-                    person, flight.variant, config, assignment
-                )
-            )
+            and flight.departures[assignment[0]] >= person.earliest
+            and flight.arrivals[assignment[1]] <= person.latest
         ]
         for target in full_targets:
             for moved_id in list(target.person_ids):
@@ -657,17 +804,14 @@ def optimize_fixed_flight_assignments(
             assignment = _assignment_for_person(person, flight.variant, config)
             if assignment is None:
                 continue
-            if not any(
-                lo <= flight.start <= hi
-                for _, lo, hi in _person_day_intervals(
-                    person, flight.variant, config, assignment
-                )
+            pickup, delivery = assignment
+            if (
+                flight.departures[pickup] < person.earliest
+                or flight.arrivals[delivery] > person.latest
             ):
                 continue
-            pickup, delivery = assignment
             passenger_time = (
-                flight.variant.source.arrivals[delivery]
-                - flight.variant.source.departures[pickup]
+                flight.arrivals[delivery] - flight.departures[pickup]
             )
             column = len(options)
             options.append((person_id, flight_index, assignment, passenger_time))
@@ -831,7 +975,7 @@ def shorten_fixed_flight_routes(
 
     replacements: list[dict[str, object]] = []
     # Long flights first: route pruning there has the largest potential gain.
-    for flight in sorted(flights, key=lambda item: (-item.variant.duration, item.start)):
+    for flight in sorted(flights, key=lambda item: (-item.duration, item.start)):
         current_interval = (flight.start, flight.end)
         aircraft_calendar = calendars[flight.aircraft_id]
         aircraft_calendar.remove(current_interval)
@@ -841,7 +985,7 @@ def shorten_fixed_flight_routes(
         ] | None = None
         pool = pools[(flight.variant.base_airport, flight.variant.aircraft_type)]
         for candidate in pool:
-            if candidate.duration >= flight.variant.duration:
+            if candidate.duration >= flight.duration:
                 break
             assignments: dict[str, tuple[int, int]] = {}
             loads = [0] * (len(candidate.source.route.stops) - 1)
@@ -905,11 +1049,12 @@ def shorten_fixed_flight_routes(
             aircraft_calendar.sort()
             continue
         _, candidate, start, assignments = best
-        old_duration = flight.variant.duration
+        old_duration = flight.duration
         old_key = flight.variant.key
         flight.variant = candidate
         flight.start = start
         flight.assignment_intervals = assignments
+        flight.timing = None
         aircraft_calendar.append((flight.start, flight.end))
         aircraft_calendar.sort()
         replacements.append(
@@ -967,7 +1112,7 @@ def retype_and_rehome_flights(
     moves: list[dict[str, object]] = []
     for pass_index in range(maximum_passes):
         pass_moves = 0
-        for flight in sorted(flights, key=lambda item: (-item.variant.duration, item.start)):
+        for flight in sorted(flights, key=lambda item: (-item.duration, item.start)):
             old_aircraft = flight.aircraft_id
             old_interval = (flight.start, flight.end)
             calendars[old_aircraft].remove(old_interval)
@@ -980,7 +1125,7 @@ def retype_and_rehome_flights(
                 dict[str, tuple[int, int]],
             ] | None = None
             for candidate in unique:
-                if candidate.duration >= flight.variant.duration:
+                if candidate.duration >= flight.duration:
                     break
                 assignments: dict[str, tuple[int, int]] = {}
                 loads = [0] * (len(candidate.source.route.stops) - 1)
@@ -1048,13 +1193,14 @@ def retype_and_rehome_flights(
                 calendars[old_aircraft].sort()
                 continue
             _, candidate, aircraft_id, start, assignments = best
-            old_duration = flight.variant.duration
+            old_duration = flight.duration
             old_base = flight.variant.base_airport
             old_type = flight.variant.aircraft_type
             flight.variant = candidate
             flight.aircraft_id = aircraft_id
             flight.start = start
             flight.assignment_intervals = assignments
+            flight.timing = None
             calendars[aircraft_id].append((flight.start, flight.end))
             calendars[aircraft_id].sort()
             pass_moves += 1
@@ -1122,7 +1268,7 @@ def destroy_repair_route_descent(
             for candidate in pools[
                 (flight.variant.base_airport, flight.variant.aircraft_type)
             ]:
-                if candidate.duration >= flight.variant.duration:
+                if candidate.duration >= flight.duration:
                     continue
                 candidate_facilities = {
                     stop.facility_id
@@ -1133,7 +1279,7 @@ def destroy_repair_route_descent(
                 ):
                     continue
                 proposals.append(
-                    (flight.variant.duration - candidate.duration, index, candidate)
+                    (flight.duration - candidate.duration, index, candidate)
                 )
         proposals.sort(
             key=lambda item: (-item[0], item[2].duration, item[1], item[2].key)
@@ -1144,11 +1290,12 @@ def destroy_repair_route_descent(
             trials += 1
             trial = deepcopy(incumbent)
             old = trial[index]
-            old_duration = old.variant.duration
+            old_duration = old.duration
             old_key = old.variant.key
             old.variant = candidate
             old.person_ids.clear()
             old.assignment_intervals.clear()
+            old.timing = None
             try:
                 repaired, unserved, milp_stats = optimize_fixed_flight_assignments(
                     trial,
@@ -1190,8 +1337,391 @@ def destroy_repair_route_descent(
     }
 
 
+def multiflight_ruin_recreate_descent(
+    baseline: Sequence[Q3Flight],
+    people: dict[str, Q3Person],
+    variants_by_od: dict[tuple[str, str], tuple[Q3Variant, ...]],
+    config: ProblemConfig,
+    *,
+    minimum_optional_served: int = 0,
+    maximum_trials: int = 50,
+    maximum_neighbors: int = 8,
+    route_limit: int = 100,
+    assignment_time_limit_seconds: float = 20.0,
+) -> tuple[list[Q3Flight], dict[str, object]]:
+    """Same-day 2-to-1 ruin-and-recreate over the cached route pool.
+
+    This is the first structural P1-C neighbourhood: two related old flights
+    may be replaced by one route, concrete aircraft and time-aware timetable.
+    A global fixed-flight assignment MILP is then used as a repair step.  Only
+    strict aircraft-time improvements preserving mandatory and optional service
+    are accepted.
+    """
+
+    started = time.perf_counter()
+    incumbent = deepcopy(list(baseline))
+    required_mandatory = sum(person.mandatory for person in people.values())
+    rejections: Counter[str] = Counter()
+    accepted: list[dict[str, object]] = []
+    trials = 0
+
+    def facilities(flight: Q3Flight) -> frozenset[str]:
+        return frozenset(
+            stop.facility_id for stop in flight.variant.source.route.stops[1:-1]
+        )
+
+    while trials < maximum_trials:
+        pair_scores: list[tuple[float, int, int]] = []
+        for left, flight in enumerate(incumbent):
+            candidates: list[tuple[float, int]] = []
+            left_facilities = facilities(flight)
+            for right, other in enumerate(incumbent):
+                if right <= left or other.start // 1440 != flight.start // 1440:
+                    continue
+                right_facilities = facilities(other)
+                union = left_facilities | right_facilities
+                jaccard = len(left_facilities & right_facilities) / max(1, len(union))
+                same_base = flight.variant.base_airport == other.variant.base_airport
+                time_proximity = max(0.0, 1.0 - abs(flight.start - other.start) / 720.0)
+                score = 2.0 * jaccard + float(same_base) + 0.25 * time_proximity
+                candidates.append((-score, right))
+            for negative_score, right in sorted(candidates)[:maximum_neighbors]:
+                pair_scores.append((negative_score, left, right))
+        if not pair_scores:
+            break
+        improved = False
+        for _negative_score, left, right in sorted(set(pair_scores)):
+            if trials >= maximum_trials:
+                break
+            trials += 1
+            selected = (incumbent[left], incumbent[right])
+            day = selected[0].start // 1440
+            ruined_ids = sorted(
+                {person_id for flight in selected for person_id in flight.person_ids}
+            )
+            if not ruined_ids:
+                rejections["empty_neighborhood"] += 1
+                continue
+            common_keys: set[tuple[object, ...]] | None = None
+            key_to_variant: dict[tuple[object, ...], Q3Variant] = {}
+            for person_id in ruined_ids:
+                od_variants = variants_by_od[people[person_id].od]
+                keys = {variant.key for variant in od_variants}
+                key_to_variant.update({variant.key: variant for variant in od_variants})
+                common_keys = keys if common_keys is None else common_keys & keys
+                if not common_keys:
+                    break
+            if not common_keys:
+                rejections["no_route_candidates"] += 1
+                continue
+            old_time = sum(flight.duration for flight in selected)
+            candidates = sorted(
+                (key_to_variant[key] for key in common_keys),
+                key=lambda variant: (variant.duration, -variant.capacity, variant.key),
+            )[:route_limit]
+            unaffected = [
+                deepcopy(flight)
+                for index, flight in enumerate(incumbent)
+                if index not in {left, right}
+            ]
+            calendars: dict[str, list[tuple[int, int]]] = defaultdict(list)
+            for flight in unaffected:
+                calendars[flight.aircraft_id].append((flight.start, flight.end))
+            for values in calendars.values():
+                values.sort()
+
+            best: tuple[
+                tuple[object, ...], Q3Variant, str, Q3FlightTiming, dict[str, tuple[int, int]]
+            ] | None = None
+            for candidate in candidates:
+                if candidate.duration >= old_time:
+                    break
+                assignments: dict[str, tuple[int, int]] = {}
+                loads = [0] * (len(candidate.source.route.stops) - 1)
+                feasible = True
+                for person_id in ruined_ids:
+                    assignment = _assignment_for_person(
+                        people[person_id], candidate, config
+                    )
+                    if assignment is None:
+                        feasible = False
+                        break
+                    pickup, delivery = assignment
+                    for leg in range(pickup, delivery):
+                        loads[leg] += 1
+                        if loads[leg] > candidate.capacity:
+                            feasible = False
+                            break
+                    if not feasible:
+                        break
+                    assignments[person_id] = assignment
+                if not feasible:
+                    continue
+                for aircraft_id in _compatible_aircraft(config, candidate):
+                    event_uppers = {day * 1440 + 1080}
+                    for start, _end in calendars[aircraft_id]:
+                        if start // 1440 == day:
+                            event_uppers.add(start - config.turnaround_minutes)
+                    for upper in sorted(event_uppers, reverse=True):
+                        timing = schedule_route_timing(
+                            candidate,
+                            assignments,
+                            people,
+                            day,
+                            config,
+                            start_upper=upper,
+                        )
+                        if timing is None:
+                            continue
+                        conflict = any(
+                            not (
+                                timing.arrivals[-1] + config.turnaround_minutes <= start
+                                or end + config.turnaround_minutes <= timing.departures[0]
+                            )
+                            for start, end in calendars[aircraft_id]
+                        )
+                        if conflict:
+                            continue
+                        score = (
+                            timing.duration,
+                            sum(timing.waiting_minutes),
+                            timing.departures[0],
+                            candidate.fuel_kg,
+                            aircraft_id,
+                        )
+                        if best is None or score < best[0]:
+                            best = (score, candidate, aircraft_id, timing, assignments)
+            if best is None:
+                rejections["no_concrete_option"] += 1
+                continue
+            _score, candidate, aircraft_id, timing, assignments = best
+            replacement = Q3Flight(
+                variant=candidate,
+                aircraft_id=aircraft_id,
+                start=timing.departures[0],
+                person_ids=list(ruined_ids),
+                assignment_intervals=assignments,
+                timing=timing,
+            )
+            trial = unaffected + [replacement]
+            try:
+                repaired, _unserved, milp_stats = optimize_fixed_flight_assignments(
+                    trial,
+                    people,
+                    config,
+                    time_limit_seconds=assignment_time_limit_seconds,
+                )
+            except RuntimeError:
+                rejections["assignment_milp"] += 1
+                continue
+            repaired = [flight for flight in repaired if flight.person_ids]
+            metrics = schedule_metrics(repaired, people)
+            if int(metrics["served_mandatory"]) != required_mandatory:
+                rejections["mandatory_coverage"] += 1
+                continue
+            if int(metrics["served_optional"]) < minimum_optional_served:
+                rejections["optional_service"] += 1
+                continue
+            before = schedule_metrics(incumbent, people)
+            if int(metrics["total_aircraft_time_minutes"]) >= int(
+                before["total_aircraft_time_minutes"]
+            ):
+                rejections["no_saving"] += 1
+                continue
+            incumbent = repaired
+            accepted.append(
+                {
+                    "move": "2->1",
+                    "old_aircraft_time_minutes": before[
+                        "total_aircraft_time_minutes"
+                    ],
+                    "new_aircraft_time_minutes": metrics[
+                        "total_aircraft_time_minutes"
+                    ],
+                    "saved_minutes": int(before["total_aircraft_time_minutes"])
+                    - int(metrics["total_aircraft_time_minutes"]),
+                    "old_flights": before["total_flights"],
+                    "new_flights": metrics["total_flights"],
+                    "waiting_minutes": sum(timing.waiting_minutes),
+                    "assignment_milp": milp_stats,
+                }
+            )
+            improved = True
+            break
+        if not improved:
+            break
+    return incumbent, {
+        "trials": trials,
+        "accepted_count": len(accepted),
+        "two_to_one_count": sum(move["move"] == "2->1" for move in accepted),
+        "saved_aircraft_time_minutes": sum(
+            int(move["saved_minutes"]) for move in accepted
+        ),
+        "runtime_seconds": round(time.perf_counter() - started, 6),
+        "rejection_reasons": dict(sorted(rejections.items())),
+        "moves": accepted,
+    }
+
+
 def _timestamp(config: ProblemConfig, minutes: int) -> str:
     return (config.planning_start + timedelta(minutes=minutes)).strftime(TIME_FORMAT)
+
+
+def project_mandatory_only(
+    flights: Sequence[Q3Flight], people: dict[str, Q3Person]
+) -> list[Q3Flight]:
+    """Strictly project a schedule by deleting optional assignments only."""
+
+    projected = deepcopy(list(flights))
+    for flight in projected:
+        keep = [person_id for person_id in flight.person_ids if people[person_id].mandatory]
+        flight.person_ids = keep
+        flight.assignment_intervals = {
+            person_id: flight.assignment_intervals[person_id] for person_id in keep
+        }
+    return projected
+
+
+def schedule_metrics(
+    flights: Sequence[Q3Flight], people: dict[str, Q3Person]
+) -> dict[str, object]:
+    assigned = {
+        person_id for flight in flights for person_id in flight.person_ids
+    }
+    passenger_time = sum(
+        flight.arrivals[delivery] - flight.departures[pickup]
+        for flight in flights
+        for pickup, delivery in flight.assignment_intervals.values()
+    )
+    return {
+        "total_aircraft_time_minutes": sum(flight.duration for flight in flights),
+        "total_passenger_travel_time_minutes": passenger_time,
+        "total_flights": len(flights),
+        "total_fuel_consumption_kg": round(
+            sum(flight.variant.fuel_kg for flight in flights), 6
+        ),
+        "served_mandatory": sum(
+            person.mandatory and person_id in assigned
+            for person_id, person in people.items()
+        ),
+        "served_optional": sum(
+            (not person.mandatory) and person_id in assigned
+            for person_id, person in people.items()
+        ),
+    }
+
+
+def schedule_comparison_key(
+    flights: Sequence[Q3Flight], people: dict[str, Q3Person], *, stage: int = 1
+) -> tuple[float, ...]:
+    metrics = schedule_metrics(flights, people)
+    base = (
+        float(metrics["total_aircraft_time_minutes"]),
+        float(metrics["total_passenger_travel_time_minutes"]),
+        float(metrics["total_flights"]),
+        float(metrics["total_fuel_consumption_kg"]),
+    )
+    if stage == 2:
+        return (-float(metrics["served_optional"]),) + base
+    return base
+
+
+def load_q3_schedule(
+    routes_path: Path,
+    assignments_path: Path,
+    people: dict[str, Q3Person],
+    variants_by_od: dict[tuple[str, str], tuple[Q3Variant, ...]],
+    config: ProblemConfig,
+) -> list[Q3Flight]:
+    """Reconstruct and verifyable in-memory flights from exported Q3 CSV files."""
+
+    unique = {
+        variant.key: variant
+        for values in variants_by_od.values()
+        for variant in values
+    }
+    by_signature: dict[
+        tuple[str, str, tuple[tuple[str, int], ...]], list[Q3Variant]
+    ] = defaultdict(list)
+    for variant in unique.values():
+        signature = (
+            variant.base_airport,
+            variant.aircraft_type,
+            tuple(
+                (stop.facility_id, int(stop.refuel))
+                for stop in variant.source.route.stops
+            ),
+        )
+        by_signature[signature].append(variant)
+
+    with routes_path.open("r", encoding="utf-8-sig", newline="") as stream:
+        route_rows = list(csv.DictReader(stream))
+    grouped: dict[tuple[str, int], list[dict[str, str]]] = defaultdict(list)
+    for row in route_rows:
+        grouped[(row["aircraft_id"], int(row["flight_no"]))].append(row)
+
+    flights: list[Q3Flight] = []
+    flight_lookup: dict[tuple[str, int], Q3Flight] = {}
+    for key, rows in sorted(grouped.items()):
+        rows.sort(key=lambda row: int(row["stop_order"]))
+        aircraft_id, flight_no = key
+        base, aircraft_type, _tail = aircraft_id.split("-", 2)
+        signature = (
+            base,
+            aircraft_type,
+            tuple((row["facility_id"], int(row["refuel"])) for row in rows),
+        )
+        matches = by_signature.get(signature, [])
+        if not matches:
+            raise ValueError(f"No cached Q3 variant matches exported flight {key}")
+        variant = min(matches, key=lambda item: item.key)
+        start_dt = datetime.strptime(rows[0]["departure_time"], TIME_FORMAT)
+        start = round((start_dt - config.planning_start).total_seconds() / 60)
+        arrivals: list[int] = [start]
+        departures: list[int] = [start]
+        for index, row in enumerate(rows[1:], start=1):
+            arrival_dt = datetime.strptime(row["arrival_time"], TIME_FORMAT)
+            arrival = round((arrival_dt - config.planning_start).total_seconds() / 60)
+            arrivals.append(arrival)
+            if index == len(rows) - 1:
+                departures.append(arrival)
+            else:
+                departure_dt = datetime.strptime(row["departure_time"], TIME_FORMAT)
+                departures.append(
+                    round((departure_dt - config.planning_start).total_seconds() / 60)
+                )
+        timing = Q3FlightTiming(
+            arrivals=tuple(arrivals),
+            departures=tuple(departures),
+            duration=arrivals[-1] - start,
+            waiting_minutes=tuple(0 for _ in rows),
+        )
+        flight = Q3Flight(
+            variant=variant,
+            aircraft_id=aircraft_id,
+            start=start,
+            flight_no=flight_no,
+            timing=timing,
+        )
+        flights.append(flight)
+        flight_lookup[key] = flight
+
+    with assignments_path.open("r", encoding="utf-8-sig", newline="") as stream:
+        for row in csv.DictReader(stream):
+            if not row["aircraft_id"]:
+                continue
+            person_id = row["person_id"]
+            if person_id not in people:
+                raise ValueError(f"Unknown person in Q3 assignment CSV: {person_id}")
+            key = (row["aircraft_id"], int(row["flight_no"]))
+            flight = flight_lookup[key]
+            interval = (
+                int(row["pickup_stop_order"]),
+                int(row["delivery_stop_order"]),
+            )
+            flight.person_ids.append(person_id)
+            flight.assignment_intervals[person_id] = interval
+    return flights
 
 
 def export_q3_schedule(
@@ -1211,10 +1741,10 @@ def export_q3_schedule(
         stops = flight.variant.source.route.stops
         for stop_order, stop in enumerate(stops):
             arrival = "" if stop_order == 0 else _timestamp(
-                config, flight.start + flight.variant.source.arrivals[stop_order]
+                config, flight.arrivals[stop_order]
             )
             departure = "" if stop_order == len(stops) - 1 else _timestamp(
-                config, flight.start + flight.variant.source.departures[stop_order]
+                config, flight.departures[stop_order]
             )
             route_rows.append(
                 {

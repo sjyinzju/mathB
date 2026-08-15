@@ -1,0 +1,37 @@
+{
+  "old_stage1": {
+    "total_aircraft_time_minutes": 30546,
+    "total_passenger_travel_time_minutes": 241130,
+    "total_flights": 173,
+    "total_fuel_consumption_kg": 241607.7,
+    "seat_utilization": 0.5442587917325763,
+    "served_passengers": 3840,
+    "unserved_optional_passengers": 160
+  },
+  "old_stage2": {
+    "total_aircraft_time_minutes": 30510,
+    "total_passenger_travel_time_minutes": 249959,
+    "total_flights": 173,
+    "total_fuel_consumption_kg": 241133.6,
+    "seat_utilization": 0.5649971466164732,
+    "served_passengers": 4000,
+    "unserved_optional_passengers": 0
+  },
+  "projection": {
+    "total_aircraft_time_minutes": 30510,
+    "total_passenger_travel_time_minutes": 240522,
+    "total_flights": 173,
+    "total_fuel_consumption_kg": 241133.6,
+    "seat_utilization": 0.5435304935307028,
+    "served_passengers": 3840,
+    "unserved_optional_passengers": 160
+  },
+  "stage2_validator_valid": true,
+  "projection_validator_valid": true,
+  "projection_logically_applicable": true,
+  "route_cache": {
+    "path": "/workspace/scratch/279375cee990/deliverables/mathB_Q1_Q2_Q3_p0_p1_v8/code/outputs/q2/pair_n3_h10.pkl",
+    "size_bytes": 2350607,
+    "mtime": 1786722818.6268954
+  }
+}

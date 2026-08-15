@@ -1,0 +1,19 @@
+{
+  "run_id": "q3-p1a-p1b-v8-benchmark",
+  "output_root": "/workspace/scratch/279375cee990/deliverables/mathB_Q1_Q2_Q3_p0_p1_v8/code/outputs/q3",
+  "source_best": "code/outputs/q3/p0_p1_best",
+  "variant_cache": "/workspace/scratch/279375cee990/deliverables/mathB_Q1_Q2_Q3_p0_p1_v8/code/outputs/q2/pair_n3_h10.pkl",
+  "feedback_rounds": 1,
+  "start_count": 11,
+  "deep_top_k": 1,
+  "polish_rounds": 1,
+  "stage1_destroy_trials": 10,
+  "assignment_milp_time": 45.0,
+  "multiflight_rr": true,
+  "rr_trials": 10,
+  "rr_neighbors": 8,
+  "rr_route_limit": 100,
+  "rr_milp_time": 15.0,
+  "promote": false,
+  "total_elapsed_seconds": 430.899112
+}
