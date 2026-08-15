@@ -1663,11 +1663,12 @@ def schedule_metrics(
 
 
 def schedule_seat_utilization(flights: Sequence[Q3Flight]) -> float:
-    """Return passenger-minutes flown divided by available seat-minutes.
+    """Return passenger-km divided by available seat-km, matching Validator.
 
-    All airborne leg durations come from the flight-specific actual timetable.
-    Template timing is used only when a flight has no dynamic timing, in which
-    case :class:`Q3Flight` exposes the template as its actual timetable.
+    Loads use the exact occupied stop interval and distances come from the
+    route evaluation's physical legs.  Timing remains flight-specific for the
+    aircraft/passenger-time objective terms; utilization itself is distance
+    based by the official metric definition.
     """
 
     occupied = 0.0
@@ -1678,9 +1679,9 @@ def schedule_seat_utilization(flights: Sequence[Q3Flight]) -> float:
             for leg in range(pickup, delivery):
                 loads[leg] += 1
         for leg, load in enumerate(loads):
-            airborne = flight.arrivals[leg + 1] - flight.departures[leg]
-            occupied += load * airborne
-            available += flight.variant.capacity * airborne
+            distance = flight.variant.source.evaluation.legs[leg].distance_km
+            occupied += load * distance
+            available += flight.variant.capacity * distance
     return occupied / available if available else 0.0
 
 

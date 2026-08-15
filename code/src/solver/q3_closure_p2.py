@@ -151,6 +151,22 @@ def _place_group_time_aware(
                 timing.arrivals[-1],
                 day,
             )
+        elif slot_policy == "best_fit":
+            day_start = day * 1440 + 360
+            day_end = day * 1440 + 1200
+            prior_end = max(
+                (end for start, end in calendars[aircraft_id] if end <= timing.departures[0]),
+                default=day_start - data.config.turnaround_minutes,
+            )
+            next_start = min(
+                (start for start, end in calendars[aircraft_id] if start >= timing.arrivals[-1]),
+                default=day_end + data.config.turnaround_minutes,
+            )
+            fragment = (
+                max(0, timing.departures[0] - prior_end - data.config.turnaround_minutes)
+                + max(0, next_start - timing.arrivals[-1] - data.config.turnaround_minutes),
+                timing.departures[0],
+            )
         else:
             fragment = (0, timing.departures[0])
         score = (
@@ -618,8 +634,15 @@ def generalized_multiflight_ruin_recreate(
     target_optional_ids: Sequence[str] = (),
     operator: str = "related",
     seed: int = 0,
+    combination_budget: int = 12,
+    max_replacements: int | None = None,
 ) -> tuple[list[Q3Flight], dict[str, object]]:
-    """Static-pool same-day k-to-m structural neighbourhood, k in [2, 4]."""
+    """Static-pool same-day k-to-m structural neighbourhood.
+
+    Replacement count is variable and may equal the removed count, allowing a
+    genuine k-to-k shorter move.  The bounded combination budget keeps this
+    evaluator suitable both for screening and exact-LNS-style intensification.
+    """
 
     started = time.perf_counter()
     incumbent = deepcopy(list(baseline))
@@ -640,6 +663,39 @@ def generalized_multiflight_ruin_recreate(
             indices.sort(key=lambda i: (incumbent[i].aircraft_id, incumbent[i].start, i))
         elif operator == "random_related":
             rng.shuffle(indices)
+        elif operator == "bottleneck_day":
+            day_cost = Counter(
+                flight.start // 1440 for flight in incumbent for _ in range(flight.duration)
+            )
+            indices.sort(
+                key=lambda i: (-day_cost[incumbent[i].start // 1440], -incumbent[i].duration, i)
+            )
+        elif operator == "optional_target":
+            targets = set(target_optional_ids)
+            indices.sort(
+                key=lambda i: (
+                    -sum(pid in targets for pid in incumbent[i].person_ids),
+                    -incumbent[i].duration,
+                    i,
+                )
+            )
+        elif operator == "conflict_graph":
+            indices.sort(
+                key=lambda i: (
+                    -max(
+                        (
+                            sum(
+                                pickup <= leg < delivery
+                                for pickup, delivery in incumbent[i].assignment_intervals.values()
+                            )
+                            for leg in range(len(incumbent[i].variant.source.route.stops) - 1)
+                        ),
+                        default=0,
+                    ),
+                    -incumbent[i].duration,
+                    i,
+                )
+            )
         else:
             indices.sort(key=lambda i: (incumbent[i].start // 1440, -incumbent[i].duration, i))
         improved = False
@@ -655,6 +711,16 @@ def generalized_multiflight_ruin_recreate(
             neighbors.sort(
                 key=lambda index: (-_relatedness(incumbent[anchor], incumbent[index]), index)
             )
+            if operator == "random_related":
+                rng.shuffle(neighbors)
+            elif operator == "aircraft_chain":
+                neighbors.sort(
+                    key=lambda index: (
+                        incumbent[index].aircraft_id != incumbent[anchor].aircraft_id,
+                        abs(incumbent[index].start - incumbent[anchor].start),
+                        index,
+                    )
+                )
             neighbors = neighbors[:maximum_neighbors]
             for group_size in range(group_min, min(group_max, 1 + len(neighbors)) + 1):
                 if trials >= maximum_trials:
@@ -692,10 +758,12 @@ def generalized_multiflight_ruin_recreate(
                 best_candidate: list[Q3Flight] | None = None
                 best_key: tuple[float, ...] | None = None
                 best_move: tuple[int, int] | None = None
-                max_replacements = min(group_size - 1, 3)
-                combination_budget = 12
+                replacement_limit = min(
+                    group_size,
+                    max_replacements if max_replacements is not None else 4,
+                )
                 examined = 0
-                for replacement_count in range(1, max_replacements + 1):
+                for replacement_count in range(1, replacement_limit + 1):
                     for option_set in combinations(options, replacement_count):
                         examined += 1
                         if examined > combination_budget:
@@ -788,6 +856,8 @@ def generalized_multiflight_ruin_recreate(
         "moves": accepted,
         "group_min": group_min,
         "group_max": group_max,
+        "combination_budget": combination_budget,
+        "max_replacements": max_replacements,
         "static_pool_only": True,
     }
 
@@ -865,6 +935,7 @@ def targeted_optional_recovery(
     stage1_cap: int,
     maximum_trials: int = 60,
     assignment_time_limit_seconds: float = 30.0,
+    combination_budget: int = 12,
 ) -> tuple[list[Q3Flight], dict[str, object]]:
     started = time.perf_counter()
     incumbent, unserved, fixed_stats = optimize_fixed_flight_assignments(
@@ -895,6 +966,7 @@ def targeted_optional_recovery(
                 target_optional_ids=targets,
                 operator="related",
                 seed=group_max,
+                combination_budget=combination_budget,
             )
             if stage2_key(candidate, people) < stage2_key(incumbent, people):
                 incumbent = candidate

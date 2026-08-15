@@ -351,6 +351,29 @@ def candidate_route_master_lp_bound(
             f"Q3 candidate-route LP failed: {result.status}, {result.message}"
         )
     value = float(result.fun)
+    equality_duals = list(getattr(result.eqlin, "marginals", []))
+    inequality_duals = list(getattr(result.ineqlin, "marginals", []))
+    lower_reduced_costs = list(getattr(result.lower, "marginals", []))
+    top_od_duals = sorted(
+        (
+            {
+                "od": list(od),
+                "demand": int(demands[od]),
+                "dual_minutes": float(equality_duals[index]),
+            }
+            for index, od in enumerate(ods)
+        ),
+        key=lambda row: -abs(float(row["dual_minutes"])),
+    )[:25]
+    selected_routes = [
+        {
+            "route_key": repr(variant.key),
+            "multiplicity": float(result.x[index]),
+            "duration": variant.duration,
+        }
+        for index, variant in enumerate(variants)
+        if result.x[index] > 1e-8
+    ]
     return LowerBoundResult(
         name="finite_candidate_route_master_lp",
         valid_for_original_problem=False,
@@ -368,6 +391,19 @@ def candidate_route_master_lp_bound(
             "od_count": len(ods),
             "route_variants": len(variants),
             "compatible_od_route_assignments": len(assignments),
+            "selected_route_columns": len(selected_routes),
+            "top_selected_routes": sorted(
+                selected_routes,
+                key=lambda row: -float(row["multiplicity"]),
+            )[:25],
+            "top_od_duals": top_od_duals,
+            "capacity_shadow_rows_nonzero": sum(
+                abs(float(value)) > 1e-9 for value in inequality_duals
+            ),
+            "negative_reduced_cost_columns": sum(
+                float(value) < -1e-7 for value in lower_reduced_costs
+            ),
+            "duals_are_restricted_master_only": True,
             "relaxed_features": [
                 "continuous route multiplicity",
                 "time windows and daily assignment",
