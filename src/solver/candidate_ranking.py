@@ -20,6 +20,17 @@ class CandidateFeatures:
     minimum_distance_km: float
     airport_profile_gap_km: float
     fuel_signature_gap: float | None
+    distance_relatedness: float | None = None
+    consensus_relatedness: float | None = None
+    airport_relatedness: float | None = None
+    fuel_relatedness: float | None = None
+    capacity_relatedness: float | None = None
+    static_relatedness_score: float | None = None
+    context_capacity_score: float | None = None
+    context_stop_score: float | None = None
+    context_airport_score: float | None = None
+    context_relatedness_score: float | None = None
+    combined_candidate_score: float | None = None
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)

@@ -15,6 +15,16 @@ from .exporter import export_q1_solution, load_q1_solution
 from .improve import improve_q1_batch_relocation, improve_q1_route_ejection, improve_q1_savings
 from .models import SolverConfig
 from .physics import LegPhysics
+from .relatedness import (
+    ConsensusResult,
+    ContextCompatibility,
+    ContextRelatednessRanker,
+    RelatednessComponents,
+    StaticRelatednessModel,
+    StaticRelatednessRanker,
+    build_static_components,
+    consensus_coassociation,
+)
 from .technical_stops import augment_service_sequence
 
 __all__ = [
@@ -23,6 +33,10 @@ __all__ = [
     "ClusterCandidateRanker",
     "ClusterResult",
     "cluster_sweep",
+    "ConsensusResult",
+    "consensus_coassociation",
+    "ContextCompatibility",
+    "ContextRelatednessRanker",
     "evaluate_route",
     "export_q1_solution",
     "improve_q1_batch_relocation",
@@ -34,8 +48,12 @@ __all__ = [
     "load_problem_data",
     "pam_k_medoids",
     "RawDistanceRanker",
+    "RelatednessComponents",
     "RelatednessModel",
     "SolverCache",
     "SolverConfig",
+    "StaticRelatednessModel",
+    "StaticRelatednessRanker",
+    "build_static_components",
     "solve_q1_baseline",
 ]

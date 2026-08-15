@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from itertools import permutations
 from collections import Counter, defaultdict
 from statistics import mean, median
+from time import perf_counter
 
 from .cache import SolverCache
 from .candidate_ranking import (
@@ -522,6 +523,8 @@ def _candidate_event(
         "augmentation_infeasible": 0,
         "saving_minutes": "",
         "accepted": False,
+        "evaluated_elapsed_seconds": "",
+        "accepted_elapsed_seconds": "",
     }
 
 
@@ -562,6 +565,7 @@ def improve_q1_savings(
     technical_stop_search_count = 0
     augmentation_cache_hit_count = 0
     feasible_savings: list[int] = []
+    search_started = perf_counter()
 
     for iteration in range(max_iterations):
         current_score = _score(evaluations, solver_config.secondary_order)
@@ -616,6 +620,7 @@ def improve_q1_savings(
                         "lower_bound_pruned": merge.lower_bound_pruned,
                         "augmentation_infeasible": merge.augmentation_infeasible,
                         "outcome": merge.reason,
+                        "evaluated_elapsed_seconds": perf_counter() - search_started,
                     }
                 )
             if merge.route is None or merge.evaluation is None:
@@ -651,6 +656,7 @@ def improve_q1_savings(
         if accepted_event is not None:
             accepted_event["accepted"] = True
             accepted_event["outcome"] = "accepted"
+            accepted_event["accepted_elapsed_seconds"] = perf_counter() - search_started
         routes = [
             route for index, route in enumerate(routes) if index not in {left_index, right_index}
         ] + [candidate]

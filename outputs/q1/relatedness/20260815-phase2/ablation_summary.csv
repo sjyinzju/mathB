@@ -1,0 +1,5 @@
+﻿component,model,decision,ndcg25_delta_vs_raw,ndcg50_delta_vs_raw,coverage25_delta_vs_raw,iteration_wins,iteration_losses
+consensus,distance_consensus,OPTIONAL,-0.00804336561790453,-0.00863841114431596,0.0057774460909867376,3,7
+airport,distance_airport,OPTIONAL,-0.008754828931760161,-0.02310360259515032,4.919256411872741e-05,2,8
+fuel,distance_fuel,REJECT,-0.009536947822415875,-0.016013772269377946,-0.0014025486092323902,2,8
+capacity,distance_capacity,REJECT,-0.017776048629547403,-0.022569780236325943,-0.005800628321986356,2,8

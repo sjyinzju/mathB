@@ -1,0 +1,94 @@
+{
+  "run_id": "20260815-phase2",
+  "git_commit": "7b900aecb98c1f8c7290cf5b0b66960706656fdc",
+  "git_dirty": true,
+  "problem_config_sha256": "2a30f3db67ffcb32af1abb7107b58745587ca9295b6d4b01eeaea199fb928f1b",
+  "phase1_source": "outputs\\q1\\clustering\\20260814-phase1-screen",
+  "stable_consensus_configurations": [
+    "average_k2",
+    "average_k3",
+    "average_k4",
+    "average_k5",
+    "average_k6",
+    "average_k7",
+    "pam_k10",
+    "pam_k2",
+    "pam_k3",
+    "pam_k4",
+    "pam_k5",
+    "pam_k6",
+    "pam_k7"
+  ],
+  "consensus_weights": {
+    "pam_k2": 1.0,
+    "pam_k3": 0.96975656675451,
+    "pam_k4": 0.9779449788764126,
+    "pam_k5": 1.0,
+    "pam_k6": 0.8014750218423007,
+    "pam_k7": 0.8736971921011866,
+    "pam_k10": 0.8711595321415809,
+    "average_k2": 1.0,
+    "average_k3": 1.0,
+    "average_k4": 1.0,
+    "average_k5": 1.0,
+    "average_k6": 0.9362429612955846,
+    "average_k7": 0.9179609625987049
+  },
+  "offline_exact_candidates": 776,
+  "offline_iterations": 10,
+  "component_decisions": [
+    {
+      "component": "consensus",
+      "model": "distance_consensus",
+      "decision": "OPTIONAL",
+      "ndcg25_delta_vs_raw": -0.00804336561790453,
+      "ndcg50_delta_vs_raw": -0.00863841114431596,
+      "coverage25_delta_vs_raw": 0.0057774460909867376,
+      "iteration_wins": 3,
+      "iteration_losses": 7
+    },
+    {
+      "component": "airport",
+      "model": "distance_airport",
+      "decision": "OPTIONAL",
+      "ndcg25_delta_vs_raw": -0.008754828931760161,
+      "ndcg50_delta_vs_raw": -0.02310360259515032,
+      "coverage25_delta_vs_raw": 4.919256411872741e-05,
+      "iteration_wins": 2,
+      "iteration_losses": 8
+    },
+    {
+      "component": "fuel",
+      "model": "distance_fuel",
+      "decision": "REJECT",
+      "ndcg25_delta_vs_raw": -0.009536947822415875,
+      "ndcg50_delta_vs_raw": -0.016013772269377946,
+      "coverage25_delta_vs_raw": -0.0014025486092323902,
+      "iteration_wins": 2,
+      "iteration_losses": 8
+    },
+    {
+      "component": "capacity",
+      "model": "distance_capacity",
+      "decision": "REJECT",
+      "ndcg25_delta_vs_raw": -0.017776048629547403,
+      "ndcg50_delta_vs_raw": -0.022569780236325943,
+      "coverage25_delta_vs_raw": -0.005800628321986356,
+      "iteration_wins": 2,
+      "iteration_losses": 8
+    }
+  ],
+  "selected_static_components": [
+    "distance"
+  ],
+  "selected_static_weights": {
+    "distance": 1.0
+  },
+  "context_weight": 0.5,
+  "downstream_pair_budget": 25,
+  "downstream_models": [
+    "raw_distance",
+    "best_static",
+    "best_static_context"
+  ]
+}
