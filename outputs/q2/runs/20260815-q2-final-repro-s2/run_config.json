@@ -1,0 +1,142 @@
+{
+  "run_id": "20260815-q2-final-repro-s2",
+  "method": "q2_lns_exact_local_repair",
+  "git_commit": "da0d87d5bb93975c3852f29afdc2ad6831c8bcfe",
+  "git_branch": "codex/q2-main-integration",
+  "git_dirty": true,
+  "runtime": {
+    "python": "3.11.9",
+    "scipy": "1.17.1",
+    "backend": "scipy.optimize.milp/HiGHS"
+  },
+  "source": {
+    "directory": "D:\\Desktop\\B题\\outputs\\q2\\runs\\20260815-q2-final-elite-diverse",
+    "routes_sha256": "87b4c0b32f7a18674b9bf12a139d7b24098448a72b691661117cdac949c12460",
+    "assignments_sha256": "81aa74395c56b9ab84d91e3d553b41ea19dfe6123037d04e2375bd7ed7d97187",
+    "metrics": {
+      "total_aircraft_time_minutes": 18104,
+      "total_passenger_travel_time_minutes": 263331,
+      "total_flights": 98,
+      "total_fuel_consumption_kg": 139584.2,
+      "seat_utilization": 0.8865941220279202,
+      "served_passengers": 4000
+    }
+  },
+  "config": {
+    "iterations": 1000,
+    "max_wall_seconds": 90.0,
+    "neighborhood_size": 4,
+    "destroy_size_policy": "fixed",
+    "adaptive_destroy_sizes": [
+      2,
+      3,
+      4
+    ],
+    "medium_stagnation": 3,
+    "large_stagnation": 6,
+    "large_neighborhood_frequency": 4,
+    "source_pool_size": 24,
+    "target_pool_size": 8,
+    "max_sequence_length": 5,
+    "candidate_sequence_budget": 24,
+    "local_primary_seconds": 8.0,
+    "local_secondary_seconds": 0.0,
+    "seed": 2,
+    "candidate_policy": "geometry",
+    "operators": [
+      "high_cost_route",
+      "low_utilization_route",
+      "shared_facility_flow",
+      "land_heavy_route"
+    ],
+    "operator_selection": "adaptive_roulette",
+    "adaptive_reaction": 0.2,
+    "acceptance_policy": "sa",
+    "sa_initial_temperature": 12.0,
+    "sa_cooling_rate": 0.92,
+    "sa_min_temperature": 0.5,
+    "targeted_four_stop": true,
+    "candidate_logging": true
+  },
+  "bound_scope": "restricted_local_master",
+  "scope_note": "Each bound/gap in search-log.jsonl applies only to that destroyed neighborhood and finite local candidate pool.",
+  "cache": {
+    "augmentation_hits": 1764,
+    "augmentation_misses": 1908,
+    "skeleton_hits": 0,
+    "skeleton_misses": 0,
+    "lower_bound_hits": 0,
+    "lower_bound_misses": 0,
+    "direct_time_hits": 0,
+    "direct_time_misses": 0,
+    "augmentation_entries": 1908,
+    "skeleton_entries": 0,
+    "lower_bound_entries": 0,
+    "direct_time_entries": 0,
+    "leg_physics_entries": 9075
+  },
+  "operator_stats": [
+    {
+      "operator": "high_cost_route",
+      "uses": 10,
+      "repair_success": 10,
+      "accepted": 9,
+      "primary_improvement": 2,
+      "new_best": 4,
+      "primary_gain_minutes": 63,
+      "runtime_seconds": 41.117797,
+      "mean_local_master_size": 931.7,
+      "max_local_master_size": 1114
+    },
+    {
+      "operator": "low_utilization_route",
+      "uses": 2,
+      "repair_success": 2,
+      "accepted": 2,
+      "primary_improvement": 0,
+      "new_best": 0,
+      "primary_gain_minutes": 0,
+      "runtime_seconds": 15.612212,
+      "mean_local_master_size": 1099,
+      "max_local_master_size": 1217
+    },
+    {
+      "operator": "shared_facility_flow",
+      "uses": 0,
+      "repair_success": 0,
+      "accepted": 0,
+      "primary_improvement": 0,
+      "new_best": 0,
+      "primary_gain_minutes": 0,
+      "runtime_seconds": 0.0,
+      "mean_local_master_size": 0.0,
+      "max_local_master_size": 0
+    },
+    {
+      "operator": "land_heavy_route",
+      "uses": 5,
+      "repair_success": 5,
+      "accepted": 5,
+      "primary_improvement": 1,
+      "new_best": 1,
+      "primary_gain_minutes": 83,
+      "runtime_seconds": 35.515142,
+      "mean_local_master_size": 1024.4,
+      "max_local_master_size": 1188
+    }
+  ],
+  "search_statistics": {
+    "iterations_completed": 17,
+    "candidate_rows": 28776,
+    "censored_candidate_rows": 25385,
+    "exact_evaluated_candidate_rows": 3391,
+    "milp_selected_candidate_rows": 67,
+    "evaluator_calls": 1717,
+    "technical_stop_augmentations": 1908,
+    "accepted_moves": 16,
+    "route_ejections": 1,
+    "selected_4_stop_candidates": 1
+  },
+  "lns_elapsed_seconds": 92.480696,
+  "total_elapsed_seconds": 92.762033
+}

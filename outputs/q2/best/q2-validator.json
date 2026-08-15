@@ -4,11 +4,11 @@
   "issue_count": 0,
   "issues": [],
   "metrics": {
-    "total_aircraft_time_minutes": 18906,
-    "total_passenger_travel_time_minutes": 266308,
-    "total_flights": 103,
-    "total_fuel_consumption_kg": 146442.5,
-    "seat_utilization": 0.853703500006346,
+    "total_aircraft_time_minutes": 17958,
+    "total_passenger_travel_time_minutes": 263588,
+    "total_flights": 97,
+    "total_fuel_consumption_kg": 138075.2,
+    "seat_utilization": 0.8974631474136977,
     "served_passengers": 4000,
     "unserved_optional_passengers": 0
   }

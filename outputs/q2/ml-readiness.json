@@ -1,0 +1,11 @@
+{
+  "status": "NOT_READY",
+  "decision": "Do not train LR, RF, or LightGBM in this phase",
+  "context_feature_runs": 3,
+  "context_candidate_rows": 52814,
+  "censored_not_evaluated_rows": 49390,
+  "exact_evaluated_variant_rows": 3424,
+  "milp_selected_rows": 77,
+  "useful_selected_primary_improvement_rows": 45,
+  "reason": "Only three independent context-feature runs are available. Grouped train/validation/held-out evaluation would leave too few runs and positive samples; censored Top-K exclusions cannot be treated as negatives."
+}

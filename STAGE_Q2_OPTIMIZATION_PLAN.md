@@ -8,16 +8,19 @@ honoured, LAND is airport-flexible, deliveries happen before pickups at the
 same stop, each route returns to its base, and fuel/refuel/technical-stop rules
 remain those of the shared solver core.
 
-The current algorithm is a restricted candidate-route master, not the ALNS
-described by the older design note:
+The initial algorithm was a restricted candidate-route master. The final
+validated solver now uses that representation inside an exact-repair ALNS:
 
 1. aggregate 4,000 people into 264 OD groups;
-2. create deterministic one/two-service-node sequences from demand, geometry
-   and a Q1 route seed;
-3. enumerate airport, aircraft and cached technical-stop variants;
-4. solve an integer route-multiplicity and passenger-allocation master;
-5. decompose aggregate interval loads into physical flights;
-6. export individual assignments and run the independent Validator.
+2. select a fixed four-route neighborhood with adaptive-roulette operators;
+3. create bounded geometry-ranked one-to-five-service-node sequences, including
+   targeted four-stop candidates;
+4. enumerate airport, aircraft and cached technical-stop variants;
+5. solve an integer route-multiplicity and passenger-allocation local master;
+6. use SA for equal-primary structural transitions and exact elite-difference
+   recombination between diverse local optima;
+7. decompose aggregate interval loads into physical flights;
+8. export individual assignments and run the independent Validator.
 
 Any reported dual bound or MIP gap applies only to this finite restricted
 master. It is not a global Q2 optimality certificate.
@@ -67,9 +70,19 @@ reached 18,906.
 Only after stable search logs exist, compare interpretable heuristic ranking
 with logistic/tree ranking under identical candidate and evaluator budgets.
 
-Status: **NOT ENTERED**. Repair logs are plentiful, but complete feature rows
-for rejected candidates are not yet recorded, so supervised A/B would be
-premature.
+Status: **LOGGING COMPLETE; ML NOT READY**. Three context-feature runs contain
+52,814 candidate rows, but 49,390 are censored and only 45 selected candidates
+contributed primary improvement. There are too few independent runs for a
+grouped train/validation/held-out experiment, so no model was trained.
+
+### Q2-6 — advanced classical finalization
+
+Status: **COMPLETE**. Fixed four-route neighborhoods, targeted four-stop
+candidates, SA and elite recombination were adopted. Adaptive destroy size,
+ejection-chain priority, local candidate cache, UCB1, default context ranking,
+repeated visits, heuristic column generation and Branch-and-Price were not
+promoted. The five-seed final benchmark reached best/median/worst
+17,958/18,043/18,102; `outputs/q2/best` serves 4,000/4,000 with Validator PASS.
 
 ## Universal promotion gates
 
