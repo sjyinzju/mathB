@@ -27,10 +27,18 @@ from .q2_lns import (
     build_q2_local_data,
     exact_q2_local_repair,
     geometry_local_sequences,
+    heuristic_q2_enrichment_repair,
     select_q2_neighborhood,
     solve_q2_lns,
 )
 from .q2_artifacts import atomic_promote_q2_run
+from .q2_flow import (
+    Q2DirectedFlowGraph,
+    Q2SequenceFeatures,
+    build_q2_directed_flow_graph,
+    flow_aware_local_sequences,
+    q2_sequence_features,
+)
 
 __all__ = [
     "augment_service_sequence",
@@ -60,8 +68,14 @@ __all__ = [
     "build_q2_local_data",
     "exact_q2_local_repair",
     "geometry_local_sequences",
+    "heuristic_q2_enrichment_repair",
     "select_q2_neighborhood",
     "solve_q2_lns",
     "atomic_promote_q2_run",
+    "Q2DirectedFlowGraph",
+    "Q2SequenceFeatures",
+    "build_q2_directed_flow_graph",
+    "flow_aware_local_sequences",
+    "q2_sequence_features",
     "solve_q1_baseline",
 ]

@@ -9,9 +9,11 @@ from src.solver import (
     Q2LnsConfig,
     SolverCache,
     build_q2_local_data,
+    build_q2_directed_flow_graph,
     exact_q2_local_repair,
     export_q1_solution,
     geometry_local_sequences,
+    flow_aware_local_sequences,
     load_problem_data,
     load_q2_solution,
     select_q2_neighborhood,
@@ -225,3 +227,42 @@ def test_q2_exact_local_repair_only_returns_primary_improvement() -> None:
         < solution.metrics.total_aircraft_time_minutes
     )
     assert repair.diagnostics["after_routes"] <= repair.diagnostics["before_routes"]
+
+
+def test_q2_directed_flow_graph_preserves_direction_and_land_flexibility() -> None:
+    data = load_problem_data()
+    graph = build_q2_directed_flow_graph(data)
+    assert len(graph.nodes) == 55
+    assert sum(graph.directed_demand.values()) + sum(graph.land_outbound.values()) + sum(
+        graph.land_inbound.values()
+    ) == 4000
+    assert sum(graph.shuttle_demand.values()) == 800
+    assert any(
+        graph.shuttle_demand.get((right, left), 0) != value
+        for (left, right), value in graph.shuttle_demand.items()
+    )
+    assert "LAND" not in graph.nodes
+
+
+def test_q2_flow_candidates_are_bounded_deterministic_and_include_long_routes() -> None:
+    data = load_problem_data()
+    baseline = ROOT / "outputs" / "q2" / "baseline-19736"
+    solution = load_q2_solution(
+        baseline / "q2-routes.csv",
+        baseline / "q2-assignments.csv",
+        data,
+    )
+    routes = solution.routes[90:93]
+    local = build_q2_local_data(data, routes)
+    graph = build_q2_directed_flow_graph(data)
+    first, first_features = flow_aware_local_sequences(
+        local, routes, graph, max_sequence_length=5, budget=24
+    )
+    second, second_features = flow_aware_local_sequences(
+        local, routes, graph, max_sequence_length=5, budget=24
+    )
+    assert first == second
+    assert first_features == second_features
+    assert len(first) == 24
+    assert any(len(sequence) >= 3 for sequence in first)
+    assert all(len(set(sequence)) == len(sequence) for sequence in first)

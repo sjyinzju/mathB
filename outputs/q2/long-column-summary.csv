@@ -1,0 +1,7 @@
+seed,run_id,aircraft_time_minutes,improvement_vs_19482,passenger_time_minutes,flights,fuel_kg,seat_utilization,runtime_seconds,accepted_repairs,accepted_route_ejections,selected_new_columns_in_accepted_repairs,selected_3_5_stop_columns_in_accepted_repairs,validator
+0,20260815-q2-flow-ab-v2-geometry-seed0,19143,339,269218,103,148161.8,0.8449948404724206,144.322981,4,3,6,6,PASS
+1,20260815-q2-long-geometry-seed1,19267,215,267726,105,149938.1,0.8385489206128134,205.976807,5,1,4,2,PASS
+2,20260815-q2-long-geometry-seed2,19204,278,267201,105,149255.2,0.8434703514516299,227.604636,6,1,10,2,PASS
+3,20260815-q2-long-geometry-seed3,19360,122,266942,106,150391.9,0.8308443118887437,113.690991,5,0,1,1,PASS
+4,20260815-q2-long-geometry-seed4,19352,130,266089,106,150900.4,0.8361206925143445,128.852271,6,0,5,1,PASS
+summary,5-seed-control,19143,339,,,,,164.089537,,,,,,best=19143 median=19267 worst=19360 population_variance=7040.56

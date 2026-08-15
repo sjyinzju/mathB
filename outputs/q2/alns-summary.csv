@@ -1,0 +1,7 @@
+seed,run_id,aircraft_time_minutes,improvement_vs_19143,improvement_vs_19736,passenger_time_minutes,flights,fuel_kg,seat_utilization,runtime_seconds,accepted_repairs,accepted_route_ejections,selected_new_columns_in_accepted_repairs,selected_3_5_stop_columns_in_accepted_repairs,validator
+0,20260815-q2-alns-seed0,18991,152,745,266285,103,146997.1,0.8534572837827966,117.833885,6,0,5,3,PASS
+1,20260815-q2-alns-seed1,19006,137,730,267309,103,147185.9,0.8490387811517796,152.614902,7,0,10,4,PASS
+2,20260815-q2-alns-seed2,18937,206,799,266243,103,146727.1,0.8453381182482594,117.039658,7,0,10,3,PASS
+3,20260815-q2-alns-seed3,18906,237,830,266308,103,146442.5,0.853703500006346,104.701753,10,0,10,2,PASS
+4,20260815-q2-alns-seed4,19031,112,705,267602,103,147491.7,0.8462515189737928,176.018507,9,0,6,2,PASS
+summary,5-seed-control,18906,237,830,,,,,133.641741,,,,,,best=18906 median=18991 worst=19031 population_variance=2110.96

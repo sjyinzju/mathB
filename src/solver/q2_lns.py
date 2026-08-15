@@ -19,6 +19,7 @@ from .q2 import (
     candidate_service_sequences,
     solve_q2_master,
 )
+from .q2_flow import Q2DirectedFlowGraph, build_q2_directed_flow_graph, flow_aware_local_sequences
 
 
 DESTROY_OPERATORS = (
@@ -40,6 +41,9 @@ class Q2LnsConfig:
     local_primary_seconds: float = 4.0
     local_secondary_seconds: float = 1.0
     seed: int = 0
+    candidate_policy: str = "geometry"
+    operator_selection: str = "round_robin"
+    adaptive_reaction: float = 0.2
     operators: tuple[str, ...] = DESTROY_OPERATORS
 
     def __post_init__(self) -> None:
@@ -60,6 +64,12 @@ class Q2LnsConfig:
             raise ValueError(f"Unknown Q2 destroy operators: {sorted(unknown)}")
         if not self.operators:
             raise ValueError("At least one destroy operator is required")
+        if self.candidate_policy not in {"geometry", "flow", "enrichment"}:
+            raise ValueError("candidate_policy must be geometry, flow, or enrichment")
+        if self.operator_selection not in {"round_robin", "adaptive_roulette"}:
+            raise ValueError("operator_selection must be round_robin or adaptive_roulette")
+        if not 0.0 < self.adaptive_reaction <= 1.0:
+            raise ValueError("adaptive_reaction must be in (0, 1]")
 
 
 @dataclass(frozen=True)
@@ -300,8 +310,9 @@ def geometry_local_sequences(
             if _sequence_supports_local_demand(sequence, data)
         )
     ranked = sorted(set(generated) - required - base, key=lambda item: _geometry_score(item, data))
-    room = max(0, budget - len(required) - len(base))
-    chosen = required | base | set(ranked[:room])
+    incumbent_sequences = required | base
+    room = max(0, budget - len(incumbent_sequences))
+    chosen = incumbent_sequences | set(ranked[:room])
     # Required/current sequences are never dropped even if they exceed the
     # exploratory budget; this preserves a feasible incumbent representation.
     return tuple(sorted(chosen, key=lambda item: (len(item), item)))
@@ -339,6 +350,7 @@ def exact_q2_local_repair(
     *,
     cache: SolverCache,
     config: Q2LnsConfig,
+    flow_graph: Q2DirectedFlowGraph | None = None,
 ) -> Q2LocalRepair:
     started = time.perf_counter()
     destroyed = tuple(sorted(set(route_indices)))
@@ -346,12 +358,27 @@ def exact_q2_local_repair(
         raise ValueError("Invalid Q2 local-repair route indices")
     affected_routes = tuple(current.routes[index] for index in destroyed)
     local_data = build_q2_local_data(data, affected_routes)
-    sequences = geometry_local_sequences(
-        local_data,
-        affected_routes,
-        max_sequence_length=config.max_sequence_length,
-        budget=config.candidate_sequence_budget,
-    )
+    sequence_features: dict[tuple[str, ...], object] = {}
+    if config.candidate_policy == "flow":
+        if flow_graph is None:
+            raise ValueError("flow candidate policy requires a directed flow graph")
+        sequences, raw_features = flow_aware_local_sequences(
+            local_data,
+            affected_routes,
+            flow_graph,
+            max_sequence_length=config.max_sequence_length,
+            budget=config.candidate_sequence_budget,
+        )
+        sequence_features = {
+            sequence: feature.to_dict() for sequence, feature in raw_features.items()
+        }
+    else:
+        sequences = geometry_local_sequences(
+            local_data,
+            affected_routes,
+            max_sequence_length=config.max_sequence_length,
+            budget=config.candidate_sequence_budget,
+        )
     variants = build_q2_variant_pool(
         local_data,
         sequences,
@@ -410,11 +437,14 @@ def exact_q2_local_repair(
         data,
         diagnostics={"local_master": master},
     )
+    existing_orders = {tuple(route.service_facilities) for route in affected_routes}
     selected_columns = [
         {
             "base_airport": route.base_airport,
             "aircraft_type": route.aircraft_type,
             "service_order": list(route.service_facilities),
+            "new_candidate": tuple(route.service_facilities) not in existing_orders,
+            "candidate_features": sequence_features.get(tuple(route.service_facilities)),
         }
         for route in local_solution.routes
     ]
@@ -433,8 +463,116 @@ def exact_q2_local_repair(
             "primary_dual_bound": master["primary_dual_bound"],
             "primary_mip_gap": master["primary_mip_gap"],
             "selected_columns": selected_columns,
+            "selected_new_candidates": sum(
+                int(column["new_candidate"]) for column in selected_columns
+            ),
+            "selected_3_5_stop_candidates": sum(
+                int(column["new_candidate"] and len(column["service_order"]) >= 3)
+                for column in selected_columns
+            ),
             "runtime_seconds": round(time.perf_counter() - started, 6),
             "evaluator_calls": len(local_solution.routes) + len(current.routes),
+        },
+    )
+
+
+def heuristic_q2_enrichment_repair(
+    current: Solution,
+    data: ProblemData,
+    route_indices: Iterable[int],
+    *,
+    cache: SolverCache,
+    config: Q2LnsConfig,
+) -> Q2LocalRepair:
+    """Add geometry-ranked columns in three bounded solve/enrich rounds.
+
+    This is heuristic column enrichment, not reduced-cost pricing: a failed or
+    weaker restricted local solve receives a larger prefix of the same ranked
+    candidate universe.  Total candidate and MILP budgets match the static
+    control.
+    """
+    started = time.perf_counter()
+    final_budget = config.candidate_sequence_budget
+    budgets = tuple(
+        sorted(
+            {
+                max(1, math.ceil(final_budget / 3)),
+                max(1, math.ceil(2 * final_budget / 3)),
+                final_budget,
+            }
+        )
+    )
+    weights = [0.25, 0.25, 0.5] if len(budgets) == 3 else [1.0 / len(budgets)] * len(budgets)
+    rounds: list[dict[str, object]] = []
+    best: Q2LocalRepair | None = None
+    for round_index, (budget, weight) in enumerate(zip(budgets, weights), start=1):
+        round_config = replace(
+            config,
+            candidate_policy="geometry",
+            candidate_sequence_budget=budget,
+            local_primary_seconds=max(0.05, config.local_primary_seconds * weight),
+            local_secondary_seconds=0.0,
+        )
+        repair = exact_q2_local_repair(
+            current,
+            data,
+            route_indices,
+            cache=cache,
+            config=round_config,
+        )
+        rounds.append(
+            {
+                "round": round_index,
+                "candidate_sequence_budget": budget,
+                "candidate_sequences": repair.diagnostics.get("candidate_sequences", 0),
+                "candidate_variants": repair.diagnostics.get("candidate_variants", 0),
+                "candidate_variants": repair.diagnostics.get("candidate_variants", 0),
+                "compatible_assignments": repair.diagnostics.get(
+                    "compatible_assignments", 0
+                ),
+                "primary_time_limit_seconds": round_config.local_primary_seconds,
+                "repair_success": repair.solution is not None,
+                "candidate_aircraft_minutes": (
+                    repair.solution.metrics.total_aircraft_time_minutes
+                    if repair.solution is not None
+                    else None
+                ),
+            }
+        )
+        if repair.solution is not None and (
+            best is None
+            or best.solution is None
+            or repair.solution.metrics.comparison_key()
+            < best.solution.metrics.comparison_key()
+        ):
+            best = repair
+    if best is None:
+        return Q2LocalRepair(
+            None,
+            {
+                "destroyed_routes": list(sorted(set(route_indices))),
+                "repair_success": False,
+                "reason": "no_enrichment_incumbent",
+                "enrichment_rounds": rounds,
+                "candidate_sequences": max(
+                    (int(row["candidate_sequences"]) for row in rounds), default=0
+                ),
+                "candidate_variants": max(
+                    (int(row["candidate_variants"]) for row in rounds), default=0
+                ),
+                "compatible_assignments": max(
+                    (int(row["compatible_assignments"]) for row in rounds), default=0
+                ),
+                "runtime_seconds": round(time.perf_counter() - started, 6),
+            },
+        )
+    return Q2LocalRepair(
+        best.solution,
+        {
+            **best.diagnostics,
+            "repair_policy": "heuristic_iterative_column_enrichment",
+            "enrichment_rounds": rounds,
+            "runtime_seconds": round(time.perf_counter() - started, 6),
         },
     )
 
@@ -451,6 +589,7 @@ def solve_q2_lns(
     cache = cache or SolverCache(data)
     started = time.perf_counter()
     current = initial
+    flow_graph = build_q2_directed_flow_graph(data) if config.candidate_policy == "flow" else None
     logs: list[dict[str, object]] = []
     stats: dict[str, dict[str, object]] = {
         operator: {
@@ -468,8 +607,18 @@ def solve_q2_lns(
     }
     first_improvement_seconds: float | None = None
     time_to_best_seconds: float | None = None
+    operator_weights = {operator: 1.0 for operator in config.operators}
+    operator_rng = random.Random((config.seed + 1) * 9_999_991)
     for iteration in range(config.iterations):
-        operator = config.operators[iteration % len(config.operators)]
+        if config.operator_selection == "adaptive_roulette":
+            operator = operator_rng.choices(
+                config.operators,
+                weights=[operator_weights[value] for value in config.operators],
+                k=1,
+            )[0]
+        else:
+            operator = config.operators[iteration % len(config.operators)]
+        weight_before = operator_weights[operator]
         neighborhood = select_q2_neighborhood(
             current,
             data,
@@ -478,13 +627,23 @@ def solve_q2_lns(
             config=config,
         )
         before = current.metrics
-        repair = exact_q2_local_repair(
-            current,
-            data,
-            neighborhood,
-            cache=cache,
-            config=config,
-        )
+        if config.candidate_policy == "enrichment":
+            repair = heuristic_q2_enrichment_repair(
+                current,
+                data,
+                neighborhood,
+                cache=cache,
+                config=config,
+            )
+        else:
+            repair = exact_q2_local_repair(
+                current,
+                data,
+                neighborhood,
+                cache=cache,
+                config=config,
+                flow_graph=flow_graph,
+            )
         candidate = repair.solution
         accepted = bool(
             candidate is not None
@@ -510,6 +669,17 @@ def solve_q2_lns(
             if first_improvement_seconds is None:
                 first_improvement_seconds = elapsed
             time_to_best_seconds = elapsed
+        if accepted and primary_gain > 0:
+            reward = 6.0
+        elif accepted:
+            reward = 3.0
+        elif candidate is not None:
+            reward = 1.0
+        else:
+            reward = 0.2
+        if config.operator_selection == "adaptive_roulette":
+            reaction = config.adaptive_reaction
+            operator_weights[operator] = (1.0 - reaction) * weight_before + reaction * reward
         op = stats[operator]
         op["uses"] = int(op["uses"]) + 1
         op["repair_success"] = int(op["repair_success"]) + int(candidate is not None)
@@ -533,14 +703,16 @@ def solve_q2_lns(
                 "current_objective": current.metrics.total_aircraft_time_minutes,
                 "best_objective": current.metrics.total_aircraft_time_minutes,
                 "destroy_operator": operator,
-                "repair_policy": "geometry_exact_local_milp",
+                "operator_weight_before": round(weight_before, 6),
+                "operator_weight_after": round(operator_weights[operator], 6),
+                "repair_policy": f"{config.candidate_policy}_exact_local_milp",
                 "destroyed_routes": list(neighborhood),
                 "affected_demand_groups": repair.diagnostics.get(
                     "affected_demand_groups", 0
                 ),
                 "facilities": repair.diagnostics.get("facilities", []),
                 "candidate_sequences": repair.diagnostics.get("candidate_sequences", 0),
-                "candidate_features": {"ranking": "raw_geometry"},
+                "candidate_features": {"ranking": config.candidate_policy},
                 "local_master_size": repair.diagnostics.get(
                     "compatible_assignments", 0
                 ),
@@ -550,12 +722,19 @@ def solve_q2_lns(
                 "primary_gain": primary_gain if accepted else 0,
                 "secondary_gain": secondary_gain if accepted else 0,
                 "route_ejected": bool(repair.diagnostics.get("route_ejected", False)),
+                "selected_new_candidates": repair.diagnostics.get(
+                    "selected_new_candidates", 0
+                ),
+                "selected_3_5_stop_candidates": repair.diagnostics.get(
+                    "selected_3_5_stop_candidates", 0
+                ),
                 "runtime": repair.diagnostics.get("runtime_seconds", 0.0),
                 "evaluator_calls": repair.diagnostics.get("evaluator_calls", 0),
                 "primary_status": repair.diagnostics.get("primary_status"),
                 "restricted_dual_bound": repair.diagnostics.get("primary_dual_bound"),
                 "restricted_gap": repair.diagnostics.get("primary_mip_gap"),
                 "bound_scope": "restricted_local_master",
+                "enrichment_rounds": repair.diagnostics.get("enrichment_rounds"),
             }
         )
 
@@ -587,6 +766,9 @@ def solve_q2_lns(
                     "local_primary_seconds": config.local_primary_seconds,
                     "local_secondary_seconds": config.local_secondary_seconds,
                     "seed": config.seed,
+                    "candidate_policy": config.candidate_policy,
+                    "operator_selection": config.operator_selection,
+                    "adaptive_reaction": config.adaptive_reaction,
                     "operators": list(config.operators),
                 },
                 "initial_metrics": initial.metrics.to_dict(),
@@ -594,6 +776,9 @@ def solve_q2_lns(
                 "first_improvement_seconds": first_improvement_seconds,
                 "time_to_best_seconds": time_to_best_seconds,
                 "operator_stats": operator_rows,
+                "final_operator_weights": {
+                    key: round(value, 6) for key, value in operator_weights.items()
+                },
                 "cache": cache.stats(),
                 "elapsed_seconds": round(elapsed, 6),
             },

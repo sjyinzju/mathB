@@ -40,10 +40,17 @@ Only after Q2-1 approval: destroy small route/demand neighbourhoods and use a
 small exact master to repack outbound, shuttle and inbound capacity, prioritising
 whole-route ejection over ordinary single-batch relocation.
 
+Status: **ADOPTED**. Exact local repair plus four destroy operators improved
+the validated control from 19,736 to 19,482 in the first five-seed gate.
+
 ### Q2-3 — flow-aware 3–5 stop candidates
 
 Use directed OD flow, seat reuse, LAND flexibility, capacity and fuel features
 to rank bounded 3–5 stop candidates under a fixed generation/evaluation budget.
+
+Status: bounded geometry-ranked long columns **ADOPTED**; the current
+flow-aware scoring formula **REJECTED** by equal-budget A/B. The directed graph
+remains a reusable information layer.
 
 ### Q2-4 — heuristic column enrichment
 
@@ -51,10 +58,18 @@ Iteratively add candidates guided by LP marginals or incumbent difficulty.
 This is heuristic column generation, not Branch-and-Price and not a global
 optimality proof.
 
+Status: **REJECTED**. Three bounded enrich/re-solve rounds tied static quality
+and cost more runtime. Standard adaptive-roulette ALNS was instead adopted and
+reached 18,906.
+
 ### Q2-5 — optional learned ranking
 
 Only after stable search logs exist, compare interpretable heuristic ranking
 with logistic/tree ranking under identical candidate and evaluator budgets.
+
+Status: **NOT ENTERED**. Repair logs are plentiful, but complete feature rows
+for rejected candidates are not yet recorded, so supervised A/B would be
+premature.
 
 ## Universal promotion gates
 
@@ -71,4 +86,3 @@ with logistic/tree ranking under identical candidate and evaluator budgets.
 Q2-1 stops after integration, regression, canonical replay and the fresh-solve
 gate. If fresh solving is worse than 19,736, later budget and seed experiments
 remain skipped until the solver-environment/incumbent issue is resolved.
-

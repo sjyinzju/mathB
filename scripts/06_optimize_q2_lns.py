@@ -21,6 +21,7 @@ from src.solver import (
     Q2LnsConfig,
     SolverCache,
     atomic_promote_q2_run,
+    build_q2_directed_flow_graph,
     export_q1_solution,
     load_problem_data,
     load_q2_solution,
@@ -66,10 +67,21 @@ def main() -> int:
     parser.add_argument("--local-secondary-time-limit", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument(
+        "--candidate-policy",
+        choices=("geometry", "flow", "enrichment"),
+        default="geometry",
+    )
+    parser.add_argument(
         "--operators",
         default=",".join(DESTROY_OPERATORS),
         help="Comma-separated destroy operators",
     )
+    parser.add_argument(
+        "--operator-selection",
+        choices=("round_robin", "adaptive_roulette"),
+        default="round_robin",
+    )
+    parser.add_argument("--adaptive-reaction", type=float, default=0.2)
     parser.add_argument("--promote", action="store_true")
     args = parser.parse_args()
 
@@ -97,7 +109,10 @@ def main() -> int:
         local_primary_seconds=args.local_primary_time_limit,
         local_secondary_seconds=args.local_secondary_time_limit,
         seed=args.seed,
+        candidate_policy=args.candidate_policy,
         operators=operators,
+        operator_selection=args.operator_selection,
+        adaptive_reaction=args.adaptive_reaction,
     )
     cache = SolverCache(data)
     result = solve_q2_lns(initial, data, config=config, cache=cache)
@@ -159,6 +174,11 @@ def main() -> int:
         "max_local_master_size",
     )
     write_csv(run_dir / "operator-stats.csv", operator_fields, result.operator_stats)
+    if config.candidate_policy == "flow":
+        write_json(
+            run_dir / "flow-graph-summary.json",
+            build_q2_directed_flow_graph(data).summary(),
+        )
     elapsed = time.perf_counter() - started
     write_json(
         run_dir / "run_config.json",
@@ -189,7 +209,10 @@ def main() -> int:
                 "local_primary_seconds": config.local_primary_seconds,
                 "local_secondary_seconds": config.local_secondary_seconds,
                 "seed": config.seed,
+                "candidate_policy": config.candidate_policy,
                 "operators": list(config.operators),
+                "operator_selection": config.operator_selection,
+                "adaptive_reaction": config.adaptive_reaction,
             },
             "bound_scope": "restricted_local_master",
             "scope_note": (

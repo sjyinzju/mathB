@@ -1,0 +1,4 @@
+policy,run_id,candidate_budget,local_milp_seconds,aircraft_time_minutes,passenger_time_minutes,flights,fuel_kg,seat_utilization,runtime_seconds,accepted_repairs,selected_new_columns,selected_3_5_stop_columns,validator,decision
+geometry,20260815-q2-flow-ab-v2-geometry-seed0,24,8,19143,269218,103,148161.8,0.8449948404724206,144.322981,4,6,6,PASS,ADOPT
+flow,20260815-q2-flow-ab-v2-flow-seed0,24,8,19339,268032,105,150909.9,0.8376002700793876,166.594019,6,6,3,PASS,REJECT
+enrichment,20260815-q2-column-enrichment-seed0,24,8,19143,269218,103,148161.8,0.8449948404724206,178.579,4,6,6,PASS,REJECT_TIED_QUALITY_SLOWER

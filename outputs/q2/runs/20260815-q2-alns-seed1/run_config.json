@@ -1,0 +1,114 @@
+{
+  "run_id": "20260815-q2-alns-seed1",
+  "method": "q2_lns_exact_local_repair",
+  "git_commit": "d2f00d9a2db2c7da840278afe63d9cf9ff76bde8",
+  "git_branch": "codex/q2-main-integration",
+  "git_dirty": true,
+  "runtime": {
+    "python": "3.11.9",
+    "scipy": "1.17.1",
+    "backend": "scipy.optimize.milp/HiGHS"
+  },
+  "source": {
+    "directory": "D:\\Desktop\\B题\\outputs\\q2\\runs\\20260815-q2-flow-ab-v2-geometry-seed0",
+    "routes_sha256": "c7c2f24ab1d94cbe2b705e4194e767c546c2aa0b3ad33cb46d7ad718e7b7822e",
+    "assignments_sha256": "1514b61da0b2add915cd4f5798f2ec423ac5a6a72757224753fda38ab5e8ef89",
+    "metrics": {
+      "total_aircraft_time_minutes": 19143,
+      "total_passenger_travel_time_minutes": 269218,
+      "total_flights": 103,
+      "total_fuel_consumption_kg": 148161.8,
+      "seat_utilization": 0.8449948404724206,
+      "served_passengers": 4000
+    }
+  },
+  "config": {
+    "iterations": 16,
+    "neighborhood_size": 3,
+    "source_pool_size": 24,
+    "target_pool_size": 8,
+    "max_sequence_length": 5,
+    "candidate_sequence_budget": 24,
+    "local_primary_seconds": 8.0,
+    "local_secondary_seconds": 0.0,
+    "seed": 1,
+    "candidate_policy": "geometry",
+    "operators": [
+      "high_cost_route",
+      "low_utilization_route",
+      "shared_facility_flow",
+      "land_heavy_route"
+    ],
+    "operator_selection": "adaptive_roulette",
+    "adaptive_reaction": 0.2
+  },
+  "bound_scope": "restricted_local_master",
+  "scope_note": "Each bound/gap in search-log.jsonl applies only to that destroyed neighborhood and finite local candidate pool.",
+  "cache": {
+    "augmentation_hits": 1035,
+    "augmentation_misses": 2340,
+    "skeleton_hits": 0,
+    "skeleton_misses": 0,
+    "lower_bound_hits": 0,
+    "lower_bound_misses": 0,
+    "direct_time_hits": 0,
+    "direct_time_misses": 0,
+    "augmentation_entries": 2340,
+    "skeleton_entries": 0,
+    "lower_bound_entries": 0,
+    "direct_time_entries": 0,
+    "leg_physics_entries": 9075
+  },
+  "operator_stats": [
+    {
+      "operator": "high_cost_route",
+      "uses": 3,
+      "repair_success": 0,
+      "accepted": 0,
+      "primary_improvement": 0,
+      "new_best": 0,
+      "primary_gain_minutes": 0,
+      "runtime_seconds": 24.318585,
+      "mean_local_master_size": 0,
+      "max_local_master_size": 0
+    },
+    {
+      "operator": "low_utilization_route",
+      "uses": 4,
+      "repair_success": 2,
+      "accepted": 2,
+      "primary_improvement": 2,
+      "new_best": 2,
+      "primary_gain_minutes": 51,
+      "runtime_seconds": 47.347649,
+      "mean_local_master_size": 447.5,
+      "max_local_master_size": 1037
+    },
+    {
+      "operator": "shared_facility_flow",
+      "uses": 4,
+      "repair_success": 2,
+      "accepted": 2,
+      "primary_improvement": 2,
+      "new_best": 2,
+      "primary_gain_minutes": 5,
+      "runtime_seconds": 18.48985,
+      "mean_local_master_size": 442.75,
+      "max_local_master_size": 891
+    },
+    {
+      "operator": "land_heavy_route",
+      "uses": 5,
+      "repair_success": 3,
+      "accepted": 3,
+      "primary_improvement": 3,
+      "new_best": 3,
+      "primary_gain_minutes": 81,
+      "runtime_seconds": 62.042639,
+      "mean_local_master_size": 569.8,
+      "max_local_master_size": 1080
+    }
+  ],
+  "lns_elapsed_seconds": 152.503531,
+  "total_elapsed_seconds": 152.614902
+}
