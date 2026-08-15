@@ -1,0 +1,25 @@
+{
+  "run_id": "a2-to-r3-path-relink",
+  "method": "bounded difference-region path relinking + exact local repair",
+  "git_commit": "293df8c0e56c86287a7bcabdd71d7f48e1f36dd8",
+  "git_branch": "codex/q1-final-or-intensification",
+  "git_dirty": true,
+  "repair_seconds": 8.0,
+  "max_steps": 11,
+  "cache": {
+    "augmentation_hits": 45,
+    "augmentation_misses": 1440,
+    "skeleton_hits": 0,
+    "skeleton_misses": 0,
+    "lower_bound_hits": 0,
+    "lower_bound_misses": 0,
+    "direct_time_hits": 0,
+    "direct_time_misses": 0,
+    "augmentation_entries": 1440,
+    "skeleton_entries": 0,
+    "lower_bound_entries": 0,
+    "direct_time_entries": 0,
+    "leg_physics_entries": 9075
+  },
+  "elapsed_seconds": 58.132839
+}

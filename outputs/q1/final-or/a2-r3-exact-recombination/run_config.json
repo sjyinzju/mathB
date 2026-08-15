@@ -1,0 +1,14 @@
+{
+  "run_id": "a2-r3-exact-recombination",
+  "method": "A2xR3 exact allocated-route-pattern recombination",
+  "git_commit": "293df8c0e56c86287a7bcabdd71d7f48e1f36dd8",
+  "git_branch": "codex/q1-final-or-intensification",
+  "git_dirty": true,
+  "parents": {
+    "a": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00527-e2b2-7dc3-993f-30ef424963b0\\q1-final-or-intensification\\outputs\\q1\\final",
+    "b": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00527-e2b2-7dc3-993f-30ef424963b0\\q1-final-or-intensification\\outputs\\q1\\relatedness-alns\\extended\\extended-r3-a3-seed3-from14791\\seed-3",
+    "a_routes_sha256": "99d0b1eeedc800a52f3e3f28a65107e7f7267a1604e27652781770c427647d3e",
+    "b_routes_sha256": "5c52d2c5851808a7b5bdb23941cca1d055ba4c4b70645bb0fa36e8d7c4703aa9"
+  },
+  "elapsed_seconds": 0.297144
+}

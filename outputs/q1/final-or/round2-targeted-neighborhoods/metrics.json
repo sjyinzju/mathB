@@ -1,0 +1,31 @@
+{
+  "gate_pass": true,
+  "initial_metrics": {
+    "total_aircraft_time_minutes": 14732,
+    "total_passenger_travel_time_minutes": 123171,
+    "total_flights": 88,
+    "total_fuel_consumption_kg": 118661.9,
+    "seat_utilization": 0.49390716867563333,
+    "served_passengers": 1600
+  },
+  "validator_metrics": {
+    "total_aircraft_time_minutes": 14732,
+    "total_passenger_travel_time_minutes": 123113,
+    "total_flights": 88,
+    "total_fuel_consumption_kg": 118661.9,
+    "seat_utilization": 0.49376884214227723,
+    "served_passengers": 1600,
+    "unserved_optional_passengers": 0
+  },
+  "new_best_count": 1,
+  "attempt_count": 19,
+  "lowest_flights_found": 88,
+  "best_88_metrics": {
+    "total_aircraft_time_minutes": 14732,
+    "total_passenger_travel_time_minutes": 123113,
+    "total_flights": 88,
+    "total_fuel_consumption_kg": 118661.9,
+    "seat_utilization": 0.49376884214227723,
+    "served_passengers": 1600
+  }
+}

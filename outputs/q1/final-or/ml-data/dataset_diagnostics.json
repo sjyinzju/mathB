@@ -1,0 +1,15 @@
+{
+  "status": "NOT_READY",
+  "rows": 19,
+  "lineages": 1,
+  "labels": {
+    "POSITIVE": 1,
+    "TRUE_NEGATIVE": 18
+  },
+  "reasons": [
+    "Only one targeted-repair lineage is available.",
+    "Positive count is too small for stable LR or LightGBM evaluation.",
+    "Grouped train/validation/test splitting is impossible without leakage."
+  ],
+  "next_data_action": "Continue logging candidate-value events across independent master/ALNS lineages; do not train ML yet."
+}

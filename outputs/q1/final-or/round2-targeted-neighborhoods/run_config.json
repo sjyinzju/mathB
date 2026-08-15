@@ -1,0 +1,63 @@
+{
+  "run_id": "round2-targeted-neighborhoods",
+  "method": "targeted exact high-impact/block/cross-exchange/route-elimination",
+  "git_commit": "293df8c0e56c86287a7bcabdd71d7f48e1f36dd8",
+  "git_branch": "codex/q1-final-or-intensification",
+  "git_dirty": true,
+  "source": {
+    "directory": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00527-e2b2-7dc3-993f-30ef424963b0\\q1-final-or-intensification\\outputs\\q1\\final-or\\round2-target-88",
+    "routes_sha256": "6d6e01c3cf260102b618a82ccc070ef7971d1909090ce32d9ca251345a24977c",
+    "assignments_sha256": "aebd49256148c1a6c163f1ecdad43a567a10e0e9a418ddb44d54541fc306c92e"
+  },
+  "repair_seconds": 10.0,
+  "max_service_nodes": 3,
+  "schedule": [
+    [
+      "cross_exchange",
+      2,
+      5
+    ],
+    [
+      "high_impact",
+      6,
+      5
+    ],
+    [
+      "facility_block",
+      7,
+      5
+    ],
+    [
+      "targeted_large_8",
+      8,
+      3
+    ],
+    [
+      "targeted_large_9",
+      9,
+      3
+    ],
+    [
+      "route_elimination_10",
+      10,
+      5
+    ]
+  ],
+  "duplicate_neighborhood_memory_size": 19,
+  "cache": {
+    "augmentation_hits": 16932,
+    "augmentation_misses": 5097,
+    "skeleton_hits": 0,
+    "skeleton_misses": 0,
+    "lower_bound_hits": 0,
+    "lower_bound_misses": 0,
+    "direct_time_hits": 0,
+    "direct_time_misses": 0,
+    "augmentation_entries": 5097,
+    "skeleton_entries": 0,
+    "lower_bound_entries": 0,
+    "direct_time_entries": 0,
+    "leg_physics_entries": 9075
+  },
+  "elapsed_seconds": 281.372797
+}

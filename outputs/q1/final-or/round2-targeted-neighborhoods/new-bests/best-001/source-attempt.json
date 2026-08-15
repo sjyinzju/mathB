@@ -1,0 +1,65 @@
+{
+  "attempt": 1,
+  "reason": "cross_exchange",
+  "route_indices": [
+    68,
+    84
+  ],
+  "routes_before": 2,
+  "routes_after": 2,
+  "passengers_affected": 34,
+  "aircraft_time_before": 460,
+  "aircraft_time_after": 460,
+  "route_count_delta": 0,
+  "local_aircraft_time_delta": 0,
+  "solve_time": 1.018904,
+  "accepted": true,
+  "pre_features": {
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F042",
+        "F044"
+      ]
+    ],
+    "route_time": [
+      194,
+      266
+    ],
+    "route_slack": [
+      1,
+      0
+    ],
+    "route_utilization": [
+      0.46875,
+      0.5006037360607998
+    ],
+    "aircraft_type": [
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 2,
+    "operator": "cross_exchange",
+    "current_objective": 14732
+  },
+  "evaluated": true,
+  "feasible": true,
+  "repair_selected": true,
+  "repair_accepted": true,
+  "primary_improvement": false,
+  "new_best": true,
+  "actual_delta_aircraft_time": 0,
+  "evaluation_cost_seconds": 1.018904,
+  "label": "POSITIVE",
+  "variant_count": 36,
+  "candidates_considered": 36,
+  "candidates_selected": 36,
+  "candidate_objective": 14732,
+  "candidate_flights": 88
+}

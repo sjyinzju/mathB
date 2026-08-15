@@ -1,0 +1,2110 @@
+[
+  {
+    "attempt": 1,
+    "reason": "cross_exchange",
+    "route_indices": [
+      68,
+      84
+    ],
+    "routes_before": 2,
+    "routes_after": 2,
+    "passengers_affected": 34,
+    "aircraft_time_before": 460,
+    "aircraft_time_after": 460,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 0,
+    "solve_time": 1.018904,
+    "accepted": true,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F042",
+          "F044"
+        ]
+      ],
+      "route_time": [
+        194,
+        266
+      ],
+      "route_slack": [
+        1,
+        0
+      ],
+      "route_utilization": [
+        0.46875,
+        0.5006037360607998
+      ],
+      "aircraft_type": [
+        "T2",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 2,
+      "operator": "cross_exchange",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": true,
+    "repair_accepted": true,
+    "primary_improvement": false,
+    "new_best": true,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost_seconds": 1.018904,
+    "label": "POSITIVE",
+    "variant_count": 36,
+    "candidates_considered": 36,
+    "candidates_selected": 36,
+    "candidate_objective": 14732,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 2,
+    "reason": "cross_exchange",
+    "route_indices": [
+      36,
+      37
+    ],
+    "routes_before": 2,
+    "routes_after": 2,
+    "passengers_affected": 34,
+    "aircraft_time_before": 304,
+    "aircraft_time_after": 304,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 0,
+    "solve_time": 0.247492,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F039"
+        ],
+        [
+          "F039"
+        ]
+      ],
+      "route_time": [
+        152,
+        152
+      ],
+      "route_slack": [
+        2,
+        2
+      ],
+      "route_utilization": [
+        0.4473684210526316,
+        0.4473684210526316
+      ],
+      "aircraft_type": [
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 2,
+      "operator": "cross_exchange",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost_seconds": 0.247492,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 9,
+    "candidates_considered": 9,
+    "candidates_selected": 9,
+    "candidate_objective": 14732,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 3,
+    "reason": "cross_exchange",
+    "route_indices": [
+      83,
+      85
+    ],
+    "routes_before": 2,
+    "routes_after": 2,
+    "passengers_affected": 38,
+    "aircraft_time_before": 562,
+    "aircraft_time_after": 562,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 0,
+    "solve_time": 0.929954,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F050"
+        ],
+        [
+          "F037",
+          "F050"
+        ]
+      ],
+      "route_time": [
+        276,
+        286
+      ],
+      "route_slack": [
+        0,
+        0
+      ],
+      "route_utilization": [
+        0.5,
+        0.46839493274128247
+      ],
+      "aircraft_type": [
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 2,
+      "operator": "cross_exchange",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost_seconds": 0.929954,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 34,
+    "candidates_considered": 36,
+    "candidates_selected": 36,
+    "candidate_objective": 14732,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 4,
+    "reason": "cross_exchange",
+    "route_indices": [
+      84,
+      87
+    ],
+    "routes_before": 2,
+    "routes_after": 2,
+    "passengers_affected": 37,
+    "aircraft_time_before": 542,
+    "aircraft_time_after": 542,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 0,
+    "solve_time": 0.652881,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        276,
+        266
+      ],
+      "route_slack": [
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5185027345692166,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 2,
+      "operator": "cross_exchange",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost_seconds": 0.652881,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 30,
+    "candidates_considered": 36,
+    "candidates_selected": 36,
+    "candidate_objective": 14732,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 5,
+    "reason": "high_impact",
+    "route_indices": [
+      80,
+      82,
+      83,
+      84,
+      85,
+      87
+    ],
+    "routes_before": 6,
+    "routes_after": 6,
+    "passengers_affected": 110,
+    "aircraft_time_before": 1586,
+    "aircraft_time_after": 1586,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 0,
+    "solve_time": 25.969219,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F040"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F050"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        219,
+        263,
+        276,
+        276,
+        286,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.4978165938864629,
+        0.49956741167988467,
+        0.5,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 6,
+      "operator": "high_impact",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost_seconds": 25.969219,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 581,
+    "candidates_considered": 765,
+    "candidates_selected": 765,
+    "candidate_objective": 14732,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 6,
+    "reason": "high_impact",
+    "route_indices": [
+      36,
+      37,
+      60,
+      72,
+      73,
+      78
+    ],
+    "routes_before": 6,
+    "routes_after": 6,
+    "passengers_affected": 107,
+    "aircraft_time_before": 1102,
+    "aircraft_time_after": 1102,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 0,
+    "solve_time": 43.399063,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F039"
+        ],
+        [
+          "F039"
+        ],
+        [
+          "F051",
+          "F038"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F049",
+          "F047"
+        ]
+      ],
+      "route_time": [
+        152,
+        152,
+        184,
+        201,
+        201,
+        212
+      ],
+      "route_slack": [
+        2,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "route_utilization": [
+        0.4473684210526316,
+        0.4473684210526316,
+        0.5010062611806798,
+        0.480682042184112,
+        0.480682042184112,
+        0.4584103512014787
+      ],
+      "aircraft_type": [
+        "T3",
+        "T3",
+        "T2",
+        "T3",
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 6,
+      "operator": "high_impact",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost_seconds": 43.399063,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1300,
+    "candidates_considered": 1398,
+    "candidates_selected": 1398,
+    "candidate_objective": 14732,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 7,
+    "reason": "high_impact",
+    "route_indices": [
+      68,
+      82,
+      84,
+      85,
+      86,
+      87
+    ],
+    "routes_before": 6,
+    "routes_after": 6,
+    "passengers_affected": 107,
+    "aircraft_time_before": 1479,
+    "aircraft_time_after": 1484,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 5,
+    "solve_time": 10.11609,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F044"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        194,
+        263,
+        276,
+        286,
+        194,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5,
+        0.49956741167988467,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.5,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T2",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 6,
+      "operator": "high_impact",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 5,
+    "evaluation_cost_seconds": 10.11609,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 581,
+    "candidates_considered": 765,
+    "candidates_selected": 765,
+    "candidate_objective": 14737,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 8,
+    "reason": "facility_block",
+    "route_indices": [
+      68,
+      80,
+      82,
+      83,
+      84,
+      85,
+      87
+    ],
+    "routes_before": 7,
+    "routes_after": 7,
+    "passengers_affected": 126,
+    "aircraft_time_before": 1780,
+    "aircraft_time_after": 1802,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 22,
+    "solve_time": 10.122876,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F040"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F050"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        194,
+        219,
+        263,
+        276,
+        276,
+        286,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5,
+        0.4978165938864629,
+        0.49956741167988467,
+        0.5,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 7,
+      "operator": "facility_block",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 22,
+    "evaluation_cost_seconds": 10.122876,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 581,
+    "candidates_considered": 765,
+    "candidates_selected": 765,
+    "candidate_objective": 14754,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 9,
+    "reason": "facility_block",
+    "route_indices": [
+      36,
+      37,
+      45,
+      60,
+      72,
+      73,
+      78
+    ],
+    "routes_before": 7,
+    "routes_after": 7,
+    "passengers_affected": 126,
+    "aircraft_time_before": 1264,
+    "aircraft_time_after": 1264,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 0,
+    "solve_time": 10.349822,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F039"
+        ],
+        [
+          "F039"
+        ],
+        [
+          "F049"
+        ],
+        [
+          "F051",
+          "F038"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F049",
+          "F047"
+        ]
+      ],
+      "route_time": [
+        152,
+        152,
+        162,
+        184,
+        201,
+        201,
+        212
+      ],
+      "route_slack": [
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "route_utilization": [
+        0.4473684210526316,
+        0.4473684210526316,
+        0.5,
+        0.5010062611806798,
+        0.480682042184112,
+        0.480682042184112,
+        0.4584103512014787
+      ],
+      "aircraft_type": [
+        "T3",
+        "T3",
+        "T3",
+        "T2",
+        "T3",
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A02",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 7,
+      "operator": "facility_block",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost_seconds": 10.349822,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1300,
+    "candidates_considered": 1398,
+    "candidates_selected": 1398,
+    "candidate_objective": 14732,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 10,
+    "reason": "facility_block",
+    "route_indices": [
+      68,
+      70,
+      82,
+      84,
+      85,
+      86,
+      87
+    ],
+    "routes_before": 7,
+    "routes_after": 7,
+    "passengers_affected": 123,
+    "aircraft_time_before": 1678,
+    "aircraft_time_after": 1690,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 12,
+    "solve_time": 25.53837,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F043"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F044"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        194,
+        199,
+        263,
+        276,
+        286,
+        194,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5,
+        0.5089141004862237,
+        0.49956741167988467,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.5,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T2",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 7,
+      "operator": "facility_block",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 12,
+    "evaluation_cost_seconds": 25.53837,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1040,
+    "candidates_considered": 1404,
+    "candidates_selected": 1404,
+    "candidate_objective": 14744,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 11,
+    "reason": "targeted_large_8",
+    "route_indices": [
+      68,
+      80,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "routes_before": 8,
+    "routes_after": 8,
+    "passengers_affected": 142,
+    "aircraft_time_before": 1974,
+    "aircraft_time_after": 2024,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 50,
+    "solve_time": 10.123975,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F040"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F050"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F044"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        194,
+        219,
+        263,
+        276,
+        276,
+        286,
+        194,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5,
+        0.4978165938864629,
+        0.49956741167988467,
+        0.5,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.5,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T3",
+        "T2",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 8,
+      "operator": "targeted_large_8",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 50,
+    "evaluation_cost_seconds": 10.123975,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 581,
+    "candidates_considered": 765,
+    "candidates_selected": 765,
+    "candidate_objective": 14782,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 12,
+    "reason": "targeted_large_8",
+    "route_indices": [
+      36,
+      37,
+      60,
+      61,
+      66,
+      72,
+      73,
+      78
+    ],
+    "routes_before": 8,
+    "routes_after": 8,
+    "passengers_affected": 142,
+    "aircraft_time_before": 1475,
+    "aircraft_time_after": 1475,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 0,
+    "solve_time": 31.374923,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F039"
+        ],
+        [
+          "F039"
+        ],
+        [
+          "F051",
+          "F038"
+        ],
+        [
+          "F052",
+          "F038"
+        ],
+        [
+          "F038"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F049",
+          "F047"
+        ]
+      ],
+      "route_time": [
+        152,
+        152,
+        184,
+        185,
+        188,
+        201,
+        201,
+        212
+      ],
+      "route_slack": [
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "route_utilization": [
+        0.4473684210526316,
+        0.4473684210526316,
+        0.5010062611806798,
+        0.48172905525846704,
+        0.5,
+        0.480682042184112,
+        0.480682042184112,
+        0.4584103512014787
+      ],
+      "aircraft_type": [
+        "T3",
+        "T3",
+        "T2",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 8,
+      "operator": "targeted_large_8",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost_seconds": 31.374923,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1775,
+    "candidates_considered": 1875,
+    "candidates_selected": 1875,
+    "candidate_objective": 14732,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 13,
+    "reason": "targeted_large_8",
+    "route_indices": [
+      68,
+      70,
+      77,
+      82,
+      84,
+      85,
+      86,
+      87
+    ],
+    "routes_before": 8,
+    "routes_after": 8,
+    "passengers_affected": 139,
+    "aircraft_time_before": 1888,
+    "aircraft_time_after": 1950,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 62,
+    "solve_time": 28.911561,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F043"
+        ],
+        [
+          "F041",
+          "F043"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F044"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        194,
+        199,
+        210,
+        263,
+        276,
+        286,
+        194,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5,
+        0.5089141004862237,
+        0.4879032258064516,
+        0.49956741167988467,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.5,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T2",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T2",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 8,
+      "operator": "targeted_large_8",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 62,
+    "evaluation_cost_seconds": 28.911561,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1393,
+    "candidates_considered": 1875,
+    "candidates_selected": 1875,
+    "candidate_objective": 14794,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 14,
+    "reason": "targeted_large_9",
+    "route_indices": [
+      68,
+      70,
+      80,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "routes_before": 9,
+    "routes_after": 9,
+    "passengers_affected": 158,
+    "aircraft_time_before": 2173,
+    "aircraft_time_after": 2229,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 56,
+    "solve_time": 10.374127,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F043"
+        ],
+        [
+          "F040"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F050"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F044"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        194,
+        199,
+        219,
+        263,
+        276,
+        276,
+        286,
+        194,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5,
+        0.5089141004862237,
+        0.4978165938864629,
+        0.49956741167988467,
+        0.5,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.5,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T2",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T3",
+        "T2",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 9,
+      "operator": "targeted_large_9",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 56,
+    "evaluation_cost_seconds": 10.374127,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1040,
+    "candidates_considered": 1404,
+    "candidates_selected": 1404,
+    "candidate_objective": 14788,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 15,
+    "reason": "targeted_large_9",
+    "route_indices": [
+      36,
+      37,
+      60,
+      61,
+      66,
+      72,
+      73,
+      76,
+      78
+    ],
+    "routes_before": 9,
+    "routes_after": 9,
+    "passengers_affected": 161,
+    "aircraft_time_before": 1684,
+    "aircraft_time_after": 1709,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 25,
+    "solve_time": 10.884753,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F039"
+        ],
+        [
+          "F039"
+        ],
+        [
+          "F051",
+          "F038"
+        ],
+        [
+          "F052",
+          "F038"
+        ],
+        [
+          "F038"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F051",
+          "F038"
+        ],
+        [
+          "F049",
+          "F047"
+        ]
+      ],
+      "route_time": [
+        152,
+        152,
+        184,
+        185,
+        188,
+        201,
+        201,
+        209,
+        212
+      ],
+      "route_slack": [
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "route_utilization": [
+        0.4473684210526316,
+        0.4473684210526316,
+        0.5010062611806798,
+        0.48172905525846704,
+        0.5,
+        0.480682042184112,
+        0.480682042184112,
+        0.5007061481969682,
+        0.4584103512014787
+      ],
+      "aircraft_type": [
+        "T3",
+        "T3",
+        "T2",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 9,
+      "operator": "targeted_large_9",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 25,
+    "evaluation_cost_seconds": 10.884753,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1775,
+    "candidates_considered": 1875,
+    "candidates_selected": 1875,
+    "candidate_objective": 14757,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 16,
+    "reason": "targeted_large_9",
+    "route_indices": [
+      68,
+      70,
+      77,
+      80,
+      82,
+      84,
+      85,
+      86,
+      87
+    ],
+    "routes_before": 9,
+    "routes_after": 9,
+    "passengers_affected": 155,
+    "aircraft_time_before": 2107,
+    "aircraft_time_after": 2205,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 98,
+    "solve_time": 10.528833,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F043"
+        ],
+        [
+          "F041",
+          "F043"
+        ],
+        [
+          "F040"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F044"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        194,
+        199,
+        210,
+        219,
+        263,
+        276,
+        286,
+        194,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5,
+        0.5089141004862237,
+        0.4879032258064516,
+        0.4978165938864629,
+        0.49956741167988467,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.5,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T2",
+        "T2",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T2",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 9,
+      "operator": "targeted_large_9",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 98,
+    "evaluation_cost_seconds": 10.528833,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1393,
+    "candidates_considered": 1875,
+    "candidates_selected": 1875,
+    "candidate_objective": 14830,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 17,
+    "reason": "route_elimination_10",
+    "route_indices": [
+      68,
+      70,
+      77,
+      80,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "routes_before": 10,
+    "routes_after": 10,
+    "passengers_affected": 174,
+    "aircraft_time_before": 2383,
+    "aircraft_time_after": 2479,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 96,
+    "solve_time": 10.546478,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F043"
+        ],
+        [
+          "F041",
+          "F043"
+        ],
+        [
+          "F040"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F050"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F044"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        194,
+        199,
+        210,
+        219,
+        263,
+        276,
+        276,
+        286,
+        194,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5,
+        0.5089141004862237,
+        0.4879032258064516,
+        0.4978165938864629,
+        0.49956741167988467,
+        0.5,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.5,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T2",
+        "T2",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T3",
+        "T2",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 10,
+      "operator": "route_elimination_10",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 96,
+    "evaluation_cost_seconds": 10.546478,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1393,
+    "candidates_considered": 1875,
+    "candidates_selected": 1875,
+    "candidate_objective": 14828,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 18,
+    "reason": "route_elimination_10",
+    "route_indices": [
+      36,
+      37,
+      60,
+      61,
+      66,
+      69,
+      72,
+      73,
+      76,
+      78
+    ],
+    "routes_before": 10,
+    "routes_after": 10,
+    "passengers_affected": 177,
+    "aircraft_time_before": 1882,
+    "aircraft_time_after": 1910,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 28,
+    "solve_time": 29.12101,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F039"
+        ],
+        [
+          "F039"
+        ],
+        [
+          "F051",
+          "F038"
+        ],
+        [
+          "F052",
+          "F038"
+        ],
+        [
+          "F038"
+        ],
+        [
+          "F046",
+          "F052"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F048",
+          "F038"
+        ],
+        [
+          "F051",
+          "F038"
+        ],
+        [
+          "F049",
+          "F047"
+        ]
+      ],
+      "route_time": [
+        152,
+        152,
+        184,
+        185,
+        188,
+        198,
+        201,
+        201,
+        209,
+        212
+      ],
+      "route_slack": [
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "route_utilization": [
+        0.4473684210526316,
+        0.4473684210526316,
+        0.5010062611806798,
+        0.48172905525846704,
+        0.5,
+        0.4713723776223776,
+        0.480682042184112,
+        0.480682042184112,
+        0.5007061481969682,
+        0.4584103512014787
+      ],
+      "aircraft_type": [
+        "T3",
+        "T3",
+        "T2",
+        "T2",
+        "T3",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 10,
+      "operator": "route_elimination_10",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 28,
+    "evaluation_cost_seconds": 29.12101,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1886,
+    "candidates_considered": 1992,
+    "candidates_selected": 1992,
+    "candidate_objective": 14760,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  },
+  {
+    "attempt": 19,
+    "reason": "route_elimination_10",
+    "route_indices": [
+      68,
+      70,
+      77,
+      79,
+      80,
+      82,
+      84,
+      85,
+      86,
+      87
+    ],
+    "routes_before": 10,
+    "routes_after": 10,
+    "passengers_affected": 174,
+    "aircraft_time_before": 2323,
+    "aircraft_time_after": 2415,
+    "route_count_delta": 0,
+    "local_aircraft_time_delta": 92,
+    "solve_time": 10.776347,
+    "accepted": false,
+    "pre_features": {
+      "geometry": [
+        [
+          "F044"
+        ],
+        [
+          "F043"
+        ],
+        [
+          "F041",
+          "F043"
+        ],
+        [
+          "F041"
+        ],
+        [
+          "F040"
+        ],
+        [
+          "F037",
+          "F044"
+        ],
+        [
+          "F042",
+          "F040"
+        ],
+        [
+          "F037",
+          "F050"
+        ],
+        [
+          "F044"
+        ],
+        [
+          "F042"
+        ]
+      ],
+      "route_time": [
+        194,
+        199,
+        210,
+        216,
+        219,
+        263,
+        276,
+        286,
+        194,
+        266
+      ],
+      "route_slack": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "route_utilization": [
+        0.5,
+        0.5089141004862237,
+        0.4879032258064516,
+        0.5247863247863248,
+        0.4978165938864629,
+        0.49956741167988467,
+        0.5185027345692166,
+        0.46839493274128247,
+        0.5,
+        0.4704879607926699
+      ],
+      "aircraft_type": [
+        "T2",
+        "T2",
+        "T2",
+        "T3",
+        "T2",
+        "T3",
+        "T3",
+        "T3",
+        "T2",
+        "T3"
+      ],
+      "airport": [
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03",
+        "A03"
+      ],
+      "destroy_size": 10,
+      "operator": "route_elimination_10",
+      "current_objective": 14732
+    },
+    "evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 92,
+    "evaluation_cost_seconds": 10.776347,
+    "label": "TRUE_NEGATIVE",
+    "variant_count": 1399,
+    "candidates_considered": 1881,
+    "candidates_selected": 1881,
+    "candidate_objective": 14824,
+    "candidate_flights": 88,
+    "current_objective_after": 14732
+  }
+]

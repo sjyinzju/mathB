@@ -1,0 +1,3244 @@
+[
+  {
+    "route_index": 84,
+    "aircraft_time": 266,
+    "passenger_count": 19,
+    "facility_set": [
+      "F042",
+      "F044"
+    ],
+    "service_sequence": [
+      "F042",
+      "F044"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5006037360607998,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 4,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      68,
+      69,
+      83,
+      86,
+      87,
+      71,
+      78,
+      81,
+      80,
+      85
+    ],
+    "elimination_potential": 108.92755167270403
+  },
+  {
+    "route_index": 36,
+    "aircraft_time": 152,
+    "passenger_count": 17,
+    "facility_set": [
+      "F039"
+    ],
+    "service_sequence": [
+      "F039"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.4473684210526316,
+    "land_flexibility": 0.9411764705882353,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      37,
+      73,
+      74,
+      79,
+      60,
+      61,
+      66,
+      77,
+      70,
+      59
+    ],
+    "elimination_potential": 108.78637770897832
+  },
+  {
+    "route_index": 83,
+    "aircraft_time": 263,
+    "passenger_count": 19,
+    "facility_set": [
+      "F037",
+      "F044"
+    ],
+    "service_sequence": [
+      "F037",
+      "F044"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.49956741167988467,
+    "land_flexibility": 0.9473684210526315,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 4,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      68,
+      69,
+      84,
+      87,
+      86,
+      71,
+      78,
+      81,
+      80,
+      85
+    ],
+    "elimination_potential": 107.57822638788753
+  },
+  {
+    "route_index": 37,
+    "aircraft_time": 152,
+    "passenger_count": 17,
+    "facility_set": [
+      "F039"
+    ],
+    "service_sequence": [
+      "F039"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.4473684210526316,
+    "land_flexibility": 0.8823529411764706,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      36,
+      73,
+      74,
+      79,
+      60,
+      61,
+      66,
+      77,
+      70,
+      59
+    ],
+    "elimination_potential": 107.3157894736842
+  },
+  {
+    "route_index": 87,
+    "aircraft_time": 286,
+    "passenger_count": 19,
+    "facility_set": [
+      "F037",
+      "F050"
+    ],
+    "service_sequence": [
+      "F037",
+      "F050"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.46839493274128247,
+    "land_flexibility": 0.7368421052631579,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      83,
+      85,
+      84,
+      86,
+      81,
+      68,
+      69,
+      71,
+      78,
+      80
+    ],
+    "elimination_potential": 107.26629228157242
+  },
+  {
+    "route_index": 68,
+    "aircraft_time": 194,
+    "passenger_count": 15,
+    "facility_set": [
+      "F044"
+    ],
+    "service_sequence": [
+      "F044"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A03",
+    "capacity_utilization": 0.46875,
+    "land_flexibility": 0.8,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      69,
+      83,
+      84,
+      71,
+      78,
+      81,
+      86,
+      80,
+      87,
+      60
+    ],
+    "elimination_potential": 106.68333333333334
+  },
+  {
+    "route_index": 60,
+    "aircraft_time": 184,
+    "passenger_count": 16,
+    "facility_set": [
+      "F051",
+      "F038"
+    ],
+    "service_sequence": [
+      "F051",
+      "F038"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5010062611806798,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 5,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      61,
+      66,
+      73,
+      74,
+      77,
+      59,
+      75,
+      71,
+      78,
+      80
+    ],
+    "elimination_potential": 106.37924865831843
+  },
+  {
+    "route_index": 71,
+    "aircraft_time": 199,
+    "passenger_count": 16,
+    "facility_set": [
+      "F043"
+    ],
+    "service_sequence": [
+      "F043"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5089141004862237,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      78,
+      68,
+      69,
+      83,
+      84,
+      80,
+      60,
+      77,
+      59,
+      75
+    ],
+    "elimination_potential": 106.36780794165315
+  },
+  {
+    "route_index": 62,
+    "aircraft_time": 185,
+    "passenger_count": 16,
+    "facility_set": [
+      "F013"
+    ],
+    "service_sequence": [
+      "F013"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5017857142857143,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      63,
+      43,
+      51,
+      53,
+      55,
+      28,
+      29,
+      42,
+      49,
+      33
+    ],
+    "elimination_potential": 106.34821428571428
+  },
+  {
+    "route_index": 22,
+    "aircraft_time": 144,
+    "passenger_count": 19,
+    "facility_set": [
+      "F020",
+      "F022"
+    ],
+    "service_sequence": [
+      "F020",
+      "F022"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.46881342172913004,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      8,
+      15,
+      24,
+      19,
+      11,
+      20,
+      34,
+      35,
+      52,
+      0
+    ],
+    "elimination_potential": 106.32133676092545
+  },
+  {
+    "route_index": 50,
+    "aircraft_time": 167,
+    "passenger_count": 17,
+    "facility_set": [
+      "F021",
+      "F036"
+    ],
+    "service_sequence": [
+      "F021",
+      "F036"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.4388628838908551,
+    "land_flexibility": 0.7647058823529411,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      23,
+      46,
+      56,
+      58,
+      72,
+      76,
+      25,
+      26,
+      40,
+      32
+    ],
+    "elimination_potential": 106.27763040368563
+  },
+  {
+    "route_index": 42,
+    "aircraft_time": 159,
+    "passenger_count": 18,
+    "facility_set": [
+      "F010",
+      "F003"
+    ],
+    "service_sequence": [
+      "F010",
+      "F003"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.48096046568032985,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      6,
+      49,
+      33,
+      16,
+      51,
+      53,
+      43,
+      63,
+      55,
+      18
+    ],
+    "elimination_potential": 106.11807745169374
+  },
+  {
+    "route_index": 57,
+    "aircraft_time": 175,
+    "passenger_count": 16,
+    "facility_set": [
+      "F035",
+      "F024"
+    ],
+    "service_sequence": [
+      "F035",
+      "F024"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5040399239543726,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      44,
+      65,
+      13,
+      19,
+      32,
+      58,
+      25,
+      26,
+      17,
+      39
+    ],
+    "elimination_potential": 105.45270912547528
+  },
+  {
+    "route_index": 72,
+    "aircraft_time": 200,
+    "passenger_count": 19,
+    "facility_set": [
+      "F023",
+      "F031"
+    ],
+    "service_sequence": [
+      "F023",
+      "F031"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5024640252316184,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 4,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      56,
+      58,
+      76,
+      82,
+      47,
+      23,
+      50,
+      38,
+      45,
+      46
+    ],
+    "elimination_potential": 105.23063276167949
+  },
+  {
+    "route_index": 66,
+    "aircraft_time": 188,
+    "passenger_count": 19,
+    "facility_set": [
+      "F038"
+    ],
+    "service_sequence": [
+      "F038"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 5,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      60,
+      61,
+      73,
+      74,
+      77,
+      59,
+      75,
+      70,
+      36,
+      37
+    ],
+    "elimination_potential": 104.89473684210526
+  },
+  {
+    "route_index": 65,
+    "aircraft_time": 187,
+    "passenger_count": 19,
+    "facility_set": [
+      "F034",
+      "F024"
+    ],
+    "service_sequence": [
+      "F034",
+      "F024"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.501010101010101,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      44,
+      57,
+      13,
+      19,
+      32,
+      67,
+      39,
+      25,
+      26,
+      17
+    ],
+    "elimination_potential": 104.72089314194577
+  },
+  {
+    "route_index": 56,
+    "aircraft_time": 174,
+    "passenger_count": 19,
+    "facility_set": [
+      "F031"
+    ],
+    "service_sequence": [
+      "F031"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      58,
+      72,
+      76,
+      47,
+      82,
+      23,
+      50,
+      38,
+      45,
+      46
+    ],
+    "elimination_potential": 104.15789473684211
+  },
+  {
+    "route_index": 61,
+    "aircraft_time": 185,
+    "passenger_count": 16,
+    "facility_set": [
+      "F052",
+      "F038"
+    ],
+    "service_sequence": [
+      "F052",
+      "F038"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A03",
+    "capacity_utilization": 0.48172905525846704,
+    "land_flexibility": 0.8125,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 5,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      60,
+      66,
+      70,
+      73,
+      74,
+      77,
+      79,
+      59,
+      75,
+      36
+    ],
+    "elimination_potential": 104.06751336898395
+  },
+  {
+    "route_index": 44,
+    "aircraft_time": 160,
+    "passenger_count": 19,
+    "facility_set": [
+      "F029",
+      "F024"
+    ],
+    "service_sequence": [
+      "F029",
+      "F024"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.49519346310982937,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      57,
+      65,
+      25,
+      26,
+      13,
+      17,
+      19,
+      32,
+      46,
+      39
+    ],
+    "elimination_potential": 103.99783705839943
+  },
+  {
+    "route_index": 73,
+    "aircraft_time": 201,
+    "passenger_count": 19,
+    "facility_set": [
+      "F048",
+      "F038"
+    ],
+    "service_sequence": [
+      "F048",
+      "F038"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.480682042184112,
+    "land_flexibility": 0.8421052631578947,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 5,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      60,
+      61,
+      66,
+      74,
+      77,
+      70,
+      36,
+      37,
+      59,
+      75
+    ],
+    "elimination_potential": 103.94973388527498
+  },
+  {
+    "route_index": 43,
+    "aircraft_time": 160,
+    "passenger_count": 19,
+    "facility_set": [
+      "F006"
+    ],
+    "service_sequence": [
+      "F006"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      53,
+      63,
+      51,
+      55,
+      42,
+      49,
+      16,
+      33,
+      28,
+      29
+    ],
+    "elimination_potential": 103.42105263157895
+  },
+  {
+    "route_index": 77,
+    "aircraft_time": 209,
+    "passenger_count": 19,
+    "facility_set": [
+      "F051",
+      "F038"
+    ],
+    "service_sequence": [
+      "F051",
+      "F038"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5007061481969682,
+    "land_flexibility": 0.8947368421052632,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 5,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      60,
+      61,
+      66,
+      73,
+      74,
+      59,
+      75,
+      71,
+      78,
+      80
+    ],
+    "elimination_potential": 103.28368326899539
+  },
+  {
+    "route_index": 58,
+    "aircraft_time": 180,
+    "passenger_count": 15,
+    "facility_set": [
+      "F031",
+      "F035"
+    ],
+    "service_sequence": [
+      "F031",
+      "F035"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A02",
+    "capacity_utilization": 0.45,
+    "land_flexibility": 0.6,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      56,
+      72,
+      76,
+      47,
+      82,
+      23,
+      50,
+      57,
+      38,
+      45
+    ],
+    "elimination_potential": 103.0
+  },
+  {
+    "route_index": 70,
+    "aircraft_time": 198,
+    "passenger_count": 16,
+    "facility_set": [
+      "F046",
+      "F052"
+    ],
+    "service_sequence": [
+      "F046",
+      "F052"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A03",
+    "capacity_utilization": 0.4713723776223776,
+    "land_flexibility": 0.6875,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      61,
+      79,
+      73,
+      74,
+      38,
+      60,
+      66,
+      77,
+      40,
+      36
+    ],
+    "elimination_potential": 102.9978146853147
+  },
+  {
+    "route_index": 35,
+    "aircraft_time": 150,
+    "passenger_count": 19,
+    "facility_set": [
+      "F001"
+    ],
+    "service_sequence": [
+      "F001"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      34,
+      52,
+      39,
+      20,
+      19,
+      15,
+      22,
+      24,
+      14,
+      11
+    ],
+    "elimination_potential": 102.89473684210526
+  },
+  {
+    "route_index": 25,
+    "aircraft_time": 148,
+    "passenger_count": 19,
+    "facility_set": [
+      "F021"
+    ],
+    "service_sequence": [
+      "F021"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      26,
+      17,
+      44,
+      50,
+      57,
+      65,
+      13,
+      46,
+      23,
+      40
+    ],
+    "elimination_potential": 102.78947368421052
+  },
+  {
+    "route_index": 26,
+    "aircraft_time": 148,
+    "passenger_count": 19,
+    "facility_set": [
+      "F021"
+    ],
+    "service_sequence": [
+      "F021"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      25,
+      17,
+      44,
+      50,
+      57,
+      65,
+      13,
+      46,
+      23,
+      40
+    ],
+    "elimination_potential": 102.78947368421052
+  },
+  {
+    "route_index": 23,
+    "aircraft_time": 146,
+    "passenger_count": 19,
+    "facility_set": [
+      "F036"
+    ],
+    "service_sequence": [
+      "F036"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 3,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      50,
+      46,
+      56,
+      58,
+      72,
+      76,
+      40,
+      38,
+      47,
+      82
+    ],
+    "elimination_potential": 102.6842105263158
+  },
+  {
+    "route_index": 21,
+    "aircraft_time": 142,
+    "passenger_count": 19,
+    "facility_set": [
+      "F012"
+    ],
+    "service_sequence": [
+      "F012"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      52,
+      4,
+      31,
+      14,
+      20,
+      5,
+      11,
+      24,
+      34,
+      35
+    ],
+    "elimination_potential": 102.47368421052632
+  },
+  {
+    "route_index": 69,
+    "aircraft_time": 194,
+    "passenger_count": 16,
+    "facility_set": [
+      "F044"
+    ],
+    "service_sequence": [
+      "F044"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.8125,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      68,
+      83,
+      84,
+      71,
+      78,
+      81,
+      86,
+      80,
+      87,
+      60
+    ],
+    "elimination_potential": 102.4375
+  },
+  {
+    "route_index": 51,
+    "aircraft_time": 169,
+    "passenger_count": 19,
+    "facility_set": [
+      "F007",
+      "F004"
+    ],
+    "service_sequence": [
+      "F007",
+      "F004"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5121978766659138,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      16,
+      53,
+      55,
+      43,
+      63,
+      6,
+      42,
+      28,
+      29,
+      49
+    ],
+    "elimination_potential": 102.43099164219561
+  },
+  {
+    "route_index": 24,
+    "aircraft_time": 148,
+    "passenger_count": 19,
+    "facility_set": [
+      "F022",
+      "F016"
+    ],
+    "service_sequence": [
+      "F022",
+      "F016"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5047368421052632,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      11,
+      15,
+      22,
+      19,
+      14,
+      8,
+      20,
+      4,
+      31,
+      34
+    ],
+    "elimination_potential": 102.22105263157894
+  },
+  {
+    "route_index": 75,
+    "aircraft_time": 207,
+    "passenger_count": 19,
+    "facility_set": [
+      "F045"
+    ],
+    "service_sequence": [
+      "F045"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5306859205776173,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      59,
+      78,
+      80,
+      60,
+      61,
+      66,
+      73,
+      74,
+      77,
+      71
+    ],
+    "elimination_potential": 102.21242637279119
+  },
+  {
+    "route_index": 82,
+    "aircraft_time": 219,
+    "passenger_count": 19,
+    "facility_set": [
+      "F023",
+      "F032"
+    ],
+    "service_sequence": [
+      "F023",
+      "F032"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.49257518796992483,
+    "land_flexibility": 0.7894736842105263,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      72,
+      76,
+      56,
+      58,
+      47,
+      23,
+      38,
+      50,
+      45,
+      57
+    ],
+    "elimination_potential": 102.15413533834587
+  },
+  {
+    "route_index": 4,
+    "aircraft_time": 114,
+    "passenger_count": 16,
+    "facility_set": [
+      "F005"
+    ],
+    "service_sequence": [
+      "F005"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      31,
+      14,
+      21,
+      52,
+      5,
+      11,
+      24,
+      20,
+      1,
+      3
+    ],
+    "elimination_potential": 102.125
+  },
+  {
+    "route_index": 80,
+    "aircraft_time": 216,
+    "passenger_count": 19,
+    "facility_set": [
+      "F041"
+    ],
+    "service_sequence": [
+      "F041"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5247863247863248,
+    "land_flexibility": 0.9473684210526315,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      78,
+      59,
+      75,
+      71,
+      60,
+      77,
+      68,
+      69,
+      83,
+      84
+    ],
+    "elimination_potential": 102.07827260458839
+  },
+  {
+    "route_index": 15,
+    "aircraft_time": 134,
+    "passenger_count": 19,
+    "facility_set": [
+      "F022"
+    ],
+    "service_sequence": [
+      "F022"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      22,
+      24,
+      19,
+      20,
+      8,
+      11,
+      34,
+      35,
+      52,
+      48
+    ],
+    "elimination_potential": 102.05263157894737
+  },
+  {
+    "route_index": 85,
+    "aircraft_time": 276,
+    "passenger_count": 19,
+    "facility_set": [
+      "F050"
+    ],
+    "service_sequence": [
+      "F050"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.6842105263157895,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      87,
+      84,
+      86,
+      83,
+      81,
+      68,
+      69,
+      71,
+      78,
+      80
+    ],
+    "elimination_potential": 101.63157894736842
+  },
+  {
+    "route_index": 34,
+    "aircraft_time": 150,
+    "passenger_count": 19,
+    "facility_set": [
+      "F001"
+    ],
+    "service_sequence": [
+      "F001"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.9473684210526315,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      35,
+      52,
+      39,
+      20,
+      19,
+      15,
+      22,
+      24,
+      14,
+      11
+    ],
+    "elimination_potential": 101.57894736842104
+  },
+  {
+    "route_index": 8,
+    "aircraft_time": 118,
+    "passenger_count": 19,
+    "facility_set": [
+      "F020"
+    ],
+    "service_sequence": [
+      "F020"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      22,
+      11,
+      24,
+      15,
+      0,
+      10,
+      2,
+      41,
+      14,
+      19
+    ],
+    "elimination_potential": 101.21052631578948
+  },
+  {
+    "route_index": 53,
+    "aircraft_time": 171,
+    "passenger_count": 19,
+    "facility_set": [
+      "F004",
+      "F006"
+    ],
+    "service_sequence": [
+      "F004",
+      "F006"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.4798171275646744,
+    "land_flexibility": 0.7894736842105263,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 4,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      16,
+      43,
+      51,
+      63,
+      55,
+      6,
+      42,
+      49,
+      28,
+      29
+    ],
+    "elimination_potential": 101.15878679750224
+  },
+  {
+    "route_index": 81,
+    "aircraft_time": 219,
+    "passenger_count": 16,
+    "facility_set": [
+      "F040"
+    ],
+    "service_sequence": [
+      "F040"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A03",
+    "capacity_utilization": 0.4978165938864629,
+    "land_flexibility": 0.6875,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      86,
+      83,
+      87,
+      68,
+      69,
+      84,
+      71,
+      78,
+      80,
+      85
+    ],
+    "elimination_potential": 101.13700873362444
+  },
+  {
+    "route_index": 7,
+    "aircraft_time": 116,
+    "passenger_count": 19,
+    "facility_set": [
+      "F009"
+    ],
+    "service_sequence": [
+      "F009"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      10,
+      3,
+      18,
+      1,
+      5,
+      31,
+      6,
+      42,
+      27,
+      12
+    ],
+    "elimination_potential": 101.10526315789474
+  },
+  {
+    "route_index": 10,
+    "aircraft_time": 125,
+    "passenger_count": 16,
+    "facility_set": [
+      "F017",
+      "F009"
+    ],
+    "service_sequence": [
+      "F017",
+      "F009"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A01",
+    "capacity_utilization": 0.48289473684210527,
+    "land_flexibility": 0.8125,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      0,
+      7,
+      1,
+      3,
+      8,
+      11,
+      22,
+      24,
+      18,
+      5
+    ],
+    "elimination_potential": 100.17763157894737
+  },
+  {
+    "route_index": 28,
+    "aircraft_time": 148,
+    "passenger_count": 19,
+    "facility_set": [
+      "F002"
+    ],
+    "service_sequence": [
+      "F002"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.8947368421052632,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      29,
+      55,
+      51,
+      16,
+      53,
+      43,
+      63,
+      6,
+      42,
+      49
+    ],
+    "elimination_potential": 100.1578947368421
+  },
+  {
+    "route_index": 74,
+    "aircraft_time": 201,
+    "passenger_count": 19,
+    "facility_set": [
+      "F048",
+      "F038"
+    ],
+    "service_sequence": [
+      "F048",
+      "F038"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.480682042184112,
+    "land_flexibility": 0.6842105263157895,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 5,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      60,
+      61,
+      66,
+      73,
+      77,
+      70,
+      36,
+      37,
+      59,
+      75
+    ],
+    "elimination_potential": 100.00236546422235
+  },
+  {
+    "route_index": 31,
+    "aircraft_time": 149,
+    "passenger_count": 19,
+    "facility_set": [
+      "F005",
+      "F015"
+    ],
+    "service_sequence": [
+      "F005",
+      "F015"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.4939071817474721,
+    "land_flexibility": 0.8421052631578947,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      4,
+      5,
+      14,
+      21,
+      52,
+      11,
+      24,
+      3,
+      18,
+      20
+    ],
+    "elimination_potential": 99.62587503240862
+  },
+  {
+    "route_index": 49,
+    "aircraft_time": 165,
+    "passenger_count": 19,
+    "facility_set": [
+      "F010",
+      "F008"
+    ],
+    "service_sequence": [
+      "F010",
+      "F008"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.48026315789473684,
+    "land_flexibility": 0.7368421052631579,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      33,
+      42,
+      6,
+      43,
+      53,
+      63,
+      18,
+      16,
+      51,
+      55
+    ],
+    "elimination_potential": 99.47368421052632
+  },
+  {
+    "route_index": 2,
+    "aircraft_time": 112,
+    "passenger_count": 16,
+    "facility_set": [
+      "F020"
+    ],
+    "service_sequence": [
+      "F020"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.875,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      41,
+      48,
+      8,
+      22,
+      30,
+      54,
+      9,
+      12,
+      11,
+      24
+    ],
+    "elimination_potential": 98.875
+  },
+  {
+    "route_index": 63,
+    "aircraft_time": 185,
+    "passenger_count": 16,
+    "facility_set": [
+      "F013",
+      "F006"
+    ],
+    "service_sequence": [
+      "F013",
+      "F006"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5033482142857143,
+    "land_flexibility": 0.6875,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      43,
+      53,
+      62,
+      51,
+      55,
+      42,
+      49,
+      16,
+      33,
+      28
+    ],
+    "elimination_potential": 98.34821428571428
+  },
+  {
+    "route_index": 54,
+    "aircraft_time": 173,
+    "passenger_count": 19,
+    "facility_set": [
+      "F019",
+      "F033"
+    ],
+    "service_sequence": [
+      "F019",
+      "F033"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.48258433139215473,
+    "land_flexibility": 0.6842105263157895,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      30,
+      48,
+      19,
+      32,
+      39,
+      67,
+      9,
+      2,
+      41,
+      15
+    ],
+    "elimination_potential": 98.3004065487309
+  },
+  {
+    "route_index": 86,
+    "aircraft_time": 276,
+    "passenger_count": 19,
+    "facility_set": [
+      "F042",
+      "F040"
+    ],
+    "service_sequence": [
+      "F042",
+      "F040"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5185027345692166,
+    "land_flexibility": 0.631578947368421,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      81,
+      84,
+      83,
+      87,
+      68,
+      69,
+      85,
+      71,
+      78,
+      80
+    ],
+    "elimination_potential": 98.09546132537821
+  },
+  {
+    "route_index": 47,
+    "aircraft_time": 164,
+    "passenger_count": 18,
+    "facility_set": [
+      "F047"
+    ],
+    "service_sequence": [
+      "F047"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.47368421052631576,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 0,
+    "geometry_proximity": 15.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      38,
+      45,
+      56,
+      58,
+      72,
+      76,
+      79,
+      82,
+      23,
+      50
+    ],
+    "elimination_potential": 97.9356725146199
+  },
+  {
+    "route_index": 76,
+    "aircraft_time": 208,
+    "passenger_count": 19,
+    "facility_set": [
+      "F032",
+      "F031"
+    ],
+    "service_sequence": [
+      "F032",
+      "F031"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5026833631484794,
+    "land_flexibility": 0.6842105263157895,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 4,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      56,
+      58,
+      72,
+      82,
+      47,
+      23,
+      50,
+      38,
+      45,
+      46
+    ],
+    "elimination_potential": 97.73062800112984
+  },
+  {
+    "route_index": 11,
+    "aircraft_time": 126,
+    "passenger_count": 19,
+    "facility_set": [
+      "F016"
+    ],
+    "service_sequence": [
+      "F016"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.8421052631578947,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      24,
+      14,
+      8,
+      22,
+      20,
+      4,
+      15,
+      31,
+      0,
+      10
+    ],
+    "elimination_potential": 97.6842105263158
+  },
+  {
+    "route_index": 41,
+    "aircraft_time": 159,
+    "passenger_count": 19,
+    "facility_set": [
+      "F020",
+      "F018"
+    ],
+    "service_sequence": [
+      "F020",
+      "F018"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5036902601330914,
+    "land_flexibility": 0.7894736842105263,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 4,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      2,
+      48,
+      8,
+      14,
+      22,
+      30,
+      54,
+      20,
+      12,
+      4
+    ],
+    "elimination_potential": 97.66243194192378
+  },
+  {
+    "route_index": 33,
+    "aircraft_time": 150,
+    "passenger_count": 19,
+    "facility_set": [
+      "F008"
+    ],
+    "service_sequence": [
+      "F008"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.7894736842105263,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      49,
+      42,
+      18,
+      6,
+      27,
+      43,
+      53,
+      63,
+      16,
+      51
+    ],
+    "elimination_potential": 97.63157894736841
+  },
+  {
+    "route_index": 29,
+    "aircraft_time": 148,
+    "passenger_count": 19,
+    "facility_set": [
+      "F002"
+    ],
+    "service_sequence": [
+      "F002"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.7894736842105263,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      28,
+      55,
+      51,
+      16,
+      53,
+      43,
+      63,
+      6,
+      42,
+      49
+    ],
+    "elimination_potential": 97.52631578947367
+  },
+  {
+    "route_index": 78,
+    "aircraft_time": 210,
+    "passenger_count": 16,
+    "facility_set": [
+      "F041",
+      "F043"
+    ],
+    "service_sequence": [
+      "F041",
+      "F043"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A03",
+    "capacity_utilization": 0.4879032258064516,
+    "land_flexibility": 0.5,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      71,
+      80,
+      59,
+      75,
+      68,
+      69,
+      83,
+      84,
+      60,
+      77
+    ],
+    "elimination_potential": 97.07661290322581
+  },
+  {
+    "route_index": 16,
+    "aircraft_time": 136,
+    "passenger_count": 19,
+    "facility_set": [
+      "F004"
+    ],
+    "service_sequence": [
+      "F004"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.7894736842105263,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      51,
+      53,
+      6,
+      42,
+      28,
+      29,
+      55,
+      49,
+      43,
+      63
+    ],
+    "elimination_potential": 96.89473684210526
+  },
+  {
+    "route_index": 5,
+    "aircraft_time": 116,
+    "passenger_count": 15,
+    "facility_set": [
+      "F015"
+    ],
+    "service_sequence": [
+      "F015"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A01",
+    "capacity_utilization": 0.46875,
+    "land_flexibility": 0.6,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      31,
+      4,
+      3,
+      18,
+      27,
+      21,
+      52,
+      1,
+      7,
+      10
+    ],
+    "elimination_potential": 96.48333333333333
+  },
+  {
+    "route_index": 6,
+    "aircraft_time": 116,
+    "passenger_count": 16,
+    "facility_set": [
+      "F003"
+    ],
+    "service_sequence": [
+      "F003"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.75,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      42,
+      16,
+      51,
+      53,
+      49,
+      33,
+      43,
+      63,
+      7,
+      10
+    ],
+    "elimination_potential": 96.0
+  },
+  {
+    "route_index": 52,
+    "aircraft_time": 170,
+    "passenger_count": 19,
+    "facility_set": [
+      "F012",
+      "F001"
+    ],
+    "service_sequence": [
+      "F012",
+      "F001"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.462349904612277,
+    "land_flexibility": 0.47368421052631576,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      21,
+      34,
+      35,
+      39,
+      4,
+      31,
+      14,
+      20,
+      19,
+      15
+    ],
+    "elimination_potential": 95.30748513073728
+  },
+  {
+    "route_index": 64,
+    "aircraft_time": 186,
+    "passenger_count": 19,
+    "facility_set": [
+      "F011",
+      "F028"
+    ],
+    "service_sequence": [
+      "F011",
+      "F028"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.483653124665023,
+    "land_flexibility": 0.8947368421052632,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 2,
+    "geometry_proximity": 30.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      18,
+      27,
+      12,
+      5,
+      31,
+      33,
+      49,
+      7,
+      10,
+      41
+    ],
+    "elimination_potential": 94.45285311037266
+  },
+  {
+    "route_index": 45,
+    "aircraft_time": 162,
+    "passenger_count": 19,
+    "facility_set": [
+      "F049"
+    ],
+    "service_sequence": [
+      "F049"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 1,
+    "geometry_proximity": 17.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      38,
+      47,
+      79,
+      56,
+      58,
+      72,
+      76,
+      70,
+      61,
+      82
+    ],
+    "elimination_potential": 94.11455108359134
+  },
+  {
+    "route_index": 0,
+    "aircraft_time": 108,
+    "passenger_count": 19,
+    "facility_set": [
+      "F017"
+    ],
+    "service_sequence": [
+      "F017"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.7368421052631579,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      10,
+      1,
+      8,
+      11,
+      22,
+      24,
+      3,
+      4,
+      31,
+      14
+    ],
+    "elimination_potential": 94.10526315789474
+  },
+  {
+    "route_index": 55,
+    "aircraft_time": 173,
+    "passenger_count": 19,
+    "facility_set": [
+      "F007",
+      "F002"
+    ],
+    "service_sequence": [
+      "F007",
+      "F002"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5084429824561404,
+    "land_flexibility": 0.631578947368421,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 3,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      28,
+      29,
+      51,
+      43,
+      53,
+      63,
+      16,
+      42,
+      49,
+      62
+    ],
+    "elimination_potential": 93.88157894736841
+  },
+  {
+    "route_index": 38,
+    "aircraft_time": 154,
+    "passenger_count": 19,
+    "facility_set": [
+      "F046"
+    ],
+    "service_sequence": [
+      "F046"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 1,
+    "geometry_proximity": 15.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      47,
+      45,
+      70,
+      56,
+      58,
+      72,
+      76,
+      23,
+      50,
+      79
+    ],
+    "elimination_potential": 93.77192982456141
+  },
+  {
+    "route_index": 39,
+    "aircraft_time": 154,
+    "passenger_count": 19,
+    "facility_set": [
+      "F033"
+    ],
+    "service_sequence": [
+      "F033"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 16.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      34,
+      35,
+      52,
+      19,
+      54,
+      65,
+      15,
+      22,
+      24,
+      20
+    ],
+    "elimination_potential": 93.73026315789474
+  },
+  {
+    "route_index": 27,
+    "aircraft_time": 148,
+    "passenger_count": 19,
+    "facility_set": [
+      "F028"
+    ],
+    "service_sequence": [
+      "F028"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 20.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      18,
+      64,
+      5,
+      31,
+      33,
+      49,
+      21,
+      52,
+      4,
+      7
+    ],
+    "elimination_potential": 93.28947368421052
+  },
+  {
+    "route_index": 20,
+    "aircraft_time": 140,
+    "passenger_count": 19,
+    "facility_set": [
+      "F026"
+    ],
+    "service_sequence": [
+      "F026"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 0,
+    "geometry_proximity": 14.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      14,
+      34,
+      35,
+      52,
+      15,
+      22,
+      24,
+      11,
+      21,
+      48
+    ],
+    "elimination_potential": 93.08270676691728
+  },
+  {
+    "route_index": 19,
+    "aircraft_time": 140,
+    "passenger_count": 19,
+    "facility_set": [
+      "F019"
+    ],
+    "service_sequence": [
+      "F019"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 0,
+    "geometry_proximity": 15.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      15,
+      22,
+      24,
+      39,
+      34,
+      35,
+      52,
+      30,
+      44,
+      54
+    ],
+    "elimination_potential": 93.03508771929825
+  },
+  {
+    "route_index": 17,
+    "aircraft_time": 138,
+    "passenger_count": 19,
+    "facility_set": [
+      "F025"
+    ],
+    "service_sequence": [
+      "F025"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 17.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      25,
+      26,
+      44,
+      46,
+      13,
+      57,
+      65,
+      50,
+      23,
+      40
+    ],
+    "elimination_potential": 92.8513931888545
+  },
+  {
+    "route_index": 14,
+    "aircraft_time": 134,
+    "passenger_count": 19,
+    "facility_set": [
+      "F018"
+    ],
+    "service_sequence": [
+      "F018"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 0,
+    "geometry_proximity": 14.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      20,
+      4,
+      11,
+      24,
+      31,
+      21,
+      52,
+      41,
+      15,
+      22
+    ],
+    "elimination_potential": 92.76691729323308
+  },
+  {
+    "route_index": 12,
+    "aircraft_time": 126,
+    "passenger_count": 16,
+    "facility_set": [
+      "F030",
+      "F014"
+    ],
+    "service_sequence": [
+      "F030",
+      "F014"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A02",
+    "capacity_utilization": 0.4918193717277487,
+    "land_flexibility": 0.9375,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 30.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      1,
+      3,
+      64,
+      41,
+      2,
+      0,
+      7,
+      10,
+      5,
+      31
+    ],
+    "elimination_potential": 92.62750872600348
+  },
+  {
+    "route_index": 30,
+    "aircraft_time": 148,
+    "passenger_count": 18,
+    "facility_set": [
+      "F019"
+    ],
+    "service_sequence": [
+      "F019"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.47368421052631576,
+    "land_flexibility": 0.4444444444444444,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 2,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      54,
+      48,
+      19,
+      32,
+      9,
+      2,
+      41,
+      15,
+      22,
+      24
+    ],
+    "elimination_potential": 92.49122807017545
+  },
+  {
+    "route_index": 13,
+    "aircraft_time": 132,
+    "passenger_count": 19,
+    "facility_set": [
+      "F027"
+    ],
+    "service_sequence": [
+      "F027"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 20.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      44,
+      57,
+      65,
+      9,
+      17,
+      19,
+      25,
+      26,
+      15,
+      22
+    ],
+    "elimination_potential": 92.44736842105263
+  },
+  {
+    "route_index": 59,
+    "aircraft_time": 182,
+    "passenger_count": 16,
+    "facility_set": [
+      "F045"
+    ],
+    "service_sequence": [
+      "F045"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5306859205776173,
+    "land_flexibility": 0.5625,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 0.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      75,
+      78,
+      80,
+      60,
+      61,
+      66,
+      73,
+      74,
+      77,
+      71
+    ],
+    "elimination_potential": 91.75518953068593
+  },
+  {
+    "route_index": 1,
+    "aircraft_time": 110,
+    "passenger_count": 19,
+    "facility_set": [
+      "F030"
+    ],
+    "service_sequence": [
+      "F030"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 1.0,
+    "neighbor_route_slack": 0,
+    "facility_overlap": 1,
+    "geometry_proximity": 14.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      3,
+      0,
+      10,
+      12,
+      4,
+      5,
+      31,
+      7,
+      11,
+      24
+    ],
+    "elimination_potential": 91.50375939849623
+  },
+  {
+    "route_index": 67,
+    "aircraft_time": 193,
+    "passenger_count": 19,
+    "facility_set": [
+      "F034"
+    ],
+    "service_sequence": [
+      "F034"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.501953125,
+    "land_flexibility": 0.7894736842105263,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 30.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      65,
+      54,
+      32,
+      30,
+      46,
+      58,
+      50,
+      9,
+      48,
+      39
+    ],
+    "elimination_potential": 89.99369517543859
+  },
+  {
+    "route_index": 79,
+    "aircraft_time": 212,
+    "passenger_count": 19,
+    "facility_set": [
+      "F049",
+      "F047"
+    ],
+    "service_sequence": [
+      "F049",
+      "F047"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.4584103512014787,
+    "land_flexibility": 0.47368421052631576,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 2,
+    "geometry_proximity": 15.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      70,
+      61,
+      45,
+      47,
+      73,
+      74,
+      36,
+      37,
+      40,
+      38
+    ],
+    "elimination_potential": 88.65742452248922
+  },
+  {
+    "route_index": 3,
+    "aircraft_time": 114,
+    "passenger_count": 19,
+    "facility_set": [
+      "F014"
+    ],
+    "service_sequence": [
+      "F014"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.8421052631578947,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 0,
+    "geometry_proximity": 14.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      1,
+      7,
+      10,
+      5,
+      31,
+      12,
+      4,
+      0,
+      18,
+      11
+    ],
+    "elimination_potential": 87.76691729323308
+  },
+  {
+    "route_index": 48,
+    "aircraft_time": 164,
+    "passenger_count": 19,
+    "facility_set": [
+      "F022",
+      "F026"
+    ],
+    "service_sequence": [
+      "F022",
+      "F026"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.4976711690731253,
+    "land_flexibility": 0.6842105263157895,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 14.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      41,
+      30,
+      54,
+      2,
+      15,
+      20,
+      22,
+      24,
+      9,
+      32
+    ],
+    "elimination_potential": 86.73058753077385
+  },
+  {
+    "route_index": 18,
+    "aircraft_time": 138,
+    "passenger_count": 19,
+    "facility_set": [
+      "F011"
+    ],
+    "service_sequence": [
+      "F011"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A01",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.6842105263157895,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 20.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      27,
+      64,
+      5,
+      31,
+      33,
+      49,
+      7,
+      10,
+      3,
+      42
+    ],
+    "elimination_potential": 84.86842105263159
+  },
+  {
+    "route_index": 46,
+    "aircraft_time": 162,
+    "passenger_count": 19,
+    "facility_set": [
+      "F029",
+      "F025"
+    ],
+    "service_sequence": [
+      "F029",
+      "F025"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5075442556730426,
+    "land_flexibility": 0.631578947368421,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 1,
+    "geometry_proximity": 16.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      32,
+      50,
+      9,
+      23,
+      17,
+      44,
+      30,
+      54,
+      57,
+      65
+    ],
+    "elimination_potential": 84.0354787929191
+  },
+  {
+    "route_index": 40,
+    "aircraft_time": 156,
+    "passenger_count": 19,
+    "facility_set": [
+      "F036"
+    ],
+    "service_sequence": [
+      "F036"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A03",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.5789473684210527,
+    "neighbor_route_slack": 2,
+    "facility_overlap": 2,
+    "geometry_proximity": 30.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      23,
+      50,
+      70,
+      79,
+      17,
+      46,
+      25,
+      26,
+      56,
+      58
+    ],
+    "elimination_potential": 83.01754385964912
+  },
+  {
+    "route_index": 32,
+    "aircraft_time": 150,
+    "passenger_count": 19,
+    "facility_set": [
+      "F024"
+    ],
+    "service_sequence": [
+      "F024"
+    ],
+    "aircraft_type": "T3",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.42105263157894735,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 16.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      46,
+      9,
+      30,
+      44,
+      54,
+      57,
+      65,
+      50,
+      67,
+      48
+    ],
+    "elimination_potential": 79.04605263157895
+  },
+  {
+    "route_index": 9,
+    "aircraft_time": 118,
+    "passenger_count": 16,
+    "facility_set": [
+      "F027"
+    ],
+    "service_sequence": [
+      "F027"
+    ],
+    "aircraft_type": "T2",
+    "base_airport": "A02",
+    "capacity_utilization": 0.5,
+    "land_flexibility": 0.4375,
+    "neighbor_route_slack": 1,
+    "facility_overlap": 1,
+    "geometry_proximity": 20.0,
+    "alternative_aircraft": [
+      "T1",
+      "T2",
+      "T3"
+    ],
+    "possible_target_routes": [
+      32,
+      46,
+      13,
+      30,
+      54,
+      50,
+      48,
+      2,
+      41,
+      44
+    ],
+    "elimination_potential": 78.8125
+  }
+]

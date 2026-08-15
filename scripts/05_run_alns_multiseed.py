@@ -87,6 +87,9 @@ def _stage_configs(args: argparse.Namespace, seed: int) -> tuple[Q1ALNSConfig, Q
             context_components=args.context_components,
             stagnation_limit_seconds=args.stagnation_seconds,
             minimum_runtime_before_stagnation_stop=args.minimum_stagnation_runtime,
+            reheat_stagnation_iterations=args.reheat_stagnation_iterations,
+            reheat_factor=args.reheat_factor,
+            max_reheats=args.max_reheats,
         )
         stage2 = Q1ALNSConfig(
             iterations=args.stage_iterations,
@@ -107,6 +110,9 @@ def _stage_configs(args: argparse.Namespace, seed: int) -> tuple[Q1ALNSConfig, Q
             context_components=args.context_components,
             stagnation_limit_seconds=args.stagnation_seconds,
             minimum_runtime_before_stagnation_stop=args.minimum_stagnation_runtime,
+            reheat_stagnation_iterations=args.reheat_stagnation_iterations,
+            reheat_factor=args.reheat_factor,
+            max_reheats=args.max_reheats,
         )
     else:
         stage1 = Q1ALNSConfig(
@@ -128,6 +134,9 @@ def _stage_configs(args: argparse.Namespace, seed: int) -> tuple[Q1ALNSConfig, Q
             context_components=args.context_components,
             stagnation_limit_seconds=args.stagnation_seconds,
             minimum_runtime_before_stagnation_stop=args.minimum_stagnation_runtime,
+            reheat_stagnation_iterations=args.reheat_stagnation_iterations,
+            reheat_factor=args.reheat_factor,
+            max_reheats=args.max_reheats,
         )
         stage2 = Q1ALNSConfig(
             iterations=10**6,
@@ -148,6 +157,9 @@ def _stage_configs(args: argparse.Namespace, seed: int) -> tuple[Q1ALNSConfig, Q
             context_components=args.context_components,
             stagnation_limit_seconds=args.stagnation_seconds,
             minimum_runtime_before_stagnation_stop=args.minimum_stagnation_runtime,
+            reheat_stagnation_iterations=args.reheat_stagnation_iterations,
+            reheat_factor=args.reheat_factor,
+            max_reheats=args.max_reheats,
         )
     return stage1, stage2
 
@@ -426,6 +438,9 @@ def main() -> int:
     )
     parser.add_argument("--stagnation-seconds", type=float)
     parser.add_argument("--minimum-stagnation-runtime", type=float, default=0.0)
+    parser.add_argument("--reheat-stagnation-iterations", type=int)
+    parser.add_argument("--reheat-factor", type=float, default=2.0)
+    parser.add_argument("--max-reheats", type=int, default=0)
     parser.add_argument("--destroy-max-1", type=int, default=3)
     parser.add_argument("--destroy-min-2", type=int, default=3)
     parser.add_argument("--destroy-max-2", type=int, default=4)

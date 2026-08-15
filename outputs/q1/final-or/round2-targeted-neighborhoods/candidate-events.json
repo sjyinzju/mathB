@@ -1,0 +1,1697 @@
+[
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1001,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": true,
+    "repair_accepted": true,
+    "primary_improvement": false,
+    "new_best": true,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost": 1.018904,
+    "label": "POSITIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F042",
+        "F044"
+      ]
+    ],
+    "route_time": [
+      194,
+      266
+    ],
+    "route_slack": [
+      1,
+      0
+    ],
+    "route_utilization": [
+      0.46875,
+      0.5006037360607998
+    ],
+    "aircraft_type": [
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 2,
+    "operator": "cross_exchange",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1002,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost": 0.247492,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F039"
+      ],
+      [
+        "F039"
+      ]
+    ],
+    "route_time": [
+      152,
+      152
+    ],
+    "route_slack": [
+      2,
+      2
+    ],
+    "route_utilization": [
+      0.4473684210526316,
+      0.4473684210526316
+    ],
+    "aircraft_type": [
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 2,
+    "operator": "cross_exchange",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1003,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost": 0.929954,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F050"
+      ],
+      [
+        "F037",
+        "F050"
+      ]
+    ],
+    "route_time": [
+      276,
+      286
+    ],
+    "route_slack": [
+      0,
+      0
+    ],
+    "route_utilization": [
+      0.5,
+      0.46839493274128247
+    ],
+    "aircraft_type": [
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 2,
+    "operator": "cross_exchange",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1004,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost": 0.652881,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      276,
+      266
+    ],
+    "route_slack": [
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5185027345692166,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 2,
+    "operator": "cross_exchange",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1005,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost": 25.969219,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F040"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F050"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      219,
+      263,
+      276,
+      276,
+      286,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.4978165938864629,
+      0.49956741167988467,
+      0.5,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 6,
+    "operator": "high_impact",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1006,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost": 43.399063,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F039"
+      ],
+      [
+        "F039"
+      ],
+      [
+        "F051",
+        "F038"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F049",
+        "F047"
+      ]
+    ],
+    "route_time": [
+      152,
+      152,
+      184,
+      201,
+      201,
+      212
+    ],
+    "route_slack": [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0
+    ],
+    "route_utilization": [
+      0.4473684210526316,
+      0.4473684210526316,
+      0.5010062611806798,
+      0.480682042184112,
+      0.480682042184112,
+      0.4584103512014787
+    ],
+    "aircraft_type": [
+      "T3",
+      "T3",
+      "T2",
+      "T3",
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 6,
+    "operator": "high_impact",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1007,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 5,
+    "evaluation_cost": 10.11609,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F044"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      194,
+      263,
+      276,
+      286,
+      194,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5,
+      0.49956741167988467,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.5,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 6,
+    "operator": "high_impact",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1008,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 22,
+    "evaluation_cost": 10.122876,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F040"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F050"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      194,
+      219,
+      263,
+      276,
+      276,
+      286,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5,
+      0.4978165938864629,
+      0.49956741167988467,
+      0.5,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 7,
+    "operator": "facility_block",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1009,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost": 10.349822,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F039"
+      ],
+      [
+        "F039"
+      ],
+      [
+        "F049"
+      ],
+      [
+        "F051",
+        "F038"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F049",
+        "F047"
+      ]
+    ],
+    "route_time": [
+      152,
+      152,
+      162,
+      184,
+      201,
+      201,
+      212
+    ],
+    "route_slack": [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "route_utilization": [
+      0.4473684210526316,
+      0.4473684210526316,
+      0.5,
+      0.5010062611806798,
+      0.480682042184112,
+      0.480682042184112,
+      0.4584103512014787
+    ],
+    "aircraft_type": [
+      "T3",
+      "T3",
+      "T3",
+      "T2",
+      "T3",
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A02",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 7,
+    "operator": "facility_block",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1010,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 12,
+    "evaluation_cost": 25.53837,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F043"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F044"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      194,
+      199,
+      263,
+      276,
+      286,
+      194,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5,
+      0.5089141004862237,
+      0.49956741167988467,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.5,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 7,
+    "operator": "facility_block",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1011,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 50,
+    "evaluation_cost": 10.123975,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F040"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F050"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F044"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      194,
+      219,
+      263,
+      276,
+      276,
+      286,
+      194,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5,
+      0.4978165938864629,
+      0.49956741167988467,
+      0.5,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.5,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T3",
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 8,
+    "operator": "targeted_large_8",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1012,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 0,
+    "evaluation_cost": 31.374923,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F039"
+      ],
+      [
+        "F039"
+      ],
+      [
+        "F051",
+        "F038"
+      ],
+      [
+        "F052",
+        "F038"
+      ],
+      [
+        "F038"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F049",
+        "F047"
+      ]
+    ],
+    "route_time": [
+      152,
+      152,
+      184,
+      185,
+      188,
+      201,
+      201,
+      212
+    ],
+    "route_slack": [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "route_utilization": [
+      0.4473684210526316,
+      0.4473684210526316,
+      0.5010062611806798,
+      0.48172905525846704,
+      0.5,
+      0.480682042184112,
+      0.480682042184112,
+      0.4584103512014787
+    ],
+    "aircraft_type": [
+      "T3",
+      "T3",
+      "T2",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 8,
+    "operator": "targeted_large_8",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1013,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 62,
+    "evaluation_cost": 28.911561,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F043"
+      ],
+      [
+        "F041",
+        "F043"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F044"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      194,
+      199,
+      210,
+      263,
+      276,
+      286,
+      194,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5,
+      0.5089141004862237,
+      0.4879032258064516,
+      0.49956741167988467,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.5,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T2",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 8,
+    "operator": "targeted_large_8",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1014,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 56,
+    "evaluation_cost": 10.374127,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F043"
+      ],
+      [
+        "F040"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F050"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F044"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      194,
+      199,
+      219,
+      263,
+      276,
+      276,
+      286,
+      194,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5,
+      0.5089141004862237,
+      0.4978165938864629,
+      0.49956741167988467,
+      0.5,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.5,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T2",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T3",
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 9,
+    "operator": "targeted_large_9",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1015,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 25,
+    "evaluation_cost": 10.884753,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F039"
+      ],
+      [
+        "F039"
+      ],
+      [
+        "F051",
+        "F038"
+      ],
+      [
+        "F052",
+        "F038"
+      ],
+      [
+        "F038"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F051",
+        "F038"
+      ],
+      [
+        "F049",
+        "F047"
+      ]
+    ],
+    "route_time": [
+      152,
+      152,
+      184,
+      185,
+      188,
+      201,
+      201,
+      209,
+      212
+    ],
+    "route_slack": [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "route_utilization": [
+      0.4473684210526316,
+      0.4473684210526316,
+      0.5010062611806798,
+      0.48172905525846704,
+      0.5,
+      0.480682042184112,
+      0.480682042184112,
+      0.5007061481969682,
+      0.4584103512014787
+    ],
+    "aircraft_type": [
+      "T3",
+      "T3",
+      "T2",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 9,
+    "operator": "targeted_large_9",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1016,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 98,
+    "evaluation_cost": 10.528833,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F043"
+      ],
+      [
+        "F041",
+        "F043"
+      ],
+      [
+        "F040"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F044"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      194,
+      199,
+      210,
+      219,
+      263,
+      276,
+      286,
+      194,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5,
+      0.5089141004862237,
+      0.4879032258064516,
+      0.4978165938864629,
+      0.49956741167988467,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.5,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T2",
+      "T2",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 9,
+    "operator": "targeted_large_9",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1017,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 96,
+    "evaluation_cost": 10.546478,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F043"
+      ],
+      [
+        "F041",
+        "F043"
+      ],
+      [
+        "F040"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F050"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F044"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      194,
+      199,
+      210,
+      219,
+      263,
+      276,
+      276,
+      286,
+      194,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5,
+      0.5089141004862237,
+      0.4879032258064516,
+      0.4978165938864629,
+      0.49956741167988467,
+      0.5,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.5,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T2",
+      "T2",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T3",
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 10,
+    "operator": "route_elimination_10",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1018,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 28,
+    "evaluation_cost": 29.12101,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F039"
+      ],
+      [
+        "F039"
+      ],
+      [
+        "F051",
+        "F038"
+      ],
+      [
+        "F052",
+        "F038"
+      ],
+      [
+        "F038"
+      ],
+      [
+        "F046",
+        "F052"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F048",
+        "F038"
+      ],
+      [
+        "F051",
+        "F038"
+      ],
+      [
+        "F049",
+        "F047"
+      ]
+    ],
+    "route_time": [
+      152,
+      152,
+      184,
+      185,
+      188,
+      198,
+      201,
+      201,
+      209,
+      212
+    ],
+    "route_slack": [
+      2,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "route_utilization": [
+      0.4473684210526316,
+      0.4473684210526316,
+      0.5010062611806798,
+      0.48172905525846704,
+      0.5,
+      0.4713723776223776,
+      0.480682042184112,
+      0.480682042184112,
+      0.5007061481969682,
+      0.4584103512014787
+    ],
+    "aircraft_type": [
+      "T3",
+      "T3",
+      "T2",
+      "T2",
+      "T3",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 10,
+    "operator": "route_elimination_10",
+    "current_objective": 14732
+  },
+  {
+    "run_id": "round2-targeted-neighborhoods",
+    "seed": 1019,
+    "warm_start": "outputs\\q1\\final-or\\round2-target-88",
+    "parent_solution": 14732,
+    "basin_lineage": "master->targeted_exact",
+    "algorithm": "q1_targeted_exact_repair",
+    "candidate_evaluated": true,
+    "feasible": true,
+    "repair_selected": false,
+    "repair_accepted": false,
+    "primary_improvement": false,
+    "new_best": false,
+    "actual_delta_aircraft_time": 92,
+    "evaluation_cost": 10.776347,
+    "label": "TRUE_NEGATIVE",
+    "geometry": [
+      [
+        "F044"
+      ],
+      [
+        "F043"
+      ],
+      [
+        "F041",
+        "F043"
+      ],
+      [
+        "F041"
+      ],
+      [
+        "F040"
+      ],
+      [
+        "F037",
+        "F044"
+      ],
+      [
+        "F042",
+        "F040"
+      ],
+      [
+        "F037",
+        "F050"
+      ],
+      [
+        "F044"
+      ],
+      [
+        "F042"
+      ]
+    ],
+    "route_time": [
+      194,
+      199,
+      210,
+      216,
+      219,
+      263,
+      276,
+      286,
+      194,
+      266
+    ],
+    "route_slack": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "route_utilization": [
+      0.5,
+      0.5089141004862237,
+      0.4879032258064516,
+      0.5247863247863248,
+      0.4978165938864629,
+      0.49956741167988467,
+      0.5185027345692166,
+      0.46839493274128247,
+      0.5,
+      0.4704879607926699
+    ],
+    "aircraft_type": [
+      "T2",
+      "T2",
+      "T2",
+      "T3",
+      "T2",
+      "T3",
+      "T3",
+      "T3",
+      "T2",
+      "T3"
+    ],
+    "airport": [
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03",
+      "A03"
+    ],
+    "destroy_size": 10,
+    "operator": "route_elimination_10",
+    "current_objective": 14732
+  }
+]

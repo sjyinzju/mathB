@@ -1,0 +1,33 @@
+{
+  "gate_pass": true,
+  "start_metrics": {
+    "total_aircraft_time_minutes": 14770,
+    "total_passenger_travel_time_minutes": 120845,
+    "total_flights": 89,
+    "total_fuel_consumption_kg": 118640.1,
+    "seat_utilization": 0.4933894868760729,
+    "served_passengers": 1600
+  },
+  "guide_metrics": {
+    "total_aircraft_time_minutes": 14772,
+    "total_passenger_travel_time_minutes": 121652,
+    "total_flights": 89,
+    "total_fuel_consumption_kg": 118645.9,
+    "seat_utilization": 0.49346360383406435,
+    "served_passengers": 1600
+  },
+  "best_metrics": {
+    "total_aircraft_time_minutes": 14770,
+    "total_passenger_travel_time_minutes": 120845,
+    "total_flights": 89,
+    "total_fuel_consumption_kg": 118640.1,
+    "seat_utilization": 0.4933894868760729,
+    "served_passengers": 1600,
+    "unserved_optional_passengers": 0
+  },
+  "initial_identity_distance": 6,
+  "final_working_identity_distance": 6,
+  "steps": 3,
+  "path_steps": 0,
+  "new_best_steps": 0
+}

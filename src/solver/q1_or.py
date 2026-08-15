@@ -14,6 +14,8 @@ from scipy.optimize import Bounds, LinearConstraint, linprog, milp
 from scipy.sparse import coo_matrix, csr_matrix
 
 from ..io_utils import sha256
+from .alns import Q1ALNSConfig, _repair_neighborhood
+from .cache import SolverCache
 from .data import ProblemData
 from .evaluator import evaluate_route
 from .exporter import load_q1_solution
@@ -127,6 +129,7 @@ class Q1MasterConfig:
     mip_relative_gap: float = 0.0
     maximum_flights: int = 160
     primary_upper_bound_minutes: int | None = None
+    maximum_total_flights: int | None = None
 
 
 @dataclass(frozen=True)
@@ -157,6 +160,20 @@ class Q1MasterResult:
     variable_count: int
     constraint_count: int
     compatible_allocations: int
+
+
+@dataclass(frozen=True)
+class Q1TargetedRepairResult:
+    solution: Solution | None
+    reason: str
+    route_indices: tuple[int, ...]
+    routes_before: int
+    routes_after: int | None
+    passengers_affected: int
+    aircraft_time_before: int
+    aircraft_time_after: int | None
+    elapsed_seconds: float
+    diagnostics: dict[str, object]
 
 
 @dataclass(frozen=True)
@@ -307,12 +324,49 @@ def collect_elite_route_pool(
     *,
     maximum_objective: int = 15371,
     exact_objective: int | None = None,
+    source_directories: Sequence[Path | str] | None = None,
 ) -> EliteRoutePool:
-    discovered, duplicate_solutions, skipped = discover_elite_sources(
-        output_root,
-        maximum_objective=maximum_objective,
-        exact_objective=exact_objective,
-    )
+    if source_directories is None:
+        discovered, duplicate_solutions, skipped = discover_elite_sources(
+            output_root,
+            maximum_objective=maximum_objective,
+            exact_objective=exact_objective,
+        )
+    else:
+        discovered = []
+        duplicate_solutions = 0
+        skipped = 0
+        seen_hashes: set[tuple[str, str]] = set()
+        for raw_directory in source_directories:
+            directory = Path(raw_directory)
+            routes_path = directory / "q1-routes.csv"
+            assignments_path = directory / "q1-assignments.csv"
+            validator_path = directory / "validator.json"
+            if not validator_path.exists():
+                validator_path = directory / "q1-validator.json"
+            if not routes_path.exists() or not assignments_path.exists() or not validator_path.exists():
+                raise FileNotFoundError(f"Incomplete explicit route-pool source: {directory}")
+            validator = json.loads(validator_path.read_text(encoding="utf-8"))
+            metrics = validator.get("metrics") or {}
+            if not validator.get("valid"):
+                raise ValueError(f"Explicit route-pool source is not VALID: {directory}")
+            hashes = (sha256(routes_path), sha256(assignments_path))
+            if hashes in seen_hashes:
+                duplicate_solutions += 1
+                continue
+            seen_hashes.add(hashes)
+            discovered.append(
+                (
+                    directory,
+                    {
+                        "objective": int(metrics["total_aircraft_time_minutes"]),
+                        "flights": int(metrics["total_flights"]),
+                        "routes_sha256": hashes[0],
+                        "assignments_sha256": hashes[1],
+                    },
+                )
+            )
+        discovered.sort(key=lambda item: (int(item[1]["objective"]), str(item[0])))
     entries: dict[tuple[object, ...], EliteRoute] = {}
     sources: list[RoutePoolSource] = []
     duplicate_routes = 0
@@ -878,6 +932,14 @@ def solve_route_pool_master(
                 float(config.primary_upper_bound_minutes),
             )
         )
+    if config.maximum_total_flights is not None:
+        constraints.append(
+            LinearConstraint(
+                coo_matrix(arrays.flights.reshape(1, -1)).tocsr(),
+                -np.inf,
+                float(config.maximum_total_flights),
+            )
+        )
     integrality = np.ones(len(arrays.primary), dtype=np.uint8)
 
     def solve_stage(objective: np.ndarray, seconds: float):
@@ -951,4 +1013,272 @@ def solve_route_pool_master(
         variable_count=len(arrays.primary),
         constraint_count=arrays.equality.shape[0],
         compatible_allocations=arrays.equality.nnz,
+    )
+
+
+def route_elimination_audit(
+    solution: Solution,
+    data: ProblemData,
+) -> tuple[dict[str, object], ...]:
+    evaluations = [
+        evaluate_route(route, matrix=data.matrix, config=data.config)
+        for route in solution.routes
+    ]
+    rows: list[dict[str, object]] = []
+    for index, (route, evaluation) in enumerate(zip(solution.routes, evaluations)):
+        facilities = tuple(dict.fromkeys(route.service_facilities))
+        if not facilities:
+            facilities = tuple(
+                dict.fromkeys(item.destination_id for item in route.assignments)
+            )
+        land = sum(item.origin_id == "LAND" for item in route.assignments)
+        target_candidates: list[tuple[float, int]] = []
+        for other_index, other in enumerate(solution.routes):
+            if other_index == index:
+                continue
+            other_facilities = tuple(dict.fromkeys(other.service_facilities))
+            if not other_facilities:
+                other_facilities = tuple(
+                    dict.fromkeys(item.destination_id for item in other.assignments)
+                )
+            distance = min(
+                data.matrix[left][right]
+                for left in facilities
+                for right in other_facilities
+            )
+            base_penalty = 0.0 if route.base_airport == other.base_airport else 30.0
+            target_candidates.append((distance + base_penalty, other_index))
+        target_candidates.sort()
+        passenger_count = len(route.assignments)
+        land_flexibility = land / max(1, passenger_count)
+        score = (
+            evaluation.total_aircraft_time_minutes / max(1, passenger_count)
+            + 120.0 * (1.0 - evaluation.seat_utilization)
+            + 25.0 * land_flexibility
+            + 10.0 / max(1.0, target_candidates[0][0] if target_candidates else 100.0)
+        )
+        rows.append(
+            {
+                "route_index": index,
+                "aircraft_time": evaluation.total_aircraft_time_minutes,
+                "passenger_count": passenger_count,
+                "facility_set": list(facilities),
+                "service_sequence": list(route.service_facilities),
+                "aircraft_type": route.aircraft_type,
+                "base_airport": route.base_airport,
+                "capacity_utilization": evaluation.seat_utilization,
+                "land_flexibility": land_flexibility,
+                "neighbor_route_slack": sum(
+                    max(
+                        0,
+                        data.config.aircraft_types[solution.routes[target].aircraft_type].seats
+                        - solution.routes[target].passenger_count,
+                    )
+                    for _, target in target_candidates[:5]
+                ),
+                "facility_overlap": sum(
+                    bool(set(facilities) & set(solution.routes[target].service_facilities))
+                    for _, target in target_candidates[:5]
+                ),
+                "geometry_proximity": target_candidates[0][0]
+                if target_candidates
+                else None,
+                "alternative_aircraft": sorted(data.config.aircraft_types),
+                "possible_target_routes": [
+                    target for _, target in target_candidates[:10]
+                ],
+                "elimination_potential": score,
+            }
+        )
+    rows.sort(
+        key=lambda row: (
+            -float(row["elimination_potential"]),
+            int(row["route_index"]),
+        )
+    )
+    return tuple(rows)
+
+
+def targeted_route_indices(
+    solution: Solution,
+    data: ProblemData,
+    source_index: int,
+    size: int,
+    *,
+    mode: str = "high_impact",
+) -> tuple[int, ...]:
+    if not (2 <= size <= len(solution.routes)):
+        raise ValueError("targeted neighborhood size is out of range")
+    source = solution.routes[source_index]
+    source_facilities = tuple(dict.fromkeys(source.service_facilities))
+    if not source_facilities:
+        source_facilities = tuple(
+            dict.fromkeys(item.destination_id for item in source.assignments)
+        )
+    ranked: list[tuple[tuple[float, ...], int]] = []
+    for index, route in enumerate(solution.routes):
+        if index == source_index:
+            continue
+        facilities = tuple(dict.fromkeys(route.service_facilities))
+        if not facilities:
+            facilities = tuple(
+                dict.fromkeys(item.destination_id for item in route.assignments)
+            )
+        distance = min(
+            data.matrix[left][right]
+            for left in source_facilities
+            for right in facilities
+        )
+        overlap = len(set(source_facilities) & set(facilities))
+        base_penalty = 0.0 if source.base_airport == route.base_airport else 30.0
+        if mode == "facility_block":
+            key = (-float(overlap), distance, base_penalty, float(index))
+        elif mode == "cross_exchange":
+            key = (distance, -float(bool(set(source_facilities) ^ set(facilities))), base_penalty, float(index))
+        else:
+            key = (distance + base_penalty, -float(overlap), float(index))
+        ranked.append((key, index))
+    ranked.sort()
+    return tuple(sorted([source_index, *(index for _, index in ranked[: size - 1])]))
+
+
+def exact_targeted_repair(
+    solution: Solution,
+    data: ProblemData,
+    route_indices: Sequence[int],
+    *,
+    reason: str,
+    seed: int = 0,
+    max_service_nodes: int = 3,
+    max_long_service_orders: int = 120,
+    repair_time_limit_seconds: float = 20.0,
+    cache: SolverCache | None = None,
+) -> Q1TargetedRepairResult:
+    indices = tuple(sorted(set(int(index) for index in route_indices)))
+    if len(indices) < 2:
+        raise ValueError("Exact targeted repair needs at least two routes")
+    evaluations = [
+        evaluate_route(route, matrix=data.matrix, config=data.config)
+        for route in solution.routes
+    ]
+    destroyed_routes = [solution.routes[index] for index in indices]
+    destroyed_evaluations = [evaluations[index] for index in indices]
+    passengers_affected = sum(route.passenger_count for route in destroyed_routes)
+    removed_time = sum(
+        evaluation.total_aircraft_time_minutes for evaluation in destroyed_evaluations
+    )
+    config = Q1ALNSConfig(
+        iterations=1,
+        time_limit_seconds=max(1.0, repair_time_limit_seconds + 1.0),
+        min_destroy_routes=2,
+        max_destroy_routes=max(2, len(indices)),
+        max_service_nodes=max_service_nodes,
+        max_long_service_orders=max_long_service_orders,
+        repair_time_limit_seconds=repair_time_limit_seconds,
+        seed=seed,
+    )
+    started = time.perf_counter()
+    repaired = _repair_neighborhood(
+        destroyed_routes,
+        destroyed_evaluations,
+        data,
+        config,
+        {},
+        cache or SolverCache(data),
+    )
+    elapsed = time.perf_counter() - started
+    pre_features = {
+        "geometry": [list(route.service_facilities) for route in destroyed_routes],
+        "route_time": [
+            evaluation.total_aircraft_time_minutes
+            for evaluation in destroyed_evaluations
+        ],
+        "route_slack": [
+            data.config.aircraft_types[route.aircraft_type].seats - route.passenger_count
+            for route in destroyed_routes
+        ],
+        "route_utilization": [
+            evaluation.seat_utilization for evaluation in destroyed_evaluations
+        ],
+        "aircraft_type": [route.aircraft_type for route in destroyed_routes],
+        "airport": [route.base_airport for route in destroyed_routes],
+        "destroy_size": len(indices),
+        "operator": reason,
+        "current_objective": solution.metrics.total_aircraft_time_minutes,
+    }
+    if repaired is None:
+        return Q1TargetedRepairResult(
+            solution=None,
+            reason=reason,
+            route_indices=indices,
+            routes_before=len(indices),
+            routes_after=None,
+            passengers_affected=passengers_affected,
+            aircraft_time_before=removed_time,
+            aircraft_time_after=None,
+            elapsed_seconds=round(elapsed, 6),
+            diagnostics={
+                "pre_features": pre_features,
+                "evaluated": True,
+                "feasible": False,
+                "label": "INVALID",
+            },
+        )
+    kept = [
+        route for index, route in enumerate(solution.routes) if index not in set(indices)
+    ]
+    kept_evaluations = [
+        evaluation for index, evaluation in enumerate(evaluations) if index not in set(indices)
+    ]
+    candidate_routes = kept + repaired.routes
+    candidate_evaluations = kept_evaluations + repaired.evaluations
+    candidate = Solution(
+        routes=tuple(candidate_routes),
+        metrics=aggregate_evaluations(candidate_evaluations, data.q1_passenger_count),
+        method=f"q1_targeted_exact_{reason}",
+        diagnostics={
+            **solution.diagnostics,
+            "targeted_repair": {
+                "reason": reason,
+                "indices": list(indices),
+                "variant_count": repaired.variant_count,
+            },
+        },
+    )
+    improved = candidate.metrics.comparison_key() < solution.metrics.comparison_key()
+    primary_improved = (
+        candidate.metrics.total_aircraft_time_minutes
+        < solution.metrics.total_aircraft_time_minutes
+    )
+    return Q1TargetedRepairResult(
+        solution=candidate,
+        reason=reason,
+        route_indices=indices,
+        routes_before=len(indices),
+        routes_after=len(repaired.routes),
+        passengers_affected=passengers_affected,
+        aircraft_time_before=removed_time,
+        aircraft_time_after=sum(
+            evaluation.total_aircraft_time_minutes
+            for evaluation in repaired.evaluations
+        ),
+        elapsed_seconds=round(elapsed, 6),
+        diagnostics={
+            "pre_features": pre_features,
+            "evaluated": True,
+            "feasible": True,
+            "repair_selected": improved,
+            "repair_accepted": improved,
+            "primary_improvement": primary_improved,
+            "new_best": improved,
+            "actual_delta_aircraft_time": (
+                candidate.metrics.total_aircraft_time_minutes
+                - solution.metrics.total_aircraft_time_minutes
+            ),
+            "evaluation_cost_seconds": round(elapsed, 6),
+            "label": "POSITIVE" if improved else "TRUE_NEGATIVE",
+            "variant_count": repaired.variant_count,
+            "candidates_considered": repaired.candidates_considered,
+            "candidates_selected": repaired.candidates_selected,
+        },
     )

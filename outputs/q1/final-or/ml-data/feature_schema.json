@@ -1,0 +1,30 @@
+{
+  "target": "Candidate Value, not cluster membership",
+  "leakage_rule": "Every feature is available before repair outcome.",
+  "features": [
+    "geometry",
+    "route_time",
+    "route_slack",
+    "route_utilization",
+    "aircraft_type",
+    "airport",
+    "facility_demand",
+    "source_route_deletion_potential",
+    "destroy_size",
+    "operator",
+    "current_objective",
+    "stagnation",
+    "distance_relatedness",
+    "context_score",
+    "lp_dual_pricing_signal",
+    "route_pool_frequency",
+    "elite_cooccurrence",
+    "candidate_evaluated",
+    "feasible"
+  ],
+  "grouping_keys": [
+    "run_id",
+    "basin_lineage",
+    "parent_solution"
+  ]
+}

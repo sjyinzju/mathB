@@ -1,0 +1,24 @@
+{
+  "run_id": "round2-target-88",
+  "method": "q1_exact_allocated_route_pattern_master",
+  "git_commit": "293df8c0e56c86287a7bcabdd71d7f48e1f36dd8",
+  "git_branch": "codex/q1-final-or-intensification",
+  "git_dirty": true,
+  "runtime": {
+    "python": "3.11.9",
+    "scipy": "1.17.1",
+    "backend": "scipy.optimize.milp/linprog (HiGHS)"
+  },
+  "config": {
+    "maximum_source_objective": 15371,
+    "primary_seconds": 300.0,
+    "secondary_seconds": 30.0,
+    "primary_upper_bound": null,
+    "maximum_total_flights": 88
+  },
+  "elapsed_seconds": 391.586008,
+  "artifacts": {
+    "routes_sha256": "6d6e01c3cf260102b618a82ccc070ef7971d1909090ce32d9ca251345a24977c",
+    "assignments_sha256": "aebd49256148c1a6c163f1ecdad43a567a10e0e9a418ddb44d54541fc306c92e"
+  }
+}

@@ -54,6 +54,9 @@ class Q1ALNSConfig:
     context_coverage_redundancy: int = 3
     stagnation_limit_seconds: float | None = None
     minimum_runtime_before_stagnation_stop: float = 0.0
+    reheat_stagnation_iterations: int | None = None
+    reheat_factor: float = 2.0
+    max_reheats: int = 0
     seed: int = 0
 
     def __post_init__(self) -> None:
@@ -87,6 +90,12 @@ class Q1ALNSConfig:
             raise ValueError("stagnation_limit_seconds must be positive when set")
         if self.minimum_runtime_before_stagnation_stop < 0:
             raise ValueError("minimum_runtime_before_stagnation_stop cannot be negative")
+        if self.reheat_stagnation_iterations is not None and self.reheat_stagnation_iterations <= 0:
+            raise ValueError("reheat_stagnation_iterations must be positive when set")
+        if self.reheat_factor < 1.0:
+            raise ValueError("reheat_factor must be at least 1")
+        if self.max_reheats < 0:
+            raise ValueError("max_reheats cannot be negative")
 
 
 @dataclass(frozen=True)
@@ -783,6 +792,8 @@ def improve_q1_alns(
     temperature = alns_config.initial_temperature
     started = time.perf_counter()
     last_best_elapsed = 0.0
+    last_best_iteration = 0
+    reheats = 0
     stop_reason = "iteration_limit"
 
     for iteration in range(1, alns_config.iterations + 1):
@@ -895,6 +906,7 @@ def improve_q1_alns(
                     state.segment_reward += 8.0
                     global_best = True
                     last_best_elapsed = time.perf_counter() - started
+                    last_best_iteration = iteration
 
         convergence.append(
             {
@@ -928,6 +940,19 @@ def improve_q1_alns(
             }
         )
         temperature *= alns_config.cooling_rate
+        if (
+            alns_config.reheat_stagnation_iterations is not None
+            and reheats < alns_config.max_reheats
+            and iteration - last_best_iteration > 0
+            and (iteration - last_best_iteration)
+            % alns_config.reheat_stagnation_iterations
+            == 0
+        ):
+            temperature = min(
+                alns_config.initial_temperature,
+                temperature * alns_config.reheat_factor,
+            )
+            reheats += 1
         if iteration % alns_config.segment_length == 0:
             for operator_name, operator_state in operators.items():
                 observed = operator_state.segment_reward / max(1, operator_state.segment_calls)
@@ -969,6 +994,7 @@ def improve_q1_alns(
                 alns_config.minimum_runtime_before_stagnation_stop
             ),
             "stop_reason": stop_reason,
+            "reheats": reheats,
         },
     }
     best_solution = Solution(

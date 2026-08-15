@@ -81,6 +81,7 @@ def main() -> int:
     parser.add_argument("--primary-seconds", type=float, default=180.0)
     parser.add_argument("--secondary-seconds", type=float, default=30.0)
     parser.add_argument("--primary-upper-bound", type=int)
+    parser.add_argument("--maximum-total-flights", type=int)
     args = parser.parse_args()
 
     run_id = args.run_id or datetime.now().strftime("%Y%m%d-%H%M%S") + "-route-pool"
@@ -94,6 +95,11 @@ def main() -> int:
         primary_time_limit_seconds=args.primary_seconds,
         secondary_time_limit_seconds=args.secondary_seconds,
         primary_upper_bound_minutes=args.primary_upper_bound,
+        maximum_total_flights=args.maximum_total_flights,
+    )
+    control_config = Q1MasterConfig(
+        primary_time_limit_seconds=min(args.primary_seconds, 30.0),
+        secondary_time_limit_seconds=min(args.secondary_seconds, 10.0),
     )
 
     control_pool = collect_elite_route_pool(
@@ -102,8 +108,8 @@ def main() -> int:
         maximum_objective=14770,
         exact_objective=14770,
     )
-    control_lp = solve_restricted_lp(data, control_pool, config)
-    control_master = solve_route_pool_master(data, control_pool, config)
+    control_lp = solve_restricted_lp(data, control_pool, control_config)
+    control_master = solve_route_pool_master(data, control_pool, control_config)
     reproduction_pass = bool(
         control_master.primary_objective == 14770
         and control_master.solution.metrics.served_passengers == data.q1_passenger_count
@@ -117,7 +123,32 @@ def main() -> int:
         maximum_objective=args.maximum_source_objective,
     )
     lp = solve_restricted_lp(data, pool, config)
-    master = solve_route_pool_master(data, pool, config)
+    try:
+        master = solve_route_pool_master(data, pool, config)
+    except RuntimeError as error:
+        write_json(
+            run_dir / "no-incumbent.json",
+            {
+                "gate_pass": False,
+                "outcome": "NO_MIP_INCUMBENT_WITHIN_LIMIT",
+                "error": str(error),
+                "lp": _lp_payload(lp),
+                "pool_unique_routes": len(pool.routes),
+                "pool_sources": len(pool.sources),
+                "config": {
+                    "maximum_source_objective": args.maximum_source_objective,
+                    "primary_seconds": args.primary_seconds,
+                    "secondary_seconds": args.secondary_seconds,
+                    "primary_upper_bound": args.primary_upper_bound,
+                    "maximum_total_flights": args.maximum_total_flights,
+                },
+                "scope_warning": (
+                    "No incumbent is not an infeasibility proof and not a global Q1 bound."
+                ),
+            },
+        )
+        print(f"Q1 ROUTE-POOL MASTER NO INCUMBENT: {run_dir}", file=sys.stderr)
+        return 3
     routes_path = run_dir / "q1-routes.csv"
     assignments_path = run_dir / "q1-assignments.csv"
     export_q1_solution(master.solution, routes_path, assignments_path)
@@ -202,6 +233,7 @@ def main() -> int:
                 "primary_seconds": args.primary_seconds,
                 "secondary_seconds": args.secondary_seconds,
                 "primary_upper_bound": args.primary_upper_bound,
+                "maximum_total_flights": args.maximum_total_flights,
             },
             "elapsed_seconds": round(time.perf_counter() - started, 6),
             "artifacts": {
@@ -225,4 +257,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

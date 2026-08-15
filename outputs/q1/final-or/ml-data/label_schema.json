@@ -1,0 +1,10 @@
+{
+  "POSITIVE": "evaluated and accepted useful repair",
+  "TRUE_NEGATIVE": "evaluated feasible repair that was not accepted",
+  "CENSORED": "candidate not evaluated; never treat as negative",
+  "INVALID": "evaluated but infeasible/invalid",
+  "counts": {
+    "POSITIVE": 1,
+    "TRUE_NEGATIVE": 18
+  }
+}

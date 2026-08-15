@@ -1,0 +1,110 @@
+{
+  "start_metrics": {
+    "total_aircraft_time_minutes": 14732,
+    "total_passenger_travel_time_minutes": 123113,
+    "total_flights": 88,
+    "total_fuel_consumption_kg": 118661.9,
+    "seat_utilization": 0.49376884214227723,
+    "served_passengers": 1600
+  },
+  "route_indices": [
+    80,
+    82,
+    83,
+    84,
+    85,
+    87
+  ],
+  "destroyed_routes": 6,
+  "destroyed_passengers": 110,
+  "candidate_variants": 201,
+  "local_control_time": 1586,
+  "results": [
+    {
+      "method": "Regret-2",
+      "feasible": true,
+      "local_aircraft_time": 1799,
+      "local_routes": 7,
+      "elapsed_seconds": 0.007407
+    },
+    {
+      "method": "Regret-3",
+      "feasible": true,
+      "local_aircraft_time": 1615,
+      "local_routes": 6,
+      "elapsed_seconds": 0.005357
+    },
+    {
+      "method": "Regret-4",
+      "feasible": true,
+      "local_aircraft_time": 1881,
+      "local_routes": 7,
+      "elapsed_seconds": 0.008185
+    },
+    {
+      "method": "Beam width=4 depth=2 + Regret-3 completion",
+      "feasible": true,
+      "local_aircraft_time": 1615,
+      "local_routes": 6,
+      "elapsed_seconds": 0.021145
+    },
+    {
+      "method": "MILP exact repair control",
+      "feasible": true,
+      "local_aircraft_time": 1586,
+      "local_routes": 6,
+      "elapsed_seconds": 10.031303
+    }
+  ],
+  "full_candidates": [
+    {
+      "method": "regret_2",
+      "metrics": {
+        "total_aircraft_time_minutes": 14945,
+        "total_passenger_travel_time_minutes": 123087,
+        "total_flights": 89,
+        "total_fuel_consumption_kg": 120237.8,
+        "seat_utilization": 0.48650066233278966,
+        "served_passengers": 1600
+      }
+    },
+    {
+      "method": "regret_3",
+      "metrics": {
+        "total_aircraft_time_minutes": 14761,
+        "total_passenger_travel_time_minutes": 123948,
+        "total_flights": 88,
+        "total_fuel_consumption_kg": 118655.7,
+        "seat_utilization": 0.4931186640964279,
+        "served_passengers": 1600
+      }
+    },
+    {
+      "method": "regret_4",
+      "metrics": {
+        "total_aircraft_time_minutes": 15027,
+        "total_passenger_travel_time_minutes": 123091,
+        "total_flights": 89,
+        "total_fuel_consumption_kg": 120993.1,
+        "seat_utilization": 0.48371605371819626,
+        "served_passengers": 1600
+      }
+    },
+    {
+      "method": "beam_4x2",
+      "metrics": {
+        "total_aircraft_time_minutes": 14761,
+        "total_passenger_travel_time_minutes": 123578,
+        "total_flights": 88,
+        "total_fuel_consumption_kg": 118655.7,
+        "seat_utilization": 0.4931173712197903,
+        "served_passengers": 1600
+      }
+    }
+  ],
+  "cp_sat": {
+    "available": false,
+    "decision": "REJECT",
+    "reason": "OR-Tools is not a project dependency; the shared MILP control is feasible, validated elsewhere, and backend proliferation is not justified."
+  }
+}

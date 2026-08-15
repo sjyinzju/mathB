@@ -1,0 +1,70 @@
+[
+  {
+    "step": 1,
+    "guide_service_order": [
+      "F031",
+      "F023"
+    ],
+    "route_indices": [
+      31,
+      32,
+      33,
+      58,
+      63,
+      88
+    ],
+    "before_identity_distance": 6,
+    "after_identity_distance": 10,
+    "follows_path": false,
+    "accepted_working": false,
+    "new_best": false,
+    "candidate_objective": 14770,
+    "candidate_flights": 89,
+    "solve_time": 30.883054,
+    "label": "TRUE_NEGATIVE"
+  },
+  {
+    "step": 2,
+    "guide_service_order": [
+      "F034"
+    ],
+    "route_indices": [
+      19,
+      85,
+      87,
+      88
+    ],
+    "before_identity_distance": 6,
+    "after_identity_distance": 6,
+    "follows_path": false,
+    "accepted_working": false,
+    "new_best": false,
+    "candidate_objective": 14770,
+    "candidate_flights": 89,
+    "solve_time": 9.324476,
+    "label": "TRUE_NEGATIVE"
+  },
+  {
+    "step": 3,
+    "guide_service_order": [
+      "F025"
+    ],
+    "route_indices": [
+      4,
+      18,
+      28,
+      35,
+      64,
+      65
+    ],
+    "before_identity_distance": 6,
+    "after_identity_distance": 6,
+    "follows_path": false,
+    "accepted_working": false,
+    "new_best": false,
+    "candidate_objective": 14770,
+    "candidate_flights": 89,
+    "solve_time": 17.664064,
+    "label": "TRUE_NEGATIVE"
+  }
+]

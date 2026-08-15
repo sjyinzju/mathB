@@ -1,0 +1,41 @@
+{
+  "experiment": "final14730-reheat-s21",
+  "mode": "wallclock",
+  "created_utc": "2026-08-15T16:53:54",
+  "git_commit": "293df8c0e56c86287a7bcabdd71d7f48e1f36dd8",
+  "seeds": [
+    21
+  ],
+  "initial_comparison_key": [
+    14730.0,
+    122494.0,
+    89.0,
+    118624.4,
+    -0.4940392806742708
+  ],
+  "initial_aircraft_time_minutes": 14730.0,
+  "best_of_seeds_aircraft_time_minutes": 14730.0,
+  "median_aircraft_time_minutes": 14730.0,
+  "mean_aircraft_time_minutes": 14730.0,
+  "worst_aircraft_time_minutes": 14730.0,
+  "stdev_aircraft_time_minutes": 0.0,
+  "median_passenger_time_minutes": 121363.0,
+  "beat_initial_count": 0,
+  "beat_initial_rate": 0.0,
+  "gate_pass_all": true,
+  "per_seed": [
+    {
+      "seed": 21,
+      "best_aircraft_time_minutes": 14730.0,
+      "passenger_time_minutes": 121363,
+      "flights": 89,
+      "runtime_seconds": 310.441,
+      "improving_moves": 4,
+      "new_global_best_count": 4,
+      "evaluator_calls": 12999,
+      "repair_candidates_considered": 22401,
+      "repair_candidates_selected": 22401,
+      "gate_pass": true
+    }
+  ]
+}

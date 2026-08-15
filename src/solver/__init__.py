@@ -14,10 +14,14 @@ from .q1_or import (
     Q1MasterConfig,
     Q1MasterResult,
     Q1RestrictedLPResult,
+    Q1TargetedRepairResult,
     collect_elite_route_pool,
+    exact_targeted_repair,
+    route_elimination_audit,
     route_identity,
     solve_restricted_lp,
     solve_route_pool_master,
+    targeted_route_indices,
 )
 from .technical_stops import augment_service_sequence
 
@@ -38,11 +42,15 @@ __all__ = [
     "Q1MasterConfig",
     "Q1MasterResult",
     "Q1RestrictedLPResult",
+    "Q1TargetedRepairResult",
     "collect_elite_route_pool",
+    "exact_targeted_repair",
+    "route_elimination_audit",
     "route_identity",
     "SolverCache",
     "SolverConfig",
     "solve_q1_baseline",
     "solve_restricted_lp",
     "solve_route_pool_master",
+    "targeted_route_indices",
 ]
