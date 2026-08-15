@@ -1,0 +1,26 @@
+{
+  "scope_note": "The bounds certify only the finite candidate-route master problems, not the unrestricted original problem.",
+  "time_limit_seconds_per_master": 300.0,
+  "pair_master": {
+    "candidate_sequences": 357,
+    "candidate_variants": 3116,
+    "compatible_assignments": 23251,
+    "primary_incumbent_minutes": 19736.0,
+    "primary_dual_bound_minutes": 16296.0,
+    "primary_mip_gap_percent": 17.430077016618796,
+    "primary_status": 1,
+    "validator_valid": true
+  },
+  "triple_master": {
+    "candidate_sequences": 437,
+    "candidate_variants": 3799,
+    "compatible_assignments": 31330,
+    "primary_incumbent_minutes": 20222.0,
+    "primary_dual_bound_minutes": 15950.0,
+    "primary_mip_gap_percent": 21.12550687370191,
+    "primary_status": 1,
+    "validator_valid": true
+  },
+  "selected_solution": "pair_master",
+  "selection_reason": "The pair-master incumbent has the smaller primary objective under the lexicographic rule."
+}

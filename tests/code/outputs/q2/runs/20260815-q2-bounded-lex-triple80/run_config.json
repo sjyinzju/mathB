@@ -1,0 +1,21 @@
+{
+  "method": "q2_b1_imported_pair_route_master",
+  "q1_routes": "/workspace/scratch/279375cee990/deliverables/mathB_Q1_Q2_optimization_v4/code/outputs/q1/best/q1-routes.csv",
+  "candidate_sequences": 357,
+  "candidate_variants": 3116,
+  "adaptive_triple_sequences": 80,
+  "adaptive_triple_variants": 683,
+  "variant_generation_seconds": 0.027807,
+  "total_elapsed_seconds": 364.201046,
+  "master_config": {
+    "nearest_neighbors": 3,
+    "high_demand_nodes": 10,
+    "time_limit_seconds": 300.0,
+    "mip_relative_gap": 0.0,
+    "primary_fraction": 0.65
+  },
+  "joint_diagnostics": {},
+  "pair_diagnostics": {},
+  "pair_validator_valid": true,
+  "separate_diagnostics": null
+}

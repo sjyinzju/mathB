@@ -1,0 +1,10 @@
+{
+  "method": "q3_time_window_candidate_routes_interval_scheduling",
+  "variant_cache": "/workspace/scratch/279375cee990/deliverables/mathB_Q1_Q2_Q3_optimization_v5/code/outputs/q2/pair_n3_h10.pkl",
+  "od_count": 264,
+  "candidate_variants": 23251,
+  "seeds": 3,
+  "selected_mode": "q3_interval_list_deadline",
+  "selected_seed": 1,
+  "total_elapsed_seconds": 102.401298
+}

@@ -1,0 +1,94 @@
+{
+  "method": "q2_b1_joint_pair_route_master",
+  "q1_routes": "/workspace/scratch/279375cee990/deliverables/mathB_Q1_Q2_optimization_v4/code/outputs/q1/best/q1-routes.csv",
+  "candidate_sequences": 357,
+  "candidate_variants": 3116,
+  "adaptive_triple_sequences": 0,
+  "adaptive_triple_variants": 0,
+  "variant_generation_seconds": 0.058125,
+  "total_elapsed_seconds": 227.870304,
+  "master_config": {
+    "nearest_neighbors": 3,
+    "high_demand_nodes": 10,
+    "time_limit_seconds": 300.0,
+    "mip_relative_gap": 0.0
+  },
+  "joint_diagnostics": {
+    "q2_master": {
+      "demand_groups": 264,
+      "candidate_sequences": 357,
+      "candidate_variants": 3116,
+      "compatible_assignments": 23251,
+      "primary_status": 1,
+      "primary_objective": 20506.0,
+      "primary_dual_bound": 16285.0,
+      "primary_mip_gap": 0.2058421925290159,
+      "primary_proven_optimal": false,
+      "stage_statuses": {
+        "aircraft_time_minutes": 1,
+        "passenger_time_minutes": 1,
+        "flights": null,
+        "fuel_kg": null
+      },
+      "stage_objectives": {
+        "aircraft_time_minutes": 20506.0,
+        "passenger_time_minutes": null,
+        "flights": null,
+        "fuel_kg": null
+      },
+      "stage_dual_bounds": {
+        "aircraft_time_minutes": 16285.0,
+        "passenger_time_minutes": null,
+        "flights": null,
+        "fuel_kg": null
+      },
+      "stage_mip_gaps": {
+        "aircraft_time_minutes": 0.2058421925290159,
+        "passenger_time_minutes": null,
+        "flights": null,
+        "fuel_kg": null
+      },
+      "elapsed_seconds": 227.63403
+    }
+  },
+  "pair_diagnostics": {
+    "q2_master": {
+      "demand_groups": 264,
+      "candidate_sequences": 357,
+      "candidate_variants": 3116,
+      "compatible_assignments": 23251,
+      "primary_status": 1,
+      "primary_objective": 20506.0,
+      "primary_dual_bound": 16285.0,
+      "primary_mip_gap": 0.2058421925290159,
+      "primary_proven_optimal": false,
+      "stage_statuses": {
+        "aircraft_time_minutes": 1,
+        "passenger_time_minutes": 1,
+        "flights": null,
+        "fuel_kg": null
+      },
+      "stage_objectives": {
+        "aircraft_time_minutes": 20506.0,
+        "passenger_time_minutes": null,
+        "flights": null,
+        "fuel_kg": null
+      },
+      "stage_dual_bounds": {
+        "aircraft_time_minutes": 16285.0,
+        "passenger_time_minutes": null,
+        "flights": null,
+        "fuel_kg": null
+      },
+      "stage_mip_gaps": {
+        "aircraft_time_minutes": 0.2058421925290159,
+        "passenger_time_minutes": null,
+        "flights": null,
+        "fuel_kg": null
+      },
+      "elapsed_seconds": 227.63403
+    }
+  },
+  "pair_validator_valid": true,
+  "separate_diagnostics": null
+}

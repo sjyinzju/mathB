@@ -1,0 +1,15 @@
+{
+  "stage1": {
+    "incumbent_aircraft_time_minutes": 30546,
+    "seat_km_transport_lower_bound_minutes": 12389,
+    "conservative_gap_percent": 59.441498,
+    "incumbent_excess_over_lower_bound_percent": 146.55743
+  },
+  "stage2": {
+    "served_optional_incumbent": 160,
+    "optional_upper_bound": 160,
+    "absolute_gap": 0,
+    "proven_optimal": true,
+    "aircraft_time_slack_minutes": 36
+  }
+}

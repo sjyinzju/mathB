@@ -1,0 +1,30 @@
+{
+  "gate_pass": true,
+  "method": "guided_route_pool_alternating_assignment_destroy_repair",
+  "mandatory_count": 3840,
+  "optional_count": 160,
+  "served_optional": 160,
+  "baseline_metrics": {
+    "total_aircraft_time_minutes": 30546,
+    "total_passenger_travel_time_minutes": 241130,
+    "total_flights": 173,
+    "total_fuel_consumption_kg": 241607.7,
+    "seat_utilization": 0.5442587917325763,
+    "served_passengers": 3840,
+    "unserved_optional_passengers": 160
+  },
+  "final_metrics": {
+    "total_aircraft_time_minutes": 30510,
+    "total_passenger_travel_time_minutes": 249959,
+    "total_flights": 173,
+    "total_fuel_consumption_kg": 241133.6,
+    "seat_utilization": 0.5649971466164732,
+    "served_passengers": 4000,
+    "unserved_optional_passengers": 0
+  },
+  "improvement_from_v5": {
+    "baseline_aircraft_time_saved_minutes": 825,
+    "final_aircraft_time_saved_minutes": 861,
+    "additional_optional_people": 2
+  }
+}

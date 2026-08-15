@@ -1,0 +1,23 @@
+{
+  "initial_v5": {
+    "T0": 31371,
+    "temporary": 158,
+    "final_time": 31371
+  },
+  "deep_stage1": {
+    "T0": 30546,
+    "temporary": 0
+  },
+  "deep_stage2": {
+    "final_time": 30510,
+    "temporary": 160,
+    "proven_optimal_temporary_count": true
+  },
+  "mechanisms": [
+    "guided bottleneck OD construction",
+    "global sparse binary passenger reassignment",
+    "same-type route shortening",
+    "aircraft type and home-airport local search",
+    "stop deletion plus global assignment repair"
+  ]
+}

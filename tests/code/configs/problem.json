@@ -1,0 +1,61 @@
+{
+  "airports": ["A01", "A02", "A03"],
+  "facilities": [
+    "F001", "F002", "F003", "F004", "F005", "F006", "F007", "F008", "F009", "F010",
+    "F011", "F012", "F013", "F014", "F015", "F016", "F017", "F018", "F019", "F020",
+    "F021", "F022", "F023", "F024", "F025", "F026", "F027", "F028", "F029", "F030",
+    "F031", "F032", "F033", "F034", "F035", "F036", "F037", "F038", "F039", "F040",
+    "F041", "F042", "F043", "F044", "F045", "F046", "F047", "F048", "F049", "F050",
+    "F051", "F052"
+  ],
+  "refuel_facilities": ["F006", "F011", "F018", "F024", "F031", "F038", "F044", "F050"],
+  "max_sea_landings": 5,
+  "minimum_stop_minutes": {
+    "without_refuel": 10,
+    "with_refuel": 20
+  },
+  "aircraft_types": {
+    "T1": {
+      "seats": 12,
+      "speed_kmh": 250,
+      "burn_kg_per_km": 3.4,
+      "tank_capacity_kg": 1000,
+      "reserve_kg": 150
+    },
+    "T2": {
+      "seats": 16,
+      "speed_kmh": 220,
+      "burn_kg_per_km": 2.5,
+      "tank_capacity_kg": 1150,
+      "reserve_kg": 150
+    },
+    "T3": {
+      "seats": 19,
+      "speed_kmh": 190,
+      "burn_kg_per_km": 2.9,
+      "tank_capacity_kg": 1600,
+      "reserve_kg": 200
+    }
+  },
+  "q3": {
+    "planning_start": "2026-08-03 00:00",
+    "planning_end": "2026-08-10 00:00",
+    "earliest_departure": "06:00",
+    "latest_departure": "18:00",
+    "latest_return": "20:00",
+    "turnaround_minutes": 30,
+    "fleet_counts": {
+      "A01": {"T1": 3, "T2": 3, "T3": 2},
+      "A02": {"T1": 2, "T2": 4, "T3": 2},
+      "A03": {"T1": 2, "T2": 3, "T3": 3}
+    },
+    "task_priority": {
+      "emergency": 1,
+      "production": 2,
+      "shift": 3,
+      "temporary": 4
+    },
+    "mandatory_task_types": ["emergency", "production", "shift"],
+    "optional_task_types": ["temporary"]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "method": "q1_b2_alns_balanced",
+  "initial_solution": "q1_b1_generalized_savings",
+  "deterministic_given_seed": true,
+  "stage_1": {
+    "seed": 0,
+    "iterations": 60,
+    "min_destroy_routes": 2,
+    "max_destroy_routes": 3,
+    "max_service_nodes": 2,
+    "repair_time_limit_seconds": 3.0,
+    "time_limit_seconds": 600.0,
+    "measured_elapsed_seconds": 295.693816
+  },
+  "stage_2": {
+    "seed": 1,
+    "iterations": 60,
+    "min_destroy_routes": 3,
+    "max_destroy_routes": 4,
+    "max_service_nodes": 2,
+    "repair_time_limit_seconds": 5.0,
+    "time_limit_seconds": 900.0,
+    "measured_elapsed_seconds": 690.20117
+  },
+  "total_alns_elapsed_seconds": 985.894986,
+  "secondary_order": [
+    "total_passenger_travel_time_minutes",
+    "total_flights",
+    "total_fuel_consumption_kg",
+    "seat_utilization"
+  ]
+}

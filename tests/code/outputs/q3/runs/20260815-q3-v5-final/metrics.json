@@ -1,0 +1,55 @@
+{
+  "gate_pass": true,
+  "mandatory_count": 3840,
+  "optional_count": 160,
+  "served_optional": 156,
+  "unserved_optional": [
+    "P3290",
+    "P1102",
+    "P2095",
+    "P0366"
+  ],
+  "baseline_metrics": {
+    "total_aircraft_time_minutes": 31371,
+    "total_passenger_travel_time_minutes": 265819,
+    "total_flights": 173,
+    "total_fuel_consumption_kg": 245586.6,
+    "seat_utilization": 0.5568536763639051,
+    "served_passengers": 3840,
+    "unserved_optional_passengers": 160
+  },
+  "final_metrics": {
+    "total_aircraft_time_minutes": 31371,
+    "total_passenger_travel_time_minutes": 276075,
+    "total_flights": 173,
+    "total_fuel_consumption_kg": 245586.6,
+    "seat_utilization": 0.5786779379840292,
+    "served_passengers": 3996,
+    "unserved_optional_passengers": 4
+  },
+  "baseline_task_counts": {
+    "emergency": 40,
+    "production": 360,
+    "shift": 3440
+  },
+  "final_task_counts": {
+    "emergency": 40,
+    "production": 360,
+    "shift": 3440,
+    "temporary": 156
+  },
+  "selected_run": {
+    "method": "q3_interval_list_deadline",
+    "seed": 1,
+    "feasible": true,
+    "mandatory_people": 3840,
+    "flights": 173,
+    "aircraft_time_minutes": 31371,
+    "lower_bound_minutes": 12389,
+    "lower_bound_gap_percent": 153.216563,
+    "runtime_seconds": 37.087028,
+    "conflict_count": 0,
+    "candidate_variants": 23251,
+    "failed_person_id": null
+  }
+}

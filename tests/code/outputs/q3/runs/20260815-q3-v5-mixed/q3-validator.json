@@ -1,0 +1,72 @@
+{
+  "question": "q3",
+  "valid": false,
+  "issue_count": 8,
+  "issues": [
+    {
+      "code": "CAPACITY_VIOLATION",
+      "message": "Flight ('A01-T3-H01', 1) leaves stop 0 with 20 passengers > 19",
+      "context": {
+        "stop_order": 0
+      }
+    },
+    {
+      "code": "CAPACITY_VIOLATION",
+      "message": "Flight ('A01-T3-H01', 1) leaves stop 1 with 20 passengers > 19",
+      "context": {
+        "stop_order": 1
+      }
+    },
+    {
+      "code": "CAPACITY_VIOLATION",
+      "message": "Flight ('A01-T3-H01', 6) leaves stop 1 with 20 passengers > 19",
+      "context": {
+        "stop_order": 1
+      }
+    },
+    {
+      "code": "CAPACITY_VIOLATION",
+      "message": "Flight ('A02-T2-H02', 2) leaves stop 1 with 17 passengers > 16",
+      "context": {
+        "stop_order": 1
+      }
+    },
+    {
+      "code": "CAPACITY_VIOLATION",
+      "message": "Flight ('A03-T2-H02', 2) leaves stop 1 with 17 passengers > 16",
+      "context": {
+        "stop_order": 1
+      }
+    },
+    {
+      "code": "CAPACITY_VIOLATION",
+      "message": "Flight ('A03-T3-H02', 1) leaves stop 2 with 20 passengers > 19",
+      "context": {
+        "stop_order": 2
+      }
+    },
+    {
+      "code": "CAPACITY_VIOLATION",
+      "message": "Flight ('A03-T3-H02', 5) leaves stop 1 with 21 passengers > 19",
+      "context": {
+        "stop_order": 1
+      }
+    },
+    {
+      "code": "CAPACITY_VIOLATION",
+      "message": "Flight ('A03-T3-H03', 2) leaves stop 0 with 20 passengers > 19",
+      "context": {
+        "stop_order": 0
+      }
+    }
+  ],
+  "metrics": {
+    "total_aircraft_time_minutes": 31371,
+    "total_passenger_travel_time_minutes": 276380,
+    "total_flights": 173,
+    "total_fuel_consumption_kg": 245586.6,
+    "seat_utilization": 0.5790023351118143,
+    "served_passengers": 3998,
+    "unserved_optional_passengers": 2
+  }
+}
