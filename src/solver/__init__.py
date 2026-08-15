@@ -20,6 +20,17 @@ from .q2 import (
     q2_direction,
     solve_q2_master,
 )
+from .q2_lns import (
+    DESTROY_OPERATORS,
+    Q2LnsConfig,
+    Q2LnsResult,
+    build_q2_local_data,
+    exact_q2_local_repair,
+    geometry_local_sequences,
+    select_q2_neighborhood,
+    solve_q2_lns,
+)
+from .q2_artifacts import atomic_promote_q2_run
 
 __all__ = [
     "augment_service_sequence",
@@ -43,5 +54,14 @@ __all__ = [
     "candidate_service_sequences",
     "q2_direction",
     "solve_q2_master",
+    "DESTROY_OPERATORS",
+    "Q2LnsConfig",
+    "Q2LnsResult",
+    "build_q2_local_data",
+    "exact_q2_local_repair",
+    "geometry_local_sequences",
+    "select_q2_neighborhood",
+    "solve_q2_lns",
+    "atomic_promote_q2_run",
     "solve_q1_baseline",
 ]

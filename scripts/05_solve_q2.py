@@ -2,14 +2,11 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import os
 import platform
 import pickle
-import shutil
 import subprocess
 import sys
 import time
-import uuid
 from datetime import datetime
 from pathlib import Path
 
@@ -33,6 +30,7 @@ from src.solver import (
     solve_q2_master,
 )
 from src.validation import validate_solution
+from src.solver.q2_artifacts import atomic_promote_q2_run
 
 
 def _sha256(path: Path) -> str:
@@ -94,41 +92,6 @@ def _master_bounds(solution) -> dict[str, object] | None:
         "final_objectives": diagnostics["final_objectives"],
         "gap_definition": "(incumbent-dual_bound)/abs(incumbent)",
     }
-
-
-def _atomic_promote(run_dir: Path, best_dir: Path) -> None:
-    if run_dir.resolve() == best_dir.resolve():
-        raise ValueError("run directory and best directory must differ")
-    token = uuid.uuid4().hex
-    staged = best_dir.parent / f".{best_dir.name}.staged-{token}"
-    backup = best_dir.parent / f".{best_dir.name}.backup-{token}"
-    shutil.copytree(run_dir, staged)
-
-    def replace_with_retry(source: Path, destination: Path) -> None:
-        last_error: PermissionError | None = None
-        for attempt in range(6):
-            try:
-                os.replace(source, destination)
-                return
-            except PermissionError as error:
-                last_error = error
-                time.sleep(0.1 * (attempt + 1))
-        assert last_error is not None
-        raise last_error
-
-    try:
-        if best_dir.exists():
-            replace_with_retry(best_dir, backup)
-        replace_with_retry(staged, best_dir)
-    except Exception:
-        if not best_dir.exists() and backup.exists():
-            replace_with_retry(backup, best_dir)
-        raise
-    finally:
-        if staged.exists():
-            shutil.rmtree(staged)
-        if backup.exists():
-            shutil.rmtree(backup)
 
 
 def _write_solution(solution, run_dir: Path, data):
@@ -355,9 +318,9 @@ def main() -> int:
                 (best_dir / "metrics.json").read_text(encoding="utf-8")
             )["validator_metrics"]
         if previous_metrics is None or _comparison_key(validator_metrics) < _comparison_key(previous_metrics):
-            _atomic_promote(run_dir, best_dir)
+            atomic_promote_q2_run(run_dir, best_dir)
     if args.promote_baseline:
-        _atomic_promote(run_dir, args.output_root / "baseline-19736")
+        atomic_promote_q2_run(run_dir, args.output_root / "baseline-19736")
 
     print(
         "Q2 PASS: "

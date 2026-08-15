@@ -33,6 +33,7 @@ class Q2MasterConfig:
     primary_time_limit_seconds: float = 195.0
     secondary_time_limit_seconds: float = 105.0
     mip_relative_gap: float = 0.0
+    primary_upper_bound_minutes: int | None = None
 
     def __post_init__(self) -> None:
         if self.nearest_neighbors < 0 or self.high_demand_nodes < 0:
@@ -43,6 +44,11 @@ class Q2MasterConfig:
             raise ValueError("secondary_time_limit_seconds must be nonnegative")
         if self.mip_relative_gap < 0:
             raise ValueError("mip_relative_gap must be nonnegative")
+        if (
+            self.primary_upper_bound_minutes is not None
+            and self.primary_upper_bound_minutes < 0
+        ):
+            raise ValueError("primary_upper_bound_minutes must be nonnegative")
 
 
 @dataclass(frozen=True)
@@ -417,6 +423,15 @@ def _solve_master_arrays(
         )
     for pair, column in x_column.items():
         passenger[column] = compatible[pair][2]
+
+    if config.primary_upper_bound_minutes is not None:
+        constraints.append(
+            LinearConstraint(
+                coo_matrix(primary.reshape(1, -1)).tocsr(),
+                -np.inf,
+                float(config.primary_upper_bound_minutes),
+            )
+        )
 
     primary_started = time.perf_counter()
     first = milp(

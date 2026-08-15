@@ -1,14 +1,20 @@
 from __future__ import annotations
 
 from collections import Counter
+import json
 from pathlib import Path
 
 from src.config import ROOT
 from src.solver import (
+    Q2LnsConfig,
     SolverCache,
+    build_q2_local_data,
+    exact_q2_local_repair,
     export_q1_solution,
+    geometry_local_sequences,
     load_problem_data,
     load_q2_solution,
+    select_q2_neighborhood,
 )
 from src.validation import validate_solution
 from src.solver.q2 import (
@@ -120,9 +126,102 @@ def test_checked_in_q2_baseline_round_trips_and_validates(tmp_path: Path) -> Non
 def test_q2_best_is_an_atomic_single_run_copy() -> None:
     baseline = ROOT / "outputs" / "q2" / "baseline-19736"
     best = ROOT / "outputs" / "q2" / "best"
-    baseline_files = {path.name for path in baseline.iterdir() if path.is_file()}
+    baseline_metrics = json.loads((baseline / "metrics.json").read_text(encoding="utf-8"))
+    assert baseline_metrics["validator_metrics"]["total_aircraft_time_minutes"] == 19736
+    run_config = json.loads((best / "run_config.json").read_text(encoding="utf-8"))
+    source_run = ROOT / "outputs" / "q2" / "runs" / run_config["run_id"]
+    assert source_run.is_dir()
     best_files = {path.name for path in best.iterdir() if path.is_file()}
-    assert best_files == baseline_files
+    source_files = {path.name for path in source_run.iterdir() if path.is_file()}
+    assert best_files == source_files
     assert not any(name.startswith("q2-pair-") for name in best_files)
-    for name in baseline_files:
-        assert (baseline / name).read_bytes() == (best / name).read_bytes()
+    for name in source_files:
+        assert (source_run / name).read_bytes() == (best / name).read_bytes()
+
+
+def test_q2_local_destroy_data_preserves_exact_people_and_sequences() -> None:
+    data = load_problem_data()
+    baseline = ROOT / "outputs" / "q2" / "baseline-19736"
+    solution = load_q2_solution(
+        baseline / "q2-routes.csv",
+        baseline / "q2-assignments.csv",
+        data,
+    )
+    routes = solution.routes[:3]
+    local = build_q2_local_data(data, routes)
+    expected_people = {
+        assignment.person_id for route in routes for assignment in route.assignments
+    }
+    actual_people = {
+        person_id for pool in local.q2_pools.values() for person_id in pool.person_ids
+    }
+    assert actual_people == expected_people
+    sequences_a = geometry_local_sequences(
+        local, routes, max_sequence_length=2, budget=24
+    )
+    sequences_b = geometry_local_sequences(
+        local, routes, max_sequence_length=2, budget=24
+    )
+    assert sequences_a == sequences_b
+    assert all(tuple(route.service_facilities) in sequences_a for route in routes)
+    assert all(1 <= len(sequence) <= data.config.max_sea_landings for sequence in sequences_a)
+
+
+def test_q2_destroy_neighborhood_is_seed_deterministic() -> None:
+    data = load_problem_data()
+    baseline = ROOT / "outputs" / "q2" / "baseline-19736"
+    solution = load_q2_solution(
+        baseline / "q2-routes.csv",
+        baseline / "q2-assignments.csv",
+        data,
+    )
+    config = Q2LnsConfig(iterations=1, seed=7)
+    first = select_q2_neighborhood(
+        solution,
+        data,
+        operator="high_cost_route",
+        iteration=0,
+        config=config,
+    )
+    second = select_q2_neighborhood(
+        solution,
+        data,
+        operator="high_cost_route",
+        iteration=0,
+        config=config,
+    )
+    assert first == second
+    assert len(first) == config.neighborhood_size
+    assert len(set(first)) == config.neighborhood_size
+
+
+def test_q2_exact_local_repair_only_returns_primary_improvement() -> None:
+    data = load_problem_data()
+    baseline = ROOT / "outputs" / "q2" / "baseline-19736"
+    solution = load_q2_solution(
+        baseline / "q2-routes.csv",
+        baseline / "q2-assignments.csv",
+        data,
+    )
+    config = Q2LnsConfig(
+        iterations=1,
+        neighborhood_size=3,
+        max_sequence_length=2,
+        candidate_sequence_budget=8,
+        local_primary_seconds=5.0,
+        local_secondary_seconds=0.0,
+        operators=("land_heavy_route",),
+    )
+    repair = exact_q2_local_repair(
+        solution,
+        data,
+        (18, 46, 53),
+        cache=SolverCache(data),
+        config=config,
+    )
+    assert repair.solution is not None
+    assert (
+        repair.solution.metrics.total_aircraft_time_minutes
+        < solution.metrics.total_aircraft_time_minutes
+    )
+    assert repair.diagnostics["after_routes"] <= repair.diagnostics["before_routes"]

@@ -11,27 +11,27 @@
     "served_passengers": 4000
   },
   "internal_metrics": {
-    "total_aircraft_time_minutes": 19482,
-    "total_passenger_travel_time_minutes": 268942,
+    "total_aircraft_time_minutes": 19485,
+    "total_passenger_travel_time_minutes": 269109,
     "total_flights": 106,
-    "total_fuel_consumption_kg": 151620.3,
-    "seat_utilization": 0.8304081751956572,
+    "total_fuel_consumption_kg": 151182.3,
+    "seat_utilization": 0.8296986429305818,
     "served_passengers": 4000
   },
   "validator_metrics": {
-    "total_aircraft_time_minutes": 19482,
-    "total_passenger_travel_time_minutes": 268942,
+    "total_aircraft_time_minutes": 19485,
+    "total_passenger_travel_time_minutes": 269109,
     "total_flights": 106,
-    "total_fuel_consumption_kg": 151620.3,
-    "seat_utilization": 0.8304081751956572,
+    "total_fuel_consumption_kg": 151182.3,
+    "seat_utilization": 0.8296986429305818,
     "served_passengers": 4000,
     "unserved_optional_passengers": 0
   },
   "comparison_key": [
-    19482.0,
-    268942.0,
+    19485.0,
+    269109.0,
     106.0,
-    151620.3,
-    -0.8304081751956572
+    151182.3,
+    -0.8296986429305818
   ]
 }
