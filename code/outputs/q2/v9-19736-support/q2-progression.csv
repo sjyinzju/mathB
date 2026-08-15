@@ -1,0 +1,4 @@
+﻿stage,aircraft_time_minutes,passenger_time_minutes,flights,fuel_kg,seat_utilization_percent
+三类分开运输,44184,260521,258,353993.8,34.66081623800061
+最小联合候选池,20759,262954,114,162325.5,75.15593096156086
+扩展联合候选池,19736,270734,107,152910.4,81.82982554006456

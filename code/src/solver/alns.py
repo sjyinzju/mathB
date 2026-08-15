@@ -23,7 +23,14 @@ from .models import (
     SolverConfig,
     aggregate_evaluations,
 )
-from .technical_stops import augment_service_sequence
+from .cache import SolverCache
+from .relatedness import (
+    CONTEXT_COMPONENTS,
+    FrozenConsensus,
+    RepairCandidateSpec,
+    rank_context_repair_candidates,
+    rank_related_routes,
+)
 
 
 @dataclass(frozen=True)
@@ -39,6 +46,14 @@ class Q1ALNSConfig:
     cooling_rate: float = 0.985
     reaction_factor: float = 0.25
     segment_length: int = 15
+    related_destroy_mode: str = "legacy"
+    frozen_consensus: FrozenConsensus | None = field(default=None, compare=False, repr=False)
+    context_repair_mode: str = "none"
+    context_candidate_budget: int = 0
+    context_components: tuple[str, ...] = CONTEXT_COMPONENTS
+    context_coverage_redundancy: int = 3
+    stagnation_limit_seconds: float | None = None
+    minimum_runtime_before_stagnation_stop: float = 0.0
     seed: int = 0
 
     def __post_init__(self) -> None:
@@ -54,6 +69,24 @@ class Q1ALNSConfig:
             raise ValueError("cooling_rate must be in (0, 1]")
         if not (0.0 < self.reaction_factor <= 1.0):
             raise ValueError("reaction_factor must be in (0, 1]")
+        if self.related_destroy_mode not in {"legacy", "distance", "distance_consensus"}:
+            raise ValueError(
+                "related_destroy_mode must be legacy, distance, or distance_consensus"
+            )
+        if self.related_destroy_mode == "distance_consensus" and self.frozen_consensus is None:
+            raise ValueError("distance_consensus mode requires frozen_consensus")
+        if self.context_repair_mode not in {"none", "ranked"}:
+            raise ValueError("context_repair_mode must be none or ranked")
+        if self.context_repair_mode == "ranked" and self.context_candidate_budget <= 0:
+            raise ValueError("ranked context repair requires a positive candidate budget")
+        if not self.context_components or not set(self.context_components) <= set(CONTEXT_COMPONENTS):
+            raise ValueError(f"context_components must be a subset of {CONTEXT_COMPONENTS}")
+        if self.context_coverage_redundancy <= 0:
+            raise ValueError("context_coverage_redundancy must be positive")
+        if self.stagnation_limit_seconds is not None and self.stagnation_limit_seconds <= 0:
+            raise ValueError("stagnation_limit_seconds must be positive when set")
+        if self.minimum_runtime_before_stagnation_stop < 0:
+            raise ValueError("minimum_runtime_before_stagnation_stop cannot be negative")
 
 
 @dataclass(frozen=True)
@@ -85,6 +118,11 @@ class _OperatorState:
     best: int = 0
     segment_calls: int = 0
     segment_reward: float = 0.0
+    feasible_repairs: int = 0
+    failed_repairs: int = 0
+    total_gain_minutes: int = 0
+    runtime_seconds: float = 0.0
+    destroyed_routes_total: int = 0
 
 
 @dataclass(frozen=True)
@@ -92,6 +130,25 @@ class ALNSRunResult:
     solution: Solution
     convergence: tuple[dict[str, object], ...]
     operator_stats: tuple[dict[str, object], ...]
+    weight_history: tuple[dict[str, object], ...] = ()
+
+
+@dataclass(frozen=True)
+class _VariantPoolResult:
+    variants: list[RouteVariant]
+    candidates_considered: int
+    candidates_selected: int
+    exact_candidate_builds: int
+
+
+@dataclass(frozen=True)
+class _RepairResult:
+    routes: list[RoutePlan]
+    evaluations: list[RouteEvaluation]
+    variant_count: int
+    candidates_considered: int
+    candidates_selected: int
+    exact_candidate_builds: int
 
 
 def _solution_key(solution: Solution, order: tuple[str, ...]) -> tuple[float, ...]:
@@ -110,17 +167,12 @@ def _build_variant(
     aircraft_type: str,
     service_order: tuple[str, ...],
     cache: dict[tuple[str, str, tuple[str, ...]], RouteVariant | None],
+    solver_cache: SolverCache,
 ) -> RouteVariant | None:
     key = (base_airport, aircraft_type, service_order)
     if key in cache:
         return cache[key]
-    augmented = augment_service_sequence(
-        base_airport,
-        aircraft_type,
-        service_order,
-        matrix=data.matrix,
-        config=data.config,
-    )
+    augmented = solver_cache.augmentation_result(base_airport, aircraft_type, service_order)
     if not augmented.feasible:
         cache[key] = None
         return None
@@ -212,13 +264,15 @@ def _variant_pool(
     data: ProblemData,
     config: Q1ALNSConfig,
     cache: dict[tuple[str, str, tuple[str, ...]], RouteVariant | None],
-) -> list[RouteVariant]:
+    solver_cache: SolverCache,
+) -> _VariantPoolResult:
     destinations = sorted({destination for _, destination in groups})
     variants: dict[tuple[object, ...], RouteVariant] = {}
     for route, evaluation in zip(destroyed_routes, destroyed_evaluations):
         existing = _route_variant_from_existing(route, evaluation, data)
         variants[existing.key] = existing
 
+    candidate_specs: list[RepairCandidateSpec] = []
     maximum = min(config.max_service_nodes, len(destinations))
     for length in range(1, maximum + 1):
         orders = list(permutations(destinations, length))
@@ -245,23 +299,67 @@ def _variant_pool(
                 ):
                     continue
                 for aircraft_type in sorted(data.config.aircraft_types):
-                    variant = _build_variant(
-                        data,
-                        base_airport,
-                        aircraft_type,
-                        service_order,
-                        cache,
+                    candidate_specs.append(
+                        RepairCandidateSpec(
+                            base_airport=base_airport,
+                            aircraft_type=aircraft_type,
+                            service_order=service_order,
+                        )
                     )
-                    if variant is not None:
-                        variants[variant.key] = variant
-    return sorted(
-        variants.values(),
-        key=lambda item: (
-            item.evaluation.total_aircraft_time_minutes,
-            item.base_airport,
-            item.aircraft_type,
-            item.service_order,
-        ),
+
+    candidates_considered = len(candidate_specs)
+    if config.context_repair_mode == "ranked":
+        ordered, _ = rank_context_repair_candidates(
+            candidate_specs,
+            groups,
+            destroyed_routes,
+            data,
+            components=config.context_components,
+        )
+        selected_keys = {
+            candidate.key for candidate in ordered[: config.context_candidate_budget]
+        }
+        for origin, destination in sorted(groups):
+            compatible = (
+                candidate
+                for candidate in ordered
+                if destination in candidate.service_order
+                and (origin == "LAND" or origin == candidate.base_airport)
+            )
+            for candidate in list(compatible)[: config.context_coverage_redundancy]:
+                selected_keys.add(candidate.key)
+        candidate_specs = [
+            candidate for candidate in ordered if candidate.key in selected_keys
+        ]
+
+    exact_candidate_builds = 0
+    for candidate in candidate_specs:
+        if candidate.key not in cache:
+            exact_candidate_builds += 1
+        variant = _build_variant(
+                        data,
+                        candidate.base_airport,
+                        candidate.aircraft_type,
+                        candidate.service_order,
+                        cache,
+                        solver_cache,
+                    )
+        if variant is not None:
+            variants[variant.key] = variant
+    ordered_variants = sorted(
+            variants.values(),
+            key=lambda item: (
+                item.evaluation.total_aircraft_time_minutes,
+                item.base_airport,
+                item.aircraft_type,
+                item.service_order,
+            ),
+        )
+    return _VariantPoolResult(
+        variants=ordered_variants,
+        candidates_considered=candidates_considered,
+        candidates_selected=len(candidate_specs),
+        exact_candidate_builds=exact_candidate_builds,
     )
 
 
@@ -471,36 +569,61 @@ def _repair_neighborhood(
     data: ProblemData,
     config: Q1ALNSConfig,
     cache: dict[tuple[str, str, tuple[str, ...]], RouteVariant | None],
-) -> tuple[list[RoutePlan], list[RouteEvaluation]] | None:
+    solver_cache: SolverCache,
+) -> _RepairResult | None:
     groups: dict[tuple[str, str], list[PassengerAssignment]] = defaultdict(list)
     for route in destroyed_routes:
         for assignment in route.assignments:
             groups[(assignment.origin_id, assignment.destination_id)].append(assignment)
     for values in groups.values():
         values.sort(key=lambda item: item.person_id)
-    variants = _variant_pool(
+    pool = _variant_pool(
         destroyed_routes,
         destroyed_evaluations,
         groups,
         data,
         config,
         cache,
+        solver_cache,
     )
     solved = _solve_repair_milp(
         groups,
-        variants,
+        pool.variants,
         len(destroyed_routes),
         config.repair_time_limit_seconds,
     )
     if solved is None:
         return None
-    return _materialize_repair(groups, variants, solved[0], solved[1], data)
+    materialized = _materialize_repair(
+        groups,
+        pool.variants,
+        solved[0],
+        solved[1],
+        data,
+    )
+    if materialized is None:
+        return None
+    return _RepairResult(
+        routes=materialized[0],
+        evaluations=materialized[1],
+        variant_count=len(pool.variants),
+        candidates_considered=pool.candidates_considered,
+        candidates_selected=pool.candidates_selected,
+        exact_candidate_builds=pool.exact_candidate_builds,
+    )
 
 
-def _route_relatedness(left: RoutePlan, right: RoutePlan, data: ProblemData) -> float:
+def _route_relatedness(
+    left: RoutePlan,
+    right: RoutePlan,
+    data: ProblemData,
+    mode: str = "legacy",
+) -> float:
     left_nodes = _route_service_nodes(left)
     right_nodes = _route_service_nodes(right)
     distance = min(data.matrix[a][b] for a in left_nodes for b in right_nodes)
+    if mode in {"distance", "distance_consensus"}:
+        return distance
     base_penalty = 0.0 if left.base_airport == right.base_airport else 35.0
     fixed_penalty = 0.0
     if any(item.origin_id != "LAND" for item in left.assignments + right.assignments):
@@ -515,15 +638,32 @@ def _select_destroy_indices(
     count: int,
     data: ProblemData,
     rng: random.Random,
+    related_destroy_mode: str = "legacy",
+    frozen_consensus: FrozenConsensus | None = None,
 ) -> list[int]:
     count = min(count, len(routes))
     if operator == "random_routes":
         return sorted(rng.sample(range(len(routes)), count))
     if operator == "related_routes":
         seed = rng.randrange(len(routes))
-        ranked = sorted(
-            (index for index in range(len(routes)) if index != seed),
-            key=lambda index: (_route_relatedness(routes[seed], routes[index], data), index),
+        candidates = [index for index in range(len(routes)) if index != seed]
+        ranked = (
+            sorted(
+                candidates,
+                key=lambda index: (
+                    _route_relatedness(routes[seed], routes[index], data, "legacy"),
+                    index,
+                ),
+            )
+            if related_destroy_mode == "legacy"
+            else rank_related_routes(
+                routes[seed],
+                candidates,
+                routes,
+                data,
+                mode=related_destroy_mode,
+                consensus=frozen_consensus,
+            )
         )
         return sorted([seed, *ranked[: count - 1]])
     if operator == "low_utilization":
@@ -558,9 +698,24 @@ def _select_destroy_indices(
             ),
         )
         seed = ranked[0]
-        related = sorted(
-            (index for index in ranked[1:]),
-            key=lambda index: (_route_relatedness(routes[seed], routes[index], data), index),
+        candidates = list(ranked[1:])
+        related = (
+            sorted(
+                candidates,
+                key=lambda index: (
+                    _route_relatedness(routes[seed], routes[index], data, "legacy"),
+                    index,
+                ),
+            )
+            if related_destroy_mode == "legacy"
+            else rank_related_routes(
+                routes[seed],
+                candidates,
+                routes,
+                data,
+                mode=related_destroy_mode,
+                consensus=frozen_consensus,
+            )
         )
         return sorted([seed, *related[: count - 1]])
     raise ValueError(f"Unknown destroy operator: {operator}")
@@ -591,9 +746,11 @@ def improve_q1_alns(
     data: ProblemData,
     solver_config: SolverConfig | None = None,
     alns_config: Q1ALNSConfig | None = None,
+    cache: SolverCache | None = None,
 ) -> ALNSRunResult:
     solver_config = solver_config or SolverConfig()
     alns_config = alns_config or Q1ALNSConfig(seed=solver_config.seed)
+    solver_cache = cache or SolverCache(data)
     rng = random.Random(alns_config.seed)
     current_routes = list(solution.routes)
     current_evaluations = [
@@ -621,13 +778,24 @@ def improve_q1_alns(
         )
     }
     convergence: list[dict[str, object]] = []
+    weight_history: list[dict[str, object]] = []
     variant_cache: dict[tuple[str, str, tuple[str, ...]], RouteVariant | None] = {}
     temperature = alns_config.initial_temperature
     started = time.perf_counter()
+    last_best_elapsed = 0.0
+    stop_reason = "iteration_limit"
 
     for iteration in range(1, alns_config.iterations + 1):
         elapsed = time.perf_counter() - started
         if elapsed >= alns_config.time_limit_seconds:
+            stop_reason = "time_limit"
+            break
+        if (
+            alns_config.stagnation_limit_seconds is not None
+            and elapsed >= alns_config.minimum_runtime_before_stagnation_stop
+            and elapsed - last_best_elapsed >= alns_config.stagnation_limit_seconds
+        ):
+            stop_reason = "stagnation"
             break
         operator = _roulette(operators, rng)
         state = operators[operator]
@@ -644,16 +812,30 @@ def improve_q1_alns(
             destroy_count,
             data,
             rng,
+            alns_config.related_destroy_mode,
+            alns_config.frozen_consensus,
         )
         destroyed_routes = [current_routes[index] for index in indices]
         destroyed_evaluations = [current_evaluations[index] for index in indices]
+        destroyed_passengers = sum(len(route.assignments) for route in destroyed_routes)
+        removed_aircraft_time = sum(
+            evaluation.total_aircraft_time_minutes for evaluation in destroyed_evaluations
+        )
+        state.destroyed_routes_total += len(indices)
+        repair_started = time.perf_counter()
         repaired = _repair_neighborhood(
             destroyed_routes,
             destroyed_evaluations,
             data,
             alns_config,
             variant_cache,
+            solver_cache,
         )
+        state.runtime_seconds += time.perf_counter() - repair_started
+        if repaired is None:
+            state.failed_repairs += 1
+        else:
+            state.feasible_repairs += 1
         accepted = False
         improved = False
         global_best = False
@@ -664,8 +846,8 @@ def improve_q1_alns(
             kept_evaluations = [
                 value for index, value in enumerate(current_evaluations) if index not in set(indices)
             ]
-            candidate_routes = kept_routes + repaired[0]
-            candidate_evaluations = kept_evaluations + repaired[1]
+            candidate_routes = kept_routes + repaired.routes
+            candidate_evaluations = kept_evaluations + repaired.evaluations
             candidate = Solution(
                 routes=tuple(candidate_routes),
                 metrics=aggregate_evaluations(
@@ -680,6 +862,11 @@ def improve_q1_alns(
             )
             if improved:
                 accepted = True
+                state.total_gain_minutes += max(
+                    0,
+                    current.metrics.total_aircraft_time_minutes
+                    - candidate.metrics.total_aircraft_time_minutes,
+                )
             else:
                 deterioration = _relative_deterioration(
                     candidate,
@@ -707,6 +894,7 @@ def improve_q1_alns(
                     state.best += 1
                     state.segment_reward += 8.0
                     global_best = True
+                    last_best_elapsed = time.perf_counter() - started
 
         convergence.append(
             {
@@ -714,6 +902,19 @@ def improve_q1_alns(
                 "elapsed_seconds": round(time.perf_counter() - started, 6),
                 "operator": operator,
                 "destroyed_routes": len(indices),
+                "destroyed_passengers": destroyed_passengers,
+                "removed_aircraft_time_minutes": removed_aircraft_time,
+                "repair_variants": repaired.variant_count if repaired is not None else "",
+                "repaired_routes": len(repaired.routes) if repaired is not None else "",
+                "repair_candidates_considered": (
+                    repaired.candidates_considered if repaired is not None else ""
+                ),
+                "repair_candidates_selected": (
+                    repaired.candidates_selected if repaired is not None else ""
+                ),
+                "repair_exact_candidate_builds": (
+                    repaired.exact_candidate_builds if repaired is not None else ""
+                ),
                 "accepted": int(accepted),
                 "improved_current": int(improved),
                 "new_global_best": int(global_best),
@@ -728,7 +929,7 @@ def improve_q1_alns(
         )
         temperature *= alns_config.cooling_rate
         if iteration % alns_config.segment_length == 0:
-            for operator_state in operators.values():
+            for operator_name, operator_state in operators.items():
                 observed = operator_state.segment_reward / max(1, operator_state.segment_calls)
                 operator_state.weight = max(
                     0.05,
@@ -737,6 +938,13 @@ def improve_q1_alns(
                 )
                 operator_state.segment_calls = 0
                 operator_state.segment_reward = 0.0
+                weight_history.append(
+                    {
+                        "iteration": iteration,
+                        "operator": operator_name,
+                        "weight": round(operator_state.weight, 6),
+                    }
+                )
 
     final_metrics = aggregate_evaluations(best_evaluations, solution.metrics.served_passengers)
     diagnostics = {
@@ -752,6 +960,15 @@ def improve_q1_alns(
                 - final_metrics.total_aircraft_time_minutes
             ),
             "variant_cache_size": len(variant_cache),
+            "related_destroy_mode": alns_config.related_destroy_mode,
+            "context_repair_mode": alns_config.context_repair_mode,
+            "context_candidate_budget": alns_config.context_candidate_budget,
+            "context_components": list(alns_config.context_components),
+            "stagnation_limit_seconds": alns_config.stagnation_limit_seconds,
+            "minimum_runtime_before_stagnation_stop": (
+                alns_config.minimum_runtime_before_stagnation_stop
+            ),
+            "stop_reason": stop_reason,
         },
     }
     best_solution = Solution(
@@ -768,7 +985,19 @@ def improve_q1_alns(
             "accepted": state.accepted,
             "improved": state.improved,
             "new_global_best": state.best,
+            "feasible_repairs": state.feasible_repairs,
+            "failed_repairs": state.failed_repairs,
+            "total_gain_minutes": state.total_gain_minutes,
+            "mean_gain_when_improving": round(
+                state.total_gain_minutes / max(1, state.improved), 3
+            ),
+            "runtime_seconds": round(state.runtime_seconds, 3),
+            "mean_destroyed_routes": round(
+                state.destroyed_routes_total / max(1, state.calls), 3
+            ),
         }
         for name, state in sorted(operators.items())
     )
-    return ALNSRunResult(best_solution, tuple(convergence), operator_rows)
+    return ALNSRunResult(
+        best_solution, tuple(convergence), operator_rows, tuple(weight_history)
+    )

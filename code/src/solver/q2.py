@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import math
 import time
 from collections import defaultdict
@@ -11,7 +13,8 @@ import numpy as np
 from scipy.optimize import Bounds, LinearConstraint, milp
 from scipy.sparse import coo_matrix
 
-from ..rules import flight_minutes, minimum_stop_minutes
+from ..rules import minimum_stop_minutes
+from .cache import SolverCache
 from .data import ProblemData
 from .evaluator import evaluate_route
 from .models import (
@@ -21,24 +24,31 @@ from .models import (
     Solution,
     aggregate_evaluations,
 )
-from .technical_stops import augment_service_sequence
 
 
 @dataclass(frozen=True)
 class Q2MasterConfig:
-    nearest_neighbors: int = 5
-    high_demand_nodes: int = 12
-    time_limit_seconds: float = 300.0
-    primary_fraction: float = 0.65
+    nearest_neighbors: int = 3
+    high_demand_nodes: int = 10
+    primary_time_limit_seconds: float = 195.0
+    secondary_time_limit_seconds: float = 105.0
     mip_relative_gap: float = 0.0
+    primary_upper_bound_minutes: int | None = None
 
     def __post_init__(self) -> None:
         if self.nearest_neighbors < 0 or self.high_demand_nodes < 0:
             raise ValueError("Candidate-pool sizes must be nonnegative")
-        if self.time_limit_seconds <= 0:
-            raise ValueError("time_limit_seconds must be positive")
-        if not 0.0 < self.primary_fraction < 1.0:
-            raise ValueError("primary_fraction must be in (0, 1)")
+        if self.primary_time_limit_seconds <= 0:
+            raise ValueError("primary_time_limit_seconds must be positive")
+        if self.secondary_time_limit_seconds < 0:
+            raise ValueError("secondary_time_limit_seconds must be nonnegative")
+        if self.mip_relative_gap < 0:
+            raise ValueError("mip_relative_gap must be nonnegative")
+        if (
+            self.primary_upper_bound_minutes is not None
+            and self.primary_upper_bound_minutes < 0
+        ):
+            raise ValueError("primary_upper_bound_minutes must be nonnegative")
 
 
 @dataclass(frozen=True)
@@ -68,15 +78,21 @@ class Q2MasterStats:
     candidate_sequences: int
     candidate_variants: int
     compatible_assignments: int
+    candidate_pool_hash: str
+    bound_scope: str
     primary_status: int
     primary_objective: float
     primary_dual_bound: float | None
     primary_mip_gap: float | None
     primary_proven_optimal: bool
+    primary_time_limit_seconds: float
+    primary_elapsed_seconds: float
     secondary_status: int | None
     secondary_mip_gap: float | None
-    secondary_proven_optimal: bool
-    lexicographic_weights: dict[str, int]
+    secondary_proven_optimal: bool | None
+    secondary_time_limit_seconds: float
+    secondary_elapsed_seconds: float
+    lexicographic_weights: dict[str, int] | None
     final_objectives: dict[str, float]
     elapsed_seconds: float
 
@@ -96,14 +112,14 @@ def q2_direction(origin: str, destination: str, airports: Sequence[str]) -> str:
 def _variant_clock(
     route: RoutePlan,
     data: ProblemData,
+    cache: SolverCache,
 ) -> tuple[tuple[int, ...], tuple[int, ...]]:
-    aircraft = data.config.aircraft_types[route.aircraft_type]
     locations = tuple(stop.facility_id for stop in route.stops)
     arrivals = [0] * len(locations)
     departures = [0] * len(locations)
     clock = 0
     for index, (origin, destination) in enumerate(zip(locations, locations[1:])):
-        clock += flight_minutes(data.matrix[origin][destination], aircraft.speed_kmh)
+        clock += cache.physics.flight_minutes(route.aircraft_type, origin, destination)
         arrivals[index + 1] = clock
         if index + 1 < len(locations) - 1:
             clock += minimum_stop_minutes(
@@ -120,16 +136,13 @@ def build_q2_variant(
     base_airport: str,
     aircraft_type: str,
     service_order: tuple[str, ...],
+    *,
+    cache: SolverCache | None = None,
 ) -> Q2RouteVariant | None:
     if not service_order or len(set(service_order)) != len(service_order):
         return None
-    augmented = augment_service_sequence(
-        base_airport,
-        aircraft_type,
-        service_order,
-        matrix=data.matrix,
-        config=data.config,
-    )
+    cache = cache or SolverCache(data)
+    augmented = cache.augmentation_result(base_airport, aircraft_type, service_order)
     if not augmented.feasible:
         return None
     route = RoutePlan(
@@ -142,7 +155,7 @@ def build_q2_variant(
     evaluation = evaluate_route(route, matrix=data.matrix, config=data.config)
     if not evaluation.feasible:
         return None
-    departures, arrivals = _variant_clock(route, data)
+    departures, arrivals = _variant_clock(route, data, cache)
     return Q2RouteVariant(
         base_airport=base_airport,
         aircraft_type=aircraft_type,
@@ -204,8 +217,8 @@ def candidate_service_sequences(
     data: ProblemData,
     *,
     seed_routes: Iterable[RoutePlan] = (),
-    nearest_neighbors: int = 5,
-    high_demand_nodes: int = 12,
+    nearest_neighbors: int = 3,
+    high_demand_nodes: int = 10,
     extra_sequences: Iterable[tuple[str, ...]] = (),
 ) -> tuple[tuple[str, ...], ...]:
     node_demand: dict[str, int] = defaultdict(int)
@@ -237,8 +250,7 @@ def candidate_service_sequences(
     for route in seed_routes:
         order = tuple(dict.fromkeys(route.service_facilities))
         if not order:
-            locations = tuple(stop.facility_id for stop in route.stops[1:-1])
-            order = tuple(dict.fromkeys(locations))
+            order = tuple(dict.fromkeys(stop.facility_id for stop in route.stops[1:-1]))
         if 1 <= len(order) <= data.config.max_sea_landings:
             sequences.add(order)
             if len(order) == 2:
@@ -255,111 +267,26 @@ def candidate_service_sequences(
     return tuple(sorted(sequences, key=lambda item: (len(item), item)))
 
 
-def adaptive_triple_sequences(
-    data: ProblemData,
-    seed_routes: Iterable[RoutePlan],
-    *,
-    limit: int = 40,
-) -> tuple[tuple[str, ...], ...]:
-    """Generate promising three-service-node columns around the current Q2 solution."""
-    if limit <= 0:
-        return ()
-    candidates: set[tuple[str, ...]] = set()
-    shuttle_edges = {
-        (origin, destination)
-        for origin, destination in data.q2_pools
-        if origin in data.config.facilities and destination in data.config.facilities
-    }
-    outgoing: dict[str, set[str]] = defaultdict(set)
-    incoming: dict[str, set[str]] = defaultdict(set)
-    for origin, destination in shuttle_edges:
-        outgoing[origin].add(destination)
-        incoming[destination].add(origin)
-    for middle in data.config.facilities:
-        for origin in incoming.get(middle, set()):
-            for destination in outgoing.get(middle, set()):
-                if len({origin, middle, destination}) == 3:
-                    candidates.add((origin, middle, destination))
-
-    active_nodes: set[str] = set()
-    for route in seed_routes:
-        order = tuple(dict.fromkeys(route.service_facilities))
-        active_nodes.update(order)
-        if len(order) != 2:
-            continue
-        first, second = order
-        related = set(outgoing.get(second, set())) | set(incoming.get(first, set()))
-        related.update(
-            sorted(
-                (
-                    node
-                    for node in data.config.facilities
-                    if node not in {first, second}
-                ),
-                key=lambda node: (
-                    min(data.matrix[first][node], data.matrix[second][node]),
-                    node,
-                ),
-            )[:3]
-        )
-        for node in related:
-            if node in {first, second}:
-                continue
-            candidates.add((node, first, second))
-            candidates.add((first, node, second))
-            candidates.add((first, second, node))
-
-    node_volume: dict[str, int] = defaultdict(int)
-    edge_volume: dict[tuple[str, str], int] = defaultdict(int)
-    for key, pool in data.q2_pools.items():
-        origin, destination = key
-        if origin in data.config.facilities:
-            node_volume[origin] += pool.quantity
-        if destination in data.config.facilities:
-            node_volume[destination] += pool.quantity
-        if origin in data.config.facilities and destination in data.config.facilities:
-            edge_volume[(origin, destination)] += pool.quantity
-
-    def score(sequence: tuple[str, ...]) -> tuple[float, float, tuple[str, ...]]:
-        first, middle, last = sequence
-        distance = min(
-            data.matrix[base][first]
-            + data.matrix[first][middle]
-            + data.matrix[middle][last]
-            + data.matrix[last][base]
-            for base in data.config.airports
-        )
-        flow = (
-            node_volume[first]
-            + node_volume[middle]
-            + node_volume[last]
-            + 4 * edge_volume[(first, middle)]
-            + 4 * edge_volume[(middle, last)]
-            + 2 * edge_volume[(first, last)]
-        )
-        active_bonus = sum(node in active_nodes for node in sequence)
-        return (distance / max(1, flow + 10 * active_bonus), distance, sequence)
-
-    return tuple(sorted(candidates, key=score)[:limit])
-
-
 def build_q2_variant_pool(
     data: ProblemData,
     sequences: Iterable[tuple[str, ...]],
     *,
-    cache: dict[tuple[str, str, tuple[str, ...]], Q2RouteVariant | None] | None = None,
+    cache: SolverCache | None = None,
     group_keys: Iterable[tuple[str, str]] | None = None,
 ) -> tuple[Q2RouteVariant, ...]:
-    cache = cache if cache is not None else {}
+    cache = cache or SolverCache(data)
     keys = tuple(group_keys if group_keys is not None else data.q2_pools)
     variants: dict[tuple[object, ...], Q2RouteVariant] = {}
     for sequence in sequences:
         for base in data.config.airports:
             for aircraft_type in sorted(data.config.aircraft_types):
-                key = (base, aircraft_type, tuple(sequence))
-                if key not in cache:
-                    cache[key] = build_q2_variant(data, base, aircraft_type, tuple(sequence))
-                variant = cache[key]
+                variant = build_q2_variant(
+                    data,
+                    base,
+                    aircraft_type,
+                    tuple(sequence),
+                    cache=cache,
+                )
                 if variant is None:
                     continue
                 if not any(
@@ -382,6 +309,24 @@ def build_q2_variant_pool(
     )
 
 
+def candidate_pool_hash(variants: Sequence[Q2RouteVariant]) -> str:
+    records = [
+        {
+            "base_airport": variant.base_airport,
+            "aircraft_type": variant.aircraft_type,
+            "service_order": list(variant.service_order),
+            "stops": [
+                [stop.facility_id, int(stop.refuel)] for stop in variant.route.stops
+            ],
+            "aircraft_time": variant.evaluation.total_aircraft_time_minutes,
+            "fuel_kg": variant.evaluation.total_fuel_consumption_kg,
+        }
+        for variant in variants
+    ]
+    payload = json.dumps(records, ensure_ascii=True, separators=(",", ":"))
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
 def _solve_master_arrays(
     data: ProblemData,
     variants: Sequence[Q2RouteVariant],
@@ -389,14 +334,13 @@ def _solve_master_arrays(
     config: Q2MasterConfig,
 ) -> tuple[np.ndarray, dict[tuple[int, int], int], Q2MasterStats] | None:
     started = time.perf_counter()
+    pool_hash = candidate_pool_hash(variants)
     y_count = len(variants)
     compatible: dict[tuple[int, int], tuple[int, int, int]] = {}
     by_variant: dict[int, list[tuple[int, int, int, int]]] = defaultdict(list)
     for group_id, (origin, destination) in enumerate(group_keys):
         for variant_id, variant in enumerate(variants):
-            interval = assignment_interval(
-                variant, origin, destination, data.config.airports
-            )
+            interval = assignment_interval(variant, origin, destination, data.config.airports)
             if interval is None:
                 continue
             compatible[(group_id, variant_id)] = interval
@@ -417,7 +361,9 @@ def _solve_master_arrays(
     lower: list[float] = []
     upper: list[float] = []
 
-    def add_constraint(coefficients: Iterable[tuple[int, float]], lo: float, hi: float) -> None:
+    def add_constraint(
+        coefficients: Iterable[tuple[int, float]], lo: float, hi: float
+    ) -> None:
         row = len(lower)
         for column, value in coefficients:
             rows.append(row)
@@ -436,8 +382,7 @@ def _solve_master_arrays(
         add_constraint(coefficients, float(demand), float(demand))
 
     for variant_id, variant in enumerate(variants):
-        leg_count = len(variant.route.stops) - 1
-        for leg in range(leg_count):
+        for leg in range(len(variant.route.stops) - 1):
             coefficients: list[tuple[int, float]] = [
                 (variant_id, -float(variant.capacity))
             ]
@@ -473,72 +418,84 @@ def _solve_master_arrays(
     for variant_id, variant in enumerate(variants):
         primary[variant_id] = variant.evaluation.total_aircraft_time_minutes
         flights[variant_id] = 1.0
-        # Fuel is represented in 0.1 kg units so that every lexicographic
-        # equality added below has integer coefficients and an integer RHS.
         fuel_deci_kg[variant_id] = round(
             variant.evaluation.total_fuel_consumption_kg * 10.0
         )
     for pair, column in x_column.items():
         passenger[column] = compatible[pair][2]
 
+    if config.primary_upper_bound_minutes is not None:
+        constraints.append(
+            LinearConstraint(
+                coo_matrix(primary.reshape(1, -1)).tocsr(),
+                -np.inf,
+                float(config.primary_upper_bound_minutes),
+            )
+        )
+
+    primary_started = time.perf_counter()
     first = milp(
         c=primary,
         integrality=integrality,
         bounds=bounds,
         constraints=constraints,
         options={
-            "time_limit": max(1.0, config.time_limit_seconds * config.primary_fraction),
+            "time_limit": config.primary_time_limit_seconds,
             "mip_rel_gap": config.mip_relative_gap,
             "presolve": True,
         },
     )
+    primary_elapsed = time.perf_counter() - primary_started
     if first.x is None:
         return None
     primary_value = int(round(float(primary @ first.x)))
-    constraints.append(
-        LinearConstraint(
-            coo_matrix(primary.reshape(1, -1)).tocsr(),
-            float(primary_value),
-            float(primary_value),
-        )
-    )
 
-    # Under the equality sum(T_c y_c)=primary_value, the following bounds are
-    # rigorous. They allow one mixed-integer objective to encode the remaining
-    # passenger-time -> flight-count -> fuel order without hand-picked weights.
-    positive_times = primary[:y_count][primary[:y_count] > 0]
-    max_flights_at_primary = int(primary_value // float(positive_times.min()))
-    max_fuel_rate = max(
-        fuel_deci_kg[index] / primary[index]
-        for index in range(y_count)
-        if primary[index] > 0
-    )
-    max_fuel_deci_at_primary = int(math.ceil(primary_value * max_fuel_rate))
-    flight_weight = max_fuel_deci_at_primary + 1
-    passenger_weight = (
-        max_flights_at_primary * flight_weight
-        + max_fuel_deci_at_primary
-        + 1
-    )
-    secondary = (
-        passenger * passenger_weight
-        + flights * flight_weight
-        + fuel_deci_kg
-    )
-    second = milp(
-        c=secondary,
-        integrality=integrality,
-        bounds=bounds,
-        constraints=constraints,
-        options={
-            "time_limit": max(
-                1.0, config.time_limit_seconds * (1.0 - config.primary_fraction)
-            ),
-            "mip_rel_gap": config.mip_relative_gap,
-            "presolve": True,
-        },
-    )
-    selected = second.x if second.x is not None else first.x
+    selected = first.x
+    second = None
+    secondary_elapsed = 0.0
+    lexicographic_weights: dict[str, int] | None = None
+    if config.secondary_time_limit_seconds > 0:
+        constraints.append(
+            LinearConstraint(
+                coo_matrix(primary.reshape(1, -1)).tocsr(),
+                float(primary_value),
+                float(primary_value),
+            )
+        )
+        positive_times = primary[:y_count][primary[:y_count] > 0]
+        max_flights_at_primary = int(primary_value // float(positive_times.min()))
+        max_fuel_rate = max(
+            fuel_deci_kg[index] / primary[index]
+            for index in range(y_count)
+            if primary[index] > 0
+        )
+        max_fuel_deci_at_primary = int(math.ceil(primary_value * max_fuel_rate))
+        flight_weight = max_fuel_deci_at_primary + 1
+        passenger_weight = (
+            max_flights_at_primary * flight_weight + max_fuel_deci_at_primary + 1
+        )
+        lexicographic_weights = {
+            "passenger_time": passenger_weight,
+            "flights": flight_weight,
+            "fuel_deci_kg": 1,
+        }
+        secondary = passenger * passenger_weight + flights * flight_weight + fuel_deci_kg
+        secondary_started = time.perf_counter()
+        second = milp(
+            c=secondary,
+            integrality=integrality,
+            bounds=bounds,
+            constraints=constraints,
+            options={
+                "time_limit": config.secondary_time_limit_seconds,
+                "mip_rel_gap": config.mip_relative_gap,
+                "presolve": True,
+            },
+        )
+        secondary_elapsed = time.perf_counter() - secondary_started
+        if second.x is not None:
+            selected = second.x
+
     y_values = np.rint(selected[:y_count]).astype(int)
     x_values = {
         pair: int(round(float(selected[column])))
@@ -550,6 +507,8 @@ def _solve_master_arrays(
         candidate_sequences=len({variant.service_order for variant in variants}),
         candidate_variants=len(variants),
         compatible_assignments=len(x_pairs),
+        candidate_pool_hash=pool_hash,
+        bound_scope="restricted_master",
         primary_status=int(first.status),
         primary_objective=float(primary_value),
         primary_dual_bound=(
@@ -561,18 +520,20 @@ def _solve_master_arrays(
             float(first.mip_gap) if getattr(first, "mip_gap", None) is not None else None
         ),
         primary_proven_optimal=bool(int(first.status) == 0),
-        secondary_status=int(second.status),
+        primary_time_limit_seconds=config.primary_time_limit_seconds,
+        primary_elapsed_seconds=round(primary_elapsed, 6),
+        secondary_status=int(second.status) if second is not None else None,
         secondary_mip_gap=(
             float(second.mip_gap)
-            if getattr(second, "mip_gap", None) is not None
+            if second is not None and getattr(second, "mip_gap", None) is not None
             else None
         ),
-        secondary_proven_optimal=bool(int(second.status) == 0),
-        lexicographic_weights={
-            "passenger_time": passenger_weight,
-            "flights": flight_weight,
-            "fuel_deci_kg": 1,
-        },
+        secondary_proven_optimal=(
+            bool(int(second.status) == 0) if second is not None else None
+        ),
+        secondary_time_limit_seconds=config.secondary_time_limit_seconds,
+        secondary_elapsed_seconds=round(secondary_elapsed, 6),
+        lexicographic_weights=lexicographic_weights,
         final_objectives={
             "aircraft_time_minutes": float(primary @ selected),
             "passenger_time_minutes": float(passenger @ selected),
@@ -594,10 +555,7 @@ def _materialize_master(
     method: str,
     diagnostics: dict[str, object],
 ) -> Solution:
-    remaining = {
-        key: list(data.q2_pools[key].person_ids)
-        for key in group_keys
-    }
+    remaining = {key: list(data.q2_pools[key].person_ids) for key in group_keys}
     routes: list[RoutePlan] = []
     evaluations: list[RouteEvaluation] = []
 
@@ -606,7 +564,6 @@ def _materialize_master(
             continue
         variant = variants[variant_id]
         entries: list[tuple[int, int, PassengerAssignment]] = []
-        locations = tuple(stop.facility_id for stop in variant.route.stops)
         for group_id, key in enumerate(group_keys):
             count = x_values.get((group_id, variant_id), 0)
             if count <= 0:
@@ -616,9 +573,7 @@ def _materialize_master(
                 raise ValueError(f"Q2 materialization overuses group {key}")
             selected_people = people[:count]
             del people[:count]
-            interval = assignment_interval(
-                variant, key[0], key[1], data.config.airports
-            )
+            interval = assignment_interval(variant, key[0], key[1], data.config.airports)
             if interval is None:
                 raise ValueError(f"Lost Q2 compatibility for {key}")
             pickup, delivery, _ = interval
@@ -628,11 +583,11 @@ def _materialize_master(
                         pickup,
                         delivery,
                         PassengerAssignment(
-                            person_id=person_id,
-                            origin_id=key[0],
-                            destination_id=key[1],
-                            pickup_stop_order=pickup,
-                            delivery_stop_order=delivery,
+                            person_id,
+                            key[0],
+                            key[1],
+                            pickup,
+                            delivery,
                         ),
                     )
                 )
@@ -640,12 +595,9 @@ def _materialize_master(
         track_ends: list[int] = []
         track_entries: list[list[PassengerAssignment]] = []
         for pickup, delivery, assignment in sorted(
-            entries,
-            key=lambda item: (item[0], item[1], item[2].person_id),
+            entries, key=lambda item: (item[0], item[1], item[2].person_id)
         ):
-            reusable = [
-                index for index, end in enumerate(track_ends) if end <= pickup
-            ]
+            reusable = [index for index, end in enumerate(track_ends) if end <= pickup]
             if reusable:
                 track = max(reusable, key=lambda index: (track_ends[index], -index))
                 track_ends[track] = delivery
@@ -673,9 +625,7 @@ def _materialize_master(
             )
             evaluation = evaluate_route(route, matrix=data.matrix, config=data.config)
             if not evaluation.feasible:
-                raise ValueError(
-                    f"Materialized Q2 route is infeasible: {evaluation.issues}; {locations}"
-                )
+                raise ValueError(f"Materialized Q2 route is infeasible: {evaluation.issues}")
             routes.append(route)
             evaluations.append(evaluation)
 
