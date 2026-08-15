@@ -1,0 +1,723 @@
+{
+  "gate_pass": false,
+  "outcome": "NO_MIP_INCUMBENT_WITHIN_LIMIT",
+  "error": "Restricted integer master failed: status=1",
+  "lp": {
+    "objective": 14208.636981330832,
+    "status": 0,
+    "success": true,
+    "elapsed_seconds": 0.005929,
+    "demand_duals": {
+      "A01->F001": 7.894736842105264,
+      "A01->F002": 7.789473684210542,
+      "A01->F003": 5.333333333333332,
+      "A01->F004": 7.157894736842106,
+      "A01->F005": 6.842105263157897,
+      "A01->F006": 8.421052631578949,
+      "A01->F007": 8.315789473684212,
+      "A01->F008": 7.894736842105267,
+      "A01->F009": 6.105263157894733,
+      "A01->F010": 7.789473684210524,
+      "A01->F011": 7.2631578947368425,
+      "A01->F012": 7.4736842105263115,
+      "A01->F013": 11.5625,
+      "A01->F014": 6.000000000000007,
+      "A01->F015": 8.818181818181813,
+      "A01->F016": 6.631578947368425,
+      "A01->F017": 5.15,
+      "A02->F018": 8.90221774193548,
+      "A02->F019": 8.354838709677418,
+      "A02->F020": 12.567275042444827,
+      "A02->F021": 7.953947368421055,
+      "A02->F022": 14.983870967741922,
+      "A02->F023": 10.526315789473685,
+      "A02->F024": 7.894736842105264,
+      "A02->F025": 8.263157894736835,
+      "A02->F026": -0.0,
+      "A02->F027": 7.707602339181286,
+      "A02->F028": 28.473684210526315,
+      "A02->F029": 10.938947368421054,
+      "A02->F030": 19.78947368421052,
+      "A02->F031": 9.15789473684211,
+      "A02->F032": 11.046783625730995,
+      "A02->F033": 10.170594227504244,
+      "A02->F034": 11.34210526315789,
+      "A02->F035": 15.548732943469787,
+      "A03->F036": 11.38888888888889,
+      "A03->F037": 12.890092879256969,
+      "A03->F038": 9.89473684210526,
+      "A03->F039": 8.0,
+      "A03->F040": 13.05263157894737,
+      "A03->F041": 11.368421052631582,
+      "A03->F042": 14.0,
+      "A03->F043": 11.947368421052634,
+      "A03->F044": 11.68421052631579,
+      "A03->F045": 10.894736842105264,
+      "A03->F046": 12.10526315789474,
+      "A03->F047": 11.157894736842104,
+      "A03->F048": 10.70723684210526,
+      "A03->F049": -0.0,
+      "A03->F050": 14.526315789473685,
+      "A03->F051": 10.478070175438603,
+      "A03->F052": 13.47861842105263,
+      "LAND->F001": 7.894736842105263,
+      "LAND->F002": 7.789473684210525,
+      "LAND->F003": 7.377777777777778,
+      "LAND->F004": 7.157894736842105,
+      "LAND->F005": 6.842105263157895,
+      "LAND->F006": 8.421052631578947,
+      "LAND->F007": 8.31578947368421,
+      "LAND->F008": 7.894736842105262,
+      "LAND->F009": 6.105263157894737,
+      "LAND->F010": 7.7894736842105265,
+      "LAND->F011": 7.2631578947368425,
+      "LAND->F012": 7.473684210526316,
+      "LAND->F013": 11.5625,
+      "LAND->F014": 5.999999999999999,
+      "LAND->F015": 6.7272727272727275,
+      "LAND->F016": 6.631578947368421,
+      "LAND->F017": 5.875,
+      "LAND->F018": 7.375,
+      "LAND->F019": 7.587557603686637,
+      "LAND->F020": 6.2105263157894735,
+      "LAND->F021": 7.878947368421052,
+      "LAND->F022": 7.25,
+      "LAND->F023": 10.526315789473685,
+      "LAND->F024": 7.894736842105263,
+      "LAND->F025": 7.2631578947368425,
+      "LAND->F026": 13.335125448028675,
+      "LAND->F027": 6.947368421052632,
+      "LAND->F028": 7.7894736842105265,
+      "LAND->F029": 7.578947368421052,
+      "LAND->F030": 5.7894736842105265,
+      "LAND->F031": 9.157894736842104,
+      "LAND->F032": 11.046783625730994,
+      "LAND->F033": 9.094736842105265,
+      "LAND->F034": 9.842105263157896,
+      "LAND->F035": 10.505847953216374,
+      "LAND->F036": 8.11111111111111,
+      "LAND->F037": 14.095975232198143,
+      "LAND->F038": 9.894736842105264,
+      "LAND->F039": 8.0,
+      "LAND->F040": 13.052631578947368,
+      "LAND->F041": 11.368421052631579,
+      "LAND->F042": 14.0,
+      "LAND->F043": 11.947368421052632,
+      "LAND->F044": 11.68421052631579,
+      "LAND->F045": 10.894736842105264,
+      "LAND->F046": 8.105263157894736,
+      "LAND->F047": 9.11111111111111,
+      "LAND->F048": 10.707236842105264,
+      "LAND->F049": 17.35672514619883,
+      "LAND->F050": 14.526315789473685,
+      "LAND->F051": 11.06140350877193,
+      "LAND->F052": 11.375
+    },
+    "selected_fractional_routes": [
+      {
+        "column_id": "Q1C-1384043617e0e199",
+        "route_id": "Q1R-b3f66cb993f25efb",
+        "multiplicity": 1.5789473684210527,
+        "duration": 118,
+        "service_order": [
+          "F020"
+        ]
+      },
+      {
+        "column_id": "Q1C-e6fcb4d6171f6c16",
+        "route_id": "Q1R-46962c0a1e6aa0e2",
+        "multiplicity": 1.1052631578947367,
+        "duration": 148,
+        "service_order": [
+          "F002"
+        ]
+      },
+      {
+        "column_id": "Q1C-289b4b971503a933",
+        "route_id": "Q1R-243f71ec8c17e028",
+        "multiplicity": 0.9605263157894737,
+        "duration": 150,
+        "service_order": [
+          "F001"
+        ]
+      },
+      {
+        "column_id": "Q1C-265392b11c38f1ab",
+        "route_id": "Q1R-91046419b764d1f7",
+        "multiplicity": 0.9473684210526315,
+        "duration": 144,
+        "service_order": [
+          "F029"
+        ]
+      },
+      {
+        "column_id": "Q1C-103ba34e2bfc5c41",
+        "route_id": "Q1R-0d839d13f8849194",
+        "multiplicity": 0.9473684210526315,
+        "duration": 154,
+        "service_order": [
+          "F046"
+        ]
+      },
+      {
+        "column_id": "Q1C-46ced682a06b37a2",
+        "route_id": "Q1R-67f4c2db719e60be",
+        "multiplicity": 0.9473684210526315,
+        "duration": 187,
+        "service_order": [
+          "F034"
+        ]
+      },
+      {
+        "column_id": "Q1C-41b9331cc1bb2e25",
+        "route_id": "Q1R-0e340cfde6f7232d",
+        "multiplicity": 0.9473684210526315,
+        "duration": 216,
+        "service_order": [
+          "F041"
+        ]
+      },
+      {
+        "column_id": "Q1C-64fa80e2ff30446b",
+        "route_id": "Q1R-113b3ac1a3aed5df",
+        "multiplicity": 0.9273879142300195,
+        "duration": 150,
+        "service_order": [
+          "F024"
+        ]
+      },
+      {
+        "column_id": "Q1C-9eaebcb8f7ab39cd",
+        "route_id": "Q1R-47f8415a45888a37",
+        "multiplicity": 0.875,
+        "duration": 201,
+        "service_order": [
+          "F038",
+          "F048"
+        ]
+      },
+      {
+        "column_id": "Q1C-bd9a2159cd885a07",
+        "route_id": "Q1R-689ca3533fddd510",
+        "multiplicity": 0.8596491228070176,
+        "duration": 136,
+        "service_order": [
+          "F004"
+        ]
+      },
+      {
+        "column_id": "Q1C-f2ca28c3c3ef31a0",
+        "route_id": "Q1R-20f4cccc4cdbf61b",
+        "multiplicity": 0.8526315789473683,
+        "duration": 266,
+        "service_order": [
+          "F042"
+        ]
+      },
+      {
+        "column_id": "Q1C-3ecb5099f40ffaa4",
+        "route_id": "Q1R-535fb5fe769e1612",
+        "multiplicity": 0.8421052631578947,
+        "duration": 207,
+        "service_order": [
+          "F045"
+        ]
+      },
+      {
+        "column_id": "Q1C-089a8edeec026a1f",
+        "route_id": "Q1R-b2e7dc7e2e876156",
+        "multiplicity": 0.8125,
+        "duration": 118,
+        "service_order": [
+          "F018"
+        ]
+      },
+      {
+        "column_id": "Q1C-8fb1ba8bd660cfdb",
+        "route_id": "Q1R-8fbc264b184233f3",
+        "multiplicity": 0.8064516129032258,
+        "duration": 148,
+        "service_order": [
+          "F019"
+        ]
+      },
+      {
+        "column_id": "Q1C-27c8dc8fcb5c4e4b",
+        "route_id": "Q1R-4acf3a29e3ac47a7",
+        "multiplicity": 0.8,
+        "duration": 185,
+        "service_order": [
+          "F013"
+        ]
+      },
+      {
+        "column_id": "Q1C-a16c6e32683a2fe9",
+        "route_id": "Q1R-035740d67152e3fa",
+        "multiplicity": 0.7894736842105263,
+        "duration": 142,
+        "service_order": [
+          "F012"
+        ]
+      },
+      {
+        "column_id": "Q1C-a872eca4a832c2b9",
+        "route_id": "Q1R-9f784608d3e30813",
+        "multiplicity": 0.7894736842105263,
+        "duration": 152,
+        "service_order": [
+          "F039"
+        ]
+      },
+      {
+        "column_id": "Q1C-2effe4639640ee09",
+        "route_id": "Q1R-c115aa59ae1111f9",
+        "multiplicity": 0.7894736842105263,
+        "duration": 160,
+        "service_order": [
+          "F006"
+        ]
+      },
+      {
+        "column_id": "Q1C-a5b64af4ef1e3240",
+        "route_id": "Q1R-236d59d74eb4070d",
+        "multiplicity": 0.7777777777777778,
+        "duration": 209,
+        "service_order": [
+          "F051",
+          "F038"
+        ]
+      },
+      {
+        "column_id": "Q1C-22cbe46427f5300b",
+        "route_id": "Q1R-1b7f79e8d3528c48",
+        "multiplicity": 0.7631578947368421,
+        "duration": 114,
+        "service_order": [
+          "F014"
+        ]
+      },
+      {
+        "column_id": "Q1C-51c7beafcf26316b",
+        "route_id": "Q1R-1e379fed8082acbd",
+        "multiplicity": 0.7631578947368421,
+        "duration": 150,
+        "service_order": [
+          "F008"
+        ]
+      },
+      {
+        "column_id": "Q1C-ea80c47ae7424bcd",
+        "route_id": "Q1R-9741aedbd3c24bc4",
+        "multiplicity": 0.75,
+        "duration": 174,
+        "service_order": [
+          "F031"
+        ]
+      },
+      {
+        "column_id": "Q1C-825993a25f4a4bab",
+        "route_id": "Q1R-e0a1f4706ef1b512",
+        "multiplicity": 0.7324561403508772,
+        "duration": 188,
+        "service_order": [
+          "F038"
+        ]
+      },
+      {
+        "column_id": "Q1C-3fd358c80f46abb6",
+        "route_id": "Q1R-06ec83784b1f9f73",
+        "multiplicity": 0.7192982456140351,
+        "duration": 248,
+        "service_order": [
+          "F040"
+        ]
+      },
+      {
+        "column_id": "Q1C-3d37951afd5740bc",
+        "route_id": "Q1R-1b7f79e8d3528c48",
+        "multiplicity": 0.7105263157894737,
+        "duration": 114,
+        "service_order": [
+          "F014"
+        ]
+      },
+      {
+        "column_id": "Q1C-8a7c5da98a090d0d",
+        "route_id": "Q1R-06ec83784b1f9f73",
+        "multiplicity": 0.7017543859649122,
+        "duration": 248,
+        "service_order": [
+          "F040"
+        ]
+      },
+      {
+        "column_id": "Q1C-474db8381a55485e",
+        "route_id": "Q1R-e0a1f4706ef1b512",
+        "multiplicity": 0.6673976608187134,
+        "duration": 188,
+        "service_order": [
+          "F038"
+        ]
+      },
+      {
+        "column_id": "Q1C-b3d3b95f7b245e38",
+        "route_id": "Q1R-c94922837ca6c8cc",
+        "multiplicity": 0.6666666666666666,
+        "duration": 208,
+        "service_order": [
+          "F032",
+          "F031"
+        ]
+      },
+      {
+        "column_id": "Q1C-41b7a87f39b3f03e",
+        "route_id": "Q1R-3d297a075b34cced",
+        "multiplicity": 0.631578947368421,
+        "duration": 148,
+        "service_order": [
+          "F028"
+        ]
+      },
+      {
+        "column_id": "Q1C-63f95b2749fc0781",
+        "route_id": "Q1R-2a26d6b646a1aa79",
+        "multiplicity": 0.625,
+        "duration": 182,
+        "service_order": [
+          "F052"
+        ]
+      },
+      {
+        "column_id": "Q1C-a13b4776ccf6948a",
+        "route_id": "Q1R-a9ce4c13577b2cfb",
+        "multiplicity": 0.6129032258064516,
+        "duration": 173,
+        "service_order": [
+          "F022",
+          "F033"
+        ]
+      },
+      {
+        "column_id": "Q1C-87b2b2e3465ba617",
+        "route_id": "Q1R-928c27413ef100db",
+        "multiplicity": 0.5992923485183548,
+        "duration": 222,
+        "service_order": [
+          "F044"
+        ]
+      },
+      {
+        "column_id": "Q1C-3938a5fd82bb70e7",
+        "route_id": "Q1R-9741aedbd3c24bc4",
+        "multiplicity": 0.5833333333333334,
+        "duration": 174,
+        "service_order": [
+          "F031"
+        ]
+      },
+      {
+        "column_id": "Q1C-ef8a57198fae7170",
+        "route_id": "Q1R-22ff15f274f038ad",
+        "multiplicity": 0.5789473684210527,
+        "duration": 227,
+        "service_order": [
+          "F043"
+        ]
+      },
+      {
+        "column_id": "Q1C-a7ebc8f732672808",
+        "route_id": "Q1R-113b3ac1a3aed5df",
+        "multiplicity": 0.5784600389863548,
+        "duration": 150,
+        "service_order": [
+          "F024"
+        ]
+      },
+      {
+        "column_id": "Q1C-8e191b52aa95ee80",
+        "route_id": "Q1R-689ca3533fddd510",
+        "multiplicity": 0.5614035087719298,
+        "duration": 136,
+        "service_order": [
+          "F004"
+        ]
+      },
+      {
+        "column_id": "Q1C-e8ffbe7bcea80241",
+        "route_id": "Q1R-762b833ee9b82fa4",
+        "multiplicity": 0.5294117647058824,
+        "duration": 263,
+        "service_order": [
+          "F037",
+          "F044"
+        ]
+      },
+      {
+        "column_id": "Q1C-2e69f0fd1b80cb05",
+        "route_id": "Q1R-20f4cccc4cdbf61b",
+        "multiplicity": 0.5157894736842106,
+        "duration": 266,
+        "service_order": [
+          "F042"
+        ]
+      },
+      {
+        "column_id": "Q1C-923f79dd4f41f0df",
+        "route_id": "Q1R-44e32022eb7dcea5",
+        "multiplicity": 0.5087719298245614,
+        "duration": 148,
+        "service_order": [
+          "F010"
+        ]
+      },
+      {
+        "column_id": "Q1C-705a2dd911d3a6d0",
+        "route_id": "Q1R-5c3def2b5940f507",
+        "multiplicity": 0.5,
+        "duration": 94,
+        "service_order": [
+          "F017"
+        ]
+      },
+      {
+        "column_id": "Q1C-0f914be8c8688e20",
+        "route_id": "Q1R-e1bfb4336392808d",
+        "multiplicity": 0.47368421052631576,
+        "duration": 158,
+        "service_order": [
+          "F007"
+        ]
+      },
+      {
+        "column_id": "Q1C-8550fa99bc073057",
+        "route_id": "Q1R-8b45798db37f0c03",
+        "multiplicity": 0.42105263157894735,
+        "duration": 116,
+        "service_order": [
+          "F009"
+        ]
+      },
+      {
+        "column_id": "Q1C-9b1f354be7a00dfe",
+        "route_id": "Q1R-c8cb1e91b22950ad",
+        "multiplicity": 0.42105263157894735,
+        "duration": 130,
+        "service_order": [
+          "F005"
+        ]
+      },
+      {
+        "column_id": "Q1C-ff02f18b3337efa6",
+        "route_id": "Q1R-1e379fed8082acbd",
+        "multiplicity": 0.3947368421052631,
+        "duration": 150,
+        "service_order": [
+          "F008"
+        ]
+      },
+      {
+        "column_id": "Q1C-7c747e69e932a22c",
+        "route_id": "Q1R-753b4e12229e0ac9",
+        "multiplicity": 0.3894736842105263,
+        "duration": 276,
+        "service_order": [
+          "F050"
+        ]
+      },
+      {
+        "column_id": "Q1C-42746da9e1913903",
+        "route_id": "Q1R-e5616cfede3f0fb7",
+        "multiplicity": 0.3888888888888889,
+        "duration": 197,
+        "service_order": [
+          "F035",
+          "F024"
+        ]
+      },
+      {
+        "column_id": "Q1C-f16580c5ec3a1b4a",
+        "route_id": "Q1R-f70c5a8a5fdc255f",
+        "multiplicity": 0.3870967741935484,
+        "duration": 160,
+        "service_order": [
+          "F019",
+          "F022"
+        ]
+      },
+      {
+        "column_id": "Q1C-693cf36017e43af3",
+        "route_id": "Q1R-222f7aa7c57ec9d8",
+        "multiplicity": 0.3870967741935484,
+        "duration": 173,
+        "service_order": [
+          "F019",
+          "F033"
+        ]
+      },
+      {
+        "column_id": "Q1C-60c2c2521e262f30",
+        "route_id": "Q1R-ec0d5bc0024b451d",
+        "multiplicity": 0.3859649122807018,
+        "duration": 138,
+        "service_order": [
+          "F011"
+        ]
+      },
+      {
+        "column_id": "Q1C-6986e2ca777e2bc7",
+        "route_id": "Q1R-eedc65c7d33da0bb",
+        "multiplicity": 0.3684210526315789,
+        "duration": 110,
+        "service_order": [
+          "F030"
+        ]
+      },
+      {
+        "column_id": "Q1C-b2fc343174d85828",
+        "route_id": "Q1R-0a9b02ca219329a4",
+        "multiplicity": 0.3684210526315789,
+        "duration": 138,
+        "service_order": [
+          "F025"
+        ]
+      },
+      {
+        "column_id": "Q1C-cf9b45a5f29273cf",
+        "route_id": "Q1R-275070fa9374989b",
+        "multiplicity": 0.3157894736842105,
+        "duration": 126,
+        "service_order": [
+          "F016"
+        ]
+      },
+      {
+        "column_id": "Q1C-191be388e9faba8f",
+        "route_id": "Q1R-1e4c3d3df5c1868f",
+        "multiplicity": 0.3157894736842105,
+        "duration": 200,
+        "service_order": [
+          "F023"
+        ]
+      },
+      {
+        "column_id": "Q1C-4257fd051d76c46a",
+        "route_id": "Q1R-c1acb5304a7429ac",
+        "multiplicity": 0.2727272727272727,
+        "duration": 132,
+        "service_order": [
+          "F015"
+        ]
+      },
+      {
+        "column_id": "Q1C-a45fe8cc72ea8a09",
+        "route_id": "Q1R-46962c0a1e6aa0e2",
+        "multiplicity": 0.2631578947368422,
+        "duration": 148,
+        "service_order": [
+          "F002"
+        ]
+      },
+      {
+        "column_id": "Q1C-b294452907dc6f08",
+        "route_id": "Q1R-243f71ec8c17e028",
+        "multiplicity": 0.25,
+        "duration": 150,
+        "service_order": [
+          "F001"
+        ]
+      },
+      {
+        "column_id": "Q1C-3680fe33cd17a89f",
+        "route_id": "Q1R-68885ab3b66609e0",
+        "multiplicity": 0.2222222222222222,
+        "duration": 146,
+        "service_order": [
+          "F036"
+        ]
+      },
+      {
+        "column_id": "Q1C-d53b0aa14f1bd41c",
+        "route_id": "Q1R-f57804ec7436c4f1",
+        "multiplicity": 0.20766129032258063,
+        "duration": 116,
+        "service_order": [
+          "F022"
+        ]
+      },
+      {
+        "column_id": "Q1C-08d65e990b864653",
+        "route_id": "Q1R-0e340cfde6f7232d",
+        "multiplicity": 0.15789473684210525,
+        "duration": 216,
+        "service_order": [
+          "F041"
+        ]
+      },
+      {
+        "column_id": "Q1C-9784388064a4d92b",
+        "route_id": "Q1R-ec0d5bc0024b451d",
+        "multiplicity": 0.14035087719298245,
+        "duration": 138,
+        "service_order": [
+          "F011"
+        ]
+      },
+      {
+        "column_id": "Q1C-ac282a974f8a1847",
+        "route_id": "Q1R-4acf3a29e3ac47a7",
+        "multiplicity": 0.13749999999999996,
+        "duration": 185,
+        "service_order": [
+          "F013"
+        ]
+      },
+      {
+        "column_id": "Q1C-e1ab9f8adb471da6",
+        "route_id": "Q1R-928c27413ef100db",
+        "multiplicity": 0.13445378151260504,
+        "duration": 222,
+        "service_order": [
+          "F044"
+        ]
+      },
+      {
+        "column_id": "Q1C-2f61f734e092e204",
+        "route_id": "Q1R-44e32022eb7dcea5",
+        "multiplicity": 0.12280701754385964,
+        "duration": 148,
+        "service_order": [
+          "F010"
+        ]
+      },
+      {
+        "column_id": "Q1C-1ea0509eac7b3b38",
+        "route_id": "Q1R-1a6576c9ecbdad6f",
+        "multiplicity": 0.11363636363636363,
+        "duration": 116,
+        "service_order": [
+          "F015"
+        ]
+      },
+      {
+        "column_id": "Q1C-ca236ef58f17051c",
+        "route_id": "Q1R-753b4e12229e0ac9",
+        "multiplicity": 0.031578947368421054,
+        "duration": 276,
+        "service_order": [
+          "F050"
+        ]
+      }
+    ],
+    "scope_warning": "RESTRICTED ROUTE-POOL LP ONLY; this is not a global Q1 lower bound."
+  },
+  "pool_unique_routes": 391,
+  "pool_sources": 98,
+  "config": {
+    "maximum_source_objective": 15371,
+    "primary_seconds": 600.0,
+    "secondary_seconds": 30.0,
+    "primary_upper_bound": 14729,
+    "maximum_total_flights": null
+  },
+  "scope_warning": "No incumbent is not an infeasibility proof and not a global Q1 bound."
+}

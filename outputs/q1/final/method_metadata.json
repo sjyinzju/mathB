@@ -1,11 +1,10 @@
 {
-  "method": "Standard ALNS A2 extended",
-  "source_run": "outputs\\q1\\relatedness-alns\\extended\\extended-standard-a2-seed4-from14772\\seed-4",
-  "source_git_commit": "7ddd2f740b4fff6b25e9779d26ddea1b4d8d75a0",
-  "fusion_branch_base_commit": "7ddd2f740b4fff6b25e9779d26ddea1b4d8d75a0",
-  "seed": 4,
-  "runtime_seconds": 604.658,
-  "runtime_to_best_seconds": 82.207,
-  "selection_rule": "strict lexicographic among independently validated candidates",
-  "created_utc": "2026-08-15T14:57:25+00:00"
+  "stage": "Q1 Final OR / Matheuristic Intensification",
+  "method": "Master-recombined + Standard ALNS education",
+  "lineage": "elite route pool -> exact master -> Standard/Relatedness education -> pool",
+  "source_directory": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00527-e2b2-7dc3-993f-30ef424963b0\\q1-final-or-intensification\\outputs\\q1\\final-or\\alns\\final14730-control-s21\\seed-21",
+  "routes_sha256": "148142c883094d8edd6c40b57ed8dfe7d205aeca86ee7c9d0ec08bc0317faf78",
+  "assignments_sha256": "3875c5b279071cdebce7d9038f0d687d29d41349cf11a0e4c5e924a79f40f977",
+  "validator": "VALID",
+  "issues": 0
 }
