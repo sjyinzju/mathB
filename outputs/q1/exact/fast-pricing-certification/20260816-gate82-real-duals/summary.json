@@ -1,0 +1,735 @@
+{
+  "gate": "8.2 real-node MILP cross-check + 9 performance",
+  "sources": [
+    "root-iter015",
+    "N1-L-iter001",
+    "N1-R-iter002",
+    "N2-LL-iter001"
+  ],
+  "rc_tolerance": 1e-06,
+  "failures": 0,
+  "records": [
+    {
+      "source": "root-iter015",
+      "base": "A01",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 27.26315789473685,
+      "milp_reduced_cost": 27.26315789473685,
+      "fast_seconds": 8.344638,
+      "milp_seconds": 84.296853,
+      "speedup": 10.1,
+      "diagnostics": {
+        "labels_created": 188305,
+        "labels_kept": 112988,
+        "dominance_prunes": 73172,
+        "bound_prunes": 1468327,
+        "terminated_routes": 13586,
+        "incumbent_updates": 3
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "root-iter015",
+      "base": "A01",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 75.281072,
+      "milp_seconds": 76.917733,
+      "speedup": 1.02,
+      "diagnostics": {
+        "labels_created": 1311657,
+        "labels_kept": 706169,
+        "dominance_prunes": 583669,
+        "bound_prunes": 10189943,
+        "terminated_routes": 196178,
+        "incumbent_updates": 1
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "root-iter015",
+      "base": "A01",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 155.699839,
+      "milp_seconds": 82.537345,
+      "speedup": 0.53,
+      "diagnostics": {
+        "labels_created": 3515097,
+        "labels_kept": 1841575,
+        "dominance_prunes": 1623333,
+        "bound_prunes": 18294195,
+        "terminated_routes": 653604,
+        "incumbent_updates": 7
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "root-iter015",
+      "base": "A02",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 27.368421052631575,
+      "milp_reduced_cost": 27.368421052631575,
+      "fast_seconds": 8.534745,
+      "milp_seconds": 81.636287,
+      "speedup": 9.57,
+      "diagnostics": {
+        "labels_created": 210666,
+        "labels_kept": 120119,
+        "dominance_prunes": 87770,
+        "bound_prunes": 1214783,
+        "terminated_routes": 11302,
+        "incumbent_updates": 2
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "root-iter015",
+      "base": "A02",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 2.3157894736842195,
+      "milp_reduced_cost": 2.3157894736842195,
+      "fast_seconds": 75.404238,
+      "milp_seconds": 78.924303,
+      "speedup": 1.05,
+      "diagnostics": {
+        "labels_created": 1538366,
+        "labels_kept": 806551,
+        "dominance_prunes": 710335,
+        "bound_prunes": 10327727,
+        "terminated_routes": 237045,
+        "incumbent_updates": 6
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "root-iter015",
+      "base": "A02",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 157.861697,
+      "milp_seconds": 103.71737,
+      "speedup": 0.66,
+      "diagnostics": {
+        "labels_created": 3811057,
+        "labels_kept": 1924718,
+        "dominance_prunes": 1837044,
+        "bound_prunes": 18864035,
+        "terminated_routes": 680138,
+        "incumbent_updates": 3
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "root-iter015",
+      "base": "A03",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 43.26315789473685,
+      "milp_reduced_cost": 43.26315789473685,
+      "fast_seconds": 1.49339,
+      "milp_seconds": 61.773981,
+      "speedup": 41.36,
+      "diagnostics": {
+        "labels_created": 72475,
+        "labels_kept": 42181,
+        "dominance_prunes": 28306,
+        "bound_prunes": 329310,
+        "terminated_routes": 621,
+        "incumbent_updates": 1
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "root-iter015",
+      "base": "A03",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 5.473684210526329,
+      "milp_reduced_cost": 5.473684210526329,
+      "fast_seconds": 35.303901,
+      "milp_seconds": 96.350836,
+      "speedup": 2.73,
+      "diagnostics": {
+        "labels_created": 991507,
+        "labels_kept": 519728,
+        "dominance_prunes": 458611,
+        "bound_prunes": 8615158,
+        "terminated_routes": 148329,
+        "incumbent_updates": 7
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "root-iter015",
+      "base": "A03",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 78.203005,
+      "milp_seconds": 106.043639,
+      "speedup": 1.36,
+      "diagnostics": {
+        "labels_created": 2255570,
+        "labels_kept": 1141524,
+        "dominance_prunes": 1082885,
+        "bound_prunes": 15684241,
+        "terminated_routes": 430150,
+        "incumbent_updates": 10
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-L-iter001",
+      "base": "A01",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 27.26315789473685,
+      "milp_reduced_cost": 27.26315789473685,
+      "fast_seconds": 5.365509,
+      "milp_seconds": 126.271629,
+      "speedup": 23.53,
+      "diagnostics": {
+        "labels_created": 188305,
+        "labels_kept": 112988,
+        "dominance_prunes": 73172,
+        "bound_prunes": 1468327,
+        "terminated_routes": 13586,
+        "incumbent_updates": 3
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-L-iter001",
+      "base": "A01",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 41.438751,
+      "milp_seconds": 118.623693,
+      "speedup": 2.86,
+      "diagnostics": {
+        "labels_created": 1311657,
+        "labels_kept": 706169,
+        "dominance_prunes": 583669,
+        "bound_prunes": 10189943,
+        "terminated_routes": 196178,
+        "incumbent_updates": 1
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-L-iter001",
+      "base": "A01",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 94.529814,
+      "milp_seconds": 124.950018,
+      "speedup": 1.32,
+      "diagnostics": {
+        "labels_created": 3515097,
+        "labels_kept": 1841575,
+        "dominance_prunes": 1623333,
+        "bound_prunes": 18294195,
+        "terminated_routes": 653604,
+        "incumbent_updates": 7
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-L-iter001",
+      "base": "A02",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 27.368421052631575,
+      "milp_reduced_cost": 27.368421052631575,
+      "fast_seconds": 4.967631,
+      "milp_seconds": 82.5108,
+      "speedup": 16.61,
+      "diagnostics": {
+        "labels_created": 210666,
+        "labels_kept": 120119,
+        "dominance_prunes": 87770,
+        "bound_prunes": 1214783,
+        "terminated_routes": 11302,
+        "incumbent_updates": 2
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-L-iter001",
+      "base": "A02",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 2.3157894736842195,
+      "milp_reduced_cost": 2.3157894736842195,
+      "fast_seconds": 44.246475,
+      "milp_seconds": 81.420936,
+      "speedup": 1.84,
+      "diagnostics": {
+        "labels_created": 1538366,
+        "labels_kept": 806551,
+        "dominance_prunes": 710335,
+        "bound_prunes": 10327727,
+        "terminated_routes": 237045,
+        "incumbent_updates": 6
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-L-iter001",
+      "base": "A02",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 97.750226,
+      "milp_seconds": 119.885458,
+      "speedup": 1.23,
+      "diagnostics": {
+        "labels_created": 3811057,
+        "labels_kept": 1924718,
+        "dominance_prunes": 1837044,
+        "bound_prunes": 18864035,
+        "terminated_routes": 680138,
+        "incumbent_updates": 3
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-L-iter001",
+      "base": "A03",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 43.26315789473685,
+      "milp_reduced_cost": 43.26315789473685,
+      "fast_seconds": 1.409679,
+      "milp_seconds": 91.89737,
+      "speedup": 65.19,
+      "diagnostics": {
+        "labels_created": 72475,
+        "labels_kept": 42181,
+        "dominance_prunes": 28306,
+        "bound_prunes": 329310,
+        "terminated_routes": 621,
+        "incumbent_updates": 1
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-L-iter001",
+      "base": "A03",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 5.473684210526329,
+      "milp_reduced_cost": 5.473684210526329,
+      "fast_seconds": 33.144229,
+      "milp_seconds": 125.543981,
+      "speedup": 3.79,
+      "diagnostics": {
+        "labels_created": 991507,
+        "labels_kept": 519728,
+        "dominance_prunes": 458611,
+        "bound_prunes": 8615158,
+        "terminated_routes": 148329,
+        "incumbent_updates": 7
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-L-iter001",
+      "base": "A03",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 72.00367,
+      "milp_seconds": 110.016675,
+      "speedup": 1.53,
+      "diagnostics": {
+        "labels_created": 2255570,
+        "labels_kept": 1141524,
+        "dominance_prunes": 1082885,
+        "bound_prunes": 15684241,
+        "terminated_routes": 430150,
+        "incumbent_updates": 10
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-R-iter002",
+      "base": "A01",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 28.10526315789474,
+      "milp_reduced_cost": 28.10526315789474,
+      "fast_seconds": 5.532481,
+      "milp_seconds": 114.332826,
+      "speedup": 20.67,
+      "diagnostics": {
+        "labels_created": 192897,
+        "labels_kept": 115681,
+        "dominance_prunes": 74773,
+        "bound_prunes": 1470631,
+        "terminated_routes": 13667,
+        "incumbent_updates": 3
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-R-iter002",
+      "base": "A01",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 41.329829,
+      "milp_seconds": 109.174787,
+      "speedup": 2.64,
+      "diagnostics": {
+        "labels_created": 1306159,
+        "labels_kept": 702881,
+        "dominance_prunes": 580850,
+        "bound_prunes": 10195331,
+        "terminated_routes": 194071,
+        "incumbent_updates": 1
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-R-iter002",
+      "base": "A01",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 108.618692,
+      "milp_seconds": 113.755907,
+      "speedup": 1.05,
+      "diagnostics": {
+        "labels_created": 3465743,
+        "labels_kept": 1821175,
+        "dominance_prunes": 1595169,
+        "bound_prunes": 18337089,
+        "terminated_routes": 646389,
+        "incumbent_updates": 7
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-R-iter002",
+      "base": "A02",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 27.368421052631575,
+      "milp_reduced_cost": 27.368421052631575,
+      "fast_seconds": 5.178399,
+      "milp_seconds": 239.603077,
+      "speedup": 46.27,
+      "diagnostics": {
+        "labels_created": 221532,
+        "labels_kept": 127048,
+        "dominance_prunes": 90808,
+        "bound_prunes": 1245231,
+        "terminated_routes": 11634,
+        "incumbent_updates": 2
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-R-iter002",
+      "base": "A02",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 2.3157894736842195,
+      "milp_reduced_cost": 2.3157894736842195,
+      "fast_seconds": 47.611436,
+      "milp_seconds": 255.334736,
+      "speedup": 5.36,
+      "diagnostics": {
+        "labels_created": 1543619,
+        "labels_kept": 809313,
+        "dominance_prunes": 711727,
+        "bound_prunes": 10445371,
+        "terminated_routes": 233379,
+        "incumbent_updates": 6
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-R-iter002",
+      "base": "A02",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 97.643164,
+      "milp_seconds": 309.674218,
+      "speedup": 3.17,
+      "diagnostics": {
+        "labels_created": 3731310,
+        "labels_kept": 1894144,
+        "dominance_prunes": 1788537,
+        "bound_prunes": 19059553,
+        "terminated_routes": 668027,
+        "incumbent_updates": 3
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-R-iter002",
+      "base": "A03",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 47.052631578947356,
+      "milp_reduced_cost": 47.052631578947356,
+      "fast_seconds": 1.463933,
+      "milp_seconds": 237.6251,
+      "speedup": 162.32,
+      "diagnostics": {
+        "labels_created": 83345,
+        "labels_kept": 48138,
+        "dominance_prunes": 33580,
+        "bound_prunes": 323937,
+        "terminated_routes": 681,
+        "incumbent_updates": 1
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-R-iter002",
+      "base": "A03",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 5.473684210526329,
+      "milp_reduced_cost": 5.473684210526329,
+      "fast_seconds": 33.403948,
+      "milp_seconds": 307.898726,
+      "speedup": 9.22,
+      "diagnostics": {
+        "labels_created": 988492,
+        "labels_kept": 518166,
+        "dominance_prunes": 457149,
+        "bound_prunes": 8617898,
+        "terminated_routes": 147282,
+        "incumbent_updates": 7
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N1-R-iter002",
+      "base": "A03",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 72.268426,
+      "milp_seconds": 329.225392,
+      "speedup": 4.56,
+      "diagnostics": {
+        "labels_created": 2232485,
+        "labels_kept": 1130262,
+        "dominance_prunes": 1071252,
+        "bound_prunes": 15704805,
+        "terminated_routes": 426781,
+        "incumbent_updates": 10
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N2-LL-iter001",
+      "base": "A01",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 27.26315789473685,
+      "milp_reduced_cost": 27.26315789473685,
+      "fast_seconds": 5.252403,
+      "milp_seconds": 96.096833,
+      "speedup": 18.3,
+      "diagnostics": {
+        "labels_created": 188305,
+        "labels_kept": 112988,
+        "dominance_prunes": 73172,
+        "bound_prunes": 1468327,
+        "terminated_routes": 13586,
+        "incumbent_updates": 3
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N2-LL-iter001",
+      "base": "A01",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 41.838951,
+      "milp_seconds": 86.760839,
+      "speedup": 2.07,
+      "diagnostics": {
+        "labels_created": 1311657,
+        "labels_kept": 706169,
+        "dominance_prunes": 583669,
+        "bound_prunes": 10189943,
+        "terminated_routes": 196178,
+        "incumbent_updates": 1
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N2-LL-iter001",
+      "base": "A01",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 94.071205,
+      "milp_seconds": 93.606495,
+      "speedup": 1.0,
+      "diagnostics": {
+        "labels_created": 3515097,
+        "labels_kept": 1841575,
+        "dominance_prunes": 1623333,
+        "bound_prunes": 18294195,
+        "terminated_routes": 653604,
+        "incumbent_updates": 7
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N2-LL-iter001",
+      "base": "A02",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 27.368421052631575,
+      "milp_reduced_cost": 27.368421052631575,
+      "fast_seconds": 5.020809,
+      "milp_seconds": 288.169115,
+      "speedup": 57.39,
+      "diagnostics": {
+        "labels_created": 210666,
+        "labels_kept": 120119,
+        "dominance_prunes": 87770,
+        "bound_prunes": 1214783,
+        "terminated_routes": 11302,
+        "incumbent_updates": 2
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N2-LL-iter001",
+      "base": "A02",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 2.3157894736842195,
+      "milp_reduced_cost": 2.3157894736842195,
+      "fast_seconds": 43.271764,
+      "milp_seconds": 281.039821,
+      "speedup": 6.49,
+      "diagnostics": {
+        "labels_created": 1538366,
+        "labels_kept": 806551,
+        "dominance_prunes": 710335,
+        "bound_prunes": 10327727,
+        "terminated_routes": 237045,
+        "incumbent_updates": 6
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N2-LL-iter001",
+      "base": "A02",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 98.649026,
+      "milp_seconds": 308.994781,
+      "speedup": 3.13,
+      "diagnostics": {
+        "labels_created": 3811057,
+        "labels_kept": 1924718,
+        "dominance_prunes": 1837044,
+        "bound_prunes": 18864035,
+        "terminated_routes": 680138,
+        "incumbent_updates": 3
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N2-LL-iter001",
+      "base": "A03",
+      "aircraft_type": "T1",
+      "fast_reduced_cost": 43.26315789473685,
+      "milp_reduced_cost": 43.26315789473685,
+      "fast_seconds": 1.427493,
+      "milp_seconds": 71.715212,
+      "speedup": 50.24,
+      "diagnostics": {
+        "labels_created": 72475,
+        "labels_kept": 42181,
+        "dominance_prunes": 28306,
+        "bound_prunes": 329310,
+        "terminated_routes": 621,
+        "incumbent_updates": 1
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N2-LL-iter001",
+      "base": "A03",
+      "aircraft_type": "T2",
+      "fast_reduced_cost": 5.473684210526329,
+      "milp_reduced_cost": 5.473684210526329,
+      "fast_seconds": 33.066004,
+      "milp_seconds": 161.925666,
+      "speedup": 4.9,
+      "diagnostics": {
+        "labels_created": 991507,
+        "labels_kept": 519728,
+        "dominance_prunes": 458611,
+        "bound_prunes": 8615158,
+        "terminated_routes": 148329,
+        "incumbent_updates": 7
+      },
+      "status": "OK",
+      "problems": []
+    },
+    {
+      "source": "N2-LL-iter001",
+      "base": "A03",
+      "aircraft_type": "T3",
+      "fast_reduced_cost": 0.0,
+      "milp_reduced_cost": 0.0,
+      "fast_seconds": 71.931246,
+      "milp_seconds": 266.975164,
+      "speedup": 3.71,
+      "diagnostics": {
+        "labels_created": 2255570,
+        "labels_kept": 1141524,
+        "dominance_prunes": 1082885,
+        "bound_prunes": 15684241,
+        "terminated_routes": 430150,
+        "incumbent_updates": 10
+      },
+      "status": "OK",
+      "problems": []
+    }
+  ],
+  "total_fast_seconds": 1798.562,
+  "total_milp_seconds": 5425.228
+}

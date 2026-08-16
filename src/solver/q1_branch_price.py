@@ -15,11 +15,13 @@ from scipy.sparse import coo_matrix, eye, hstack, vstack
 from .data import ProblemData
 from .evaluator import evaluate_route
 from .models import PassengerAssignment, RoutePlan, Solution, aggregate_evaluations
+from .q1_fast_pricing import fast_exact_pricing
 from .q1_pricing import (
     PRICING_TOL,
     ArcBranchRow,
     ExactPricingResult,
     ExactRouteColumn,
+    branch_column_reduced_cost,
     choose_fractional_arc_branch,
     exact_pricing,
     pricing_result_to_column,
@@ -418,20 +420,63 @@ def solve_fully_priced_node(
             for base in data.config.airports
             for aircraft_type in data.config.aircraft_types
         ]
-        pricing_started = time.perf_counter()
-        pricing_results: list[ExactPricingResult] = []
-        with ThreadPoolExecutor(max_workers=workers) as executor:
-            future_map = {
-                executor.submit(
-                    exact_pricing,
+        multiplier = 0.0 if phase == "PHASE_I" else 1.0
+        # Seed the fast oracle's pruning incumbent per subproblem with the
+        # best registry column reduced cost under the current duals. Every
+        # registry column satisfies this node's branch rows, so its reduced
+        # cost upper-bounds the subproblem minimum and seeding can never
+        # remove an improving column.
+        seeds: dict[tuple[str, str], float] = {}
+        for column in columns:
+            key = (column.base_airport, column.aircraft_type)
+            rc = branch_column_reduced_cost(
+                column.duration_minutes,
+                column.allocation_pattern,
+                rmp.demand_duals,
+                column,
+                rmp.branch_duals,
+                route_cost_multiplier=multiplier,
+            )
+            if key not in seeds or rc < seeds[key]:
+                seeds[key] = rc
+
+        def _price_one(base: str, aircraft_type: str) -> ExactPricingResult:
+            try:
+                return fast_exact_pricing(
                     data,
                     rmp.demand_duals,
                     base,
                     aircraft_type,
                     branch_duals=rmp.branch_duals,
-                    route_cost_multiplier=0.0 if phase == "PHASE_I" else 1.0,
+                    route_cost_multiplier=multiplier,
                     time_limit_seconds=pricing_time_limit_seconds,
-                ): (base, aircraft_type)
+                    initial_incumbent_rc=seeds.get((base, aircraft_type)),
+                )
+            except Exception as failure:  # noqa: BLE001
+                # The HiGHS MILP oracle remains the permanent reference and
+                # fallback: any fast-oracle internal disagreement, time
+                # limit, or unexpected state falls back to it.
+                print(
+                    f"[q1_branch_price] fast pricing fallback for "
+                    f"{base}-{aircraft_type}: {failure}"
+                )
+                return exact_pricing(
+                    data,
+                    rmp.demand_duals,
+                    base,
+                    aircraft_type,
+                    branch_duals=rmp.branch_duals,
+                    route_cost_multiplier=multiplier,
+                    time_limit_seconds=pricing_time_limit_seconds,
+                )
+
+        pricing_started = time.perf_counter()
+        pricing_results: list[ExactPricingResult] = []
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            future_map = {
+                executor.submit(_price_one, base, aircraft_type): (
+                    base, aircraft_type
+                )
                 for base, aircraft_type in tasks
             }
             for future in as_completed(future_map):
