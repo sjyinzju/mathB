@@ -1,6 +1,6 @@
 # 2026 年度“策联杯”数学建模精英联赛 B 题：海上油田人员直升机运载计划编排
 
-本仓库为最终整合版（分支 `final/paper-q123-integration`），包含论文（`main.tex`）、
+本仓库为最终整合版（`main` 分支），包含论文（`main.tex`）、
 三问全部求解代码（`code/`）、已验证结果产物（`code/outputs/`）与提交文件（`submission/`）。
 
 ## Problem Summary
@@ -46,6 +46,7 @@ Q3 算法演进链：30546（旧深度解）→ 29659（Closure--P2）→ 29155�
 
 ```
 main.tex / figures/ / references.bib   论文与图（图均由 figures/*.csv 可复现生成）
+problem/official/                      官方题目 PDF 与附件（原始材料，勿改）
 code/src/solver/                       三问求解核心（q1_or、q2*、q3*、q3_pro*）
 code/src/validation/                   独立 Validator
 code/scripts/                          运行入口与绘图脚本
@@ -56,10 +57,17 @@ code/outputs/q3/q3-pro-v2/current_incumbent/   Q3 最终产物（两阶段 CSV/m
 code/outputs/q3/best/                  Q3 PRO V1 阶段产物（29155）
 code/outputs/q3/closure_p2_best/       Closure--P2 阶段产物（29659）
 submission/                            正式提交 CSV（六份）
-docs/                                  provenance、复现与论文更新审计
+docs/                                  provenance、复现、论文更新审计、最终结果报告
+docs/results/                          FINAL_Q1/Q2_RESULT 等最终结果报告
+docs/compliance/                       AI工具使用详情（赛事合规材料）
+archive/                               历史开发/实验/草稿归档（见下）
 ```
 
-根目录保留各阶段 handoff/报告文档（`STAGE_*.md`、`Q*_*.md` 等），未删除。
+`archive/` 为历史开发、实验与草稿材料的归档目录：
+Historical development, experiment and draft artifacts.
+Not used by the current solver, Validator or paper build.
+其中 `archive/development/legacy-root-tree/` 保存旧根级 src/scripts/tests/data/outputs
+树（含唯一的 EDA 产物与早期 run），清理明细见 `docs/root_cleanup_audit.md`。
 
 ## Reproduction
 
