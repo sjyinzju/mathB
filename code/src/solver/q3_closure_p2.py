@@ -650,6 +650,7 @@ def generalized_multiflight_ruin_recreate(
     seed: int = 0,
     combination_budget: int = 12,
     max_replacements: int | None = None,
+    wall_time_seconds: float | None = None,
 ) -> tuple[list[Q3Flight], dict[str, object]]:
     """Static-pool same-day k-to-m structural neighbourhood.
 
@@ -665,8 +666,12 @@ def generalized_multiflight_ruin_recreate(
     accepted: list[dict[str, object]] = []
     trials = 0
     rng = random.Random(seed)
+    timed_out = False
 
     while trials < maximum_trials:
+        if wall_time_seconds is not None and time.perf_counter() - started >= wall_time_seconds:
+            timed_out = True
+            break
         before = schedule_metrics(incumbent, people)
         indices = list(range(len(incumbent)))
         if operator == "high_cost":
@@ -685,13 +690,43 @@ def generalized_multiflight_ruin_recreate(
                 key=lambda i: (-day_cost[incumbent[i].start // 1440], -incumbent[i].duration, i)
             )
         elif operator == "optional_target":
-            targets = set(target_optional_ids)
+            targets = [
+                people[pid]
+                for pid in target_optional_ids
+                if pid in people and not people[pid].mandatory
+            ]
+
+            def optional_target_score(index: int) -> tuple[int, int, int, int]:
+                flight = incumbent[index]
+                compatible = 0
+                critical = 0
+                for target in targets:
+                    assignment = _assignment_for_person(
+                        target, flight.variant, data.config
+                    )
+                    if assignment is None:
+                        continue
+                    pickup, delivery = assignment
+                    if (
+                        flight.departures[pickup] < target.earliest
+                        or flight.arrivals[delivery] > target.latest
+                    ):
+                        continue
+                    compatible += 1
+                    loads = [0] * (
+                        len(flight.variant.source.route.stops) - 1
+                    )
+                    for left, right in flight.assignment_intervals.values():
+                        for leg in range(left, right):
+                            loads[leg] += 1
+                    critical += sum(
+                        loads[leg] >= flight.variant.capacity
+                        for leg in range(pickup, delivery)
+                    )
+                return (-critical, -compatible, -flight.duration, index)
+
             indices.sort(
-                key=lambda i: (
-                    -sum(pid in targets for pid in incumbent[i].person_ids),
-                    -incumbent[i].duration,
-                    i,
-                )
+                key=optional_target_score
             )
         elif operator == "conflict_graph":
             indices.sort(
@@ -714,6 +749,9 @@ def generalized_multiflight_ruin_recreate(
             indices.sort(key=lambda i: (incumbent[i].start // 1440, -incumbent[i].duration, i))
         improved = False
         for anchor in indices:
+            if wall_time_seconds is not None and time.perf_counter() - started >= wall_time_seconds:
+                timed_out = True
+                break
             if trials >= maximum_trials:
                 break
             day = incumbent[anchor].start // 1440
@@ -779,6 +817,12 @@ def generalized_multiflight_ruin_recreate(
                 examined = 0
                 for replacement_count in range(1, replacement_limit + 1):
                     for option_set in combinations(options, replacement_count):
+                        if (
+                            wall_time_seconds is not None
+                            and time.perf_counter() - started >= wall_time_seconds
+                        ):
+                            timed_out = True
+                            break
                         examined += 1
                         if examined > combination_budget:
                             break
@@ -843,6 +887,8 @@ def generalized_multiflight_ruin_recreate(
                             best_move = (group_size, len(replacements))
                     if examined > combination_budget:
                         break
+                    if timed_out:
+                        break
                 if best_candidate is None or best_move is None:
                     rejections["no_accepted_repair"] += 1
                     continue
@@ -884,6 +930,8 @@ def generalized_multiflight_ruin_recreate(
         "combination_budget": combination_budget,
         "max_replacements": max_replacements,
         "static_pool_only": True,
+        "wall_time_limit_seconds": wall_time_seconds,
+        "timed_out": timed_out,
     }
 
 

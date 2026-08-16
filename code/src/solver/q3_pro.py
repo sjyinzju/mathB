@@ -473,6 +473,9 @@ def long_horizon_alns(
                         else normal_combination_budget
                     ),
                     max_replacements=5 if heavy else 4,
+                    wall_time_seconds=max(
+                        1.0, min(60.0, wall_time_seconds - elapsed)
+                    ),
                 )
             candidate_metrics = schedule_metrics(candidate, people)
             if int(candidate_metrics["served_mandatory"]) == len(people):

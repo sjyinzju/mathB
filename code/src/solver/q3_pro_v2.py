@@ -399,6 +399,7 @@ class OptionalRescueSolver:
                     seed=self.seed + 101 * level_index + operator_index,
                     combination_budget=combo,
                     max_replacements=min(group_max, 8),
+                    wall_time_seconds=max(30.0, self.assignment_time_limit * 6.0),
                 )
                 accepted = stage2_key(candidate, self.people) < before_key
                 if accepted:
@@ -727,6 +728,7 @@ def guided_exact_lns(
             seed=seed + index,
             combination_budget=64,
             max_replacements=8,
+            wall_time_seconds=max(30.0, assignment_time_limit * 4.0),
         )
         accepted = stage1_key(candidate, people) < before
         if accepted:
@@ -783,6 +785,7 @@ def local_branching_search(
             seed=seed + index,
             combination_budget=min(64, max(12, radius * 2)),
             max_replacements=min(8, released),
+            wall_time_seconds=max(30.0, assignment_time_limit * 4.0),
         )
         accepted = stage1_key(candidate, people) < before
         if accepted:
@@ -833,6 +836,7 @@ def aircraft_day_chain_search(
             seed=seed + index,
             combination_budget=40,
             max_replacements=8,
+            wall_time_seconds=max(30.0, assignment_time_limit * 4.0),
         )
         accepted = stage1_key(candidate, people) < before
         if accepted:
