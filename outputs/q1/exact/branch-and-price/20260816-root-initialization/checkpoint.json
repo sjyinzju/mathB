@@ -1,0 +1,61 @@
+{
+  "status": "BRANCH_AND_PRICE_INCOMPLETE",
+  "incumbent_ub": 14730,
+  "global_lb": 14090.32748538012,
+  "rigorous_gap_over_ub": 0.04342651151526684,
+  "processed_nodes": 1,
+  "open_nodes": 2,
+  "root": {
+    "node_id": "N0",
+    "status": "FULLY_PRICED_FRACTIONAL",
+    "lp_bound": 14090.32748538012,
+    "column_count": 1041,
+    "fractional_route_variables": 67,
+    "selected_branch_arc": [
+      "A02",
+      "F024"
+    ],
+    "selected_branch_value": 3.52046783625731
+  },
+  "open_node_queue": [
+    {
+      "node_id": "N1-L",
+      "parent": "N0",
+      "constraint": {
+        "feature": "directed_arc_usage",
+        "arc": [
+          "A02",
+          "F024"
+        ],
+        "sense": "<=",
+        "rhs": 3
+      },
+      "status": "OPEN_UNPRICED",
+      "inherited_valid_lower_bound": 14090.32748538012
+    },
+    {
+      "node_id": "N1-R",
+      "parent": "N0",
+      "constraint": {
+        "feature": "directed_arc_usage",
+        "arc": [
+          "A02",
+          "F024"
+        ],
+        "sense": ">=",
+        "rhs": 4
+      },
+      "status": "OPEN_UNPRICED",
+      "inherited_valid_lower_bound": 14090.32748538012
+    }
+  ],
+  "branching_correctness": "Every legal column has a well-defined integer coefficient equal to the number of traversals of the directed physical arc. The disjunction usage<=floor(v) or usage>=ceil(v) covers every integer solution and excludes the current fractional root solution. Child LPs still require node-specific exact pricing before their bounds can be strengthened or they can be fathomed.",
+  "resume_requires": [
+    "add child arc row to RMP",
+    "include its dual coefficient in every base/type pricing objective",
+    "run exact pricing to no-negative-column at each child",
+    "checkpoint descendants and global best-bound queue"
+  ],
+  "source_sha": "0086720c5d19cab1b0dcdcd909a188de174572db",
+  "source_dirty": true
+}

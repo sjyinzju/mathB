@@ -1,5 +1,7 @@
 # Q1 最终 OR / Matheuristic 结果
 
+> Exact certification update：当前 14,730 仍是 validated UB。现已严格证明它是当前 restricted 1,003-column master 的整数最优，并建立 full-space LP global lower bound 14,090.32748538012（ceil 14,091）。Branch-and-Price 已处理 fully-priced root、尚有 2 个 open unpriced child nodes，因此全局状态为 **BRANCH_AND_PRICE_INCOMPLETE**；不得称 14,730 为 global optimum。
+
 ## 最终结论
 
 最终算法为 **Master-recombined + Standard ALNS education**：先用跨轨迹 Elite Route Pool 的 exact allocated-route-pattern master 重组，再用 Standard ALNS 对 14,730 master 解做 education。在所有独立验证通过的候选中按正式词典序选择后，最终结果为：
