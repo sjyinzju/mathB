@@ -18,6 +18,18 @@ from src.solver.evaluator import evaluate_route
 from src.solver.q2 import q2_direction
 
 
+def _font(font_path: Path | None) -> tuple[font_manager.FontProperties, bool]:
+    if font_path:
+        return font_manager.FontProperties(fname=str(font_path)), True
+    for family in ("Noto Sans CJK SC", "Source Han Sans CN", "Microsoft YaHei", "SimHei"):
+        try:
+            font_manager.findfont(family, fallback_to_default=False)
+            return font_manager.FontProperties(family=family), True
+        except ValueError:
+            continue
+    return font_manager.FontProperties(family="DejaVu Sans"), False
+
+
 def _metrics(path: Path) -> dict[str, object]:
     data = json.loads(path.read_text(encoding="utf-8"))
     return data.get("validator_metrics") or data.get("joint_internal_metrics")
@@ -37,17 +49,12 @@ def main() -> int:
     parser.add_argument("--font", type=Path)
     args = parser.parse_args()
 
-    if args.font:
-        chinese_font = font_manager.FontProperties(fname=str(args.font))
-    else:
-        chinese_font = font_manager.FontProperties(
-            family=["Noto Sans CJK SC", "Source Han Sans CN", "Microsoft YaHei", "SimHei"]
-        )
+    chinese_font, has_chinese = _font(args.font)
 
     stages = [
-        ("三类分开运输", _metrics(args.separate_metrics)),
-        ("最小联合候选池", _metrics(args.minimal_metrics)),
-        ("扩展联合候选池", _metrics(args.final_metrics)),
+        (("三类分开运输" if has_chinese else "Separate"), _metrics(args.separate_metrics)),
+        (("最小联合候选池" if has_chinese else "Initial RMP"), _metrics(args.minimal_metrics)),
+        (("扩展联合候选池" if has_chinese else "Final"), _metrics(args.final_metrics)),
     ]
     progression = [
         {
@@ -76,9 +83,9 @@ def main() -> int:
     names = [row["stage"] for row in progression]
     figure, axes = plt.subplots(1, 3, figsize=(10.2, 3.6))
     panels = (
-        ("aircraft_time_minutes", "总飞机使用时间/min", "#2878b5"),
-        ("flights", "架次数", "#d97706"),
-        ("seat_utilization_percent", "座位利用率/%", "#3b8d5a"),
+        ("aircraft_time_minutes", "总飞机使用时间/min" if has_chinese else "Aircraft time / min", "#2878b5"),
+        ("flights", "架次数" if has_chinese else "Flights", "#d97706"),
+        ("seat_utilization_percent", "座位利用率/%" if has_chinese else "Seat utilization / %", "#3b8d5a"),
     )
     for axis, (key, ylabel, color) in zip(axes, panels):
         values = [row[key] for row in progression]
@@ -162,10 +169,10 @@ def main() -> int:
         [row["departure_load"] for row in state_rows],
         color="#2878b5",
         alpha=0.82,
-        label="航段载客量",
+        label="航段载客量" if has_chinese else "Leg load",
     )
     left.axhline(aircraft.seats, color="#2878b5", linestyle="--", linewidth=1.1)
-    left.set_ylabel("离站载客量/人", fontproperties=chinese_font)
+    left.set_ylabel("离站载客量/人" if has_chinese else "Departure load", fontproperties=chinese_font)
     left.set_xticks(x, labels, fontproperties=chinese_font, rotation=20)
     left.grid(axis="y", alpha=0.22)
     right = left.twinx()
@@ -175,16 +182,16 @@ def main() -> int:
         color="#d97706",
         marker="o",
         linewidth=1.8,
-        label="到达余油",
+        label="到达余油" if has_chinese else "Arrival fuel",
     )
     right.axhline(
         aircraft.reserve_kg,
         color="#b91c1c",
         linestyle=":",
         linewidth=1.2,
-        label="安全余油",
+        label="安全余油" if has_chinese else "Fuel reserve",
     )
-    right.set_ylabel("燃油量/kg", fontproperties=chinese_font)
+    right.set_ylabel("燃油量/kg" if has_chinese else "Fuel / kg", fontproperties=chinese_font)
     for bar, row in zip(bars, state_rows):
         left.text(
             bar.get_x() + bar.get_width() / 2,
@@ -196,7 +203,7 @@ def main() -> int:
         )
         if row["refuel_at_destination"]:
             right.annotate(
-                "加油",
+                "加油" if has_chinese else "Refuel",
                 (row["leg_order"], row["arrival_fuel_kg"]),
                 xytext=(0, -18),
                 textcoords="offset points",

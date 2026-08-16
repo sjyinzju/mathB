@@ -2,6 +2,20 @@
 
 from .baseline import solve_q1_baseline
 from .alns import ALNSRunResult, Q1ALNSConfig, improve_q1_alns
+from .q1_or import (
+    EliteRoutePool,
+    Q1MasterConfig,
+    Q1MasterResult,
+    Q1RestrictedLPResult,
+    Q1TargetedRepairResult,
+    collect_elite_route_pool,
+    exact_targeted_repair,
+    route_elimination_audit,
+    route_identity,
+    solve_restricted_lp,
+    solve_route_pool_master,
+    targeted_route_indices,
+)
 from .cache import SolverCache
 from .data import load_problem_data
 from .evaluator import evaluate_route
@@ -50,6 +64,16 @@ from .q2_learning import (
     flatten_q2_candidate_event,
     grouped_q2_splits,
 )
+from .q2_round3 import (
+    ROUND3_SCHEMA_VERSION,
+    PromisingLocalMaster,
+    PromisingLocalMasterQueue,
+    absorption_potential_ranking,
+    audit_q2_solution,
+    deepen_promising_master,
+    q2_basin_fingerprint,
+    select_absorption_neighborhood,
+)
 from .q2_flow import (
     Q2DirectedFlowGraph,
     Q2SequenceFeatures,
@@ -61,6 +85,7 @@ from .q2_flow import (
 __all__ = [
     "augment_service_sequence",
     "ALNSRunResult",
+    "EliteRoutePool",
     "evaluate_route",
     "export_q1_solution",
     "LegPhysics",
@@ -74,6 +99,17 @@ __all__ = [
     "SolverCache",
     "SolverConfig",
     "Q1ALNSConfig",
+    "Q1MasterConfig",
+    "Q1MasterResult",
+    "Q1RestrictedLPResult",
+    "Q1TargetedRepairResult",
+    "collect_elite_route_pool",
+    "exact_targeted_repair",
+    "route_elimination_audit",
+    "route_identity",
+    "solve_restricted_lp",
+    "solve_route_pool_master",
+    "targeted_route_indices",
     "Q2MasterConfig",
     "Q2RouteVariant",
     "build_q2_variant",
@@ -106,6 +142,14 @@ __all__ = [
     "classify_q2_candidate_event",
     "flatten_q2_candidate_event",
     "grouped_q2_splits",
+    "ROUND3_SCHEMA_VERSION",
+    "PromisingLocalMaster",
+    "PromisingLocalMasterQueue",
+    "absorption_potential_ranking",
+    "audit_q2_solution",
+    "deepen_promising_master",
+    "q2_basin_fingerprint",
+    "select_absorption_neighborhood",
     "Q2DirectedFlowGraph",
     "Q2SequenceFeatures",
     "build_q2_directed_flow_graph",

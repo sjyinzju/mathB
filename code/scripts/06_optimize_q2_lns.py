@@ -59,6 +59,8 @@ def main() -> int:
     )
     parser.add_argument("--iterations", type=int, default=24)
     parser.add_argument("--wall-clock-limit", type=float)
+    parser.add_argument("--stagnation-patience", type=int)
+    parser.add_argument("--checkpoint-interval", type=int, default=5)
     parser.add_argument("--neighborhood-size", type=int, default=3)
     parser.add_argument(
         "--destroy-size-policy", choices=("fixed", "adaptive"), default="fixed"
@@ -104,9 +106,17 @@ def main() -> int:
     parser.add_argument("--portfolio-context-slots", type=int, default=6)
     parser.add_argument("--exploration-slots", type=int, default=0)
     parser.add_argument(
-        "--run-purpose", choices=("optimization", "ml_logging"), default="optimization"
+        "--run-purpose",
+        choices=("optimization", "ml_logging", "ml_exploration"),
+        default="optimization",
     )
+    parser.add_argument("--lineage-id")
+    parser.add_argument("--parent-run-id")
+    parser.add_argument("--parent-solution-hash")
+    parser.add_argument("--elite-origin")
+    parser.add_argument("--restart-type", default="direct")
     parser.add_argument("--no-candidate-logging", action="store_true")
+    parser.add_argument("--censored-log-limit", type=int, default=240)
     parser.add_argument("--promote", action="store_true")
     args = parser.parse_args()
 
@@ -136,6 +146,8 @@ def main() -> int:
     config = Q2LnsConfig(
         iterations=args.iterations,
         max_wall_seconds=args.wall_clock_limit,
+        stagnation_patience=args.stagnation_patience,
+        checkpoint_interval=args.checkpoint_interval,
         neighborhood_size=args.neighborhood_size,
         destroy_size_policy=args.destroy_size_policy,
         adaptive_destroy_sizes=adaptive_destroy_sizes,
@@ -166,9 +178,48 @@ def main() -> int:
         exploration_slots=args.exploration_slots,
         run_purpose=args.run_purpose,
         candidate_logging=not args.no_candidate_logging,
+        censored_log_limit=args.censored_log_limit,
+        lineage_id=args.lineage_id or run_id,
+        parent_run_id=args.parent_run_id,
+        parent_solution_hash=args.parent_solution_hash,
+        warm_start_hash=sha256(args.start_dir / "q2-routes.csv"),
+        elite_origin=args.elite_origin,
+        restart_type=args.restart_type,
     )
     cache = SolverCache(data)
-    result = solve_q2_lns(initial, data, config=config, cache=cache)
+
+    def checkpoint(current, best, state: dict[str, object]) -> None:
+        iteration = int(state["iteration"])
+        checkpoint_dir = run_dir / "checkpoints" / f"iter-{iteration:06d}"
+        checkpoint_dir.mkdir(parents=True, exist_ok=False)
+        export_q1_solution(
+            best,
+            checkpoint_dir / "q2-routes.csv",
+            checkpoint_dir / "q2-assignments.csv",
+        )
+        write_json(
+            checkpoint_dir / "checkpoint.json",
+            {
+                **state,
+                "schema_version": 2,
+                "run_id": run_id,
+                "lineage_id": config.lineage_id,
+                "current_metrics": current.metrics.to_dict(),
+                "best_metrics": best.metrics.to_dict(),
+                "resume_semantics": (
+                    "Resume from immutable best; SA current/RNG are diagnostic only. "
+                    "This avoids unsafe serialization of solver objects."
+                ),
+            },
+        )
+
+    result = solve_q2_lns(
+        initial,
+        data,
+        config=config,
+        cache=cache,
+        checkpoint_callback=checkpoint,
+    )
     solution = result.solution
 
     routes_path = run_dir / "q2-routes.csv"
@@ -261,6 +312,8 @@ def main() -> int:
             "config": {
                 "iterations": config.iterations,
                 "max_wall_seconds": config.max_wall_seconds,
+                "stagnation_patience": config.stagnation_patience,
+                "checkpoint_interval": config.checkpoint_interval,
                 "neighborhood_size": config.neighborhood_size,
                 "destroy_size_policy": config.destroy_size_policy,
                 "adaptive_destroy_sizes": list(config.adaptive_destroy_sizes),
@@ -291,6 +344,13 @@ def main() -> int:
                 "exploration_slots": config.exploration_slots,
                 "run_purpose": config.run_purpose,
                 "candidate_logging": config.candidate_logging,
+                "censored_log_limit": config.censored_log_limit,
+                "lineage_id": config.lineage_id,
+                "parent_run_id": config.parent_run_id,
+                "parent_solution_hash": config.parent_solution_hash,
+                "warm_start_hash": config.warm_start_hash,
+                "elite_origin": config.elite_origin,
+                "restart_type": config.restart_type,
             },
             "bound_scope": "restricted_local_master",
             "scope_note": (
@@ -342,6 +402,12 @@ def main() -> int:
                     int(row.get("selected_4_stop_candidates", 0))
                     for row in result.iteration_log
                     if row.get("accepted")
+                ),
+                "stop_reason": solution.diagnostics.get("q2_lns", {}).get(
+                    "stop_reason"
+                ),
+                "terminal_stagnation": solution.diagnostics.get("q2_lns", {}).get(
+                    "terminal_stagnation"
                 ),
             },
             "lns_elapsed_seconds": round(result.elapsed_seconds, 6),

@@ -8,7 +8,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, replace
 from itertools import permutations
 from statistics import mean
-from typing import Iterable, Sequence
+from typing import Callable, Iterable, Sequence
 
 from .cache import SolverCache
 from .data import ProblemData
@@ -75,6 +75,15 @@ class Q2LnsConfig:
     exploration_slots: int = 0
     run_purpose: str = "optimization"
     candidate_logging: bool = True
+    censored_log_limit: int = 240
+    stagnation_patience: int | None = None
+    checkpoint_interval: int = 5
+    lineage_id: str | None = None
+    parent_run_id: str | None = None
+    parent_solution_hash: str | None = None
+    warm_start_hash: str | None = None
+    elite_origin: str | None = None
+    restart_type: str = "direct"
 
     def __post_init__(self) -> None:
         if self.iterations < 0:
@@ -130,8 +139,16 @@ class Q2LnsConfig:
             self.exploration_slots,
         ) < 0:
             raise ValueError("portfolio slot counts must be nonnegative")
-        if self.run_purpose not in {"optimization", "ml_logging"}:
-            raise ValueError("run_purpose must be optimization or ml_logging")
+        if self.run_purpose not in {"optimization", "ml_logging", "ml_exploration"}:
+            raise ValueError(
+                "run_purpose must be optimization, ml_logging, or ml_exploration"
+            )
+        if self.stagnation_patience is not None and self.stagnation_patience < 1:
+            raise ValueError("stagnation_patience must be positive when provided")
+        if self.checkpoint_interval < 1:
+            raise ValueError("checkpoint_interval must be positive")
+        if self.censored_log_limit < 0:
+            raise ValueError("censored_log_limit must be nonnegative")
 
 
 @dataclass(frozen=True)
@@ -698,6 +715,20 @@ def rank_q2_local_sequences(
     candidate_rows = []
     for sequence in sorted(incumbent | set(exploratory), key=lambda item: (len(item), item)):
         chosen = sequence in selected
+        geometry_percentile = geometry_rank.get(sequence, 0.0)
+        source = portfolio_source.get(sequence)
+        if sequence in incumbent:
+            candidate_source = "INCUMBENT"
+        elif source == "context":
+            candidate_source = "CONTEXT_ONLY"
+        elif source == "exploration":
+            candidate_source = "EXPLORATION_RANDOM"
+        elif geometry_percentile >= 2.0 / 3.0:
+            candidate_source = "GEOMETRY_TOP"
+        elif geometry_percentile >= 1.0 / 3.0:
+            candidate_source = "GEOMETRY_MID"
+        else:
+            candidate_source = "GEOMETRY_LOW"
         candidate_rows.append(
             {
                 "candidate_sequence": list(sequence),
@@ -711,6 +742,46 @@ def rank_q2_local_sequences(
                 "portfolio_source": (
                     "incumbent" if sequence in incumbent else portfolio_source.get(
                         sequence, policy
+                    )
+                ),
+                "candidate_source": candidate_source,
+                "geometry_rank_bin": (
+                    "incumbent"
+                    if sequence in incumbent
+                    else "top"
+                    if geometry_percentile >= 2.0 / 3.0
+                    else "mid"
+                    if geometry_percentile >= 1.0 / 3.0
+                    else "low"
+                ),
+                "context_rank_bin": (
+                    "unavailable"
+                    if sequence not in context_rank
+                    else "top"
+                    if context_rank[sequence] >= 2.0 / 3.0
+                    else "mid"
+                    if context_rank[sequence] >= 1.0 / 3.0
+                    else "low"
+                ),
+                "is_incumbent_sequence": sequence in incumbent,
+                "seen_in_current_solution": sequence in required,
+                "seen_in_elite_pool": sequence in base - required,
+                "seen_in_previous_run": False,
+                "sequence_novelty": 0.0 if sequence in incumbent else 1.0,
+                "structural_novelty": (
+                    0.0
+                    if sequence in incumbent
+                    else min(
+                        1.0,
+                        min(
+                            (
+                                1.0
+                                - len(set(sequence) & set(other))
+                                / max(1, len(set(sequence) | set(other)))
+                                for other in incumbent
+                            ),
+                            default=1.0,
+                        ),
                     )
                 ),
                 "stage_generated": True,
@@ -790,6 +861,7 @@ def exact_q2_local_repair(
     candidate_seed_routes: Sequence[RoutePlan] = (),
     selection_seed: int = 0,
     search_context: dict[str, object] | None = None,
+    maximum_repaired_routes: int | None = None,
 ) -> Q2LocalRepair:
     started = time.perf_counter()
     destroyed = tuple(sorted(set(route_indices)))
@@ -893,6 +965,7 @@ def exact_q2_local_repair(
         "candidate_sequences": len(sequences),
         "candidate_variants": len(variants),
         "before_routes": len(affected_routes),
+        "requested_maximum_repaired_routes": maximum_repaired_routes,
         "before_aircraft_minutes": before_aircraft,
         "before_passenger_minutes": before_passenger,
     }
@@ -902,9 +975,31 @@ def exact_q2_local_repair(
             for row in candidate_rows
             if row["top_k_selected"]
         }
-        expanded_rows: list[dict[str, object]] = [
-            row for row in candidate_rows if not row["top_k_selected"]
-        ]
+        censored_rows = [row for row in candidate_rows if not row["top_k_selected"]]
+        if len(censored_rows) > config.censored_log_limit:
+            strata: dict[tuple[object, ...], list[dict[str, object]]] = defaultdict(list)
+            for row in censored_rows:
+                strata[
+                    (
+                        row.get("candidate_source"),
+                        row.get("geometry_rank_bin"),
+                        len(row.get("candidate_sequence", [])),
+                    )
+                ].append(row)
+            sampled: list[dict[str, object]] = []
+            ordered_strata = sorted(strata, key=repr)
+            cursor = 0
+            while len(sampled) < config.censored_log_limit and ordered_strata:
+                key = ordered_strata[cursor % len(ordered_strata)]
+                bucket = strata[key]
+                if bucket:
+                    sampled.append(bucket.pop(0))
+                if not bucket:
+                    ordered_strata.remove(key)
+                    cursor -= 1
+                cursor += 1
+            censored_rows = sampled
+        expanded_rows: list[dict[str, object]] = censored_rows
         variants_by_sequence: dict[tuple[str, ...], list[object]] = defaultdict(list)
         for variant in variants:
             variants_by_sequence[variant.service_order].append(variant)
@@ -951,6 +1046,9 @@ def exact_q2_local_repair(
         candidate_rows = expanded_rows
     for row in candidate_rows:
         row["search_context"] = search_context or {}
+        source_override = (search_context or {}).get("candidate_source")
+        if source_override and row.get("candidate_source") != "INCUMBENT":
+            row["candidate_source"] = source_override
     if not variants:
         return Q2LocalRepair(
             None,
@@ -975,6 +1073,7 @@ def exact_q2_local_repair(
                     if require_primary_improvement
                     else before_aircraft + max(0, allowed_primary_deterioration_minutes)
                 ),
+                maximum_flights=maximum_repaired_routes,
             ),
             method="q2_local_exact_master",
         )
@@ -1279,6 +1378,8 @@ def solve_q2_lns(
     *,
     config: Q2LnsConfig | None = None,
     cache: SolverCache | None = None,
+    checkpoint_callback: Callable[[Solution, Solution, dict[str, object]], None]
+    | None = None,
 ) -> Q2LnsResult:
     """Adaptive ALNS with exact local MILP repacking and immutable best."""
     config = config or Q2LnsConfig()
@@ -1329,11 +1430,13 @@ def solve_q2_lns(
     accepted_deteriorating_moves = 0
     deteriorating_minutes = 0
     best_after_deterioration = 0
+    stop_reason = "iteration_limit"
     for iteration in range(config.iterations):
         if (
             config.max_wall_seconds is not None
             and time.perf_counter() - started >= config.max_wall_seconds
         ):
+            stop_reason = "wall_clock_limit"
             break
         if config.operator_selection == "adaptive_roulette":
             operator = operator_rng.choices(
@@ -1415,6 +1518,27 @@ def solve_q2_lns(
                     "elite_restart_status": False,
                     "run_purpose": config.run_purpose,
                     "targeted_trigger": trigger_reason,
+                    "candidate_source": (
+                        "ABSORPTION"
+                        if operator == "flight_elimination"
+                        else "CROSS_EXCHANGE"
+                        if operator == "cross_exchange"
+                        else "TARGETED_5_ROUTE"
+                        if destroy_size == 5 and trigger_reason
+                        else "TARGETED_6_ROUTE"
+                        if destroy_size >= 6
+                        else None
+                    ),
+                    "warm_start_objective": initial.metrics.total_aircraft_time_minutes,
+                    "warm_start_flights": initial.metrics.total_flights,
+                    "parent_run_id": config.parent_run_id,
+                    "parent_solution_hash": config.parent_solution_hash,
+                    "warm_start_hash": config.warm_start_hash,
+                    "elite_origin": config.elite_origin,
+                    "lineage_id": config.lineage_id,
+                    "restart_type": config.restart_type,
+                    "relink_flag": False,
+                    "cross_exchange_flag": operator == "cross_exchange",
                 },
             )
         candidate = repair.solution
@@ -1617,6 +1741,27 @@ def solve_q2_lns(
                 "enrichment_rounds": repair.diagnostics.get("enrichment_rounds"),
             }
         )
+        if checkpoint_callback is not None and (
+            new_best or (iteration + 1) % config.checkpoint_interval == 0
+        ):
+            checkpoint_callback(
+                current,
+                best,
+                {
+                    "iteration": iteration,
+                    "new_best": new_best,
+                    "stagnation": stagnation,
+                    "temperature": temperature,
+                    "operator_weights": dict(operator_weights),
+                    "elapsed_seconds": elapsed,
+                },
+            )
+        if (
+            config.stagnation_patience is not None
+            and stagnation >= config.stagnation_patience
+        ):
+            stop_reason = "stagnation"
+            break
 
     operator_rows: list[dict[str, object]] = []
     for operator in config.operators:
@@ -1686,6 +1831,15 @@ def solve_q2_lns(
                     "exploration_slots": config.exploration_slots,
                     "run_purpose": config.run_purpose,
                     "candidate_logging": config.candidate_logging,
+                    "censored_log_limit": config.censored_log_limit,
+                    "stagnation_patience": config.stagnation_patience,
+                    "checkpoint_interval": config.checkpoint_interval,
+                    "lineage_id": config.lineage_id,
+                    "parent_run_id": config.parent_run_id,
+                    "parent_solution_hash": config.parent_solution_hash,
+                    "warm_start_hash": config.warm_start_hash,
+                    "elite_origin": config.elite_origin,
+                    "restart_type": config.restart_type,
                     "operators": list(config.operators),
                 },
                 "initial_metrics": initial.metrics.to_dict(),
@@ -1708,6 +1862,8 @@ def solve_q2_lns(
                 },
                 "cache": cache.stats(),
                 "elapsed_seconds": round(elapsed, 6),
+                "stop_reason": stop_reason,
+                "terminal_stagnation": stagnation,
             },
         },
     )
