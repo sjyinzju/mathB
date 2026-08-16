@@ -1,0 +1,46 @@
+{
+  "base_airport": "A01",
+  "aircraft_type": "T3",
+  "status": "Optimal",
+  "proven_optimal": true,
+  "reduced_cost": -4.487804878048792,
+  "route_duration_minutes": 132,
+  "allocation_reward": 136.4878048780488,
+  "allocation_pattern": [
+    [
+      "A01",
+      "F015",
+      6
+    ],
+    [
+      "LAND",
+      "F015",
+      13
+    ]
+  ],
+  "stops": [
+    {
+      "facility_id": "A01",
+      "refuel": false,
+      "is_service": false
+    },
+    {
+      "facility_id": "F015",
+      "refuel": false,
+      "is_service": true
+    },
+    {
+      "facility_id": "A01",
+      "refuel": false,
+      "is_service": false
+    }
+  ],
+  "node_count": 11,
+  "dual_bound": -4.487804878048808,
+  "elapsed_seconds": 70.523517,
+  "candidate_nodes": 52,
+  "max_landings": 5,
+  "repeated_visit": false,
+  "certified_no_negative_column": false,
+  "negative_column_found": true
+}

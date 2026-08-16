@@ -1,0 +1,1719 @@
+{
+  "status": "TERMINATING",
+  "completed_iteration": 15,
+  "initial_columns": 1003,
+  "current_columns": 1041,
+  "trajectory": [
+    {
+      "iteration": 0,
+      "rmp_objective": 14199.521097474075,
+      "columns_before": 1003,
+      "negative_subproblems": 6,
+      "columns_added": 6,
+      "minimum_pricing_reduced_cost": -18.467105263157862,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 1,
+      "rmp_objective": 14165.44371250772,
+      "columns_before": 1009,
+      "negative_subproblems": 5,
+      "columns_added": 5,
+      "minimum_pricing_reduced_cost": -12.89473684210526,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 2,
+      "rmp_objective": 14135.859916221374,
+      "columns_before": 1014,
+      "negative_subproblems": 4,
+      "columns_added": 4,
+      "minimum_pricing_reduced_cost": -9.116959064327489,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 3,
+      "rmp_objective": 14122.462879011257,
+      "columns_before": 1018,
+      "negative_subproblems": 3,
+      "columns_added": 3,
+      "minimum_pricing_reduced_cost": -7.473684210526329,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 4,
+      "rmp_objective": 14119.004232394715,
+      "columns_before": 1021,
+      "negative_subproblems": 3,
+      "columns_added": 3,
+      "minimum_pricing_reduced_cost": -5.678571428571416,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 5,
+      "rmp_objective": 14112.834064327486,
+      "columns_before": 1024,
+      "negative_subproblems": 3,
+      "columns_added": 3,
+      "minimum_pricing_reduced_cost": -3.6315789473684106,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 6,
+      "rmp_objective": 14106.891220667703,
+      "columns_before": 1027,
+      "negative_subproblems": 3,
+      "columns_added": 3,
+      "minimum_pricing_reduced_cost": -5.0,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 7,
+      "rmp_objective": 14104.338589088755,
+      "columns_before": 1030,
+      "negative_subproblems": 2,
+      "columns_added": 2,
+      "minimum_pricing_reduced_cost": -3.368421052631561,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 8,
+      "rmp_objective": 14104.292397660822,
+      "columns_before": 1032,
+      "negative_subproblems": 2,
+      "columns_added": 2,
+      "minimum_pricing_reduced_cost": -2.8421052631578902,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 9,
+      "rmp_objective": 14100.590643274856,
+      "columns_before": 1034,
+      "negative_subproblems": 2,
+      "columns_added": 2,
+      "minimum_pricing_reduced_cost": -2.631578947368439,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 10,
+      "rmp_objective": 14099.011695906433,
+      "columns_before": 1036,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -4.315789473684191,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 11,
+      "rmp_objective": 14094.695906432746,
+      "columns_before": 1037,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -1.9473684210526017,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 12,
+      "rmp_objective": 14092.748538011694,
+      "columns_before": 1038,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -1.8421052631578902,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 13,
+      "rmp_objective": 14090.906432748538,
+      "columns_before": 1039,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -1.0,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 14,
+      "rmp_objective": 14090.327485380116,
+      "columns_before": 1040,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -0.9473684210526301,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 15,
+      "rmp_objective": 14090.32748538012,
+      "columns_before": 1041,
+      "negative_subproblems": 0,
+      "columns_added": 0,
+      "minimum_pricing_reduced_cost": 0.0,
+      "all_pricing_optimal": true
+    }
+  ],
+  "generated_columns": [
+    {
+      "column_id": "Q1X-af131a1c3b116233",
+      "base_airport": "A01",
+      "aircraft_type": "T2",
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F015",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A01",
+          "F015",
+          6
+        ],
+        [
+          "LAND",
+          "F015",
+          10
+        ]
+      ],
+      "duration_minutes": 116,
+      "source": "exact_cg_iteration_0"
+    },
+    {
+      "column_id": "Q1X-673115f9240ac57f",
+      "base_airport": "A01",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F006",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F013",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A01",
+          "F013",
+          1
+        ],
+        [
+          "LAND",
+          "F013",
+          18
+        ]
+      ],
+      "duration_minutes": 209,
+      "source": "exact_cg_iteration_0"
+    },
+    {
+      "column_id": "Q1X-82d7263d25b790ff",
+      "base_airport": "A02",
+      "aircraft_type": "T2",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F018",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "F028",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F030",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F018",
+          4
+        ],
+        [
+          "A02",
+          "F028",
+          2
+        ],
+        [
+          "A02",
+          "F030",
+          1
+        ],
+        [
+          "LAND",
+          "F028",
+          9
+        ]
+      ],
+      "duration_minutes": 185,
+      "source": "exact_cg_iteration_0"
+    },
+    {
+      "column_id": "Q1X-db086fa75cfd2382",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F024",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F035",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F035",
+          3
+        ],
+        [
+          "LAND",
+          "F035",
+          16
+        ]
+      ],
+      "duration_minutes": 201,
+      "source": "exact_cg_iteration_0"
+    },
+    {
+      "column_id": "Q1X-bfe421efa1433829",
+      "base_airport": "A03",
+      "aircraft_type": "T2",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F038",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F049",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F049",
+          5
+        ],
+        [
+          "A03",
+          "F052",
+          4
+        ],
+        [
+          "LAND",
+          "F052",
+          7
+        ]
+      ],
+      "duration_minutes": 196,
+      "source": "exact_cg_iteration_0"
+    },
+    {
+      "column_id": "Q1X-9096e8041ef41afe",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F038",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F049",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F049",
+          5
+        ],
+        [
+          "A03",
+          "F052",
+          4
+        ],
+        [
+          "LAND",
+          "F052",
+          10
+        ]
+      ],
+      "duration_minutes": 220,
+      "source": "exact_cg_iteration_0"
+    },
+    {
+      "column_id": "Q1X-9a11c0d518ee7aa2",
+      "base_airport": "A01",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F013",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F006",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A01",
+          "F013",
+          5
+        ],
+        [
+          "LAND",
+          "F013",
+          14
+        ]
+      ],
+      "duration_minutes": 209,
+      "source": "exact_cg_iteration_1"
+    },
+    {
+      "column_id": "Q1X-6dcde87fba026801",
+      "base_airport": "A02",
+      "aircraft_type": "T2",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F011",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F028",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F030",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F028",
+          2
+        ],
+        [
+          "A02",
+          "F030",
+          1
+        ],
+        [
+          "LAND",
+          "F028",
+          13
+        ]
+      ],
+      "duration_minutes": 177,
+      "source": "exact_cg_iteration_1"
+    },
+    {
+      "column_id": "Q1X-f2af5c5cc7be7268",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F029",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F029",
+          5
+        ],
+        [
+          "LAND",
+          "F029",
+          14
+        ]
+      ],
+      "duration_minutes": 148,
+      "source": "exact_cg_iteration_1"
+    },
+    {
+      "column_id": "Q1X-0de1ddc88b11f121",
+      "base_airport": "A03",
+      "aircraft_type": "T2",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F047",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F047",
+          5
+        ],
+        [
+          "LAND",
+          "F052",
+          11
+        ]
+      ],
+      "duration_minutes": 198,
+      "source": "exact_cg_iteration_1"
+    },
+    {
+      "column_id": "Q1X-6674d359e61be3d0",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F047",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F047",
+          5
+        ],
+        [
+          "LAND",
+          "F052",
+          14
+        ]
+      ],
+      "duration_minutes": 223,
+      "source": "exact_cg_iteration_1"
+    },
+    {
+      "column_id": "Q1X-a7fb6f2b05d290e0",
+      "base_airport": "A01",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F015",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A01",
+          "F015",
+          6
+        ],
+        [
+          "LAND",
+          "F015",
+          13
+        ]
+      ],
+      "duration_minutes": 132,
+      "source": "exact_cg_iteration_2"
+    },
+    {
+      "column_id": "Q1X-5ee137c4402f2f2a",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F033",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F033",
+          5
+        ],
+        [
+          "LAND",
+          "F033",
+          14
+        ]
+      ],
+      "duration_minutes": 162,
+      "source": "exact_cg_iteration_2"
+    },
+    {
+      "column_id": "Q1X-ff7d55547f2f8815",
+      "base_airport": "A03",
+      "aircraft_type": "T2",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F049",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F047",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F047",
+          5
+        ],
+        [
+          "A03",
+          "F049",
+          5
+        ],
+        [
+          "LAND",
+          "F031",
+          6
+        ]
+      ],
+      "duration_minutes": 190,
+      "source": "exact_cg_iteration_2"
+    },
+    {
+      "column_id": "Q1X-79457d1ecf21f587",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F047",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F047",
+          5
+        ],
+        [
+          "A03",
+          "F052",
+          4
+        ],
+        [
+          "LAND",
+          "F052",
+          10
+        ]
+      ],
+      "duration_minutes": 223,
+      "source": "exact_cg_iteration_2"
+    },
+    {
+      "column_id": "Q1X-b5e477054b13bce4",
+      "base_airport": "A01",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F017",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F017",
+          19
+        ]
+      ],
+      "duration_minutes": 108,
+      "source": "exact_cg_iteration_3"
+    },
+    {
+      "column_id": "Q1X-0a51438a1a85c935",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F019",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F019",
+          11
+        ],
+        [
+          "LAND",
+          "F019",
+          8
+        ]
+      ],
+      "duration_minutes": 148,
+      "source": "exact_cg_iteration_3"
+    },
+    {
+      "column_id": "Q1X-937144bfc8d8fc12",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "F047",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F049",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F047",
+          5
+        ],
+        [
+          "A03",
+          "F049",
+          5
+        ],
+        [
+          "LAND",
+          "F031",
+          9
+        ]
+      ],
+      "duration_minutes": 212,
+      "source": "exact_cg_iteration_3"
+    },
+    {
+      "column_id": "Q1X-f2a54bd4f8e745d1",
+      "base_airport": "A01",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F052",
+          19
+        ]
+      ],
+      "duration_minutes": 211,
+      "source": "exact_cg_iteration_4"
+    },
+    {
+      "column_id": "Q1X-92d9c43918be4695",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F052",
+          19
+        ]
+      ],
+      "duration_minutes": 207,
+      "source": "exact_cg_iteration_4"
+    },
+    {
+      "column_id": "Q1X-78d74f8c6be90ec9",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F044",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F037",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F037",
+          19
+        ]
+      ],
+      "duration_minutes": 263,
+      "source": "exact_cg_iteration_4"
+    },
+    {
+      "column_id": "Q1X-e606423b1f174d40",
+      "base_airport": "A01",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F032",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F032",
+          19
+        ]
+      ],
+      "duration_minutes": 209,
+      "source": "exact_cg_iteration_5"
+    },
+    {
+      "column_id": "Q1X-5a9d8ae9a17f26fd",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F026",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F026",
+          5
+        ],
+        [
+          "LAND",
+          "F026",
+          14
+        ]
+      ],
+      "duration_minutes": 150,
+      "source": "exact_cg_iteration_5"
+    },
+    {
+      "column_id": "Q1X-affbc2653df2b596",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F038",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F048",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F048",
+          19
+        ]
+      ],
+      "duration_minutes": 201,
+      "source": "exact_cg_iteration_5"
+    },
+    {
+      "column_id": "Q1X-807872b1c053d425",
+      "base_airport": "A02",
+      "aircraft_type": "T2",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F018",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "F028",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F018",
+          4
+        ],
+        [
+          "A02",
+          "F028",
+          2
+        ],
+        [
+          "LAND",
+          "F028",
+          10
+        ]
+      ],
+      "duration_minutes": 174,
+      "source": "exact_cg_iteration_6"
+    },
+    {
+      "column_id": "Q1X-a73661e8a0096e4d",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F028",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F018",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F018",
+          4
+        ],
+        [
+          "A02",
+          "F028",
+          2
+        ],
+        [
+          "LAND",
+          "F028",
+          13
+        ]
+      ],
+      "duration_minutes": 196,
+      "source": "exact_cg_iteration_6"
+    },
+    {
+      "column_id": "Q1X-2b75bde25e15e4f1",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F038",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F052",
+          4
+        ],
+        [
+          "LAND",
+          "F052",
+          15
+        ]
+      ],
+      "duration_minutes": 209,
+      "source": "exact_cg_iteration_6"
+    },
+    {
+      "column_id": "Q1X-dd3e8a26b4ea6cbe",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F011",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F028",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F030",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F028",
+          2
+        ],
+        [
+          "A02",
+          "F030",
+          1
+        ],
+        [
+          "LAND",
+          "F028",
+          16
+        ]
+      ],
+      "duration_minutes": 197,
+      "source": "exact_cg_iteration_7"
+    },
+    {
+      "column_id": "Q1X-049f88d86cbbcd9b",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F038",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F038",
+          7
+        ],
+        [
+          "LAND",
+          "F038",
+          12
+        ]
+      ],
+      "duration_minutes": 188,
+      "source": "exact_cg_iteration_7"
+    },
+    {
+      "column_id": "Q1X-6597b10b5c0bdff7",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F027",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F027",
+          9
+        ],
+        [
+          "LAND",
+          "F027",
+          10
+        ]
+      ],
+      "duration_minutes": 136,
+      "source": "exact_cg_iteration_8"
+    },
+    {
+      "column_id": "Q1X-93f636dade0ebb48",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F038",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F051",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F051",
+          19
+        ]
+      ],
+      "duration_minutes": 209,
+      "source": "exact_cg_iteration_8"
+    },
+    {
+      "column_id": "Q1X-abb2342fd59ffdea",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F020",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F020",
+          2
+        ],
+        [
+          "LAND",
+          "F020",
+          17
+        ]
+      ],
+      "duration_minutes": 128,
+      "source": "exact_cg_iteration_9"
+    },
+    {
+      "column_id": "Q1X-cd084ddc14780f5e",
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F038",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F048",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A03",
+          "F048",
+          5
+        ],
+        [
+          "LAND",
+          "F048",
+          14
+        ]
+      ],
+      "duration_minutes": 201,
+      "source": "exact_cg_iteration_9"
+    },
+    {
+      "column_id": "Q1X-39134138203b0308",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F022",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F022",
+          1
+        ],
+        [
+          "LAND",
+          "F022",
+          18
+        ]
+      ],
+      "duration_minutes": 142,
+      "source": "exact_cg_iteration_10"
+    },
+    {
+      "column_id": "Q1X-532cfd50e3072cd1",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F018",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F018",
+          4
+        ],
+        [
+          "LAND",
+          "F018",
+          15
+        ]
+      ],
+      "duration_minutes": 146,
+      "source": "exact_cg_iteration_11"
+    },
+    {
+      "column_id": "Q1X-b76274e120cef3f0",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F032",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F032",
+          5
+        ],
+        [
+          "LAND",
+          "F032",
+          14
+        ]
+      ],
+      "duration_minutes": 208,
+      "source": "exact_cg_iteration_12"
+    },
+    {
+      "column_id": "Q1X-0a37774439b060fb",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F031",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F032",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F032",
+          19
+        ]
+      ],
+      "duration_minutes": 208,
+      "source": "exact_cg_iteration_13"
+    },
+    {
+      "column_id": "Q1X-bae318a5a78ac6cf",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F028",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F011",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F028",
+          2
+        ],
+        [
+          "LAND",
+          "F028",
+          17
+        ]
+      ],
+      "duration_minutes": 186,
+      "source": "exact_cg_iteration_14"
+    }
+  ],
+  "source_sha": "0086720c5d19cab1b0dcdcd909a188de174572db",
+  "source_dirty": true
+}

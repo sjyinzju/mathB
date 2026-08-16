@@ -1,0 +1,159 @@
+{
+  "status": "FULLSPACE_LP_CERTIFIED",
+  "initial_columns": 1003,
+  "final_columns": 1041,
+  "generated_columns": 38,
+  "iterations_with_pricing": 16,
+  "final_lp_objective": 14090.32748538012,
+  "ceil_final_lp_objective": 14091,
+  "validated_ub": 14730,
+  "pricing_tolerance": 1e-07,
+  "trajectory": [
+    {
+      "iteration": 0,
+      "rmp_objective": 14199.521097474075,
+      "columns_before": 1003,
+      "negative_subproblems": 6,
+      "columns_added": 6,
+      "minimum_pricing_reduced_cost": -18.467105263157862,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 1,
+      "rmp_objective": 14165.44371250772,
+      "columns_before": 1009,
+      "negative_subproblems": 5,
+      "columns_added": 5,
+      "minimum_pricing_reduced_cost": -12.89473684210526,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 2,
+      "rmp_objective": 14135.859916221374,
+      "columns_before": 1014,
+      "negative_subproblems": 4,
+      "columns_added": 4,
+      "minimum_pricing_reduced_cost": -9.116959064327489,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 3,
+      "rmp_objective": 14122.462879011257,
+      "columns_before": 1018,
+      "negative_subproblems": 3,
+      "columns_added": 3,
+      "minimum_pricing_reduced_cost": -7.473684210526329,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 4,
+      "rmp_objective": 14119.004232394715,
+      "columns_before": 1021,
+      "negative_subproblems": 3,
+      "columns_added": 3,
+      "minimum_pricing_reduced_cost": -5.678571428571416,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 5,
+      "rmp_objective": 14112.834064327486,
+      "columns_before": 1024,
+      "negative_subproblems": 3,
+      "columns_added": 3,
+      "minimum_pricing_reduced_cost": -3.6315789473684106,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 6,
+      "rmp_objective": 14106.891220667703,
+      "columns_before": 1027,
+      "negative_subproblems": 3,
+      "columns_added": 3,
+      "minimum_pricing_reduced_cost": -5.0,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 7,
+      "rmp_objective": 14104.338589088755,
+      "columns_before": 1030,
+      "negative_subproblems": 2,
+      "columns_added": 2,
+      "minimum_pricing_reduced_cost": -3.368421052631561,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 8,
+      "rmp_objective": 14104.292397660822,
+      "columns_before": 1032,
+      "negative_subproblems": 2,
+      "columns_added": 2,
+      "minimum_pricing_reduced_cost": -2.8421052631578902,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 9,
+      "rmp_objective": 14100.590643274856,
+      "columns_before": 1034,
+      "negative_subproblems": 2,
+      "columns_added": 2,
+      "minimum_pricing_reduced_cost": -2.631578947368439,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 10,
+      "rmp_objective": 14099.011695906433,
+      "columns_before": 1036,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -4.315789473684191,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 11,
+      "rmp_objective": 14094.695906432746,
+      "columns_before": 1037,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -1.9473684210526017,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 12,
+      "rmp_objective": 14092.748538011694,
+      "columns_before": 1038,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -1.8421052631578902,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 13,
+      "rmp_objective": 14090.906432748538,
+      "columns_before": 1039,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -1.0,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 14,
+      "rmp_objective": 14090.327485380116,
+      "columns_before": 1040,
+      "negative_subproblems": 1,
+      "columns_added": 1,
+      "minimum_pricing_reduced_cost": -0.9473684210526301,
+      "all_pricing_optimal": true
+    },
+    {
+      "iteration": 15,
+      "rmp_objective": 14090.32748538012,
+      "columns_before": 1041,
+      "negative_subproblems": 0,
+      "columns_added": 0,
+      "minimum_pricing_reduced_cost": 0.0,
+      "all_pricing_optimal": true
+    }
+  ],
+  "source_sha": "0086720c5d19cab1b0dcdcd909a188de174572db",
+  "source_dirty": true
+}

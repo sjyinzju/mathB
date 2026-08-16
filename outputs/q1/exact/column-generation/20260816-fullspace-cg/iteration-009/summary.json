@@ -1,0 +1,9 @@
+{
+  "iteration": 9,
+  "rmp_objective": 14100.590643274856,
+  "columns_before": 1034,
+  "negative_subproblems": 2,
+  "columns_added": 2,
+  "minimum_pricing_reduced_cost": -2.631578947368439,
+  "all_pricing_optimal": true
+}

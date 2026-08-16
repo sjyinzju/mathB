@@ -1,0 +1,484 @@
+{
+  "status": "NEGATIVE_COLUMNS_FOUND",
+  "pricing_tolerance": 1e-07,
+  "all_nine_globally_optimal": true,
+  "all_nine_no_negative_certified": false,
+  "negative_subproblems": [
+    "A01xT2",
+    "A01xT3",
+    "A02xT2",
+    "A02xT3",
+    "A03xT2",
+    "A03xT3"
+  ],
+  "minimum_reduced_cost": -18.467105263157862,
+  "initial_rmp_objective": 14199.521097474075,
+  "source_sha": "0086720c5d19cab1b0dcdcd909a188de174572db",
+  "source_dirty": true,
+  "results": [
+    {
+      "base_airport": "A01",
+      "aircraft_type": "T1",
+      "status": "Optimal",
+      "proven_optimal": true,
+      "reduced_cost": 27.26315789473685,
+      "route_duration_minutes": 122,
+      "allocation_reward": 94.73684210526315,
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F024",
+          12
+        ]
+      ],
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F024",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "node_count": 0,
+      "dual_bound": 27.26315789473668,
+      "elapsed_seconds": 60.044249,
+      "candidate_nodes": 52,
+      "max_landings": 5,
+      "repeated_visit": false,
+      "certified_no_negative_column": true,
+      "negative_column_found": false
+    },
+    {
+      "base_airport": "A01",
+      "aircraft_type": "T2",
+      "status": "Optimal",
+      "proven_optimal": true,
+      "reduced_cost": -1.4603174603174551,
+      "route_duration_minutes": 116,
+      "allocation_reward": 117.46031746031746,
+      "allocation_pattern": [
+        [
+          "A01",
+          "F015",
+          6
+        ],
+        [
+          "LAND",
+          "F015",
+          10
+        ]
+      ],
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F015",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "node_count": 9,
+      "dual_bound": -1.4603174603173887,
+      "elapsed_seconds": 66.484085,
+      "candidate_nodes": 52,
+      "max_landings": 5,
+      "repeated_visit": false,
+      "certified_no_negative_column": false,
+      "negative_column_found": true
+    },
+    {
+      "base_airport": "A01",
+      "aircraft_type": "T3",
+      "status": "Optimal",
+      "proven_optimal": true,
+      "reduced_cost": -10.6875,
+      "route_duration_minutes": 209,
+      "allocation_reward": 219.6875,
+      "allocation_pattern": [
+        [
+          "A01",
+          "F013",
+          1
+        ],
+        [
+          "LAND",
+          "F013",
+          18
+        ]
+      ],
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F006",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F013",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "node_count": 11,
+      "dual_bound": -10.687500000101716,
+      "elapsed_seconds": 61.915235,
+      "candidate_nodes": 52,
+      "max_landings": 5,
+      "repeated_visit": false,
+      "certified_no_negative_column": false,
+      "negative_column_found": true
+    },
+    {
+      "base_airport": "A02",
+      "aircraft_type": "T1",
+      "status": "Optimal",
+      "proven_optimal": true,
+      "reduced_cost": 18.61988304093566,
+      "route_duration_minutes": 124,
+      "allocation_reward": 105.38011695906434,
+      "allocation_pattern": [
+        [
+          "A02",
+          "F018",
+          4
+        ],
+        [
+          "LAND",
+          "F018",
+          8
+        ]
+      ],
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F018",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "node_count": 39,
+      "dual_bound": 18.61988304093566,
+      "elapsed_seconds": 64.568974,
+      "candidate_nodes": 52,
+      "max_landings": 5,
+      "repeated_visit": false,
+      "certified_no_negative_column": true,
+      "negative_column_found": false
+    },
+    {
+      "base_airport": "A02",
+      "aircraft_type": "T2",
+      "status": "Optimal",
+      "proven_optimal": true,
+      "reduced_cost": -10.80116959064327,
+      "route_duration_minutes": 185,
+      "allocation_reward": 195.80116959064327,
+      "allocation_pattern": [
+        [
+          "A02",
+          "F018",
+          4
+        ],
+        [
+          "A02",
+          "F028",
+          2
+        ],
+        [
+          "A02",
+          "F030",
+          1
+        ],
+        [
+          "LAND",
+          "F028",
+          9
+        ]
+      ],
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F018",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "F028",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F030",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "node_count": 17,
+      "dual_bound": -10.801169590643616,
+      "elapsed_seconds": 64.949167,
+      "candidate_nodes": 52,
+      "max_landings": 5,
+      "repeated_visit": false,
+      "certified_no_negative_column": false,
+      "negative_column_found": true
+    },
+    {
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "status": "Optimal",
+      "proven_optimal": true,
+      "reduced_cost": -13.213450292397653,
+      "route_duration_minutes": 201,
+      "allocation_reward": 214.21345029239765,
+      "allocation_pattern": [
+        [
+          "A02",
+          "F035",
+          3
+        ],
+        [
+          "LAND",
+          "F035",
+          16
+        ]
+      ],
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F024",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F035",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "node_count": 64,
+      "dual_bound": -13.213450292398413,
+      "elapsed_seconds": 70.30568,
+      "candidate_nodes": 52,
+      "max_landings": 5,
+      "repeated_visit": false,
+      "certified_no_negative_column": false,
+      "negative_column_found": true
+    },
+    {
+      "base_airport": "A03",
+      "aircraft_type": "T1",
+      "status": "Optimal",
+      "proven_optimal": true,
+      "reduced_cost": 43.26315789473685,
+      "route_duration_minutes": 138,
+      "allocation_reward": 94.73684210526315,
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F024",
+          12
+        ]
+      ],
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F024",
+          "refuel": true,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "node_count": 1,
+      "dual_bound": 43.26315789473576,
+      "elapsed_seconds": 45.978842,
+      "candidate_nodes": 52,
+      "max_landings": 5,
+      "repeated_visit": false,
+      "certified_no_negative_column": true,
+      "negative_column_found": false
+    },
+    {
+      "base_airport": "A03",
+      "aircraft_type": "T2",
+      "status": "Optimal",
+      "proven_optimal": true,
+      "reduced_cost": -8.342105263157862,
+      "route_duration_minutes": 196,
+      "allocation_reward": 204.34210526315786,
+      "allocation_pattern": [
+        [
+          "A03",
+          "F049",
+          5
+        ],
+        [
+          "A03",
+          "F052",
+          4
+        ],
+        [
+          "LAND",
+          "F052",
+          7
+        ]
+      ],
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F038",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F049",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "node_count": 65,
+      "dual_bound": -8.342105263186236,
+      "elapsed_seconds": 55.985737,
+      "candidate_nodes": 52,
+      "max_landings": 5,
+      "repeated_visit": false,
+      "certified_no_negative_column": false,
+      "negative_column_found": true
+    },
+    {
+      "base_airport": "A03",
+      "aircraft_type": "T3",
+      "status": "Optimal",
+      "proven_optimal": true,
+      "reduced_cost": -18.467105263157862,
+      "route_duration_minutes": 220,
+      "allocation_reward": 238.46710526315786,
+      "allocation_pattern": [
+        [
+          "A03",
+          "F049",
+          5
+        ],
+        [
+          "A03",
+          "F052",
+          4
+        ],
+        [
+          "LAND",
+          "F052",
+          10
+        ]
+      ],
+      "stops": [
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F038",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "F052",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F049",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A03",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "node_count": 95,
+      "dual_bound": -18.46710526315886,
+      "elapsed_seconds": 60.152486,
+      "candidate_nodes": 52,
+      "max_landings": 5,
+      "repeated_visit": false,
+      "certified_no_negative_column": false,
+      "negative_column_found": true
+    }
+  ]
+}
