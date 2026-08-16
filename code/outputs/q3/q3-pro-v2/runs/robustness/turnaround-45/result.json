@@ -1,0 +1,24 @@
+{
+  "scenario": "turnaround-45",
+  "status": "no-feasible-reoptimization-found",
+  "constructor": {
+    "feasible": false,
+    "phase": "fleet_slot",
+    "failed_people": [
+      "P2131"
+    ],
+    "hard_count": 637,
+    "zero_cost_inserted": 1888,
+    "dynamic_flights": 55,
+    "runtime_seconds": 9.582374
+  },
+  "runtime_seconds": 9.58285,
+  "global_infeasibility_proof": false,
+  "variant_rebuild": {
+    "source_templates": 3116,
+    "rebuilt_variants": 3116,
+    "failed_templates": 0,
+    "empty_ods": [],
+    "runtime_seconds": 109.082811
+  }
+}

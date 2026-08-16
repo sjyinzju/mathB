@@ -1,0 +1,273 @@
+{
+  "phase": "deep-islands",
+  "completed": 3,
+  "best_signature": "58bf5c9082e30cd3367bcd4f7e5dd3267a39cd09c0850827ee09e966f5889d84",
+  "best_metrics": {
+    "total_aircraft_time_minutes": 28868,
+    "total_passenger_travel_time_minutes": 251327,
+    "total_flights": 163,
+    "total_fuel_consumption_kg": 228215.7,
+    "seat_utilization": 0.5983474221083577,
+    "served_mandatory": 3840,
+    "served_optional": 157
+  },
+  "elite": {
+    "size": 11,
+    "maximum_size": 50,
+    "best_objective": [
+      28868.0,
+      251327.0,
+      163.0,
+      228215.7,
+      -0.5983474221083577
+    ],
+    "mean_pairwise_distance": 0.04885249988348938,
+    "records": [
+      {
+        "source": "screen:cfg-04-s0:alns:cross_day:8",
+        "seed": 20264854,
+        "objective": [
+          28868.0,
+          251327.0,
+          163.0,
+          228215.7,
+          -0.5983474221083577
+        ],
+        "signature": "58bf5c9082e30cd3367bcd4f7e5dd3267a39cd09c0850827ee09e966f5889d84",
+        "metrics": {
+          "total_aircraft_time_minutes": 28868,
+          "total_passenger_travel_time_minutes": 251327,
+          "total_flights": 163,
+          "total_fuel_consumption_kg": 228215.7,
+          "seat_utilization": 0.5983474221083577,
+          "served_mandatory": 3840,
+          "served_optional": 157
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "island:1:alns:cross_day:121",
+        "seed": 28264858,
+        "objective": [
+          28899.0,
+          251884.0,
+          163.0,
+          228318.2,
+          -0.5988050494441953
+        ],
+        "signature": "40bcc955dcc7de56e3fa4584d296a688228701be8375bd277e198d2e8c8ee1eb",
+        "metrics": {
+          "total_aircraft_time_minutes": 28899,
+          "total_passenger_travel_time_minutes": 251884,
+          "total_flights": 163,
+          "total_fuel_consumption_kg": 228318.2,
+          "seat_utilization": 0.5988050494441953,
+          "served_mandatory": 3840,
+          "served_optional": 157
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "screen:cfg-03-s0:alns:cross_day:7",
+        "seed": 20263845,
+        "objective": [
+          29006.0,
+          251180.0,
+          164.0,
+          229881.7,
+          -0.5958088187754574
+        ],
+        "signature": "f90df3c81da52239fc325bf7e69da163c4679835de0a976bc04a6d95a34cceef",
+        "metrics": {
+          "total_aircraft_time_minutes": 29006,
+          "total_passenger_travel_time_minutes": 251180,
+          "total_flights": 164,
+          "total_fuel_consumption_kg": 229881.7,
+          "seat_utilization": 0.5958088187754574,
+          "served_mandatory": 3840,
+          "served_optional": 157
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "island:1:alns:cross_day:120",
+        "seed": 28264858,
+        "objective": [
+          29037.0,
+          251737.0,
+          164.0,
+          229984.2,
+          -0.5962664273670977
+        ],
+        "signature": "9e7c516ce5a1db9c7dc5cb47d827a0c6e805d22280ea5b7e2ac9ff2505c17c3e",
+        "metrics": {
+          "total_aircraft_time_minutes": 29037,
+          "total_passenger_travel_time_minutes": 251737,
+          "total_flights": 164,
+          "total_fuel_consumption_kg": 229984.2,
+          "seat_utilization": 0.5962664273670977,
+          "served_mandatory": 3840,
+          "served_optional": 157
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "v2-baseline",
+        "seed": 20260818,
+        "objective": [
+          29155.0,
+          241018.0,
+          165.0,
+          231384.5,
+          -0.5702173594847775
+        ],
+        "signature": "25d3974f377acaa245b21eef8273b31d90e6e76733f5bab697121c6afb0f4d6d",
+        "metrics": {
+          "total_aircraft_time_minutes": 29155,
+          "total_passenger_travel_time_minutes": 241018,
+          "total_flights": 165,
+          "total_fuel_consumption_kg": 231384.5,
+          "seat_utilization": 0.5702173594847775,
+          "served_mandatory": 3840,
+          "served_optional": 0
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "island:1:alns:cross_day:113",
+        "seed": 28264858,
+        "objective": [
+          29186.0,
+          251297.0,
+          165.0,
+          231487.0,
+          -0.5935089711028663
+        ],
+        "signature": "2d87ba047ae6e01d5c8c010a3cad186259e22abd1b05c98ea735dc40677adb13",
+        "metrics": {
+          "total_aircraft_time_minutes": 29186,
+          "total_passenger_travel_time_minutes": 251297,
+          "total_flights": 165,
+          "total_fuel_consumption_kg": 231487.0,
+          "seat_utilization": 0.5935089711028663,
+          "served_mandatory": 3840,
+          "served_optional": 157
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "island:1:alns:cross_day:110",
+        "seed": 28264858,
+        "objective": [
+          29360.0,
+          250886.0,
+          166.0,
+          232792.0,
+          -0.5895530635273315
+        ],
+        "signature": "26854612da3994d772a8e1418b72b94e3dd45d8221dd66fdf2259a3c7daa9747",
+        "metrics": {
+          "total_aircraft_time_minutes": 29360,
+          "total_passenger_travel_time_minutes": 250886,
+          "total_flights": 166,
+          "total_fuel_consumption_kg": 232792.0,
+          "seat_utilization": 0.5895530635273315,
+          "served_mandatory": 3840,
+          "served_optional": 157
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "island:1:alns:route_polish:106",
+        "seed": 28264858,
+        "objective": [
+          29535.0,
+          250732.0,
+          167.0,
+          234107.0,
+          -0.5860217773358462
+        ],
+        "signature": "7d918b0e18f6f2bcb81e64c2271ad29604e276ba78849854b3eaf29297dfde4e",
+        "metrics": {
+          "total_aircraft_time_minutes": 29535,
+          "total_passenger_travel_time_minutes": 250732,
+          "total_flights": 167,
+          "total_fuel_consumption_kg": 234107.0,
+          "seat_utilization": 0.5860217773358462,
+          "served_mandatory": 3840,
+          "served_optional": 158
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "island:1:alns:cross_day:101",
+        "seed": 28264858,
+        "objective": [
+          29543.0,
+          250902.0,
+          167.0,
+          234369.4,
+          -0.5851323219021161
+        ],
+        "signature": "8a87f971ee37701a0551847eb988f112a88ef41250c474d9878b9a525179324e",
+        "metrics": {
+          "total_aircraft_time_minutes": 29543,
+          "total_passenger_travel_time_minutes": 250902,
+          "total_flights": 167,
+          "total_fuel_consumption_kg": 234369.4,
+          "seat_utilization": 0.5851323219021161,
+          "served_mandatory": 3840,
+          "served_optional": 158
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "v1-elite:elite-001-baseline-29659",
+        "seed": 20260818,
+        "objective": [
+          29659.0,
+          241073.0,
+          168.0,
+          235329.4,
+          -0.5599499701501973
+        ],
+        "signature": "92ec0d3725d323be4cf00d2b728c61eada53fee5ce1cecc76efc8b9f4e31f494",
+        "metrics": {
+          "total_aircraft_time_minutes": 29659,
+          "total_passenger_travel_time_minutes": 241073,
+          "total_flights": 168,
+          "total_fuel_consumption_kg": 235329.4,
+          "seat_utilization": 0.5599499701501973,
+          "served_mandatory": 3840,
+          "served_optional": 0
+        },
+        "validator_status": "pending_export_gate"
+      },
+      {
+        "source": "p0-p1-diverse",
+        "seed": 20260818,
+        "objective": [
+          30180.0,
+          240363.0,
+          171.0,
+          239702.3,
+          -0.5505746541903987
+        ],
+        "signature": "034187ea0586bb8942d3120d3445eb76bc2ed445dfd98d0d9e96fab50179c856",
+        "metrics": {
+          "total_aircraft_time_minutes": 30180,
+          "total_passenger_travel_time_minutes": 240363,
+          "total_flights": 171,
+          "total_fuel_consumption_kg": 239702.3,
+          "seat_utilization": 0.5505746541903987,
+          "served_mandatory": 3840,
+          "served_optional": 0
+        },
+        "validator_status": "pending_export_gate"
+      }
+    ]
+  },
+  "route_library_version": "v1-3116",
+  "column_library_version": "pending",
+  "resume_semantics": "completed units are idempotently skipped; each unit has a deterministic seed"
+}

@@ -158,7 +158,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -3554,7 +3554,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -3931,7 +3931,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -4148,7 +4148,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -4387,7 +4387,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -5266,7 +5266,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -5461,7 +5461,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -6454,7 +6454,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -7526,7 +7526,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -7810,7 +7810,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -8366,7 +8366,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -8478,7 +8478,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -12160,7 +12160,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -13634,7 +13634,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -14157,7 +14157,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -14215,10 +14215,10 @@
         "F030"
       ]
     ],
-    "usage_count": 1,
-    "elite_frequency": 1,
+    "usage_count": 0,
+    "elite_frequency": 0,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q2-read-only-cache",
     "dual_or_reduced_cost": null
   },
   {
@@ -14439,10 +14439,10 @@
         "F031"
       ]
     ],
-    "usage_count": 1,
-    "elite_frequency": 1,
+    "usage_count": 0,
+    "elite_frequency": 0,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q2-read-only-cache",
     "dual_or_reduced_cost": null
   },
   {
@@ -21682,7 +21682,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -21755,7 +21755,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -23005,7 +23005,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -23476,7 +23476,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -24083,7 +24083,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -24746,7 +24746,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -24886,7 +24886,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -24945,7 +24945,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -25085,7 +25085,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -26108,7 +26108,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -26510,7 +26510,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -26646,7 +26646,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -26764,7 +26764,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -26981,7 +26981,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -27768,7 +27768,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -27827,7 +27827,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -27949,7 +27949,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -28352,7 +28352,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -28525,7 +28525,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -28584,7 +28584,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -28928,7 +28928,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -30945,7 +30945,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -31840,7 +31840,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -32704,7 +32704,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -33997,7 +33997,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -34130,7 +34130,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -34902,7 +34902,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -40426,7 +40426,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -41965,7 +41965,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -42631,7 +42631,7 @@
     "usage_count": 3,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -43501,7 +43501,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -43723,7 +43723,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -43904,7 +43904,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -45826,7 +45826,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -45889,7 +45889,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -47015,7 +47015,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -47137,7 +47137,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -47298,7 +47298,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -47785,7 +47785,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -51340,7 +51340,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -51835,7 +51835,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -53114,7 +53114,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -60433,10 +60433,10 @@
         "F018"
       ]
     ],
-    "usage_count": 2,
+    "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -67587,7 +67587,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -71830,7 +71830,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -74669,7 +74669,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -75042,7 +75042,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -75464,7 +75464,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -84111,7 +84111,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -84335,7 +84335,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -84396,7 +84396,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -85904,7 +85904,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -86945,7 +86945,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -87874,7 +87874,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -89395,7 +89395,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -90176,7 +90176,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -90606,7 +90606,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -90691,7 +90691,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -91515,7 +91515,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -91633,7 +91633,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -93035,7 +93035,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -93153,7 +93153,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -93476,7 +93476,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -94274,7 +94274,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -95711,7 +95711,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -96366,7 +96366,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -96425,7 +96425,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -96506,7 +96506,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -96782,7 +96782,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -96859,7 +96859,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -97291,7 +97291,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -99064,7 +99064,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -99311,7 +99311,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -100596,7 +100596,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -103110,7 +103110,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -103175,7 +103175,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -103980,7 +103980,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -111477,7 +111477,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -111540,7 +111540,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -111874,7 +111874,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -112372,7 +112372,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -112646,7 +112646,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -112854,7 +112854,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -113544,7 +113544,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -114011,7 +114011,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -114133,7 +114133,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -114555,7 +114555,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -114840,7 +114840,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -115499,7 +115499,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -117921,7 +117921,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -136269,7 +136269,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -151748,7 +151748,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -154911,7 +154911,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -155169,7 +155169,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -155847,7 +155847,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -156585,7 +156585,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -156861,7 +156861,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -157127,7 +157127,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -157693,7 +157693,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -158300,7 +158300,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -158381,7 +158381,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -158462,7 +158462,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -158730,7 +158730,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -159324,7 +159324,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -159612,7 +159612,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -160001,7 +160001,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -160388,7 +160388,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -161037,7 +161037,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -161676,7 +161676,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -162689,7 +162689,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -162839,7 +162839,7 @@
     "usage_count": 2,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -162979,7 +162979,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -175652,7 +175652,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -175764,7 +175764,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -176046,7 +176046,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -176253,7 +176253,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -176823,7 +176823,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -177432,7 +177432,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -177781,7 +177781,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -179056,7 +179056,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -179608,7 +179608,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -179868,7 +179868,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -181478,7 +181478,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -182453,7 +182453,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -182512,7 +182512,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   },
   {
@@ -182906,7 +182906,7 @@
     "usage_count": 1,
     "elite_frequency": 1,
     "historical_saving": null,
-    "source": "q3-pro:v1-revalidation",
+    "source": "q3-pro-v2:q3-pro-v2-deep-v1",
     "dual_or_reduced_cost": null
   }
 ]

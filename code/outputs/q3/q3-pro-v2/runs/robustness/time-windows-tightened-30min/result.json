@@ -1,0 +1,31 @@
+{
+  "scenario": "time-windows-tightened-30min",
+  "status": "no-feasible-reoptimization-found",
+  "constructor": {
+    "feasible": false,
+    "phase": "hard_skeleton",
+    "hard_count": 668,
+    "skeleton": {
+      "method": "q3_interval_list_criticality",
+      "seed": 20260825,
+      "feasible": false,
+      "mandatory_people": 0,
+      "flights": 0,
+      "aircraft_time_minutes": 0,
+      "lower_bound_minutes": 2138,
+      "lower_bound_gap_percent": Infinity,
+      "runtime_seconds": 0.013839,
+      "conflict_count": 2,
+      "candidate_variants": 23251,
+      "failed_person_id": "P0285"
+    },
+    "runtime_seconds": 1.73268
+  },
+  "runtime_seconds": 1.733015,
+  "global_infeasibility_proof": false,
+  "variant_rebuild": {
+    "source_templates": 3116,
+    "rebuilt_variants": 3116,
+    "runtime_seconds": 0.0
+  }
+}

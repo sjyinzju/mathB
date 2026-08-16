@@ -1,0 +1,49 @@
+{
+  "scenario": "temporary-demand-minus-10pct",
+  "status": "feasible-fixed-structure",
+  "stage2": {
+    "total_aircraft_time_minutes": 28728,
+    "total_passenger_travel_time_minutes": 250795,
+    "total_flights": 162,
+    "total_fuel_consumption_kg": 226835.3,
+    "seat_utilization": 0.5987044782662788,
+    "served_mandatory": 3840,
+    "served_optional": 141
+  },
+  "removed_optional_ids": [
+    "P0044",
+    "P0062",
+    "P0191",
+    "P0251",
+    "P0272",
+    "P0308",
+    "P0318",
+    "P0343",
+    "P0359",
+    "P0366",
+    "P0376",
+    "P0377",
+    "P0418",
+    "P0427",
+    "P0475",
+    "P0488"
+  ],
+  "unserved": [
+    "P1102",
+    "P2239",
+    "P3290"
+  ],
+  "assignment": {
+    "variables": 8340,
+    "constraints": 4540,
+    "stage1_status": 0,
+    "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "stage2_status": 0,
+    "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "served_temporary": 141,
+    "temporary_upper_bound": 144,
+    "fixed_flight_optimal": true,
+    "all_optional_served": false
+  },
+  "scope": "demand perturbation on the final structure; no global optimality claim"
+}

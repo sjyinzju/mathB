@@ -1,0 +1,24 @@
+{
+  "scenario": "flight-time-plus-10pct",
+  "status": "no-feasible-reoptimization-found",
+  "constructor": {
+    "feasible": false,
+    "phase": "fleet_slot",
+    "failed_people": [
+      "P1738"
+    ],
+    "hard_count": 642,
+    "zero_cost_inserted": 1909,
+    "dynamic_flights": 96,
+    "runtime_seconds": 11.302758
+  },
+  "runtime_seconds": 11.303262,
+  "global_infeasibility_proof": false,
+  "variant_rebuild": {
+    "source_templates": 3116,
+    "rebuilt_variants": 3116,
+    "failed_templates": 0,
+    "empty_ods": [],
+    "runtime_seconds": 110.922838
+  }
+}

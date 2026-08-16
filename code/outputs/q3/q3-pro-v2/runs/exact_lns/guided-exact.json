@@ -1,0 +1,2105 @@
+{
+  "windows": 50,
+  "rows": [
+    {
+      "window": 0,
+      "source": "bottleneck_day",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.591843,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.586396,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 1,
+      "source": "conflict_graph",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 41.211587,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 41.197612,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 2,
+      "source": "aircraft_chain",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 42.280992,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 42.273278,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 3,
+      "source": "high_cost",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 41.109037,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 41.102131,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 4,
+      "source": "low_utilization",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 38.106508,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 38.096776,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 5,
+      "source": "bottleneck_day",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 38.170676,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 38.16456,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 6,
+      "source": "conflict_graph",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.580653,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.57349,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 7,
+      "source": "aircraft_chain",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.894103,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.888579,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 8,
+      "source": "high_cost",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.549141,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.542464,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 9,
+      "source": "low_utilization",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 35.22511,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 35.218544,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 10,
+      "source": "bottleneck_day",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.534327,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.527534,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 11,
+      "source": "conflict_graph",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 38.072106,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 38.065821,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 12,
+      "source": "aircraft_chain",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.601041,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.595233,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 13,
+      "source": "high_cost",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.539233,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.533246,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 14,
+      "source": "low_utilization",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.09413,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.088229,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 15,
+      "source": "bottleneck_day",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.624052,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.618094,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 16,
+      "source": "conflict_graph",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.451315,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.44443,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 17,
+      "source": "aircraft_chain",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.904773,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.897661,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 18,
+      "source": "high_cost",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 43.719145,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 43.70345,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 19,
+      "source": "low_utilization",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 35.821051,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 35.815194,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 20,
+      "source": "bottleneck_day",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 38.11785,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 38.11168,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 21,
+      "source": "conflict_graph",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.344835,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.339034,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 22,
+      "source": "aircraft_chain",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 38.119273,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 38.113442,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 23,
+      "source": "high_cost",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.842485,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.836851,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 24,
+      "source": "low_utilization",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 34.928024,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 34.921211,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 25,
+      "source": "bottleneck_day",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 41.668623,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 41.66022,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 26,
+      "source": "conflict_graph",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 38.126567,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 38.120891,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 27,
+      "source": "aircraft_chain",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.530673,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.524389,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 28,
+      "source": "high_cost",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.442421,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.435504,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 29,
+      "source": "low_utilization",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 35.995745,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 35.990027,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 30,
+      "source": "bottleneck_day",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.246721,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.240049,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 31,
+      "source": "conflict_graph",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.442756,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.43716,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 32,
+      "source": "aircraft_chain",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.57545,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.569298,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 33,
+      "source": "high_cost",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.163063,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.156596,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 34,
+      "source": "low_utilization",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 35.573244,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 35.567331,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 35,
+      "source": "bottleneck_day",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.674758,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.668692,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 36,
+      "source": "conflict_graph",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.440751,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.434997,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 37,
+      "source": "aircraft_chain",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 38.228173,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 38.222559,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 38,
+      "source": "high_cost",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.632899,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.627379,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 39,
+      "source": "low_utilization",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 35.189927,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 35.184129,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 40,
+      "source": "bottleneck_day",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.289514,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.28398,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 41,
+      "source": "conflict_graph",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.915213,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.909528,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 42,
+      "source": "aircraft_chain",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.471877,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.466158,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 43,
+      "source": "high_cost",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.315541,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.309358,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 44,
+      "source": "low_utilization",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.499683,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.494087,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 45,
+      "source": "bottleneck_day",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.430153,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.422249,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 46,
+      "source": "conflict_graph",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.659086,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.653118,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 47,
+      "source": "aircraft_chain",
+      "released_flights": [
+        10,
+        12
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 37.815162,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 37.808855,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 10,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 48,
+      "source": "high_cost",
+      "released_flights": [
+        6,
+        8
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 36.556884,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 36.550034,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 8,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 49,
+      "source": "low_utilization",
+      "released_flights": [
+        8,
+        10
+      ],
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "runtime_seconds": 35.61799,
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 35.612221,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 8,
+        "group_max": 10,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "scenario": "flight-time-plus-5pct",
+  "status": "no-feasible-reoptimization-found",
+  "constructor": {
+    "feasible": false,
+    "phase": "fleet_slot",
+    "failed_people": [
+      "P3775"
+    ],
+    "hard_count": 642,
+    "zero_cost_inserted": 1896,
+    "dynamic_flights": 102,
+    "runtime_seconds": 10.826212
+  },
+  "runtime_seconds": 10.826695,
+  "global_infeasibility_proof": false,
+  "variant_rebuild": {
+    "source_templates": 3116,
+    "rebuilt_variants": 3116,
+    "failed_templates": 0,
+    "empty_ods": [],
+    "runtime_seconds": 113.842212
+  }
+}

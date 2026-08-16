@@ -1,0 +1,190 @@
+{
+  "rows": [
+    {
+      "requested_hamming_radius": 5,
+      "released_route_limit": 5,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 22.752582,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 5,
+        "group_max": 5,
+        "combination_budget": 12,
+        "max_replacements": 5,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": false
+      }
+    },
+    {
+      "requested_hamming_radius": 10,
+      "released_route_limit": 10,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.410971,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 10,
+        "combination_budget": 20,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "requested_hamming_radius": 20,
+      "released_route_limit": 12,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 32.350003,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 12,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "requested_hamming_radius": 40,
+      "released_route_limit": 12,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 35.138831,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "requested_hamming_radius": 80,
+      "released_route_limit": 12,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 34.011772,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 6,
+        "group_max": 12,
+        "combination_budget": 64,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    }
+  ],
+  "scope": "restricted route-Hamming surrogate; complete binary master unavailable"
+}
