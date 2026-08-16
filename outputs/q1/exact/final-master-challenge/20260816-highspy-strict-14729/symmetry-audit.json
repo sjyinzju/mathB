@@ -1,0 +1,20 @@
+{
+  "representation": "aggregated OD-count allocated-route patterns",
+  "individual_passenger_identity_variables": 0,
+  "physical_routes": 391,
+  "allocated_pattern_columns": 1003,
+  "exact_duplicate_retained_columns": 0,
+  "route_id_semantic_collisions": 0,
+  "coefficient_equivalent_groups_with_distinct_route_semantics": 0,
+  "coefficient_equivalent_columns_with_distinct_route_semantics": 0,
+  "safe_rules_applied": [
+    "aggregate identical passenger IDs to exact OD counts",
+    "sort and combine allocation counts into a canonical pattern",
+    "hash full base/type/ordered physical-stop/refuel/service semantics",
+    "deduplicate only identical (semantic route, canonical allocation) columns"
+  ],
+  "rules_explicitly_not_applied": [
+    "do not merge distinct physical routes merely because master coefficients match",
+    "do not prune routes by heuristic score, nearest-K, or source frequency"
+  ]
+}

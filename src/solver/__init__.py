@@ -9,6 +9,15 @@ from .exporter import export_q1_solution, load_q1_solution
 from .improve import improve_q1_batch_relocation, improve_q1_route_ejection, improve_q1_savings
 from .models import SolverConfig
 from .physics import LegPhysics
+from .q1_exact import (
+    HighsMasterResult,
+    PatternMipStart,
+    audit_master_symmetry,
+    build_frozen_incumbent_start,
+    canonical_allocation_pattern,
+    materialize_pattern_start,
+    solve_highs_pattern_master,
+)
 from .q1_or import (
     EliteRoutePool,
     Q1MasterConfig,
@@ -32,6 +41,7 @@ __all__ = [
     "export_q1_solution",
     "EliteRoutePool",
     "LegPhysics",
+    "HighsMasterResult",
     "load_q1_solution",
     "load_problem_data",
     "improve_q1_alns",
@@ -43,6 +53,11 @@ __all__ = [
     "Q1MasterResult",
     "Q1RestrictedLPResult",
     "Q1TargetedRepairResult",
+    "PatternMipStart",
+    "audit_master_symmetry",
+    "build_frozen_incumbent_start",
+    "canonical_allocation_pattern",
+    "materialize_pattern_start",
     "collect_elite_route_pool",
     "exact_targeted_repair",
     "route_elimination_audit",
@@ -52,5 +67,6 @@ __all__ = [
     "solve_q1_baseline",
     "solve_restricted_lp",
     "solve_route_pool_master",
+    "solve_highs_pattern_master",
     "targeted_route_indices",
 ]

@@ -1,0 +1,2662 @@
+{
+  "scope": "RESTRICTED allocated-route-pattern master only",
+  "global_optimality_claim": false,
+  "pool": {
+    "sources": 97,
+    "physical_routes": 391,
+    "allocated_pattern_columns": 1003,
+    "demand_rows": 104,
+    "matrix_nonzeros": 2517
+  },
+  "frozen_mip_start": {
+    "selected_columns": 84,
+    "selected_flights": 89,
+    "primary_objective": 14730,
+    "passenger_objective": 121363,
+    "flights_objective": 89,
+    "fuel_objective_kg": 118624.4,
+    "maximum_equality_residual": 0.0,
+    "missing_patterns": [],
+    "backend_accepted": true
+  },
+  "reproduction": {
+    "gate_pass": true,
+    "validator": {
+      "question": "q1",
+      "valid": true,
+      "issue_count": 0,
+      "issues": [],
+      "metrics": {
+        "total_aircraft_time_minutes": 14730,
+        "total_passenger_travel_time_minutes": 121363,
+        "total_flights": 89,
+        "total_fuel_consumption_kg": 118624.4,
+        "seat_utilization": 0.49429692253913177,
+        "served_passengers": 1600,
+        "unserved_optional_passengers": 0
+      }
+    },
+    "routes_sha256": "3607b10211e20c4fd9821550999a55c78c0d5072d660225e63f13a41d24f0921",
+    "assignments_sha256": "f926c88190698678c23d6ad72d5f61fa6cca1dcb008d43393e8c0bcdd7fdf3fa"
+  },
+  "backend_acceptance": {
+    "outcome": "FOUND",
+    "model_status": "Solution limit reached",
+    "run_status": "HighsStatus.kWarning",
+    "objective": 14730,
+    "dual_bound": null,
+    "mip_gap": null,
+    "node_count": 0,
+    "elapsed_seconds": 0.028546,
+    "primary_upper_bound_minutes": null,
+    "mip_start_backend_status": "HighsStatus.kOk",
+    "mip_start_feasible_for_model": true,
+    "mip_start_maximum_row_violation": 0.0,
+    "stopped_for_stall": false,
+    "progress": []
+  },
+  "strict_challenge": {
+    "outcome": "PROVEN_RESTRICTED_INFEASIBLE",
+    "model_status": "Infeasible",
+    "run_status": "HighsStatus.kOk",
+    "objective": null,
+    "dual_bound": null,
+    "mip_gap": null,
+    "node_count": 358676,
+    "elapsed_seconds": 2041.49749,
+    "primary_upper_bound_minutes": 14729,
+    "mip_start_backend_status": "HighsStatus.kOk",
+    "mip_start_feasible_for_model": false,
+    "mip_start_maximum_row_violation": 1.0,
+    "stopped_for_stall": false,
+    "progress": [
+      {
+        "running_time": 0.05608379999466706,
+        "primal_bound": Infinity,
+        "dual_bound": 872.0,
+        "node_count": 0.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 0.05956190000142669,
+        "primal_bound": Infinity,
+        "dual_bound": 14211.929943850771,
+        "node_count": 0.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 5.1624400000000605,
+        "primal_bound": Infinity,
+        "dual_bound": 14655.883635378214,
+        "node_count": 54.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 10.180111599998781,
+        "primal_bound": Infinity,
+        "dual_bound": 14660.28928512408,
+        "node_count": 263.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 15.329089200000453,
+        "primal_bound": Infinity,
+        "dual_bound": 14660.28928512408,
+        "node_count": 1016.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 20.66796279999835,
+        "primal_bound": Infinity,
+        "dual_bound": 14665.14362826719,
+        "node_count": 1747.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 25.66933739999513,
+        "primal_bound": Infinity,
+        "dual_bound": 14673.099697343441,
+        "node_count": 2808.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 30.67216599999665,
+        "primal_bound": Infinity,
+        "dual_bound": 14674.337050044596,
+        "node_count": 3635.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 34.071800099998654,
+        "primal_bound": Infinity,
+        "dual_bound": 14674.533615391076,
+        "node_count": 4456.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 39.09611980000045,
+        "primal_bound": Infinity,
+        "dual_bound": 14674.533615391076,
+        "node_count": 4824.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 44.17115959999501,
+        "primal_bound": Infinity,
+        "dual_bound": 14674.533615391076,
+        "node_count": 6373.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 49.19540219999908,
+        "primal_bound": Infinity,
+        "dual_bound": 14675.863721835187,
+        "node_count": 7864.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 50.26137039999594,
+        "primal_bound": Infinity,
+        "dual_bound": 14675.863721835187,
+        "node_count": 8158.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 55.28148220000003,
+        "primal_bound": Infinity,
+        "dual_bound": 14675.863721835187,
+        "node_count": 8252.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 60.28422409999621,
+        "primal_bound": Infinity,
+        "dual_bound": 14675.863721835187,
+        "node_count": 9681.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 64.87441279999621,
+        "primal_bound": Infinity,
+        "dual_bound": 14678.22135274231,
+        "node_count": 11282.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 76.55579959999886,
+        "primal_bound": Infinity,
+        "dual_bound": 14678.22135274231,
+        "node_count": 12910.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 81.56060939999588,
+        "primal_bound": Infinity,
+        "dual_bound": 14678.22135274231,
+        "node_count": 14734.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 86.61548789999506,
+        "primal_bound": Infinity,
+        "dual_bound": 14679.029799267215,
+        "node_count": 16414.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 91.64691260000109,
+        "primal_bound": Infinity,
+        "dual_bound": 14680.188541848625,
+        "node_count": 18030.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 96.65064379999967,
+        "primal_bound": Infinity,
+        "dual_bound": 14680.834148131189,
+        "node_count": 19391.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 101.6558870000008,
+        "primal_bound": Infinity,
+        "dual_bound": 14681.36911966834,
+        "node_count": 20503.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 106.81722849999642,
+        "primal_bound": Infinity,
+        "dual_bound": 14682.3756815947,
+        "node_count": 21753.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 111.82064369999716,
+        "primal_bound": Infinity,
+        "dual_bound": 14683.019112383634,
+        "node_count": 23079.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 116.8207012999992,
+        "primal_bound": Infinity,
+        "dual_bound": 14683.408537640615,
+        "node_count": 24233.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 121.86378089999926,
+        "primal_bound": Infinity,
+        "dual_bound": 14683.889398335266,
+        "node_count": 26008.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 126.87109770000097,
+        "primal_bound": Infinity,
+        "dual_bound": 14684.253665485852,
+        "node_count": 27362.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 131.88880680000148,
+        "primal_bound": Infinity,
+        "dual_bound": 14684.488453430033,
+        "node_count": 28673.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 136.9452186999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14685.330978826041,
+        "node_count": 29808.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 141.94979329999478,
+        "primal_bound": Infinity,
+        "dual_bound": 14685.765083001263,
+        "node_count": 31091.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 147.00410649999685,
+        "primal_bound": Infinity,
+        "dual_bound": 14687.299776188735,
+        "node_count": 32389.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 152.10971099999733,
+        "primal_bound": Infinity,
+        "dual_bound": 14687.470530861166,
+        "node_count": 33426.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 157.11395749999792,
+        "primal_bound": Infinity,
+        "dual_bound": 14688.124246848052,
+        "node_count": 34736.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 167.1400474999973,
+        "primal_bound": Infinity,
+        "dual_bound": 14688.257542010972,
+        "node_count": 35921.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 172.14544279999973,
+        "primal_bound": Infinity,
+        "dual_bound": 14688.773507814338,
+        "node_count": 37175.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 177.1549720999974,
+        "primal_bound": Infinity,
+        "dual_bound": 14689.06219285159,
+        "node_count": 38337.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 182.16087159999734,
+        "primal_bound": Infinity,
+        "dual_bound": 14689.807019072075,
+        "node_count": 39259.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 187.1636537999948,
+        "primal_bound": Infinity,
+        "dual_bound": 14690.344851493646,
+        "node_count": 40245.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 192.52173559999937,
+        "primal_bound": Infinity,
+        "dual_bound": 14690.344851493646,
+        "node_count": 40456.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 197.52397519999795,
+        "primal_bound": Infinity,
+        "dual_bound": 14690.660155813788,
+        "node_count": 41288.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 202.5260588999954,
+        "primal_bound": Infinity,
+        "dual_bound": 14690.789530515884,
+        "node_count": 42304.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 207.53066540000145,
+        "primal_bound": Infinity,
+        "dual_bound": 14691.070600541787,
+        "node_count": 43387.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 212.5392925999986,
+        "primal_bound": Infinity,
+        "dual_bound": 14692.786179367293,
+        "node_count": 44404.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 226.7659136000002,
+        "primal_bound": Infinity,
+        "dual_bound": 14692.830371496533,
+        "node_count": 45392.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 231.7943335999953,
+        "primal_bound": Infinity,
+        "dual_bound": 14693.102157122692,
+        "node_count": 46533.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 236.80391709999822,
+        "primal_bound": Infinity,
+        "dual_bound": 14693.21408428818,
+        "node_count": 47541.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 241.8047998999973,
+        "primal_bound": Infinity,
+        "dual_bound": 14693.631869709885,
+        "node_count": 48584.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 246.81150630000047,
+        "primal_bound": Infinity,
+        "dual_bound": 14693.787479496286,
+        "node_count": 49440.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 251.81468189999578,
+        "primal_bound": Infinity,
+        "dual_bound": 14694.230147882934,
+        "node_count": 50615.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 256.815328699995,
+        "primal_bound": Infinity,
+        "dual_bound": 14694.434275100406,
+        "node_count": 51835.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 261.8299091999943,
+        "primal_bound": Infinity,
+        "dual_bound": 14695.07682649305,
+        "node_count": 53245.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 266.8343359999999,
+        "primal_bound": Infinity,
+        "dual_bound": 14695.473645088498,
+        "node_count": 54869.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 271.83884399999806,
+        "primal_bound": Infinity,
+        "dual_bound": 14695.651844086226,
+        "node_count": 56026.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 276.9214090999958,
+        "primal_bound": Infinity,
+        "dual_bound": 14695.865099231698,
+        "node_count": 56968.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 290.7787726999959,
+        "primal_bound": Infinity,
+        "dual_bound": 14695.885283194551,
+        "node_count": 57471.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 295.78598369999963,
+        "primal_bound": Infinity,
+        "dual_bound": 14697.178992832067,
+        "node_count": 58875.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 300.81385639999644,
+        "primal_bound": Infinity,
+        "dual_bound": 14697.340339656388,
+        "node_count": 60205.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 305.8210418999952,
+        "primal_bound": Infinity,
+        "dual_bound": 14697.456269790613,
+        "node_count": 61517.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 310.82821809999587,
+        "primal_bound": Infinity,
+        "dual_bound": 14697.887234133681,
+        "node_count": 62720.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 315.83255120000103,
+        "primal_bound": Infinity,
+        "dual_bound": 14697.91765037866,
+        "node_count": 64131.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 320.86087419999967,
+        "primal_bound": Infinity,
+        "dual_bound": 14698.16840296404,
+        "node_count": 65666.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 325.8903391999993,
+        "primal_bound": Infinity,
+        "dual_bound": 14698.19515974325,
+        "node_count": 66890.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 330.8915246999968,
+        "primal_bound": Infinity,
+        "dual_bound": 14698.301092570802,
+        "node_count": 67902.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 335.89642240000103,
+        "primal_bound": Infinity,
+        "dual_bound": 14698.432161074319,
+        "node_count": 69041.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 340.8965403999973,
+        "primal_bound": Infinity,
+        "dual_bound": 14698.716369709282,
+        "node_count": 70321.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 345.90100299999904,
+        "primal_bound": Infinity,
+        "dual_bound": 14698.953593598082,
+        "node_count": 72175.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 352.88566770000034,
+        "primal_bound": Infinity,
+        "dual_bound": 14698.976013224717,
+        "node_count": 72532.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 357.8911497999943,
+        "primal_bound": Infinity,
+        "dual_bound": 14699.085015457555,
+        "node_count": 74243.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 362.9736331999957,
+        "primal_bound": Infinity,
+        "dual_bound": 14699.119645212073,
+        "node_count": 75767.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 367.97858189999533,
+        "primal_bound": Infinity,
+        "dual_bound": 14699.341323379367,
+        "node_count": 76814.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 372.98016089999874,
+        "primal_bound": Infinity,
+        "dual_bound": 14699.458912325214,
+        "node_count": 78410.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 377.98030459999427,
+        "primal_bound": Infinity,
+        "dual_bound": 14699.458912325214,
+        "node_count": 79475.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 382.9858322,
+        "primal_bound": Infinity,
+        "dual_bound": 14699.619897264745,
+        "node_count": 80625.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 387.98884199999884,
+        "primal_bound": Infinity,
+        "dual_bound": 14699.92469098545,
+        "node_count": 81806.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 392.9928910999952,
+        "primal_bound": Infinity,
+        "dual_bound": 14699.92469098545,
+        "node_count": 82206.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 397.9939577999976,
+        "primal_bound": Infinity,
+        "dual_bound": 14700.421844464858,
+        "node_count": 83395.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 403.0421506999992,
+        "primal_bound": Infinity,
+        "dual_bound": 14700.44404225709,
+        "node_count": 84726.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 413.36206279999897,
+        "primal_bound": Infinity,
+        "dual_bound": 14700.44404225709,
+        "node_count": 85774.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 418.37307139999757,
+        "primal_bound": Infinity,
+        "dual_bound": 14700.547362243962,
+        "node_count": 86984.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 423.37562239999534,
+        "primal_bound": Infinity,
+        "dual_bound": 14700.548343202334,
+        "node_count": 88315.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 428.37639529999433,
+        "primal_bound": Infinity,
+        "dual_bound": 14700.966714434284,
+        "node_count": 89677.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 433.3883036999978,
+        "primal_bound": Infinity,
+        "dual_bound": 14700.991591726795,
+        "node_count": 90993.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 438.3938563999982,
+        "primal_bound": Infinity,
+        "dual_bound": 14701.076444795823,
+        "node_count": 92181.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 443.39596170000004,
+        "primal_bound": Infinity,
+        "dual_bound": 14701.388244815418,
+        "node_count": 93407.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 450.0254746999999,
+        "primal_bound": Infinity,
+        "dual_bound": 14701.388244815418,
+        "node_count": 93857.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 455.0258434999996,
+        "primal_bound": Infinity,
+        "dual_bound": 14701.424516118886,
+        "node_count": 94969.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 460.03028079999785,
+        "primal_bound": Infinity,
+        "dual_bound": 14701.458127039257,
+        "node_count": 96251.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 465.03425759999664,
+        "primal_bound": Infinity,
+        "dual_bound": 14701.7971528382,
+        "node_count": 97378.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 470.0393724999958,
+        "primal_bound": Infinity,
+        "dual_bound": 14701.89969866035,
+        "node_count": 98602.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 475.0537120000008,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.071916451265,
+        "node_count": 99818.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 480.1618703999993,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.073894149662,
+        "node_count": 100541.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 485.16705060000095,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.311839721538,
+        "node_count": 101646.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 490.2270139999964,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.437607068216,
+        "node_count": 102932.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 503.0857642999981,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.439258010354,
+        "node_count": 104124.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 508.08933160000015,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.51299817621,
+        "node_count": 105229.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 513.0895310999986,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.561983117217,
+        "node_count": 106452.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 518.1192908000012,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.667508312154,
+        "node_count": 107333.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 523.2127020999978,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.817867900736,
+        "node_count": 107984.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 528.2209393999947,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.85744601245,
+        "node_count": 108718.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 533.2786943999963,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.949234965768,
+        "node_count": 109548.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 538.2918408999976,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.966810989099,
+        "node_count": 110305.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 543.2931284000006,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.976357251297,
+        "node_count": 110851.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 548.2944772999981,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.976357251297,
+        "node_count": 111354.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 561.1526296999946,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.976357251297,
+        "node_count": 112055.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 566.1834553999943,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.976357251297,
+        "node_count": 112862.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 571.1866920999964,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.976357251297,
+        "node_count": 113562.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 576.1912526000015,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.976357251297,
+        "node_count": 114335.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 581.1965282999954,
+        "primal_bound": Infinity,
+        "dual_bound": 14702.981964065833,
+        "node_count": 115112.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 586.202420900001,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.093867570173,
+        "node_count": 115750.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 591.207054999999,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.093867570173,
+        "node_count": 116791.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 596.2103468999994,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.139629667116,
+        "node_count": 118069.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 610.5670666000005,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.160969254901,
+        "node_count": 118735.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 615.6026873999945,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.182072527026,
+        "node_count": 120097.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 620.6167840999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.182072527026,
+        "node_count": 121006.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 625.6265883000015,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.474793467942,
+        "node_count": 122162.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 630.6271793999986,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.474793467942,
+        "node_count": 123087.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 635.629729399996,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.616383230566,
+        "node_count": 124558.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 640.6352893000003,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.672690563302,
+        "node_count": 125912.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 645.6371176999965,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.938515087028,
+        "node_count": 127081.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 650.6522231999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14703.966983072443,
+        "node_count": 128020.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 655.6542412999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14704.043921785853,
+        "node_count": 129076.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 660.6555124000006,
+        "primal_bound": Infinity,
+        "dual_bound": 14704.17102486744,
+        "node_count": 130355.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 665.6684861999966,
+        "primal_bound": Infinity,
+        "dual_bound": 14704.322846616098,
+        "node_count": 131588.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 670.6702560999984,
+        "primal_bound": Infinity,
+        "dual_bound": 14704.343286532392,
+        "node_count": 132734.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 675.6748823999951,
+        "primal_bound": Infinity,
+        "dual_bound": 14704.506597150274,
+        "node_count": 133914.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 680.9020569999993,
+        "primal_bound": Infinity,
+        "dual_bound": 14704.506597150274,
+        "node_count": 134093.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 685.9178256000014,
+        "primal_bound": Infinity,
+        "dual_bound": 14704.787181097625,
+        "node_count": 135081.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 690.9650075999962,
+        "primal_bound": Infinity,
+        "dual_bound": 14704.888039081467,
+        "node_count": 136178.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 695.9938149000009,
+        "primal_bound": Infinity,
+        "dual_bound": 14704.94948153306,
+        "node_count": 137701.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 701.105713799996,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.00472141215,
+        "node_count": 138452.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 725.290625900001,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.012487576854,
+        "node_count": 139231.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 730.2987823000003,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.090425142438,
+        "node_count": 139900.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 735.3017799000008,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.114322271551,
+        "node_count": 140509.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 740.3018712999983,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.12359691679,
+        "node_count": 141443.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 745.3669560999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.155842025242,
+        "node_count": 142352.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 750.371456199995,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.165829724549,
+        "node_count": 143382.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 755.373211099999,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.4284847182,
+        "node_count": 144139.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 760.4375269000011,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.505856137257,
+        "node_count": 145004.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 765.4391064999945,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.594525655637,
+        "node_count": 145748.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 770.4492973000015,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.69038063163,
+        "node_count": 146386.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 775.4522357999958,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.785434612164,
+        "node_count": 147331.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 780.4663394999952,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.867321204818,
+        "node_count": 148388.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 785.4701147999949,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.93753155271,
+        "node_count": 149404.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 790.4782187999954,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.955630674796,
+        "node_count": 150844.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 795.6116182999976,
+        "primal_bound": Infinity,
+        "dual_bound": 14705.955630674796,
+        "node_count": 151997.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 800.6138232000012,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.053393984886,
+        "node_count": 153389.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 805.6656637999986,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.121564793873,
+        "node_count": 154992.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 810.6726337,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.29742776423,
+        "node_count": 156216.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 815.6751952999984,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.387905130438,
+        "node_count": 157253.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 845.9743257999944,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.445085379466,
+        "node_count": 158510.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 850.9829565999971,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.465313505807,
+        "node_count": 159085.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 856.01584,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.52596675222,
+        "node_count": 159667.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 861.0314822,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.556651288522,
+        "node_count": 160361.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 866.0339832999962,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.556651288522,
+        "node_count": 161202.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 871.0355573999987,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.56534133678,
+        "node_count": 162013.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 876.0361981999959,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.737076983547,
+        "node_count": 163127.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 881.0470548000012,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.824411796802,
+        "node_count": 164851.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 886.0485633999997,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.837628684601,
+        "node_count": 166134.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 891.053651299997,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.867193624852,
+        "node_count": 167572.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 896.0553093999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.885437285799,
+        "node_count": 168567.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 901.0561008000004,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.907448272645,
+        "node_count": 169357.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 906.0594955999986,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.935393815751,
+        "node_count": 170054.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 911.0664516999968,
+        "primal_bound": Infinity,
+        "dual_bound": 14706.967666645516,
+        "node_count": 170884.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 916.067272100001,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.029715068316,
+        "node_count": 172072.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 921.0679003999976,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.178711037735,
+        "node_count": 173202.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 926.0728815999973,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.23318724407,
+        "node_count": 174444.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 931.0754019000015,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.265233210872,
+        "node_count": 175847.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 936.1088346999968,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.415507202611,
+        "node_count": 176950.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 941.112146499996,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.475554198316,
+        "node_count": 178101.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 946.1146718999953,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.54011103301,
+        "node_count": 179476.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 951.1200091999999,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.595505998606,
+        "node_count": 180455.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 956.124713899997,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.625598262646,
+        "node_count": 181633.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 961.125387299995,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.678460270903,
+        "node_count": 182902.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 966.1278459999958,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.724123981077,
+        "node_count": 183898.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 971.1512192000009,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.809745611887,
+        "node_count": 185046.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 976.203267500001,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.809745611887,
+        "node_count": 186203.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 981.2035384999981,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.852698794948,
+        "node_count": 187517.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 986.2583790999997,
+        "primal_bound": Infinity,
+        "dual_bound": 14707.968505434945,
+        "node_count": 188647.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 991.275802199998,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.027254731878,
+        "node_count": 189768.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 996.3553915999946,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.0453799719,
+        "node_count": 190766.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1016.7278828999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.127407808399,
+        "node_count": 191312.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1021.7345170999979,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.169466115833,
+        "node_count": 192423.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1026.8600305,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.241667005981,
+        "node_count": 193587.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1031.8739874999956,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.241667005981,
+        "node_count": 194649.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1036.8782761999973,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.26396288003,
+        "node_count": 195674.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1041.8786695999952,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.400252132957,
+        "node_count": 196851.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1046.8815625999996,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.524005100753,
+        "node_count": 197958.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1051.943214699997,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.682376533758,
+        "node_count": 199166.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1056.9451416999946,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.707354091785,
+        "node_count": 200117.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1061.9540005999952,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.707354091785,
+        "node_count": 200841.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1066.958090799999,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.763432250724,
+        "node_count": 201519.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1071.963925600001,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.839487438372,
+        "node_count": 202148.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1076.9649442999944,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.855650625095,
+        "node_count": 202754.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1081.9769946000015,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.860908897874,
+        "node_count": 203577.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1086.9894768999948,
+        "primal_bound": Infinity,
+        "dual_bound": 14708.994817223012,
+        "node_count": 204535.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1092.0010891999991,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.093158640957,
+        "node_count": 205534.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1097.1417637999984,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.152313759949,
+        "node_count": 206475.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1102.1571964999966,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.160053049993,
+        "node_count": 207120.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1107.1712770999948,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.2846190573,
+        "node_count": 207775.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1112.1798707999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.319323678981,
+        "node_count": 208671.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1117.1850263000015,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.319632216067,
+        "node_count": 209370.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1122.1877731999994,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.420160603831,
+        "node_count": 210305.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1127.2587798999957,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.516228839448,
+        "node_count": 211448.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1132.3068674999959,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.615361072987,
+        "node_count": 212404.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1137.3078479999967,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.690909115607,
+        "node_count": 213358.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1142.3099449000001,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.743766585738,
+        "node_count": 214288.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1147.3176629000009,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.880099050491,
+        "node_count": 215244.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1152.3210366999992,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.949126226067,
+        "node_count": 216283.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1158.7864428999965,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.949126226067,
+        "node_count": 216403.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1163.8242953999943,
+        "primal_bound": Infinity,
+        "dual_bound": 14709.9568376788,
+        "node_count": 217674.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1168.8381864999974,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.001981495288,
+        "node_count": 218730.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1173.843903199995,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.012853836106,
+        "node_count": 219943.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1178.848355299997,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.239682038273,
+        "node_count": 220937.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1183.8510115999961,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.378996703146,
+        "node_count": 221839.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1188.8546099999949,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.47650442848,
+        "node_count": 222771.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1193.8675141999993,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.61430284796,
+        "node_count": 223883.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1198.873678799995,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.665623088302,
+        "node_count": 224844.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1226.1897250999973,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.665623088302,
+        "node_count": 224944.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1231.193772300001,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.726880042765,
+        "node_count": 225979.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1236.1972100999992,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.773247119916,
+        "node_count": 226786.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1241.2041132999948,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.89598431561,
+        "node_count": 227842.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1246.2072912000003,
+        "primal_bound": Infinity,
+        "dual_bound": 14710.922251310341,
+        "node_count": 229106.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1251.2109638999973,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.001662590079,
+        "node_count": 230109.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1256.2373406999977,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.138843692679,
+        "node_count": 231137.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1261.2410888999948,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.147201853928,
+        "node_count": 232289.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1266.244488299999,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.231065662989,
+        "node_count": 233474.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1271.2635770999987,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.292822792067,
+        "node_count": 234600.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1276.2681171000004,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.292822792067,
+        "node_count": 235636.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1281.2898580999972,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.458193357848,
+        "node_count": 236690.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1286.2928909999973,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.525546599409,
+        "node_count": 237494.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1291.312042599995,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.558020868026,
+        "node_count": 238189.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1296.325380299997,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.558020868026,
+        "node_count": 238803.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1301.3290151999972,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.623913164522,
+        "node_count": 239459.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1306.330488599997,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.652094644762,
+        "node_count": 240137.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1311.3358290999968,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.652094644762,
+        "node_count": 240759.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1316.3469439999972,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.7566337579,
+        "node_count": 241240.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1321.3714667999957,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.7566337579,
+        "node_count": 241767.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1326.3919232999979,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.7566337579,
+        "node_count": 242421.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1331.4189935999966,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.759701511137,
+        "node_count": 243010.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1336.596738799999,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.787523739938,
+        "node_count": 243487.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1341.6056817999997,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.812405856084,
+        "node_count": 243976.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1346.6094462999972,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.826971862181,
+        "node_count": 244420.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1351.6304702999987,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.870626349299,
+        "node_count": 244985.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1356.661600200001,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.886855937151,
+        "node_count": 245444.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1361.6684282999995,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.942676825538,
+        "node_count": 245902.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1366.6771243999974,
+        "primal_bound": Infinity,
+        "dual_bound": 14711.97935634051,
+        "node_count": 246441.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1371.6791595999966,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.031660881634,
+        "node_count": 247327.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1376.7489847999968,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.135674197698,
+        "node_count": 248618.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1381.7519949999987,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.265420513739,
+        "node_count": 249571.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1386.7598605999956,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.318924369814,
+        "node_count": 250584.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1391.7669205999991,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.327882821406,
+        "node_count": 251794.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1396.8177217999983,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.439851304445,
+        "node_count": 252835.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1401.8271905000001,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.549512726056,
+        "node_count": 253893.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1406.9277466999993,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.674696666416,
+        "node_count": 254926.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1411.9422007999965,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.751627205778,
+        "node_count": 255796.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1416.9434981000013,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.77175641782,
+        "node_count": 256835.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1421.9438792,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.82372426649,
+        "node_count": 257935.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1426.9446065999946,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.910906944686,
+        "node_count": 258976.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1432.0515945000006,
+        "primal_bound": Infinity,
+        "dual_bound": 14712.974001908291,
+        "node_count": 260237.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1437.0531741999948,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.057929036348,
+        "node_count": 261390.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1442.074566999996,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.153862868367,
+        "node_count": 262527.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1447.0781414999947,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.175932071757,
+        "node_count": 263535.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1452.0826431999958,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.209200781384,
+        "node_count": 264776.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1457.0852966999955,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.25311002435,
+        "node_count": 265807.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1462.0882376999944,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.3145301065,
+        "node_count": 266715.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1467.0956852999952,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.4061122451,
+        "node_count": 267529.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1472.0981229999961,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.438828676872,
+        "node_count": 268407.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1477.0997607999961,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.520103134912,
+        "node_count": 269303.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1482.1015400999968,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.619640356193,
+        "node_count": 270334.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1487.1073274999944,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.700694336532,
+        "node_count": 271125.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1492.1222519000003,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.832180021594,
+        "node_count": 272034.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1497.1335458999965,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.870160365504,
+        "node_count": 272629.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1531.6147545999993,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.897403599898,
+        "node_count": 273109.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1536.6235796999972,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.936945151996,
+        "node_count": 273910.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1541.6819983999958,
+        "primal_bound": Infinity,
+        "dual_bound": 14713.965925941622,
+        "node_count": 274878.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1546.6820001000015,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.004292866417,
+        "node_count": 275934.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1551.699101099999,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.012254326935,
+        "node_count": 277032.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1556.6998486999946,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.024316681307,
+        "node_count": 277732.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1561.7236768000002,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.061571769673,
+        "node_count": 278260.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1566.7364594999963,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.084719791927,
+        "node_count": 278796.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1571.7372099999993,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.124992063043,
+        "node_count": 279291.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1576.7375303999943,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.179499211106,
+        "node_count": 279737.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1581.7377995999996,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.214012462895,
+        "node_count": 280622.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1586.7439188999997,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.25016028718,
+        "node_count": 281637.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1591.8492748999997,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.301219872037,
+        "node_count": 282667.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1596.8563670000003,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.417534610591,
+        "node_count": 283947.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1601.8590710999997,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.552167373286,
+        "node_count": 284899.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1606.8617315999945,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.584984466821,
+        "node_count": 285928.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1611.8636626000007,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.674286624244,
+        "node_count": 286713.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1616.8643347999969,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.726098879928,
+        "node_count": 287975.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1621.880801399995,
+        "primal_bound": Infinity,
+        "dual_bound": 14714.923829708288,
+        "node_count": 289147.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1626.8873281999986,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.026593887114,
+        "node_count": 290235.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1631.9711817999996,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.07434485296,
+        "node_count": 291660.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1636.9715471999953,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.188425792074,
+        "node_count": 292875.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1641.9718754999994,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.309499815558,
+        "node_count": 294517.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1646.9730903999953,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.342691607306,
+        "node_count": 295709.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1651.978963499998,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.421900561458,
+        "node_count": 297046.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1657.0448178000006,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.48569607197,
+        "node_count": 298661.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1662.0460939999975,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.499698801706,
+        "node_count": 300152.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1667.0507846999972,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.557740971057,
+        "node_count": 301562.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1672.0538285000002,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.611804466385,
+        "node_count": 302712.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1677.0568451,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.719452685156,
+        "node_count": 303832.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1682.0663888999989,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.757350806593,
+        "node_count": 304740.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1687.120068600001,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.841371346987,
+        "node_count": 305760.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1692.1258798999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.881435492915,
+        "node_count": 307139.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1697.1327219999948,
+        "primal_bound": Infinity,
+        "dual_bound": 14715.927632196335,
+        "node_count": 308253.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1702.1358873999998,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.014056005071,
+        "node_count": 309706.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1714.2929178999984,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.055604390258,
+        "node_count": 309874.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1719.295944599995,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.212169360113,
+        "node_count": 311011.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1724.3168750999976,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.226665774362,
+        "node_count": 312479.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1729.3212080000012,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.263464865167,
+        "node_count": 313681.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1734.3212458999988,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.33497751861,
+        "node_count": 315038.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1739.321549100001,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.438666191165,
+        "node_count": 316147.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1744.323725999995,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.553580311362,
+        "node_count": 317032.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1749.3574183999954,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.63899658098,
+        "node_count": 318189.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1754.3584215999945,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.77261214001,
+        "node_count": 319348.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1759.3603034999978,
+        "primal_bound": Infinity,
+        "dual_bound": 14716.919005935079,
+        "node_count": 320662.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1764.3805196999965,
+        "primal_bound": Infinity,
+        "dual_bound": 14717.157928921668,
+        "node_count": 322313.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1769.3857044999968,
+        "primal_bound": Infinity,
+        "dual_bound": 14717.246059280013,
+        "node_count": 323743.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1774.3872478999983,
+        "primal_bound": Infinity,
+        "dual_bound": 14717.29694827075,
+        "node_count": 325039.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1779.3930811999962,
+        "primal_bound": Infinity,
+        "dual_bound": 14717.371638534694,
+        "node_count": 326167.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1784.396645599998,
+        "primal_bound": Infinity,
+        "dual_bound": 14717.545137138295,
+        "node_count": 327066.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1789.406580499999,
+        "primal_bound": Infinity,
+        "dual_bound": 14717.721417556506,
+        "node_count": 327929.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1794.408638199995,
+        "primal_bound": Infinity,
+        "dual_bound": 14717.777843241685,
+        "node_count": 329059.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1799.4238426999946,
+        "primal_bound": Infinity,
+        "dual_bound": 14717.800386491313,
+        "node_count": 330261.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1804.4325125999967,
+        "primal_bound": Infinity,
+        "dual_bound": 14717.999465368448,
+        "node_count": 331862.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1809.4339973999959,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.136873056153,
+        "node_count": 333459.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1814.4375663999963,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.229235563982,
+        "node_count": 334514.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1819.4480273999943,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.27960508458,
+        "node_count": 335354.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1853.1372059999994,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.312728938767,
+        "node_count": 335608.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1858.1377499999944,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.40922981208,
+        "node_count": 336309.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1863.1716652999967,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.485816156568,
+        "node_count": 337297.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1868.1727049999972,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.560970870536,
+        "node_count": 338480.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1873.1793771999946,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.584129162067,
+        "node_count": 339335.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1878.183513899996,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.735176919692,
+        "node_count": 340430.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1883.1995852999971,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.796258474553,
+        "node_count": 341163.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1888.2030563999942,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.870978660045,
+        "node_count": 341797.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1893.2190877999965,
+        "primal_bound": Infinity,
+        "dual_bound": 14718.987141794078,
+        "node_count": 343139.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1898.2198672999948,
+        "primal_bound": Infinity,
+        "dual_bound": 14719.093121438029,
+        "node_count": 343952.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1903.2308043999947,
+        "primal_bound": Infinity,
+        "dual_bound": 14719.236309621047,
+        "node_count": 345079.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1908.2309830000013,
+        "primal_bound": Infinity,
+        "dual_bound": 14719.341562754125,
+        "node_count": 346237.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1913.3161627999943,
+        "primal_bound": Infinity,
+        "dual_bound": 14719.48633193142,
+        "node_count": 347445.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1918.3204177000007,
+        "primal_bound": Infinity,
+        "dual_bound": 14719.58702129599,
+        "node_count": 347907.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1923.3639782999962,
+        "primal_bound": Infinity,
+        "dual_bound": 14719.794118614162,
+        "node_count": 348457.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1928.3667748000007,
+        "primal_bound": Infinity,
+        "dual_bound": 14719.863935665671,
+        "node_count": 349326.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1933.3882293999995,
+        "primal_bound": Infinity,
+        "dual_bound": 14720.049944365113,
+        "node_count": 349977.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1938.390110100001,
+        "primal_bound": Infinity,
+        "dual_bound": 14720.135956621494,
+        "node_count": 350568.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1943.3929000999997,
+        "primal_bound": Infinity,
+        "dual_bound": 14720.264708475619,
+        "node_count": 351472.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1948.4166942999946,
+        "primal_bound": Infinity,
+        "dual_bound": 14720.381507736638,
+        "node_count": 351830.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1953.4186145999993,
+        "primal_bound": Infinity,
+        "dual_bound": 14720.537572820042,
+        "node_count": 352349.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1958.4396209999977,
+        "primal_bound": Infinity,
+        "dual_bound": 14720.635715854789,
+        "node_count": 352831.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1963.4815774999952,
+        "primal_bound": Infinity,
+        "dual_bound": 14720.747713100578,
+        "node_count": 353300.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1968.4854584999994,
+        "primal_bound": Infinity,
+        "dual_bound": 14720.903418448966,
+        "node_count": 353718.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1973.4970044000002,
+        "primal_bound": Infinity,
+        "dual_bound": 14721.07176426848,
+        "node_count": 354414.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1978.4975313999967,
+        "primal_bound": Infinity,
+        "dual_bound": 14721.169441007902,
+        "node_count": 354879.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1983.4984799999947,
+        "primal_bound": Infinity,
+        "dual_bound": 14721.485789202216,
+        "node_count": 355361.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1988.5066172000006,
+        "primal_bound": Infinity,
+        "dual_bound": 14721.697680213072,
+        "node_count": 355697.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1993.5174516999978,
+        "primal_bound": Infinity,
+        "dual_bound": 14722.003853947994,
+        "node_count": 355936.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 1998.5217069999999,
+        "primal_bound": Infinity,
+        "dual_bound": 14722.233809542,
+        "node_count": 356272.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 2003.5291298999946,
+        "primal_bound": Infinity,
+        "dual_bound": 14722.598274409338,
+        "node_count": 356559.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 2008.5293202999965,
+        "primal_bound": Infinity,
+        "dual_bound": 14722.835743075773,
+        "node_count": 356896.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 2013.5337156999958,
+        "primal_bound": Infinity,
+        "dual_bound": 14723.065656162727,
+        "node_count": 357351.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 2018.5475134999942,
+        "primal_bound": Infinity,
+        "dual_bound": 14723.574940160881,
+        "node_count": 357566.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 2023.5592105999967,
+        "primal_bound": Infinity,
+        "dual_bound": 14723.929955761698,
+        "node_count": 357777.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 2028.5692656999963,
+        "primal_bound": Infinity,
+        "dual_bound": 14724.351528845207,
+        "node_count": 358053.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 2033.5876168999966,
+        "primal_bound": Infinity,
+        "dual_bound": 14725.103349814464,
+        "node_count": 358355.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 2038.5988317999945,
+        "primal_bound": Infinity,
+        "dual_bound": 14726.398698414656,
+        "node_count": 358544.0,
+        "gap": Infinity
+      },
+      {
+        "running_time": 2041.4714214999985,
+        "primal_bound": Infinity,
+        "dual_bound": Infinity,
+        "node_count": 358676.0,
+        "gap": Infinity
+      }
+    ]
+  },
+  "strict_candidate_validator": null,
+  "important_note": "The 14,730 vector is a feasible accepted MIP start for the base master, but necessarily violates the added <=14,729 hard row by one minute. HiGHS receives it as a repair hint in the strict model; it is not a feasible strict incumbent.",
+  "runtime": {
+    "python": "3.11.9",
+    "highspy": "1.15.1",
+    "git_commit": "be109e6272b61be4dfb22331806ef3d25de726ad",
+    "git_branch": "codex/q1-exact-certification",
+    "git_dirty": true,
+    "stall_seconds": 300.0,
+    "emergency_time_limit": null
+  }
+}
