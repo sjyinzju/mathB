@@ -4,3 +4,13 @@ __pycache__/
 
 # 大型实验过程日志（单文件可超100MB，不入版本库）
 candidate-log.jsonl
+
+# LaTeX 构建中间产物（可由 xelatex+bibtex 管线重建；main.bbl/main.pdf 保留跟踪）
+*.aux
+*.blg
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+/main.log
