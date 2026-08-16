@@ -1,5 +1,5 @@
 {
-  "incumbent_aircraft_time_minutes": 30546,
+  "incumbent_aircraft_time_minutes": 29155,
   "global_bounds": {
     "passenger_work_lower_bound_minutes": 12389,
     "layered_multicommodity_flow": {
@@ -31,7 +31,7 @@
       }
     },
     "enhanced_global_lower_bound_minutes": 14125,
-    "certified_gap_percent": 53.758266
+    "certified_gap_percent": 51.552049
   },
   "candidate_pool_reference": {
     "name": "finite_candidate_route_master_lp",
@@ -57,7 +57,7 @@
         "integer passenger assignment"
       ]
     },
-    "reference_gap_percent": 50.245531
+    "reference_gap_percent": 47.87172
   },
   "interpretation": {
     "global": "The enhanced global bound is valid for the original Q3 first stage because every original schedule maps to the continuous layered-flow LP.",
