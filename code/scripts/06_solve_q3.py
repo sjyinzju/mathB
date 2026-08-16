@@ -29,6 +29,8 @@ from src.solver.q3 import (
     retype_and_rehome_flights,
     schedule_metrics,
     shorten_fixed_flight_routes,
+    stage1_key,
+    stage2_key,
 )
 from src.solver.q3_closure_p2 import (
     adaptive_structural_lns,
@@ -38,8 +40,6 @@ from src.solver.q3_closure_p2 import (
     generalized_multiflight_ruin_recreate,
     optional_feasibility_dossiers,
     route_cache_provenance,
-    stage1_key,
-    stage2_key,
     targeted_optional_recovery,
 )
 from src.validation import validate_solution
@@ -268,7 +268,7 @@ def main() -> int:
     )
     parser.add_argument("--run-id")
     parser.add_argument("--output-root", type=Path, default=ROOT / "outputs/q3")
-    parser.add_argument("--source-best", type=Path, default=ROOT / "outputs/q3/p0_p1_best")
+    parser.add_argument("--source-best", type=Path, default=ROOT / "outputs/q3/best")
     parser.add_argument("--variant-cache", type=Path, default=ROOT / "outputs/q2/pair_n3_h10.pkl")
     parser.add_argument("--warm-start", type=Path)
     parser.add_argument("--start-count", type=int, default=20)
@@ -279,7 +279,7 @@ def main() -> int:
     parser.add_argument("--hard-day-threshold", type=int, default=1)
     parser.add_argument("--hard-window-minutes", type=int, default=720)
     parser.add_argument("--regret-k", type=int, default=2)
-    parser.add_argument("--fleet-slot-policy", choices=("earliest", "least_fragmentation"), default="least_fragmentation")
+    parser.add_argument("--fleet-slot-policy", choices=("earliest", "least_fragmentation", "best_fit"), default="least_fragmentation")
     parser.add_argument("--feedback-rounds", type=int, default=2)
     parser.add_argument("--polish-rounds", type=int, default=2)
     parser.add_argument("--stage1-destroy-trials", type=int, default=40)

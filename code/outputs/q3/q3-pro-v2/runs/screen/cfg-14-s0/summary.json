@@ -1,0 +1,241 @@
+{
+  "config": {
+    "config_id": "cfg-14-s0",
+    "seed": 20274944,
+    "restart_threshold": 100,
+    "normal_group_min": 3,
+    "normal_group_max": 7,
+    "heavy_group_min": 6,
+    "heavy_group_max": 12,
+    "cross_day_trials": 12,
+    "route_limit": 180,
+    "heavy_route_limit": 340,
+    "combination_budget": 8,
+    "heavy_combination_budget": 32,
+    "reaction_factor": 0.18,
+    "operator_profile": "chain",
+    "assignment_time_limit": 5.0
+  },
+  "operator_weights": {
+    "cross_day": 1.4,
+    "aircraft_chain": 3.0,
+    "exact_lns": 1.2,
+    "high_cost": 1.4
+  },
+  "initial_key": [
+    29155.0,
+    241018.0,
+    165.0,
+    231384.5,
+    -0.5702173594847775
+  ],
+  "final_key": [
+    29155.0,
+    241018.0,
+    165.0,
+    231384.5,
+    -0.5702173594847775
+  ],
+  "best_improvement_minutes": 0,
+  "runtime_seconds": 60.126759,
+  "improvement_per_cpu_minute": 0.0,
+  "attempts": 4,
+  "accepted": 0,
+  "accepted_rate": 0.0,
+  "cross_day_attempts": 0,
+  "cross_day_accepted": 0,
+  "cross_day_acceptance": 0.0,
+  "elite_size": 3,
+  "elite_diversity": 0.0673466683062647,
+  "completed_iterations": 4,
+  "trace": {
+    "requested_iterations": 20,
+    "completed_iterations": 4,
+    "wall_time_seconds": 60.118724,
+    "seed": 20274944,
+    "restart_threshold": 100,
+    "configuration": {
+      "operator_initial_weights": {
+        "cross_day": 1.4,
+        "aircraft_chain": 3.0,
+        "exact_lns": 1.2,
+        "high_cost": 1.4
+      },
+      "normal_group_range": [
+        3,
+        7
+      ],
+      "heavy_group_range": [
+        6,
+        12
+      ],
+      "cross_day_trials": 12,
+      "normal_route_limit": 180,
+      "heavy_route_limit": 340,
+      "normal_combination_budget": 8,
+      "heavy_combination_budget": 32,
+      "reaction_factor": 0.18
+    },
+    "restarts": 0,
+    "global_improvements": 0,
+    "operator_stats": {
+      "related": {
+        "attempts": 0,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 0.0,
+        "timeouts": 0,
+        "weight": 1.0
+      },
+      "high_cost": {
+        "attempts": 1,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 6.400326400005724,
+        "timeouts": 0,
+        "weight": 1.238
+      },
+      "low_utilization": {
+        "attempts": 0,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 0.0,
+        "timeouts": 0,
+        "weight": 1.0
+      },
+      "aircraft_chain": {
+        "attempts": 1,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 6.274217400001362,
+        "timeouts": 0,
+        "weight": 2.55
+      },
+      "bottleneck_day": {
+        "attempts": 0,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 0.0,
+        "timeouts": 0,
+        "weight": 1.0
+      },
+      "conflict_graph": {
+        "attempts": 0,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 0.0,
+        "timeouts": 0,
+        "weight": 1.0
+      },
+      "random_related": {
+        "attempts": 0,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 0.0,
+        "timeouts": 0,
+        "weight": 1.0
+      },
+      "cross_day": {
+        "attempts": 0,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 0.0,
+        "timeouts": 0,
+        "weight": 1.4
+      },
+      "exact_lns": {
+        "attempts": 2,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 47.32417780000105,
+        "timeouts": 0,
+        "weight": 0.9706800000000001
+      },
+      "route_polish": {
+        "attempts": 0,
+        "feasible": 0,
+        "accepted": 0,
+        "global_best": 0,
+        "total_saving": 0,
+        "total_runtime": 0.0,
+        "timeouts": 0,
+        "weight": 1.0
+      }
+    },
+    "failure_reason_histogram": {
+      "no_accepted_repair": 4
+    },
+    "convergence": [
+      {
+        "iteration": 1,
+        "elapsed_seconds": 6.383193,
+        "operator": "aircraft_chain",
+        "accepted": false,
+        "global_best": false,
+        "saving_minutes": 0,
+        "current_aircraft_time": 29155,
+        "best_aircraft_time": 29155,
+        "stagnation": 1,
+        "restart": false,
+        "elite_size": 3
+      },
+      {
+        "iteration": 2,
+        "elapsed_seconds": 29.821275,
+        "operator": "exact_lns",
+        "accepted": false,
+        "global_best": false,
+        "saving_minutes": 0,
+        "current_aircraft_time": 29155,
+        "best_aircraft_time": 29155,
+        "stagnation": 2,
+        "restart": false,
+        "elite_size": 3
+      },
+      {
+        "iteration": 3,
+        "elapsed_seconds": 53.712838,
+        "operator": "exact_lns",
+        "accepted": false,
+        "global_best": false,
+        "saving_minutes": 0,
+        "current_aircraft_time": 29155,
+        "best_aircraft_time": 29155,
+        "stagnation": 3,
+        "restart": false,
+        "elite_size": 3
+      },
+      {
+        "iteration": 4,
+        "elapsed_seconds": 60.115487,
+        "operator": "high_cost",
+        "accepted": false,
+        "global_best": false,
+        "saving_minutes": 0,
+        "current_aircraft_time": 29155,
+        "best_aircraft_time": 29155,
+        "stagnation": 4,
+        "restart": false,
+        "elite_size": 3
+      }
+    ]
+  }
+}

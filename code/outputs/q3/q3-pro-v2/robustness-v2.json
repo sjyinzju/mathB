@@ -1,0 +1,240 @@
+{
+  "incumbent": {
+    "total_aircraft_time_minutes": 28728,
+    "total_passenger_travel_time_minutes": 242455,
+    "total_flights": 162,
+    "total_fuel_consumption_kg": 226835.3,
+    "seat_utilization": 0.5784037252729675,
+    "served_mandatory": 3840,
+    "served_optional": 0
+  },
+  "busiest_aircraft_type_removed": "A03-T2",
+  "refuel_facility_removed": "F038",
+  "records": [
+    {
+      "scenario": "turnaround-40",
+      "status": "no-feasible-reoptimization-found",
+      "constructor": {
+        "feasible": false,
+        "phase": "fleet_slot",
+        "failed_people": [
+          "P2131"
+        ],
+        "hard_count": 637,
+        "zero_cost_inserted": 1889,
+        "dynamic_flights": 54,
+        "runtime_seconds": 9.48087
+      },
+      "runtime_seconds": 9.481321,
+      "global_infeasibility_proof": false,
+      "variant_rebuild": {
+        "source_templates": 3116,
+        "rebuilt_variants": 3116,
+        "failed_templates": 0,
+        "empty_ods": [],
+        "runtime_seconds": 102.817826
+      }
+    },
+    {
+      "scenario": "turnaround-45",
+      "status": "no-feasible-reoptimization-found",
+      "constructor": {
+        "feasible": false,
+        "phase": "fleet_slot",
+        "failed_people": [
+          "P2131"
+        ],
+        "hard_count": 637,
+        "zero_cost_inserted": 1888,
+        "dynamic_flights": 55,
+        "runtime_seconds": 9.582374
+      },
+      "runtime_seconds": 9.58285,
+      "global_infeasibility_proof": false,
+      "variant_rebuild": {
+        "source_templates": 3116,
+        "rebuilt_variants": 3116,
+        "failed_templates": 0,
+        "empty_ods": [],
+        "runtime_seconds": 109.082811
+      }
+    },
+    {
+      "scenario": "one-aircraft-unavailable-A03-T2",
+      "status": "no-feasible-reoptimization-found",
+      "constructor": {
+        "feasible": false,
+        "phase": "fleet_slot",
+        "failed_people": [
+          "P2464"
+        ],
+        "hard_count": 637,
+        "zero_cost_inserted": 1896,
+        "dynamic_flights": 107,
+        "runtime_seconds": 11.719494
+      },
+      "runtime_seconds": 11.719906,
+      "global_infeasibility_proof": false,
+      "variant_rebuild": {
+        "source_templates": 3116,
+        "rebuilt_variants": 3116,
+        "failed_templates": 0,
+        "empty_ods": [],
+        "runtime_seconds": 109.898928
+      }
+    },
+    {
+      "scenario": "refuel-unavailable-F038",
+      "status": "no-feasible-reoptimization-found",
+      "constructor": {
+        "feasible": false,
+        "phase": "fleet_slot",
+        "failed_people": [
+          "P3775"
+        ],
+        "hard_count": 637,
+        "zero_cost_inserted": 1904,
+        "dynamic_flights": 115,
+        "runtime_seconds": 11.622415
+      },
+      "runtime_seconds": 11.622913,
+      "global_infeasibility_proof": false,
+      "variant_rebuild": {
+        "source_templates": 3116,
+        "rebuilt_variants": 3102,
+        "failed_templates": 14,
+        "empty_ods": [],
+        "runtime_seconds": 103.557509
+      }
+    },
+    {
+      "scenario": "flight-time-plus-5pct",
+      "status": "no-feasible-reoptimization-found",
+      "constructor": {
+        "feasible": false,
+        "phase": "fleet_slot",
+        "failed_people": [
+          "P3775"
+        ],
+        "hard_count": 642,
+        "zero_cost_inserted": 1896,
+        "dynamic_flights": 102,
+        "runtime_seconds": 10.826212
+      },
+      "runtime_seconds": 10.826695,
+      "global_infeasibility_proof": false,
+      "variant_rebuild": {
+        "source_templates": 3116,
+        "rebuilt_variants": 3116,
+        "failed_templates": 0,
+        "empty_ods": [],
+        "runtime_seconds": 113.842212
+      }
+    },
+    {
+      "scenario": "flight-time-plus-10pct",
+      "status": "no-feasible-reoptimization-found",
+      "constructor": {
+        "feasible": false,
+        "phase": "fleet_slot",
+        "failed_people": [
+          "P1738"
+        ],
+        "hard_count": 642,
+        "zero_cost_inserted": 1909,
+        "dynamic_flights": 96,
+        "runtime_seconds": 11.302758
+      },
+      "runtime_seconds": 11.303262,
+      "global_infeasibility_proof": false,
+      "variant_rebuild": {
+        "source_templates": 3116,
+        "rebuilt_variants": 3116,
+        "failed_templates": 0,
+        "empty_ods": [],
+        "runtime_seconds": 110.922838
+      }
+    },
+    {
+      "scenario": "time-windows-tightened-30min",
+      "status": "no-feasible-reoptimization-found",
+      "constructor": {
+        "feasible": false,
+        "phase": "hard_skeleton",
+        "hard_count": 668,
+        "skeleton": {
+          "method": "q3_interval_list_criticality",
+          "seed": 20260825,
+          "feasible": false,
+          "mandatory_people": 0,
+          "flights": 0,
+          "aircraft_time_minutes": 0,
+          "lower_bound_minutes": 2138,
+          "lower_bound_gap_percent": Infinity,
+          "runtime_seconds": 0.013839,
+          "conflict_count": 2,
+          "candidate_variants": 23251,
+          "failed_person_id": "P0285"
+        },
+        "runtime_seconds": 1.73268
+      },
+      "runtime_seconds": 1.733015,
+      "global_infeasibility_proof": false,
+      "variant_rebuild": {
+        "source_templates": 3116,
+        "rebuilt_variants": 3116,
+        "runtime_seconds": 0.0
+      }
+    },
+    {
+      "scenario": "temporary-demand-minus-10pct",
+      "status": "feasible-fixed-structure",
+      "stage2": {
+        "total_aircraft_time_minutes": 28728,
+        "total_passenger_travel_time_minutes": 250795,
+        "total_flights": 162,
+        "total_fuel_consumption_kg": 226835.3,
+        "seat_utilization": 0.5987044782662788,
+        "served_mandatory": 3840,
+        "served_optional": 141
+      },
+      "removed_optional_ids": [
+        "P0044",
+        "P0062",
+        "P0191",
+        "P0251",
+        "P0272",
+        "P0308",
+        "P0318",
+        "P0343",
+        "P0359",
+        "P0366",
+        "P0376",
+        "P0377",
+        "P0418",
+        "P0427",
+        "P0475",
+        "P0488"
+      ],
+      "unserved": [
+        "P1102",
+        "P2239",
+        "P3290"
+      ],
+      "assignment": {
+        "variables": 8340,
+        "constraints": 4540,
+        "stage1_status": 0,
+        "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "stage2_status": 0,
+        "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "served_temporary": 141,
+        "temporary_upper_bound": 144,
+        "fixed_flight_optimal": true,
+        "all_optional_served": false
+      },
+      "scope": "demand perturbation on the final structure; no global optimality claim"
+    }
+  ],
+  "interpretation": "Each structural scenario attempts full schedule reconstruction from the rebuilt route universe. A failed constructor is evidence of search failure, not a global infeasibility certificate."
+}

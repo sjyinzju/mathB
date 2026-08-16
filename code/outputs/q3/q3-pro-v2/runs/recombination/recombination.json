@@ -1,0 +1,13 @@
+{
+  "path_relink": {
+    "attempts": 0,
+    "rows": []
+  },
+  "day_column_recombination": [],
+  "restricted_master_scope": "elite day-block columns with exact assignment repair",
+  "elite_gate": {
+    "required": 15,
+    "actual": 11,
+    "relink_executed": false
+  }
+}

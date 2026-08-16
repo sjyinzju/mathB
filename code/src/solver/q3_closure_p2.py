@@ -29,44 +29,17 @@ from .q3 import (
     optimize_fixed_flight_assignments,
     schedule_comparison_key,
     schedule_metrics,
+    schedule_seat_utilization,
+    stage1_key,
+    stage2_key,
 )
 from .q3_timing import schedule_route_timing
 
 
 def _seat_utilization_proxy(flights: Sequence[Q3Flight]) -> float:
-    numerator = 0.0
-    denominator = 0.0
-    for flight in flights:
-        stops = flight.variant.source.route.stops
-        loads = [0] * (len(stops) - 1)
-        for pickup, delivery in flight.assignment_intervals.values():
-            for leg in range(pickup, delivery):
-                loads[leg] += 1
-        for leg, load in enumerate(loads):
-            airborne = flight.arrivals[leg + 1] - flight.departures[leg]
-            numerator += load * airborne
-            denominator += flight.variant.capacity * airborne
-    return numerator / denominator if denominator else 0.0
+    """Compatibility alias for the canonical actual-timing implementation."""
 
-
-def stage1_key(
-    flights: Sequence[Q3Flight], people: dict[str, Q3Person]
-) -> tuple[float, ...]:
-    metrics = schedule_metrics(flights, people)
-    return (
-        float(metrics["total_aircraft_time_minutes"]),
-        float(metrics["total_passenger_travel_time_minutes"]),
-        float(metrics["total_flights"]),
-        float(metrics["total_fuel_consumption_kg"]),
-        -_seat_utilization_proxy(flights),
-    )
-
-
-def stage2_key(
-    flights: Sequence[Q3Flight], people: dict[str, Q3Person]
-) -> tuple[float, ...]:
-    metrics = schedule_metrics(flights, people)
-    return (-float(metrics["served_optional"]),) + stage1_key(flights, people)
+    return schedule_seat_utilization(flights)
 
 
 def is_hard_person(
@@ -177,6 +150,22 @@ def _place_group_time_aware(
                 timing.departures[0],
                 timing.arrivals[-1],
                 day,
+            )
+        elif slot_policy == "best_fit":
+            day_start = day * 1440 + 360
+            day_end = day * 1440 + 1200
+            prior_end = max(
+                (end for start, end in calendars[aircraft_id] if end <= timing.departures[0]),
+                default=day_start - data.config.turnaround_minutes,
+            )
+            next_start = min(
+                (start for start, end in calendars[aircraft_id] if start >= timing.arrivals[-1]),
+                default=day_end + data.config.turnaround_minutes,
+            )
+            fragment = (
+                max(0, timing.departures[0] - prior_end - data.config.turnaround_minutes)
+                + max(0, next_start - timing.arrivals[-1] - data.config.turnaround_minutes),
+                timing.departures[0],
             )
         else:
             fragment = (0, timing.departures[0])
@@ -627,6 +616,20 @@ def _concrete_options(
     return options
 
 
+def replacement_time_admissible(stage: int, replacement_time: int, old_time: int) -> bool:
+    """Primary-time gate used before an expensive assignment solve.
+
+    Stage 2 may improve its leading optional-cardinality objective at equal
+    aircraft time. Stage 1 cannot, because aircraft time is its leading term.
+    """
+
+    if stage == 1:
+        return replacement_time < old_time
+    if stage == 2:
+        return replacement_time <= old_time
+    raise ValueError(f"unsupported Q3 stage: {stage}")
+
+
 def generalized_multiflight_ruin_recreate(
     baseline: Sequence[Q3Flight],
     people: dict[str, Q3Person],
@@ -645,8 +648,16 @@ def generalized_multiflight_ruin_recreate(
     target_optional_ids: Sequence[str] = (),
     operator: str = "related",
     seed: int = 0,
+    combination_budget: int = 12,
+    max_replacements: int | None = None,
+    wall_time_seconds: float | None = None,
 ) -> tuple[list[Q3Flight], dict[str, object]]:
-    """Static-pool same-day k-to-m structural neighbourhood, k in [2, 4]."""
+    """Static-pool same-day k-to-m structural neighbourhood.
+
+    Replacement count is variable and may equal the removed count, allowing a
+    genuine k-to-k shorter move.  The bounded combination budget keeps this
+    evaluator suitable both for screening and exact-LNS-style intensification.
+    """
 
     started = time.perf_counter()
     incumbent = deepcopy(list(baseline))
@@ -655,8 +666,12 @@ def generalized_multiflight_ruin_recreate(
     accepted: list[dict[str, object]] = []
     trials = 0
     rng = random.Random(seed)
+    timed_out = False
 
     while trials < maximum_trials:
+        if wall_time_seconds is not None and time.perf_counter() - started >= wall_time_seconds:
+            timed_out = True
+            break
         before = schedule_metrics(incumbent, people)
         indices = list(range(len(incumbent)))
         if operator == "high_cost":
@@ -667,10 +682,76 @@ def generalized_multiflight_ruin_recreate(
             indices.sort(key=lambda i: (incumbent[i].aircraft_id, incumbent[i].start, i))
         elif operator == "random_related":
             rng.shuffle(indices)
+        elif operator == "bottleneck_day":
+            day_cost = Counter(
+                flight.start // 1440 for flight in incumbent for _ in range(flight.duration)
+            )
+            indices.sort(
+                key=lambda i: (-day_cost[incumbent[i].start // 1440], -incumbent[i].duration, i)
+            )
+        elif operator == "optional_target":
+            targets = [
+                people[pid]
+                for pid in target_optional_ids
+                if pid in people and not people[pid].mandatory
+            ]
+
+            def optional_target_score(index: int) -> tuple[int, int, int, int]:
+                flight = incumbent[index]
+                compatible = 0
+                critical = 0
+                for target in targets:
+                    assignment = _assignment_for_person(
+                        target, flight.variant, data.config
+                    )
+                    if assignment is None:
+                        continue
+                    pickup, delivery = assignment
+                    if (
+                        flight.departures[pickup] < target.earliest
+                        or flight.arrivals[delivery] > target.latest
+                    ):
+                        continue
+                    compatible += 1
+                    loads = [0] * (
+                        len(flight.variant.source.route.stops) - 1
+                    )
+                    for left, right in flight.assignment_intervals.values():
+                        for leg in range(left, right):
+                            loads[leg] += 1
+                    critical += sum(
+                        loads[leg] >= flight.variant.capacity
+                        for leg in range(pickup, delivery)
+                    )
+                return (-critical, -compatible, -flight.duration, index)
+
+            indices.sort(
+                key=optional_target_score
+            )
+        elif operator == "conflict_graph":
+            indices.sort(
+                key=lambda i: (
+                    -max(
+                        (
+                            sum(
+                                pickup <= leg < delivery
+                                for pickup, delivery in incumbent[i].assignment_intervals.values()
+                            )
+                            for leg in range(len(incumbent[i].variant.source.route.stops) - 1)
+                        ),
+                        default=0,
+                    ),
+                    -incumbent[i].duration,
+                    i,
+                )
+            )
         else:
             indices.sort(key=lambda i: (incumbent[i].start // 1440, -incumbent[i].duration, i))
         improved = False
         for anchor in indices:
+            if wall_time_seconds is not None and time.perf_counter() - started >= wall_time_seconds:
+                timed_out = True
+                break
             if trials >= maximum_trials:
                 break
             day = incumbent[anchor].start // 1440
@@ -682,6 +763,16 @@ def generalized_multiflight_ruin_recreate(
             neighbors.sort(
                 key=lambda index: (-_relatedness(incumbent[anchor], incumbent[index]), index)
             )
+            if operator == "random_related":
+                rng.shuffle(neighbors)
+            elif operator == "aircraft_chain":
+                neighbors.sort(
+                    key=lambda index: (
+                        incumbent[index].aircraft_id != incumbent[anchor].aircraft_id,
+                        abs(incumbent[index].start - incumbent[anchor].start),
+                        index,
+                    )
+                )
             neighbors = neighbors[:maximum_neighbors]
             for group_size in range(group_min, min(group_max, 1 + len(neighbors)) + 1):
                 if trials >= maximum_trials:
@@ -719,15 +810,34 @@ def generalized_multiflight_ruin_recreate(
                 best_candidate: list[Q3Flight] | None = None
                 best_key: tuple[float, ...] | None = None
                 best_move: tuple[int, int] | None = None
-                max_replacements = min(group_size - 1, 3)
-                combination_budget = 12
+                replacement_limit = min(
+                    group_size,
+                    max_replacements if max_replacements is not None else 4,
+                )
                 examined = 0
-                for replacement_count in range(1, max_replacements + 1):
+                for replacement_count in range(1, replacement_limit + 1):
                     for option_set in combinations(options, replacement_count):
+                        if (
+                            wall_time_seconds is not None
+                            and time.perf_counter() - started >= wall_time_seconds
+                        ):
+                            timed_out = True
+                            break
                         examined += 1
                         if examined > combination_budget:
                             break
-                        if sum(option.timing.duration for option in option_set) >= old_time:
+                        replacement_time = sum(
+                            option.timing.duration for option in option_set
+                        )
+                        # Stage 1 requires a strict primary-objective reduction.
+                        # Stage 2 is lexicographic in optional cardinality first,
+                        # so an equal-time structural exchange can be a genuine
+                        # improvement.  V1 rejected those moves before solving
+                        # the assignment master, which excluded precisely the
+                        # fixed-cap rescue neighbourhood needed by V2.
+                        if not replacement_time_admissible(
+                            stage, replacement_time, old_time
+                        ):
                             continue
                         if not _no_conflict(option_set, data.config.turnaround_minutes):
                             continue
@@ -777,6 +887,8 @@ def generalized_multiflight_ruin_recreate(
                             best_move = (group_size, len(replacements))
                     if examined > combination_budget:
                         break
+                    if timed_out:
+                        break
                 if best_candidate is None or best_move is None:
                     rejections["no_accepted_repair"] += 1
                     continue
@@ -815,7 +927,11 @@ def generalized_multiflight_ruin_recreate(
         "moves": accepted,
         "group_min": group_min,
         "group_max": group_max,
+        "combination_budget": combination_budget,
+        "max_replacements": max_replacements,
         "static_pool_only": True,
+        "wall_time_limit_seconds": wall_time_seconds,
+        "timed_out": timed_out,
     }
 
 
@@ -892,6 +1008,7 @@ def targeted_optional_recovery(
     stage1_cap: int,
     maximum_trials: int = 60,
     assignment_time_limit_seconds: float = 30.0,
+    combination_budget: int = 12,
 ) -> tuple[list[Q3Flight], dict[str, object]]:
     started = time.perf_counter()
     incumbent, unserved, fixed_stats = optimize_fixed_flight_assignments(
@@ -922,6 +1039,7 @@ def targeted_optional_recovery(
                 target_optional_ids=targets,
                 operator="related",
                 seed=group_max,
+                combination_budget=combination_budget,
             )
             if stage2_key(candidate, people) < stage2_key(incumbent, people):
                 incumbent = candidate

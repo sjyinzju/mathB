@@ -1,0 +1,24 @@
+{
+  "scenario": "one-aircraft-unavailable-A03-T2",
+  "status": "no-feasible-reoptimization-found",
+  "constructor": {
+    "feasible": false,
+    "phase": "fleet_slot",
+    "failed_people": [
+      "P2464"
+    ],
+    "hard_count": 637,
+    "zero_cost_inserted": 1896,
+    "dynamic_flights": 107,
+    "runtime_seconds": 11.719494
+  },
+  "runtime_seconds": 11.719906,
+  "global_infeasibility_proof": false,
+  "variant_rebuild": {
+    "source_templates": 3116,
+    "rebuilt_variants": 3116,
+    "failed_templates": 0,
+    "empty_ods": [],
+    "runtime_seconds": 109.898928
+  }
+}

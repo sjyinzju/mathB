@@ -1,0 +1,22 @@
+{
+  "stage1": {
+    "incumbent_upper_bound_minutes": 29155,
+    "enhanced_global_lower_bound_minutes": 14125,
+    "certified_gap_percent": 51.552049,
+    "restricted_master_lp_minutes": 16613.127192982458,
+    "priced_full_pool_lp_minutes": 15197.677631578947,
+    "candidate_pool_reference_is_global_bound": false
+  },
+  "stage2": {
+    "served_optional_incumbent": 157,
+    "optional_upper_bound": 160,
+    "absolute_gap": 3,
+    "proven_optimal_for_original_problem": false,
+    "fixed_flight_assignment_optimal_only": true,
+    "unserved_ids": [
+      "P1102",
+      "P2239",
+      "P3290"
+    ]
+  }
+}

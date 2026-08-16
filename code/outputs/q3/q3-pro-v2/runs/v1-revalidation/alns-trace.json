@@ -1,0 +1,129 @@
+{
+  "requested_iterations": 1,
+  "completed_iterations": 1,
+  "wall_time_seconds": 6.344857,
+  "seed": 20260816,
+  "restart_threshold": 1,
+  "restarts": 1,
+  "global_improvements": 0,
+  "operator_stats": {
+    "related": {
+      "attempts": 0,
+      "feasible": 0,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 0.0,
+      "timeouts": 0,
+      "weight": 1.0
+    },
+    "high_cost": {
+      "attempts": 0,
+      "feasible": 0,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 0.0,
+      "timeouts": 0,
+      "weight": 1.0
+    },
+    "low_utilization": {
+      "attempts": 0,
+      "feasible": 0,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 0.0,
+      "timeouts": 0,
+      "weight": 1.0
+    },
+    "aircraft_chain": {
+      "attempts": 0,
+      "feasible": 0,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 0.0,
+      "timeouts": 0,
+      "weight": 1.0
+    },
+    "bottleneck_day": {
+      "attempts": 0,
+      "feasible": 0,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 0.0,
+      "timeouts": 0,
+      "weight": 1.0
+    },
+    "conflict_graph": {
+      "attempts": 0,
+      "feasible": 0,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 0.0,
+      "timeouts": 0,
+      "weight": 1.0
+    },
+    "random_related": {
+      "attempts": 0,
+      "feasible": 0,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 0.0,
+      "timeouts": 0,
+      "weight": 1.0
+    },
+    "cross_day": {
+      "attempts": 0,
+      "feasible": 0,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 0.0,
+      "timeouts": 0,
+      "weight": 0.35
+    },
+    "exact_lns": {
+      "attempts": 1,
+      "feasible": 1,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 6.247205499996198,
+      "timeouts": 0,
+      "weight": 0.2025
+    },
+    "route_polish": {
+      "attempts": 0,
+      "feasible": 0,
+      "accepted": 0,
+      "global_best": 0,
+      "total_saving": 0,
+      "total_runtime": 0.0,
+      "timeouts": 0,
+      "weight": 1.0
+    }
+  },
+  "failure_reason_histogram": {
+    "no_accepted_repair": 1
+  },
+  "convergence": [
+    {
+      "iteration": 1,
+      "elapsed_seconds": 6.342678,
+      "operator": "exact_lns",
+      "accepted": false,
+      "global_best": false,
+      "saving_minutes": 0,
+      "current_aircraft_time": 30180,
+      "best_aircraft_time": 29155,
+      "stagnation": 0,
+      "restart": true,
+      "elite_size": 2
+    }
+  ]
+}

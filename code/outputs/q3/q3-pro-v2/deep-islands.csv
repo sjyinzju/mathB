@@ -1,0 +1,5 @@
+﻿run,config_id,seed,operator_profile,iterations,final_aircraft_time,improvement,runtime_seconds,improvement_per_cpu_minute,accepted_rate,cross_day_attempts,cross_day_accepted,elite_size,elite_diversity,restart_threshold,group_range,heavy_group_range,cross_day_trials,route_limit,combination_budget,reaction_factor
+island-00-polish,island-00-polish,28279993,polish,64,28868,0,900.131123,0.0,0.0,8,0,5,0.06124249799949244,100,4-8,5-10,12,220,12,0.25
+island-01-crossday,island-01-crossday,28264858,crossday,132,28868,0,906.104556,0.0,0.045454545454545456,28,5,11,0.04885249988348938,100,2-5,5-10,12,100,3,0.08
+island-02-diverse,island-02-diverse,28269903,diverse,94,28868,0,900.232237,0.0,0.0,10,0,11,0.04885249988348938,100,3-6,4-8,12,140,5,0.12
+island-03-chain,island-03-chain,27278981,chain,59,28868,0,903.61514,0.0,0.0,9,0,11,0.04885249988348938,80,3-7,4-8,10,180,8,0.18

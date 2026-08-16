@@ -1,0 +1,23 @@
+{
+  "run_id": "q3-pro-v2-deep-v1",
+  "output_root": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00623-03a1-79d1-9a2e-6530cc2c1165\\q3-pro-v2-worktree\\code\\outputs\\q3\\q3-pro-v2",
+  "source_best": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00623-03a1-79d1-9a2e-6530cc2c1165\\q3-pro-v2-worktree\\code\\outputs\\q3\\q3-pro-v2\\current_incumbent",
+  "variant_cache": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00623-03a1-79d1-9a2e-6530cc2c1165\\q3-pro-v2-worktree\\code\\outputs\\q2\\pair_n3_h10.pkl",
+  "master_seed": 20260818,
+  "screen_configs": 20,
+  "screen_seeds": 2,
+  "screen_iterations": 20,
+  "screen_wall_time": 60.0,
+  "deep_islands": 4,
+  "deep_iterations": 500,
+  "deep_wall_time": 900.0,
+  "optional_trials": 5,
+  "exact_windows": 50,
+  "exact_time_limit": 5.0,
+  "aircraft_day_windows": 10,
+  "recombination_pairs": 20,
+  "pricing_iterations": 50,
+  "run_global_bound": true,
+  "resume": false,
+  "source_commit": "b71dad431a1a89490694c78afd3efc69baf0b307"
+}

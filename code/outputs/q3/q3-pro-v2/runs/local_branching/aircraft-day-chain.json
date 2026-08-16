@@ -1,0 +1,365 @@
+{
+  "windows": 10,
+  "rows": [
+    {
+      "window": 0,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.023091,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 1,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.483321,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 2,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.507189,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 3,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.007498,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 4,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.484514,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 5,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.082531,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 6,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.296594,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 7,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.195153,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 8,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.320724,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    },
+    {
+      "window": 9,
+      "accepted": false,
+      "before_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "after_key": [
+        28868.0,
+        251327.0,
+        163.0,
+        228215.7,
+        -0.5983474221083577
+      ],
+      "trace": {
+        "trials": 2,
+        "accepted_count": 0,
+        "accepted_histogram": {},
+        "saved_aircraft_time_minutes": 0,
+        "runtime_seconds": 30.219245,
+        "rejection_reasons": {
+          "no_accepted_repair": 2
+        },
+        "moves": [],
+        "group_min": 3,
+        "group_max": 10,
+        "combination_budget": 40,
+        "max_replacements": 8,
+        "static_pool_only": true,
+        "wall_time_limit_seconds": 30.0,
+        "timed_out": true
+      }
+    }
+  ]
+}

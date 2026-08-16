@@ -1,0 +1,63 @@
+{
+  "stage1_search": {
+    "operator_attempts": 766,
+    "accepted": 29,
+    "global_best_events": 23,
+    "failure_histogram": {
+      "no_accepted_repair": 560
+    },
+    "operators": [
+      {"operator": "related", "attempts": 82, "accepted": 0, "global_best": 0, "runtime_seconds": 689.49},
+      {"operator": "high_cost", "attempts": 69, "accepted": 0, "global_best": 0, "runtime_seconds": 625.37},
+      {"operator": "low_utilization", "attempts": 74, "accepted": 0, "global_best": 0, "runtime_seconds": 637.08},
+      {"operator": "aircraft_chain", "attempts": 78, "accepted": 0, "global_best": 0, "runtime_seconds": 587.46},
+      {"operator": "bottleneck_day", "attempts": 66, "accepted": 0, "global_best": 0, "runtime_seconds": 506.33},
+      {"operator": "conflict_graph", "attempts": 82, "accepted": 0, "global_best": 0, "runtime_seconds": 688.68},
+      {"operator": "random_related", "attempts": 87, "accepted": 0, "global_best": 0, "runtime_seconds": 747.40},
+      {"operator": "cross_day", "attempts": 129, "accepted": 28, "global_best": 23, "runtime_seconds": 1065.83},
+      {"operator": "exact_lns", "attempts": 22, "accepted": 0, "global_best": 0, "runtime_seconds": 458.07},
+      {"operator": "route_polish", "attempts": 77, "accepted": 1, "global_best": 0, "runtime_seconds": 42.94}
+    ],
+    "budget_decision": "Cross-Day received the highest retained priority because it produced 28/29 accepted moves and every Stage 1 global-best event."
+  },
+  "guided_exact": {
+    "windows": 50,
+    "accepted": 0,
+    "window_wall_time_reached": 50,
+    "runtime_seconds": 1876.936,
+    "interpretation": "No improvement in the tested finite neighbourhoods; not a global optimality proof."
+  },
+  "stage2_optional": [
+    {
+      "person_id": "P1102",
+      "od": ["F009", "F003"],
+      "primary_blocker": "fixed flights have no seat on the critical leg",
+      "time_compatible_flights": 1,
+      "critical_blocker_passengers": 12
+    },
+    {
+      "person_id": "P2239",
+      "od": ["LAND", "F035"],
+      "primary_blocker": "fixed flights have no seat on the critical leg",
+      "time_compatible_flights": 1,
+      "critical_blocker_passengers": 19,
+      "compatible_bases": ["A01", "A02", "A03"]
+    },
+    {
+      "person_id": "P3290",
+      "od": ["F009", "F003"],
+      "primary_blocker": "fixed flights have no seat on the critical leg",
+      "time_compatible_flights": 1,
+      "critical_blocker_passengers": 12
+    }
+  ],
+  "optional_rescue": {
+    "accepted_structural_moves": 1,
+    "temporary_before": 157,
+    "temporary_after": 157,
+    "aircraft_time_before": 28868,
+    "aircraft_time_after": 28728,
+    "p0_feedback_improvement_minutes": 140,
+    "unrestricted_158_159_160_status": "open"
+  }
+}

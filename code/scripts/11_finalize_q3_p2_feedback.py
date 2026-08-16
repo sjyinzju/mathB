@@ -22,8 +22,8 @@ from src.solver.q3 import (
     optimize_fixed_flight_assignments,
     project_mandatory_only,
     schedule_metrics,
+    stage2_key,
 )
-from src.solver.q3_closure_p2 import stage2_key
 from src.validation import validate_solution
 
 
