@@ -1,6 +1,0 @@
-configuration,stage1_aircraft_time_minutes,stage1_passenger_time_minutes,stage1_flights,stage2_temporary_served,stage2_aircraft_time_minutes,stage2_passenger_time_minutes,stage2_flights,fuel_kg,validator_pass,total_runtime_seconds
-old_deep_solution,30546,241130,173,160,30510,249959,173,241607.7,true,
-p0_projection,30510,240522,173,160,30510,249959,173,241133.6,true,
-single_flight_polish,30428,240245,173,,,,240857.4,true,
-multiflight_rr_round1,30290,240268,172,158,30197,250062,171,240607.3,true,
-feedback_final,30180,240363,171,158,30180,250013,171,239702.3,true,91.395597

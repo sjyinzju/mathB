@@ -1,0 +1,1433 @@
+{
+  "attempts": 84,
+  "rows": [
+    {
+      "pair": 0,
+      "direction": 0,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29374,
+        "total_passenger_travel_time_minutes": 240995,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 233102.0,
+        "seat_utilization": 0.5662447582097181,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 0,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29390,
+        "total_passenger_travel_time_minutes": 241171,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 233157.0,
+        "seat_utilization": 0.5661958970607022,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 0,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29521,
+        "total_passenger_travel_time_minutes": 241126,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234537.3,
+        "seat_utilization": 0.5642551954363473,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 0,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29637,
+        "total_passenger_travel_time_minutes": 240717,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235497.3,
+        "seat_utilization": 0.5614142455590627,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 0,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29637,
+        "total_passenger_travel_time_minutes": 240717,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235497.3,
+        "seat_utilization": 0.5614142455590627,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 0,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 0,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 1,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29961,
+        "total_passenger_travel_time_minutes": 240386,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237984.8,
+        "seat_utilization": 0.5544690550221524,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 1,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29945,
+        "total_passenger_travel_time_minutes": 240210,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237929.8,
+        "seat_utilization": 0.5543559678282961,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 1,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29814,
+        "total_passenger_travel_time_minutes": 240255,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236549.5,
+        "seat_utilization": 0.5562575743717559,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 1,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29698,
+        "total_passenger_travel_time_minutes": 240610,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235589.5,
+        "seat_utilization": 0.5591116706093108,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 1,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29698,
+        "total_passenger_travel_time_minutes": 240610,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235589.5,
+        "seat_utilization": 0.5591116706093108,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 1,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29155,
+        "total_passenger_travel_time_minutes": 241018,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231384.5,
+        "seat_utilization": 0.5701632025761124,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 0,
+      "direction": 1,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29155,
+        "total_passenger_travel_time_minutes": 241018,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231384.5,
+        "seat_utilization": 0.5701632025761124,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 0,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29390,
+        "total_passenger_travel_time_minutes": 241171,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 233157.0,
+        "seat_utilization": 0.5661958970607022,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 0,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29390,
+        "total_passenger_travel_time_minutes": 241171,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 233157.0,
+        "seat_utilization": 0.5661958970607022,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 0,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29521,
+        "total_passenger_travel_time_minutes": 241126,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234537.3,
+        "seat_utilization": 0.5642551954363473,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 0,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29637,
+        "total_passenger_travel_time_minutes": 240717,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235497.3,
+        "seat_utilization": 0.5614142455590627,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 0,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29637,
+        "total_passenger_travel_time_minutes": 240717,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235497.3,
+        "seat_utilization": 0.5614142455590627,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 0,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 0,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 1,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29961,
+        "total_passenger_travel_time_minutes": 240386,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237984.8,
+        "seat_utilization": 0.5544690550221524,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 1,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29961,
+        "total_passenger_travel_time_minutes": 240386,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237984.8,
+        "seat_utilization": 0.5544690550221524,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 1,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29830,
+        "total_passenger_travel_time_minutes": 240431,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236604.5,
+        "seat_utilization": 0.5563963057790783,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 1,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29714,
+        "total_passenger_travel_time_minutes": 240786,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235644.5,
+        "seat_utilization": 0.5590637341568699,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 1,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29714,
+        "total_passenger_travel_time_minutes": 240786,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235644.5,
+        "seat_utilization": 0.5590902828802351,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 1,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29171,
+        "total_passenger_travel_time_minutes": 241194,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231439.5,
+        "seat_utilization": 0.5702475650300859,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 1,
+      "direction": 1,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29171,
+        "total_passenger_travel_time_minutes": 241194,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231439.5,
+        "seat_utilization": 0.5702475650300859,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 0,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29443,
+        "total_passenger_travel_time_minutes": 241481,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 233424.0,
+        "seat_utilization": 0.5656167370227768,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 0,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29443,
+        "total_passenger_travel_time_minutes": 241481,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 233424.0,
+        "seat_utilization": 0.5656167370227768,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 0,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29574,
+        "total_passenger_travel_time_minutes": 241406,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234804.3,
+        "seat_utilization": 0.5638042950740112,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 0,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29811,
+        "total_passenger_travel_time_minutes": 240724,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236802.3,
+        "seat_utilization": 0.5579481953096372,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 0,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29811,
+        "total_passenger_travel_time_minutes": 240724,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236802.3,
+        "seat_utilization": 0.5579746759344082,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 0,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 0,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 1,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29961,
+        "total_passenger_travel_time_minutes": 240386,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237984.8,
+        "seat_utilization": 0.5544690550221524,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 1,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29961,
+        "total_passenger_travel_time_minutes": 240386,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237984.8,
+        "seat_utilization": 0.5544690550221524,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 1,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29830,
+        "total_passenger_travel_time_minutes": 240431,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236604.5,
+        "seat_utilization": 0.5563963057790783,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 1,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29593,
+        "total_passenger_travel_time_minutes": 241143,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234606.5,
+        "seat_utilization": 0.562076850324679,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 1,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29593,
+        "total_passenger_travel_time_minutes": 241143,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234606.5,
+        "seat_utilization": 0.562076850324679,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 1,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29224,
+        "total_passenger_travel_time_minutes": 241504,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231706.5,
+        "seat_utilization": 0.5696296220525829,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 2,
+      "direction": 1,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29224,
+        "total_passenger_travel_time_minutes": 241504,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231706.5,
+        "seat_utilization": 0.5696296220525829,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 0,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29507,
+        "total_passenger_travel_time_minutes": 242095,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 233517.5,
+        "seat_utilization": 0.5644841062056324,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 0,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29507,
+        "total_passenger_travel_time_minutes": 242095,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 233517.5,
+        "seat_utilization": 0.5644841062056324,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 0,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29638,
+        "total_passenger_travel_time_minutes": 242020,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234897.8,
+        "seat_utilization": 0.5625483500707036,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 0,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29811,
+        "total_passenger_travel_time_minutes": 240724,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236802.3,
+        "seat_utilization": 0.5579481953096372,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 0,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29811,
+        "total_passenger_travel_time_minutes": 240724,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236802.3,
+        "seat_utilization": 0.5579746759344082,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 0,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 0,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 1,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29961,
+        "total_passenger_travel_time_minutes": 240386,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237984.8,
+        "seat_utilization": 0.5544690550221524,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 1,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29961,
+        "total_passenger_travel_time_minutes": 240386,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237984.8,
+        "seat_utilization": 0.5544690550221524,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 1,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29830,
+        "total_passenger_travel_time_minutes": 240431,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236604.5,
+        "seat_utilization": 0.5563963057790783,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 1,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29657,
+        "total_passenger_travel_time_minutes": 241757,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234700.0,
+        "seat_utilization": 0.5608300740213983,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 1,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29657,
+        "total_passenger_travel_time_minutes": 241757,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234700.0,
+        "seat_utilization": 0.5608300740213983,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 1,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29288,
+        "total_passenger_travel_time_minutes": 242118,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231800.0,
+        "seat_utilization": 0.5683387873515312,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 3,
+      "direction": 1,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29288,
+        "total_passenger_travel_time_minutes": 242118,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231800.0,
+        "seat_utilization": 0.5683118509324006,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 0,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29163,
+        "total_passenger_travel_time_minutes": 241226,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231646.9,
+        "seat_utilization": 0.5695691540710655,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 0,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29179,
+        "total_passenger_travel_time_minutes": 241402,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231701.9,
+        "seat_utilization": 0.5696528153728248,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 0,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29194,
+        "total_passenger_travel_time_minutes": 241417,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231749.4,
+        "seat_utilization": 0.5697169657654868,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 0,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29310,
+        "total_passenger_travel_time_minutes": 241008,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 232709.4,
+        "seat_utilization": 0.566716429089275,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 0,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29310,
+        "total_passenger_travel_time_minutes": 241008,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 232709.4,
+        "seat_utilization": 0.566716429089275,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 0,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29659,
+        "total_passenger_travel_time_minutes": 240761,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235329.4,
+        "seat_utilization": 0.559681286005651,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 0,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29659,
+        "total_passenger_travel_time_minutes": 240761,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235329.4,
+        "seat_utilization": 0.559681286005651,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 1,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29651,
+        "total_passenger_travel_time_minutes": 240553,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235067.0,
+        "seat_utilization": 0.5602762077975896,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 1,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29635,
+        "total_passenger_travel_time_minutes": 240377,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235012.0,
+        "seat_utilization": 0.5602986724390048,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 1,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29620,
+        "total_passenger_travel_time_minutes": 240362,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 234964.5,
+        "seat_utilization": 0.5603125863736871,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 1,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29504,
+        "total_passenger_travel_time_minutes": 240717,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234004.5,
+        "seat_utilization": 0.5630971798075144,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 1,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29504,
+        "total_passenger_travel_time_minutes": 240717,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234004.5,
+        "seat_utilization": 0.563070429622432,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 1,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29155,
+        "total_passenger_travel_time_minutes": 241018,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231384.5,
+        "seat_utilization": 0.5701632025761124,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 4,
+      "direction": 1,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29155,
+        "total_passenger_travel_time_minutes": 241018,
+        "total_flights": 165,
+        "total_fuel_consumption_kg": 231384.5,
+        "seat_utilization": 0.5701632025761124,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 0,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29564,
+        "total_passenger_travel_time_minutes": 241124,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234462.0,
+        "seat_utilization": 0.5626774768847179,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 0,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29564,
+        "total_passenger_travel_time_minutes": 241124,
+        "total_flights": 167,
+        "total_fuel_consumption_kg": 234462.0,
+        "seat_utilization": 0.5626774768847179,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 0,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29695,
+        "total_passenger_travel_time_minutes": 241079,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235842.3,
+        "seat_utilization": 0.5608933623941847,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 0,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29811,
+        "total_passenger_travel_time_minutes": 240724,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236802.3,
+        "seat_utilization": 0.5579481953096372,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 0,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29811,
+        "total_passenger_travel_time_minutes": 240724,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236802.3,
+        "seat_utilization": 0.5579746759344082,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 0,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 0,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 30180,
+        "total_passenger_travel_time_minutes": 240363,
+        "total_flights": 171,
+        "total_fuel_consumption_kg": 239702.3,
+        "seat_utilization": 0.5506212706807703,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 1,
+      "step": 1,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29961,
+        "total_passenger_travel_time_minutes": 240386,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237984.8,
+        "seat_utilization": 0.5544690550221524,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 1,
+      "step": 2,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29961,
+        "total_passenger_travel_time_minutes": 240386,
+        "total_flights": 170,
+        "total_fuel_consumption_kg": 237984.8,
+        "seat_utilization": 0.5544690550221524,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 1,
+      "step": 3,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29830,
+        "total_passenger_travel_time_minutes": 240431,
+        "total_flights": 169,
+        "total_fuel_consumption_kg": 236604.5,
+        "seat_utilization": 0.5563963057790783,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 1,
+      "step": 4,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29714,
+        "total_passenger_travel_time_minutes": 240786,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235644.5,
+        "seat_utilization": 0.5590637341568699,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 1,
+      "step": 5,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29714,
+        "total_passenger_travel_time_minutes": 240786,
+        "total_flights": 168,
+        "total_fuel_consumption_kg": 235644.5,
+        "seat_utilization": 0.5590902828802351,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 1,
+      "step": 6,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29345,
+        "total_passenger_travel_time_minutes": 241147,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 232744.5,
+        "seat_utilization": 0.5667556781159825,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    },
+    {
+      "pair": 5,
+      "direction": 1,
+      "step": 7,
+      "feasible": true,
+      "improved": false,
+      "metrics": {
+        "total_aircraft_time_minutes": 29345,
+        "total_passenger_travel_time_minutes": 241147,
+        "total_flights": 166,
+        "total_fuel_consumption_kg": 232744.5,
+        "seat_utilization": 0.5667556781159825,
+        "served_mandatory": 3840,
+        "served_optional": 0
+      },
+      "fixed_flight_optimal": true
+    }
+  ]
+}

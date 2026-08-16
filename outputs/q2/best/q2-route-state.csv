@@ -1,5 +1,0 @@
-﻿leg_order,leg,departure_load,capacity,arrival_fuel_kg,departure_fuel_kg,reserve_kg,refuel_at_destination
-0,A02→F018,19,19,979.4,1600,200,1
-1,F018→F026,19,19,1559.4,1559.4,200,0
-2,F026→F033,18,19,1457.9,1457.9,200,0
-3,F033→A02,19,19,764.8000000000001,764.8000000000001,200,0

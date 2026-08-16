@@ -1,8 +1,0 @@
-运行编号: 20260814-b1-reprocheck
-方法: q1_b1_generalized_savings
-路线数: 100
-服务人数: 1600
-Validator: PASS
-指标一致: True
-阶段门: PASS
-总耗时秒: 87.470

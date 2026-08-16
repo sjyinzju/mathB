@@ -1,0 +1,755 @@
+{
+  "global_valid_lower_bound": {
+    "name": "layered_continuous_multicommodity_flow",
+    "valid_for_original_problem": true,
+    "objective_minutes_continuous": 14124.894736842096,
+    "objective_minutes_integer_ceiling": 14125,
+    "solver_status": 0,
+    "solver_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "runtime_seconds": 128.672839,
+    "variables": 191124,
+    "equality_constraints": 3613,
+    "inequality_constraints": 2973,
+    "details": {
+      "mandatory_people": 3840,
+      "destination_aggregated_commodities": 56,
+      "aircraft_layers": 9,
+      "aircraft_arc_variables": 24804,
+      "passenger_arc_variables": 166320,
+      "relaxed_features": [
+        "continuous aircraft flow",
+        "split passenger flow and transfers",
+        "integer sorties",
+        "fuel and refuelling",
+        "time windows and daily assignment",
+        "turnaround and no-overlap",
+        "maximum sea-stop count"
+      ]
+    }
+  },
+  "restricted_master": {
+    "name": "finite_candidate_route_master_lp",
+    "valid_for_original_problem": false,
+    "objective_minutes_continuous": 17217.416666666664,
+    "objective_minutes_integer_ceiling": 17218,
+    "solver_status": 0,
+    "solver_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "runtime_seconds": 0.056157,
+    "variables": 1618,
+    "equality_constraints": 264,
+    "inequality_constraints": 601,
+    "details": {
+      "scope": "finite cached route pool only; not a global lower bound",
+      "mandatory_people": 3840,
+      "od_count": 264,
+      "route_variants": 229,
+      "compatible_od_route_assignments": 1389,
+      "selected_route_columns": 107,
+      "top_selected_routes": [
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F001', 0), ('F016', 0), ('A01', 0)), ('F001', 'F016'))",
+          "multiplicity": 2.9473684210526314,
+          "duration": 161
+        },
+        {
+          "route_key": "('A01', 'T2', (('A01', 0), ('F020', 0), ('A01', 0)), ('F020',))",
+          "multiplicity": 2.8125,
+          "duration": 104
+        },
+        {
+          "route_key": "('A01', 'T2', (('A01', 0), ('F022', 0), ('A01', 0)), ('F022',))",
+          "multiplicity": 2.25,
+          "duration": 116
+        },
+        {
+          "route_key": "('A02', 'T3', (('A02', 0), ('F020', 0), ('F019', 0), ('A02', 0)), ('F020', 'F019'))",
+          "multiplicity": 2.1052631578947367,
+          "duration": 160
+        },
+        {
+          "route_key": "('A02', 'T3', (('A02', 0), ('F029', 0), ('F021', 0), ('A02', 0)), ('F029', 'F021'))",
+          "multiplicity": 2.0,
+          "duration": 165
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F030', 0), ('F026', 0), ('A01', 0)), ('F030', 'F026'))",
+          "multiplicity": 1.8421052631578947,
+          "duration": 154
+        },
+        {
+          "route_key": "('A02', 'T2', (('A02', 0), ('F031', 1), ('F023', 0), ('F032', 0), ('A02', 0)), ('F023', 'F032'))",
+          "multiplicity": 1.8125,
+          "duration": 194
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F026', 0), ('F033', 0), ('A01', 0)), ('F026', 'F033'))",
+          "multiplicity": 1.7894736842105263,
+          "duration": 169
+        },
+        {
+          "route_key": "('A01', 'T2', (('A01', 0), ('F006', 1), ('F007', 0), ('F002', 0), ('A01', 0)), ('F007', 'F002'))",
+          "multiplicity": 1.75,
+          "duration": 178
+        },
+        {
+          "route_key": "('A02', 'T3', (('A02', 0), ('F024', 1), ('F034', 0), ('A02', 0)), ('F024', 'F034'))",
+          "multiplicity": 1.736842105263158,
+          "duration": 193
+        },
+        {
+          "route_key": "('A02', 'T2', (('A02', 0), ('F023', 0), ('F031', 1), ('A02', 0)), ('F023',))",
+          "multiplicity": 1.6875,
+          "duration": 176
+        },
+        {
+          "route_key": "('A03', 'T3', (('A03', 0), ('F040', 0), ('F044', 1), ('F041', 0), ('A03', 0)), ('F040', 'F041'))",
+          "multiplicity": 1.631578947368421,
+          "duration": 258
+        },
+        {
+          "route_key": "('A01', 'T2', (('A01', 0), ('F010', 0), ('F011', 1), ('A01', 0)), ('F010',))",
+          "multiplicity": 1.5,
+          "duration": 157
+        },
+        {
+          "route_key": "('A01', 'T2', (('A01', 0), ('F028', 0), ('F018', 1), ('A01', 0)), ('F028', 'F018'))",
+          "multiplicity": 1.5,
+          "duration": 162
+        },
+        {
+          "route_key": "('A03', 'T2', (('A03', 0), ('F038', 1), ('F041', 0), ('F045', 0), ('A03', 0)), ('F041', 'F045'))",
+          "multiplicity": 1.4375,
+          "duration": 201
+        },
+        {
+          "route_key": "('A02', 'T2', (('A02', 0), ('F024', 1), ('F021', 0), ('F036', 0), ('A02', 0)), ('F021', 'F036'))",
+          "multiplicity": 1.375,
+          "duration": 176
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F004', 0), ('F007', 0), ('A01', 0)), ('F004', 'F007'))",
+          "multiplicity": 1.3157894736842106,
+          "duration": 169
+        },
+        {
+          "route_key": "('A03', 'T3', (('A03', 0), ('F046', 0), ('F047', 0), ('F031', 1), ('A03', 0)), ('F046', 'F047'))",
+          "multiplicity": 1.3157894736842106,
+          "duration": 208
+        },
+        {
+          "route_key": "('A01', 'T2', (('A01', 0), ('F030', 0), ('A01', 0)), ('F030',))",
+          "multiplicity": 1.3125,
+          "duration": 98
+        },
+        {
+          "route_key": "('A03', 'T2', (('A03', 0), ('F038', 1), ('F045', 0), ('A03', 0)), ('F038', 'F045'))",
+          "multiplicity": 1.3125,
+          "duration": 182
+        },
+        {
+          "route_key": "('A03', 'T3', (('A03', 0), ('F042', 0), ('F044', 1), ('A03', 0)), ('F042', 'F044'))",
+          "multiplicity": 1.263157894736842,
+          "duration": 266
+        },
+        {
+          "route_key": "('A01', 'T2', (('A01', 0), ('F006', 1), ('F010', 0), ('A01', 0)), ('F006', 'F010'))",
+          "multiplicity": 1.25,
+          "duration": 162
+        },
+        {
+          "route_key": "('A02', 'T2', (('A02', 0), ('F002', 0), ('F006', 1), ('F003', 0), ('A02', 0)), ('F002', 'F003'))",
+          "multiplicity": 1.25,
+          "duration": 195
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F012', 0), ('A01', 0)), ('F012',))",
+          "multiplicity": 1.2105263157894737,
+          "duration": 142
+        },
+        {
+          "route_key": "('A02', 'T3', (('A02', 0), ('F021', 0), ('F035', 0), ('F024', 1), ('A02', 0)), ('F021', 'F035'))",
+          "multiplicity": 1.2105263157894737,
+          "duration": 211
+        }
+      ],
+      "top_od_duals": [
+        {
+          "od": [
+            "F050",
+            "F043"
+          ],
+          "demand": 13,
+          "dual_minutes": 15.197368421052634
+        },
+        {
+          "od": [
+            "F050",
+            "A03"
+          ],
+          "demand": 6,
+          "dual_minutes": 13.894736842105265
+        },
+        {
+          "od": [
+            "F050",
+            "LAND"
+          ],
+          "demand": 17,
+          "dual_minutes": 13.894736842105265
+        },
+        {
+          "od": [
+            "F037",
+            "A03"
+          ],
+          "demand": 1,
+          "dual_minutes": 13.842105263157896
+        },
+        {
+          "od": [
+            "F037",
+            "LAND"
+          ],
+          "demand": 26,
+          "dual_minutes": 13.842105263157896
+        },
+        {
+          "od": [
+            "F042",
+            "A03"
+          ],
+          "demand": 5,
+          "dual_minutes": 13.36842105263158
+        },
+        {
+          "od": [
+            "F042",
+            "LAND"
+          ],
+          "demand": 19,
+          "dual_minutes": 13.36842105263158
+        },
+        {
+          "od": [
+            "F040",
+            "A03"
+          ],
+          "demand": 7,
+          "dual_minutes": 12.947368421052632
+        },
+        {
+          "od": [
+            "F040",
+            "LAND"
+          ],
+          "demand": 19,
+          "dual_minutes": 12.947368421052632
+        },
+        {
+          "od": [
+            "F044",
+            "A03"
+          ],
+          "demand": 4,
+          "dual_minutes": 12.947368421052632
+        },
+        {
+          "od": [
+            "F044",
+            "LAND"
+          ],
+          "demand": 31,
+          "dual_minutes": 12.947368421052632
+        },
+        {
+          "od": [
+            "F032",
+            "A02"
+          ],
+          "demand": 4,
+          "dual_minutes": 12.125
+        },
+        {
+          "od": [
+            "F032",
+            "LAND"
+          ],
+          "demand": 25,
+          "dual_minutes": 12.125
+        },
+        {
+          "od": [
+            "A03",
+            "F045"
+          ],
+          "demand": 7,
+          "dual_minutes": 11.375
+        },
+        {
+          "od": [
+            "LAND",
+            "F045"
+          ],
+          "demand": 26,
+          "dual_minutes": 11.375
+        },
+        {
+          "od": [
+            "F043",
+            "F051"
+          ],
+          "demand": 18,
+          "dual_minutes": 11.348684210526317
+        },
+        {
+          "od": [
+            "A03",
+            "F048"
+          ],
+          "demand": 5,
+          "dual_minutes": 11.105263157894736
+        },
+        {
+          "od": [
+            "LAND",
+            "F048"
+          ],
+          "demand": 26,
+          "dual_minutes": 11.105263157894736
+        },
+        {
+          "od": [
+            "F041",
+            "A03"
+          ],
+          "demand": 3,
+          "dual_minutes": 11.085526315789474
+        },
+        {
+          "od": [
+            "F041",
+            "F045"
+          ],
+          "demand": 16,
+          "dual_minutes": 11.085526315789474
+        },
+        {
+          "od": [
+            "F041",
+            "LAND"
+          ],
+          "demand": 17,
+          "dual_minutes": 11.085526315789474
+        },
+        {
+          "od": [
+            "F023",
+            "A02"
+          ],
+          "demand": 6,
+          "dual_minutes": 11.0
+        },
+        {
+          "od": [
+            "F023",
+            "LAND"
+          ],
+          "demand": 21,
+          "dual_minutes": 11.0
+        },
+        {
+          "od": [
+            "F049",
+            "F048"
+          ],
+          "demand": 14,
+          "dual_minutes": 10.648026315789474
+        },
+        {
+          "od": [
+            "F046",
+            "A03"
+          ],
+          "demand": 5,
+          "dual_minutes": 10.460526315789474
+        }
+      ],
+      "capacity_shadow_rows_nonzero": 416,
+      "negative_reduced_cost_columns": 0,
+      "duals_are_restricted_master_only": true,
+      "relaxed_features": [
+        "continuous route multiplicity",
+        "time windows and daily assignment",
+        "concrete aircraft no-overlap",
+        "integer passenger assignment"
+      ]
+    }
+  },
+  "finite_pool_master": {
+    "name": "finite_candidate_route_master_lp",
+    "valid_for_original_problem": false,
+    "objective_minutes_continuous": 15197.677631578943,
+    "objective_minutes_integer_ceiling": 15198,
+    "solver_status": 0,
+    "solver_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "runtime_seconds": 9.295182,
+    "variables": 26367,
+    "equality_constraints": 264,
+    "inequality_constraints": 12235,
+    "details": {
+      "scope": "finite cached route pool only; not a global lower bound",
+      "mandatory_people": 3840,
+      "od_count": 264,
+      "route_variants": 3116,
+      "compatible_od_route_assignments": 23251,
+      "selected_route_columns": 161,
+      "top_selected_routes": [
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F020', 0), ('A01', 0)), ('F020',))",
+          "multiplicity": 2.1578947368421053,
+          "duration": 118
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F022', 0), ('A01', 0)), ('F022',))",
+          "multiplicity": 1.7894736842105263,
+          "duration": 134
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F024', 1), ('F034', 0), ('A01', 0)), ('F024', 'F034'))",
+          "multiplicity": 1.631578947368421,
+          "duration": 187
+        },
+        {
+          "route_key": "('A03', 'T3', (('A03', 0), ('F038', 1), ('F051', 0), ('A03', 0)), ('F038', 'F051'))",
+          "multiplicity": 1.368421052631579,
+          "duration": 209
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F002', 0), ('F004', 0), ('A01', 0)), ('F002', 'F004'))",
+          "multiplicity": 1.263157894736842,
+          "duration": 163
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F033', 0), ('F001', 0), ('A01', 0)), ('F033', 'F001'))",
+          "multiplicity": 1.263157894736842,
+          "duration": 168
+        },
+        {
+          "route_key": "('A02', 'T3', (('A02', 0), ('F031', 1), ('F023', 0), ('A02', 0)), ('F031', 'F023'))",
+          "multiplicity": 1.263157894736842,
+          "duration": 200
+        },
+        {
+          "route_key": "('A01', 'T2', (('A01', 0), ('F004', 0), ('F007', 0), ('F006', 1), ('A01', 0)), ('F004', 'F007'))",
+          "multiplicity": 1.125,
+          "duration": 173
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F011', 0), ('A01', 0)), ('F011',))",
+          "multiplicity": 1.105263157894737,
+          "duration": 138
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F006', 0), ('F010', 0), ('A01', 0)), ('F006', 'F010'))",
+          "multiplicity": 1.0526315789473684,
+          "duration": 173
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F003', 0), ('F007', 0), ('A01', 0)), ('F003', 'F007'))",
+          "multiplicity": 1.0,
+          "duration": 171
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F019', 0), ('A01', 0)), ('F019',))",
+          "multiplicity": 1.0,
+          "duration": 140
+        },
+        {
+          "route_key": "('A03', 'T3', (('A03', 0), ('F044', 1), ('F037', 0), ('A03', 0)), ('F044', 'F037'))",
+          "multiplicity": 1.0,
+          "duration": 263
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F001', 0), ('F016', 0), ('A01', 0)), ('F001', 'F016'))",
+          "multiplicity": 0.9473684210526315,
+          "duration": 161
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F012', 0), ('A01', 0)), ('F012',))",
+          "multiplicity": 0.9473684210526315,
+          "duration": 142
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F017', 0), ('F014', 0), ('A01', 0)), ('F017', 'F014'))",
+          "multiplicity": 0.9473684210526315,
+          "duration": 133
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F030', 0), ('F026', 0), ('A01', 0)), ('F030', 'F026'))",
+          "multiplicity": 0.9473684210526315,
+          "duration": 154
+        },
+        {
+          "route_key": "('A02', 'T3', (('A02', 0), ('F046', 0), ('F047', 0), ('F031', 1), ('A02', 0)), ('F046', 'F047'))",
+          "multiplicity": 0.9473684210526315,
+          "duration": 202
+        },
+        {
+          "route_key": "('A03', 'T3', (('A03', 0), ('F039', 0), ('F048', 0), ('F038', 1), ('A03', 0)), ('F039', 'F048'))",
+          "multiplicity": 0.9473684210526315,
+          "duration": 211
+        },
+        {
+          "route_key": "('A03', 'T3', (('A03', 0), ('F041', 0), ('F044', 1), ('A03', 0)), ('F041', 'F044'))",
+          "multiplicity": 0.9473684210526315,
+          "duration": 232
+        },
+        {
+          "route_key": "('A03', 'T3', (('A03', 0), ('F043', 0), ('F051', 0), ('F038', 1), ('A03', 0)), ('F043', 'F051'))",
+          "multiplicity": 0.9473684210526315,
+          "duration": 238
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F021', 0), ('A01', 0)), ('F021',))",
+          "multiplicity": 0.8947368421052632,
+          "duration": 148
+        },
+        {
+          "route_key": "('A01', 'T3', (('A01', 0), ('F021', 0), ('F036', 0), ('A01', 0)), ('F021', 'F036'))",
+          "multiplicity": 0.8947368421052632,
+          "duration": 167
+        },
+        {
+          "route_key": "('A02', 'T3', (('A02', 0), ('F036', 0), ('A02', 0)), ('F036',))",
+          "multiplicity": 0.8947368421052632,
+          "duration": 146
+        },
+        {
+          "route_key": "('A03', 'T3', (('A03', 0), ('F038', 1), ('F048', 0), ('F039', 0), ('A03', 0)), ('F048', 'F039'))",
+          "multiplicity": 0.8947368421052632,
+          "duration": 211
+        }
+      ],
+      "top_od_duals": [
+        {
+          "od": [
+            "F050",
+            "A03"
+          ],
+          "demand": 6,
+          "dual_minutes": 13.631578947368421
+        },
+        {
+          "od": [
+            "F050",
+            "LAND"
+          ],
+          "demand": 17,
+          "dual_minutes": 13.631578947368421
+        },
+        {
+          "od": [
+            "F042",
+            "A03"
+          ],
+          "demand": 5,
+          "dual_minutes": 13.000000000000002
+        },
+        {
+          "od": [
+            "F042",
+            "LAND"
+          ],
+          "demand": 19,
+          "dual_minutes": 13.000000000000002
+        },
+        {
+          "od": [
+            "F037",
+            "A03"
+          ],
+          "demand": 1,
+          "dual_minutes": 12.842105263157896
+        },
+        {
+          "od": [
+            "F037",
+            "LAND"
+          ],
+          "demand": 26,
+          "dual_minutes": 12.842105263157896
+        },
+        {
+          "od": [
+            "F040",
+            "A03"
+          ],
+          "demand": 7,
+          "dual_minutes": 10.578947368421053
+        },
+        {
+          "od": [
+            "F040",
+            "LAND"
+          ],
+          "demand": 19,
+          "dual_minutes": 10.578947368421053
+        },
+        {
+          "od": [
+            "F044",
+            "A03"
+          ],
+          "demand": 4,
+          "dual_minutes": 10.578947368421053
+        },
+        {
+          "od": [
+            "F044",
+            "LAND"
+          ],
+          "demand": 31,
+          "dual_minutes": 10.578947368421053
+        },
+        {
+          "od": [
+            "F032",
+            "A02"
+          ],
+          "demand": 4,
+          "dual_minutes": 10.421052631578949
+        },
+        {
+          "od": [
+            "F032",
+            "LAND"
+          ],
+          "demand": 25,
+          "dual_minutes": 10.421052631578949
+        },
+        {
+          "od": [
+            "F041",
+            "F045"
+          ],
+          "demand": 16,
+          "dual_minutes": 10.368421052631579
+        },
+        {
+          "od": [
+            "F043",
+            "A03"
+          ],
+          "demand": 7,
+          "dual_minutes": 10.31578947368421
+        },
+        {
+          "od": [
+            "F043",
+            "LAND"
+          ],
+          "demand": 23,
+          "dual_minutes": 10.31578947368421
+        },
+        {
+          "od": [
+            "F023",
+            "A02"
+          ],
+          "demand": 6,
+          "dual_minutes": 10.210526315789474
+        },
+        {
+          "od": [
+            "F023",
+            "LAND"
+          ],
+          "demand": 21,
+          "dual_minutes": 10.210526315789474
+        },
+        {
+          "od": [
+            "F052",
+            "F048"
+          ],
+          "demand": 16,
+          "dual_minutes": 9.63157894736842
+        },
+        {
+          "od": [
+            "F028",
+            "A02"
+          ],
+          "demand": 4,
+          "dual_minutes": 9.578947368421053
+        },
+        {
+          "od": [
+            "F041",
+            "A03"
+          ],
+          "demand": 3,
+          "dual_minutes": 9.36842105263158
+        },
+        {
+          "od": [
+            "F041",
+            "LAND"
+          ],
+          "demand": 17,
+          "dual_minutes": 9.36842105263158
+        },
+        {
+          "od": [
+            "F038",
+            "F045"
+          ],
+          "demand": 19,
+          "dual_minutes": 9.263157894736842
+        },
+        {
+          "od": [
+            "F039",
+            "F048"
+          ],
+          "demand": 18,
+          "dual_minutes": 9.210526315789473
+        },
+        {
+          "od": [
+            "F003",
+            "F007"
+          ],
+          "demand": 19,
+          "dual_minutes": 9.0
+        },
+        {
+          "od": [
+            "F035",
+            "A02"
+          ],
+          "demand": 1,
+          "dual_minutes": 9.0
+        }
+      ],
+      "capacity_shadow_rows_nonzero": 7610,
+      "negative_reduced_cost_columns": 0,
+      "duals_are_restricted_master_only": true,
+      "relaxed_features": [
+        "continuous route multiplicity",
+        "time windows and daily assignment",
+        "concrete aircraft no-overlap",
+        "integer passenger assignment"
+      ]
+    }
+  },
+  "best_feasible_ub": 28728,
+  "certified_gap_percent": 50.83194096351991,
+  "optional_certificate": {
+    "served": 157,
+    "fixed_structure_optimal": true,
+    "unrestricted_160": "open",
+    "unrestricted_159": "open",
+    "unrestricted_158": "open"
+  }
+}

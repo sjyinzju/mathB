@@ -1,0 +1,166 @@
+{
+  "scope": "fast deterministic incumbent stress tests; no claim of globally optimal recovery",
+  "turnaround": {
+    "40": {
+      "incumbent_remains_feasible_without_recovery": false,
+      "violating_connections": 25,
+      "examples": [
+        {
+          "aircraft_id": "A01-T1-H01",
+          "left_end": 7767,
+          "right_start": 7805,
+          "gap": 38
+        },
+        {
+          "aircraft_id": "A01-T2-H01",
+          "left_end": 6361,
+          "right_start": 6391,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T2-H01",
+          "left_end": 7753,
+          "right_start": 7783,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T2-H01",
+          "left_end": 9299,
+          "right_start": 9329,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T2-H02",
+          "left_end": 534,
+          "right_start": 572,
+          "gap": 38
+        },
+        {
+          "aircraft_id": "A01-T2-H02",
+          "left_end": 6377,
+          "right_start": 6407,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T2-H02",
+          "left_end": 9216,
+          "right_start": 9251,
+          "gap": 35
+        },
+        {
+          "aircraft_id": "A01-T2-H03",
+          "left_end": 3459,
+          "right_start": 3495,
+          "gap": 36
+        },
+        {
+          "aircraft_id": "A01-T2-H03",
+          "left_end": 6348,
+          "right_start": 6378,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T3-H01",
+          "left_end": 625,
+          "right_start": 655,
+          "gap": 30
+        }
+      ]
+    },
+    "45": {
+      "incumbent_remains_feasible_without_recovery": false,
+      "violating_connections": 27,
+      "examples": [
+        {
+          "aircraft_id": "A01-T1-H01",
+          "left_end": 7767,
+          "right_start": 7805,
+          "gap": 38
+        },
+        {
+          "aircraft_id": "A01-T2-H01",
+          "left_end": 6361,
+          "right_start": 6391,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T2-H01",
+          "left_end": 7753,
+          "right_start": 7783,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T2-H01",
+          "left_end": 9299,
+          "right_start": 9329,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T2-H02",
+          "left_end": 534,
+          "right_start": 572,
+          "gap": 38
+        },
+        {
+          "aircraft_id": "A01-T2-H02",
+          "left_end": 6377,
+          "right_start": 6407,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T2-H02",
+          "left_end": 9216,
+          "right_start": 9251,
+          "gap": 35
+        },
+        {
+          "aircraft_id": "A01-T2-H03",
+          "left_end": 3459,
+          "right_start": 3495,
+          "gap": 36
+        },
+        {
+          "aircraft_id": "A01-T2-H03",
+          "left_end": 6348,
+          "right_start": 6378,
+          "gap": 30
+        },
+        {
+          "aircraft_id": "A01-T3-H01",
+          "left_end": 625,
+          "right_start": 655,
+          "gap": 30
+        }
+      ]
+    }
+  },
+  "single_aircraft_unavailable": [
+    {
+      "aircraft_id": "A03-T2-H01",
+      "removed_minutes": 2215,
+      "fixed-route_recovery_feasible": false,
+      "metrics": null,
+      "status": {
+        "error": "Fixed-flight MILP has no option for mandatory people: ['P0023', 'P0040', 'P0097', 'P0102', 'P0129', 'P0152', 'P0182', 'P0184']"
+      }
+    },
+    {
+      "aircraft_id": "A03-T2-H03",
+      "removed_minutes": 2211,
+      "fixed-route_recovery_feasible": false,
+      "metrics": null,
+      "status": {
+        "error": "Fixed-flight MILP has no option for mandatory people: ['P0069', 'P0074', 'P0092', 'P0259', 'P0274', 'P0276', 'P0313', 'P0326']"
+      }
+    },
+    {
+      "aircraft_id": "A03-T2-H02",
+      "removed_minutes": 1796,
+      "fixed-route_recovery_feasible": false,
+      "metrics": null,
+      "status": {
+        "error": "Fixed-flight MILP has no option for mandatory people: ['P0022', 'P0153', 'P0187', 'P0234', 'P0291', 'P0315', 'P0336', 'P0356']"
+      }
+    }
+  ]
+}

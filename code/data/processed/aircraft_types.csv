@@ -1,4 +1,0 @@
-﻿aircraft_type,seats,speed_kmh,burn_kg_per_km,tank_capacity_kg,reserve_kg,usable_fuel_kg,full_tank_usable_distance_km
-T1,12,250,3.4,1000,150,850,250.0
-T2,16,220,2.5,1150,150,1000,400.0
-T3,19,190,2.9,1600,200,1400,482.758621

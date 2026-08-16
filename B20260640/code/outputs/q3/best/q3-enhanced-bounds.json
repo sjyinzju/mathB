@@ -1,0 +1,66 @@
+{
+  "incumbent_aircraft_time_minutes": 29155,
+  "global_bounds": {
+    "passenger_work_lower_bound_minutes": 12389,
+    "layered_multicommodity_flow": {
+      "name": "layered_continuous_multicommodity_flow",
+      "valid_for_original_problem": true,
+      "objective_minutes_continuous": 14124.894736842101,
+      "objective_minutes_integer_ceiling": 14125,
+      "solver_status": 0,
+      "solver_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_seconds": 116.889062,
+      "variables": 191124,
+      "equality_constraints": 3613,
+      "inequality_constraints": 2973,
+      "details": {
+        "mandatory_people": 3840,
+        "destination_aggregated_commodities": 56,
+        "aircraft_layers": 9,
+        "aircraft_arc_variables": 24804,
+        "passenger_arc_variables": 166320,
+        "relaxed_features": [
+          "continuous aircraft flow",
+          "split passenger flow and transfers",
+          "integer sorties",
+          "fuel and refuelling",
+          "time windows and daily assignment",
+          "turnaround and no-overlap",
+          "maximum sea-stop count"
+        ]
+      }
+    },
+    "enhanced_global_lower_bound_minutes": 14125,
+    "certified_gap_percent": 51.552049
+  },
+  "candidate_pool_reference": {
+    "name": "finite_candidate_route_master_lp",
+    "valid_for_original_problem": false,
+    "objective_minutes_continuous": 15197.67763157894,
+    "objective_minutes_integer_ceiling": 15198,
+    "solver_status": 0,
+    "solver_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "runtime_seconds": 6.432359,
+    "variables": 26367,
+    "equality_constraints": 264,
+    "inequality_constraints": 12235,
+    "details": {
+      "scope": "finite cached route pool only; not a global lower bound",
+      "mandatory_people": 3840,
+      "od_count": 264,
+      "route_variants": 3116,
+      "compatible_od_route_assignments": 23251,
+      "relaxed_features": [
+        "continuous route multiplicity",
+        "time windows and daily assignment",
+        "concrete aircraft no-overlap",
+        "integer passenger assignment"
+      ]
+    },
+    "reference_gap_percent": 47.87172
+  },
+  "interpretation": {
+    "global": "The enhanced global bound is valid for the original Q3 first stage because every original schedule maps to the continuous layered-flow LP.",
+    "candidate_pool": "The candidate-route LP is only a finite-pool reference bound and must not be used as a global optimality certificate."
+  }
+}

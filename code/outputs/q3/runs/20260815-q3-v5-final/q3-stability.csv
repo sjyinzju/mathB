@@ -1,4 +1,0 @@
-﻿method,seed,feasible,mandatory_people,aircraft_time_minutes,passenger_time_minutes,flights,fuel_kg,lower_bound_minutes,lower_bound_gap_percent,runtime_seconds,conflict_count
-q3_interval_list_priority,0,True,3840,31882,267376,177,249290.1,12389,157.34119,36.411357,0
-q3_interval_list_deadline,1,True,3840,31371,265819,173,245586.6,12389,153.216563,37.087028,0
-q3_interval_list_slack,2,True,3840,34721,269239,192,273594.9,12389,180.256679,29.056104,0

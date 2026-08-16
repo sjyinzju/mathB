@@ -1,6 +1,0 @@
-﻿configuration,stage1_time,stage1_passenger_time,stage1_flights,stage2_optional,stage2_time,stage2_passenger_time,stage2_flights,fuel_kg,runtime_seconds,validator
-A_closure,29969,240594,170,158,29969,250317,170,238247.2,0.0,True
-B_P2A,29969,240594,170,158,29969,250317,170,238247.2,117.0316,True
-C_P2B,29969,240594,170,158,29969,250317,170,238247.2,286.777813,True
-D_P2C_dynamic,29969,240594,170,158,29969,250317,170,238247.2,71.004262,True
-G_full_integrated,29853,240654,169,158,29659,250494,168,235329.4,16.30107,True
