@@ -1,0 +1,2 @@
+﻿iteration,elapsed_seconds,operator,accepted,global_best,saving_minutes,current_aircraft_time,best_aircraft_time,stagnation,restart,elite_size
+1,6.342678,exact_lns,False,False,0,30180,29155,0,True,2

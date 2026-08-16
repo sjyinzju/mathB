@@ -1,0 +1,397 @@
+[
+  {
+    "round": 1,
+    "stage1": {
+      "total_aircraft_time_minutes": 29155,
+      "total_passenger_travel_time_minutes": 241018,
+      "total_flights": 165,
+      "total_fuel_consumption_kg": 231384.5,
+      "seat_utilization": 0.5702173594847775,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "stage2": {
+      "total_aircraft_time_minutes": 29155,
+      "total_passenger_travel_time_minutes": 250735,
+      "total_flights": 165,
+      "total_fuel_consumption_kg": 231384.5,
+      "seat_utilization": 0.5929281323185012,
+      "served_mandatory": 3840,
+      "served_optional": 157
+    },
+    "projection": {
+      "total_aircraft_time_minutes": 29155,
+      "total_passenger_travel_time_minutes": 241451,
+      "total_flights": 165,
+      "total_fuel_consumption_kg": 231384.5,
+      "seat_utilization": 0.5706052400468384,
+      "served_mandatory": 3840,
+      "served_optional": 0
+    },
+    "projection_improves_stage1": false,
+    "stage2_trace": {
+      "cap": 29155,
+      "initial_fixed_master": {
+        "variables": 8516,
+        "constraints": 4566,
+        "stage1_status": 0,
+        "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "stage2_status": 0,
+        "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "served_temporary": 157,
+        "temporary_upper_bound": 160,
+        "fixed_flight_optimal": true,
+        "all_optional_served": false
+      },
+      "initial_unserved": [
+        "P1102",
+        "P2239",
+        "P3290"
+      ],
+      "targeted_rescue": {
+        "before": {
+          "total_aircraft_time_minutes": 29155,
+          "total_passenger_travel_time_minutes": 250735,
+          "total_flights": 165,
+          "total_fuel_consumption_kg": 231384.5,
+          "seat_utilization": 0.5929281323185012,
+          "served_mandatory": 3840,
+          "served_optional": 157
+        },
+        "after": {
+          "total_aircraft_time_minutes": 29155,
+          "total_passenger_travel_time_minutes": 250735,
+          "total_flights": 165,
+          "total_fuel_consumption_kg": 231384.5,
+          "seat_utilization": 0.5929281323185012,
+          "served_mandatory": 3840,
+          "served_optional": 157
+        },
+        "targets_before": [
+          "P1102",
+          "P2239",
+          "P3290"
+        ],
+        "targets_after": [
+          "P1102",
+          "P2239",
+          "P3290"
+        ],
+        "recovered": [],
+        "levels": [
+          {
+            "level": "L0",
+            "metrics": {
+              "total_aircraft_time_minutes": 29155,
+              "total_passenger_travel_time_minutes": 250735,
+              "total_flights": 165,
+              "total_fuel_consumption_kg": 231384.5,
+              "seat_utilization": 0.5929281323185012,
+              "served_mandatory": 3840,
+              "served_optional": 157
+            },
+            "targets": [
+              "P1102",
+              "P2239",
+              "P3290"
+            ],
+            "assignment": {
+              "variables": 8516,
+              "constraints": 4566,
+              "stage1_status": 0,
+              "stage1_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+              "stage2_status": 0,
+              "stage2_message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+              "served_temporary": 157,
+              "temporary_upper_bound": 160,
+              "fixed_flight_optimal": true,
+              "all_optional_served": false
+            }
+          },
+          {
+            "level": "L1",
+            "metrics": {
+              "total_aircraft_time_minutes": 29155,
+              "total_passenger_travel_time_minutes": 250735,
+              "total_flights": 165,
+              "total_fuel_consumption_kg": 231384.5,
+              "seat_utilization": 0.5929281323185012,
+              "served_mandatory": 3840,
+              "served_optional": 157
+            },
+            "rr": {
+              "trials": 1,
+              "accepted_count": 0,
+              "accepted_histogram": {},
+              "saved_aircraft_time_minutes": 0,
+              "runtime_seconds": 4.122277,
+              "rejection_reasons": {
+                "no_accepted_repair": 1
+              },
+              "moves": [],
+              "group_min": 2,
+              "group_max": 2,
+              "combination_budget": 4,
+              "max_replacements": null,
+              "static_pool_only": true
+            }
+          },
+          {
+            "level": "L2",
+            "metrics": {
+              "total_aircraft_time_minutes": 29155,
+              "total_passenger_travel_time_minutes": 250735,
+              "total_flights": 165,
+              "total_fuel_consumption_kg": 231384.5,
+              "seat_utilization": 0.5929281323185012,
+              "served_mandatory": 3840,
+              "served_optional": 157
+            },
+            "rr": {
+              "trials": 1,
+              "accepted_count": 0,
+              "accepted_histogram": {},
+              "saved_aircraft_time_minutes": 0,
+              "runtime_seconds": 4.604864,
+              "rejection_reasons": {
+                "no_accepted_repair": 1
+              },
+              "moves": [],
+              "group_min": 2,
+              "group_max": 3,
+              "combination_budget": 4,
+              "max_replacements": null,
+              "static_pool_only": true
+            }
+          },
+          {
+            "level": "L3",
+            "metrics": {
+              "total_aircraft_time_minutes": 29155,
+              "total_passenger_travel_time_minutes": 250735,
+              "total_flights": 165,
+              "total_fuel_consumption_kg": 231384.5,
+              "seat_utilization": 0.5929281323185012,
+              "served_mandatory": 3840,
+              "served_optional": 157
+            },
+            "rr": {
+              "trials": 1,
+              "accepted_count": 0,
+              "accepted_histogram": {},
+              "saved_aircraft_time_minutes": 0,
+              "runtime_seconds": 4.172556,
+              "rejection_reasons": {
+                "no_accepted_repair": 1
+              },
+              "moves": [],
+              "group_min": 2,
+              "group_max": 5,
+              "combination_budget": 4,
+              "max_replacements": null,
+              "static_pool_only": true
+            }
+          }
+        ],
+        "runtime_seconds": 13.746549
+      },
+      "operators": [
+        {
+          "operator": "optional_target",
+          "trace": {
+            "trials": 1,
+            "accepted_count": 0,
+            "accepted_histogram": {},
+            "saved_aircraft_time_minutes": 0,
+            "runtime_seconds": 4.971416,
+            "rejection_reasons": {
+              "no_accepted_repair": 1
+            },
+            "moves": [],
+            "group_min": 3,
+            "group_max": 8,
+            "combination_budget": 4,
+            "max_replacements": 6,
+            "static_pool_only": true
+          },
+          "metrics": {
+            "total_aircraft_time_minutes": 29155,
+            "total_passenger_travel_time_minutes": 250735,
+            "total_flights": 165,
+            "total_fuel_consumption_kg": 231384.5,
+            "seat_utilization": 0.5929281323185012,
+            "served_mandatory": 3840,
+            "served_optional": 157
+          }
+        },
+        {
+          "operator": "conflict_graph",
+          "trace": {
+            "trials": 1,
+            "accepted_count": 0,
+            "accepted_histogram": {},
+            "saved_aircraft_time_minutes": 0,
+            "runtime_seconds": 5.239273,
+            "rejection_reasons": {
+              "no_accepted_repair": 1
+            },
+            "moves": [],
+            "group_min": 3,
+            "group_max": 8,
+            "combination_budget": 4,
+            "max_replacements": 6,
+            "static_pool_only": true
+          },
+          "metrics": {
+            "total_aircraft_time_minutes": 29155,
+            "total_passenger_travel_time_minutes": 250735,
+            "total_flights": 165,
+            "total_fuel_consumption_kg": 231384.5,
+            "seat_utilization": 0.5929281323185012,
+            "served_mandatory": 3840,
+            "served_optional": 157
+          }
+        },
+        {
+          "operator": "aircraft_chain",
+          "trace": {
+            "trials": 1,
+            "accepted_count": 0,
+            "accepted_histogram": {},
+            "saved_aircraft_time_minutes": 0,
+            "runtime_seconds": 3.826613,
+            "rejection_reasons": {
+              "no_accepted_repair": 1
+            },
+            "moves": [],
+            "group_min": 3,
+            "group_max": 8,
+            "combination_budget": 4,
+            "max_replacements": 6,
+            "static_pool_only": true
+          },
+          "metrics": {
+            "total_aircraft_time_minutes": 29155,
+            "total_passenger_travel_time_minutes": 250735,
+            "total_flights": 165,
+            "total_fuel_consumption_kg": 231384.5,
+            "seat_utilization": 0.5929281323185012,
+            "served_mandatory": 3840,
+            "served_optional": 157
+          }
+        },
+        {
+          "operator": "random_related",
+          "trace": {
+            "trials": 1,
+            "accepted_count": 0,
+            "accepted_histogram": {},
+            "saved_aircraft_time_minutes": 0,
+            "runtime_seconds": 4.359583,
+            "rejection_reasons": {
+              "no_accepted_repair": 1
+            },
+            "moves": [],
+            "group_min": 3,
+            "group_max": 8,
+            "combination_budget": 4,
+            "max_replacements": 6,
+            "static_pool_only": true
+          },
+          "metrics": {
+            "total_aircraft_time_minutes": 29155,
+            "total_passenger_travel_time_minutes": 250735,
+            "total_flights": 165,
+            "total_fuel_consumption_kg": 231384.5,
+            "seat_utilization": 0.5929281323185012,
+            "served_mandatory": 3840,
+            "served_optional": 157
+          }
+        }
+      ],
+      "final_dossiers": [
+        {
+          "person_id": "P1102",
+          "od": [
+            "F009",
+            "F003"
+          ],
+          "earliest": 654,
+          "latest": 7898,
+          "feasible_days": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "compatible_cached_variants": 9,
+          "minimum_isolated_route_duration": 148,
+          "existing_covering_flights": [
+            1,
+            7
+          ],
+          "time_compatible_flights": [
+            1
+          ],
+          "seat_compatible_flights": [],
+          "primary_blocker": "A_fixed_flights_no_seat"
+        },
+        {
+          "person_id": "P2239",
+          "od": [
+            "LAND",
+            "F035"
+          ],
+          "earliest": 7720,
+          "latest": 10079,
+          "feasible_days": [
+            5,
+            6
+          ],
+          "compatible_cached_variants": 81,
+          "minimum_isolated_route_duration": 175,
+          "existing_covering_flights": [
+            68,
+            80,
+            101,
+            112
+          ],
+          "time_compatible_flights": [
+            112
+          ],
+          "seat_compatible_flights": [],
+          "primary_blocker": "A_fixed_flights_no_seat"
+        },
+        {
+          "person_id": "P3290",
+          "od": [
+            "F009",
+            "F003"
+          ],
+          "earliest": 2094,
+          "latest": 7898,
+          "feasible_days": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "compatible_cached_variants": 9,
+          "minimum_isolated_route_duration": 148,
+          "existing_covering_flights": [
+            1,
+            7
+          ],
+          "time_compatible_flights": [
+            1
+          ],
+          "seat_compatible_flights": [],
+          "primary_blocker": "A_fixed_flights_no_seat"
+        }
+      ]
+    }
+  }
+]

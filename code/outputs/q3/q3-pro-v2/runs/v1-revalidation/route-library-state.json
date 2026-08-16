@@ -1,0 +1,9 @@
+{
+  "route_count": 3116,
+  "used_by_final": 143,
+  "source_counts": {
+    "q2-read-only-cache": 2973,
+    "q3-pro:v1-revalidation": 143
+  },
+  "path": "outputs\\q3\\q3-pro-v2\\route_library\\routes.json"
+}
