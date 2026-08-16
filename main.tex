@@ -175,8 +175,8 @@ Q3 先保证所有非临时任务完成，再最小化其基准总使用时间 $
   =\min_{u\in V(r_i),\,v\in V(r_j)}d_{uv}.
   \label{eq:q1-related-distance}
 \end{equation}
-在Combined R3配置中，程序又以几何距离、容量余量、潜在路线消除、机场匹配和当前路线
-状态构成Context V2分数，只在建立精确候选和MILP之前进行排序与预算裁剪。该分数不代替
+在融合R3配置中，程序又以几何距离、容量余量、潜在路线消除、机场匹配和当前路线
+状态构成上下文V2分数，只在建立精确候选和MILP之前进行排序与预算裁剪。该分数不代替
 航段物理、燃油标签或目标函数；被保留的候选仍须经过完全相同的精确修复和Validator。
 
 \section{符号说明}
@@ -1379,7 +1379,7 @@ $j^\star$ 为目标向量中第一个不同的分量，并定义相对劣化量
 
 \subsubsection{关联度引导与标准ALNS反馈精修}
 
-公平比较采用相同300 s预算和5个随机种子。Combined R3的最好值、中位数和均值分别为
+公平比较采用相同300 s预算和5个随机种子。融合R3的最好值、中位数和均值分别为
 15025、15149和15142.0 min，而标准ALNS V1分别为15118、15185和15208.4 min；R3在
 同种子比较中4/5胜出，并使筛选阶段精确评价调用量平均减少57.0\%。因此本文采用R3负责
 搜索新盆地，但不把相关度评分固化为最终求解器。R3扩展搜索先把15025 min降至14772 min，
@@ -1420,8 +1420,8 @@ $a_{bp}$表示模式$p$覆盖批次$b$的人数，则精确主问题为
     阶段 & 种子 & 预算 & 引导方式 & 最好值/min & 作用\\
     \midrule
     标准ALNS公平对照 & 0--4 & $5\times300$ s & 标准相关移除 & 15118 & 对照\\
-    Combined R3公平搜索 & 0--4 & $5\times300$ s & 距离+Context V2 & 15025 & 选入\\
-    R3扩展搜索 & 3 & 808.779 s & 距离+Context V2 & 14772 & 跨盆地\\
+    融合R3公平搜索 & 0--4 & $5\times300$ s & 距离+上下文V2 & 15025 & 选入\\
+    R3扩展搜索 & 3 & 808.779 s & 距离+上下文V2 & 14772 & 跨盆地\\
     标准A2热启动精修 & 4 & 604.658 s & 标准ALNS & 14770 & 路线池控制解\\
     第四轮精确主问题 & -- & 有限时限 & 路线池MILP & \textbf{14730} & 一级最优候选\\
     标准ALNS教育 & 21 & 有限时限 & 热启动精修 & \textbf{14730} & 最终词典序解\\
@@ -1442,7 +1442,7 @@ $a_{bp}$表示模式$p$覆盖批次$b$的人数，则精确主问题为
   \item 由内存路线评价器检查人员覆盖、机场匹配、容量、油量、停靠和闭合约束；
   \item 按模拟退火准则决定是否接受候选解，并更新历史最优解和算子得分；
   \item 达到最大运行时间、最大迭代次数或连续若干轮无改进时停止；
-  \item 在同预算多种子试验中比较标准ALNS与Combined R3，保留严格词典序更优者；
+  \item 在同预算多种子试验中比较标准ALNS与融合R3，保留严格词典序更优者；
   \item 延长R3搜索以突破原有盆地，再将其历史最优解反馈给标准A2作热启动精修；
   \item 汇集多轨迹精英路线并生成带人员分配的路线模式，求解式~\eqref{eq:q1-pool-master-objective}--\eqref{eq:q1-pool-master-cover}；
   \item 将主问题最优候选反馈给标准ALNS作education，在一级目标不变时改善后续指标；
@@ -1457,7 +1457,7 @@ $a_{bp}$表示模式$p$覆盖批次$b$的人数，则精确主问题为
 问题一程序按支撑材料实际名称组织：\path{src/solver/baseline.py}实现容量动态规划与LAND分流，
 \path{src/solver/improve.py}实现广义节约，\path{src/solver/alns.py}实现五类破坏算子、
 候选路线生成、SciPy MILP修复、自适应权重和模拟退火接受；
-\path{src/solver/relatedness.py}实现原始距离、冻结共识读取和Context V2候选排序；
+\path{src/solver/relatedness.py}实现原始距离、冻结共识读取和上下文V2候选排序；
 \path{src/solver/q1\_or.py}实现精英路线池、allocated-pattern主问题、LP放松、定向邻域和路线审计；
 \path{scripts/05\_run\_alns\_multiseed.py}实现公平多种子试验，
 \path{scripts/06\_finalize\_q1\_relatedness.py}按严格词典序固化最终方案；
@@ -1490,7 +1490,7 @@ $a_{bp}$表示模式$p$覆盖批次$b$的人数，则精确主问题为
     广义节约（B1）           & 15743 & 120396 & 100 & 128562.3 & 46.757 & -- \\
     经典VND                    & 15371 & 120870 & 95 & 123081.7 & 48.226 & 149.000 \\
     标准ALNS公平对照           & 15118 & 122061 & 92 & 121682.9 & 48.446 & 329.256 \\
-    Combined R3公平最优        & 15025 & 121524 & 91 & 121382.4 & 49.056 & 310.083 \\
+    融合R3公平最优        & 15025 & 121524 & 91 & 121382.4 & 49.056 & 310.083 \\
     R3扩展搜索                 & 14772 & 121652 & 89 & 118645.9 & 49.346 & 808.779 \\
     标准A2路线池控制解         & 14770 & 120845 & 89 & 118640.1 & 49.339 & 604.658 \\
     路线池精确主问题           & \textbf{14730} & 122494 & 89 & \textbf{118624.4} & 49.404 & -- \\
@@ -2713,7 +2713,7 @@ Python代码调试、测试用例构造和图表生成；模型选择、程序�
 \inputcode{问题一单设施容量动态规划}{code/src/solver/baseline.py}
 \inputcode{问题一广义节约初解}{code/src/solver/improve.py}
 \inputcode{问题一ALNS与整数规划修复}{code/src/solver/alns.py}
-\inputcode{问题一关联度与Context候选排序}{code/src/solver/relatedness.py}
+\inputcode{问题一关联度与上下文候选排序}{code/src/solver/relatedness.py}
 \inputcode{问题一多种子公平试验入口}{code/scripts/05_run_alns_multiseed.py}
 \inputcode{问题一融合结果固化入口}{code/scripts/06_finalize_q1_relatedness.py}
 \inputcode{问题一精英路线池与精确主问题}{code/src/solver/q1_or.py}
