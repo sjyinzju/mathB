@@ -1,0 +1,2 @@
+﻿node_id,parent_id,depth,status,inherited_lb,fully_priced_lb,effective_rigorous_lb,fathom_reason,fractional_route_variables,cg_iterations,pricing_calls,generated_columns,rmp_seconds,pricing_seconds,elapsed_seconds
+N2-LL,N1-L,2,FULLY_PRICED,14090.32748538012,14090.327485380118,14090.327485380118,,66,2,18,1,0.077139,1216.843448,1216.96792

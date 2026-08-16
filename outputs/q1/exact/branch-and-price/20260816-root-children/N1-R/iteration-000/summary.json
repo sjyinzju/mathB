@@ -1,0 +1,12 @@
+{
+  "iteration": 0,
+  "rmp_objective": 14111.477671451357,
+  "added_column_ids": [
+    "Q1X-5084231ac2b41036",
+    "Q1X-281f041c7082b245",
+    "Q1X-d1184ccff6fc47cb"
+  ],
+  "minimum_reduced_cost": -59.292663476874026,
+  "all_pricing_optimal": true,
+  "elapsed_seconds": 334.187904
+}

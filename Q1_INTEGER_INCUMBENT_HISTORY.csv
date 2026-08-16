@@ -1,0 +1,4 @@
+event,scope,aircraft_minutes,passenger_minutes,flights,fuel_kg,utilization,served,validator,ub_updated,artifact
+frozen_control,FROZEN_Q1_14730_CONTROL,14730,121363,89,118624.4,0.49429692253913177,1600,VALID_0_ISSUES,true,outputs/q1/final
+root_1041_normal_candidate,1041_COLUMN_INTEGER_MASTER,14730,121840,89,118635.3,0.4941255815518924,1600,VALID_0_ISSUES,false,outputs/q1/exact/integer-master/20260816-final-1041-master/normal-candidate
+

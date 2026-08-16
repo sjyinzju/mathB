@@ -1,0 +1,72 @@
+{
+  "scope": "primal heuristic only; never used as a lower bound",
+  "column_count": 1046,
+  "strict_improvement_upper_bound": 14729,
+  "time_limit_seconds_per_node": 60.0,
+  "outcomes": [
+    {
+      "node_id": "N1-L",
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        }
+      ],
+      "result": {
+        "outcome": "UNKNOWN",
+        "model_status": "Time limit reached",
+        "run_status": "HighsStatus.kWarning",
+        "objective": null,
+        "dual_bound": 14663.0,
+        "mip_gap": null,
+        "node_count": 803,
+        "lp_iterations": 167236,
+        "elapsed_seconds": 60.041935,
+        "primary_upper_bound_minutes": 14729,
+        "mip_start_backend_status": null,
+        "mip_start_feasible_for_model": false,
+        "mip_start_maximum_row_violation": 1.0
+      },
+      "validator": null,
+      "artifact_hashes": null,
+      "ub_updated": false
+    },
+    {
+      "node_id": "N1-R",
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 4
+        }
+      ],
+      "result": {
+        "outcome": "PROVEN_POOL_INFEASIBLE",
+        "model_status": "Infeasible",
+        "run_status": "HighsStatus.kOk",
+        "objective": null,
+        "dual_bound": null,
+        "mip_gap": null,
+        "node_count": 27,
+        "lp_iterations": 99352,
+        "elapsed_seconds": 36.43088,
+        "primary_upper_bound_minutes": 14729,
+        "mip_start_backend_status": null,
+        "mip_start_feasible_for_model": false,
+        "mip_start_maximum_row_violation": 3.0
+      },
+      "validator": null,
+      "artifact_hashes": null,
+      "ub_updated": false
+    }
+  ],
+  "global_ub_before": 14730,
+  "global_ub_after": 14730
+}

@@ -1,0 +1,51 @@
+{
+  "base_airport": "A02",
+  "aircraft_type": "T3",
+  "status": "Optimal",
+  "proven_optimal": true,
+  "reduced_cost": -59.292663476874026,
+  "route_duration_minutes": 193,
+  "allocation_reward": 187.00000000000003,
+  "allocation_pattern": [
+    [
+      "LAND",
+      "F034",
+      19
+    ]
+  ],
+  "stops": [
+    {
+      "facility_id": "A02",
+      "refuel": false,
+      "is_service": false
+    },
+    {
+      "facility_id": "F024",
+      "refuel": true,
+      "is_service": false
+    },
+    {
+      "facility_id": "F034",
+      "refuel": false,
+      "is_service": true
+    },
+    {
+      "facility_id": "A02",
+      "refuel": false,
+      "is_service": false
+    }
+  ],
+  "node_count": 1,
+  "dual_bound": -59.29266347687521,
+  "elapsed_seconds": 108.29051,
+  "candidate_nodes": 52,
+  "max_landings": 5,
+  "repeated_visit": false,
+  "certified_no_negative_column": false,
+  "negative_column_found": true,
+  "branch_reduced_cost_contribution": -65.292663476874,
+  "branch_coefficients": [
+    1
+  ],
+  "route_cost_multiplier": 1.0
+}

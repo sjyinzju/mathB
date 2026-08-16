@@ -1,0 +1,54 @@
+{
+  "node_id": "N2-LL",
+  "parent_id": "N1-L",
+  "depth": 2,
+  "branch_history": [
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": "<=",
+      "rhs": 3
+    },
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": "<=",
+      "rhs": 2
+    }
+  ],
+  "status": "FULLY_PRICED",
+  "inherited_lb": 14090.32748538012,
+  "fully_priced_lb": 14090.327485380118,
+  "effective_rigorous_lb": 14090.327485380118,
+  "fathom_reason": null,
+  "fractional_route_variables": 66,
+  "selected_branch": {
+    "arc": [
+      "A02",
+      "F024"
+    ],
+    "value": 1.52046783625731
+  },
+  "cg_iterations": 2,
+  "pricing_calls": 18,
+  "generated_columns": 1,
+  "rmp_seconds": 0.077139,
+  "pricing_seconds": 1216.843448,
+  "elapsed_seconds": 1216.96792,
+  "integer_heuristic": {
+    "outcome": "UNKNOWN",
+    "objective": null,
+    "model_status": "Time limit reached",
+    "elapsed_seconds": 30.046592,
+    "mip_start_feasible_for_model": false
+  },
+  "validator": null,
+  "children": [
+    "N3-LLL",
+    "N3-LLR"
+  ]
+}

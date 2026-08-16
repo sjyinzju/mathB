@@ -1,0 +1,71 @@
+{
+  "scope": "final fully-priced root registry integer master (1,041 columns)",
+  "global_optimality_claim": false,
+  "column_count": 1041,
+  "initial_columns": 1003,
+  "exact_generated_columns": 38,
+  "mip_start": {
+    "objective": 14730,
+    "maximum_equality_residual": 0.0,
+    "missing_patterns": [],
+    "selected_columns": 84
+  },
+  "normal_master": {
+    "outcome": "FEASIBLE_NOT_PROVEN",
+    "model_status": "Time limit reached",
+    "run_status": "HighsStatus.kWarning",
+    "objective": 14730,
+    "dual_bound": 14685.0,
+    "mip_gap": 0.003054989816699134,
+    "node_count": 82300,
+    "lp_iterations": 2207997,
+    "elapsed_seconds": 300.009513,
+    "primary_upper_bound_minutes": null,
+    "mip_start_backend_status": "HighsStatus.kOk",
+    "mip_start_feasible_for_model": true,
+    "mip_start_maximum_row_violation": 0.0
+  },
+  "normal_validator": {
+    "question": "q1",
+    "valid": true,
+    "issue_count": 0,
+    "issues": [],
+    "metrics": {
+      "total_aircraft_time_minutes": 14730,
+      "total_passenger_travel_time_minutes": 121840,
+      "total_flights": 89,
+      "total_fuel_consumption_kg": 118635.3,
+      "seat_utilization": 0.4941255815518924,
+      "served_passengers": 1600,
+      "unserved_optional_passengers": 0
+    }
+  },
+  "normal_artifact_hashes": {
+    "routes_sha256": "28e9624268e74cd7d34901e26231bd9981ae929a1e52cb64369d3c36add05c6c",
+    "assignments_sha256": "5b269dfd4b510d164035e456da04dd05da0d28bfae07f8d6f921af40c9d36b05"
+  },
+  "strict_challenge": {
+    "outcome": "PROVEN_POOL_INFEASIBLE",
+    "model_status": "Infeasible",
+    "run_status": "HighsStatus.kOk",
+    "objective": null,
+    "dual_bound": null,
+    "mip_gap": null,
+    "node_count": 449347,
+    "lp_iterations": 27847090,
+    "elapsed_seconds": 2771.920155,
+    "primary_upper_bound_minutes": 14729,
+    "mip_start_backend_status": "HighsStatus.kOk",
+    "mip_start_feasible_for_model": false,
+    "mip_start_maximum_row_violation": 1.0
+  },
+  "strict_validator": null,
+  "runtime": {
+    "python": "3.11.9",
+    "git_commit": "b0dffe1fdd39184e3d627eaeaef7645d67b36a14",
+    "git_branch": "codex/q1-exact-certification",
+    "git_dirty": true,
+    "normal_primal_check_time_limit_seconds": 300.0,
+    "strict_challenge_time_limit_seconds": null
+  }
+}

@@ -1,6 +1,6 @@
 # Q1 最终 OR / Matheuristic 结果
 
-> Exact certification update：当前 14,730 仍是 validated UB。现已严格证明它是当前 restricted 1,003-column master 的整数最优，并建立 full-space LP global lower bound 14,090.32748538012（ceil 14,091）。Branch-and-Price 已处理 fully-priced root、尚有 2 个 open unpriced child nodes，因此全局状态为 **BRANCH_AND_PRICE_INCOMPLETE**；不得称 14,730 为 global optimum。
+> Exact certification update：当前 14,730 仍是 validated UB。现已严格证明它是最终 fully-priced root 1,041-column master 的整数最优，并建立 full-space/tree global lower bound 14,090.327485380118（ceil 14,091）。Branch-aware pricing 已认证，root、两个 depth-1 children 与一个 depth-2 node 均 fully priced；当前仍有 5 个 open unpriced nodes。因此全局状态为 **BRANCH_AND_PRICE_INCOMPLETE**；不得称 14,730 为 global optimum。
 
 ## 最终结论
 

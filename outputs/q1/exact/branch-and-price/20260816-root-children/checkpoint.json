@@ -1,0 +1,88 @@
+{
+  "status": "ROOT_CHILDREN_FULLY_PRICED",
+  "global_optimality_claim": false,
+  "incumbent_ub": 14730,
+  "global_lb": 14090.32748538012,
+  "rigorous_gap_over_ub": 0.04342651151526684,
+  "processed_fully_priced_nodes": 3,
+  "global_column_registry_size": 1046,
+  "root_children": [
+    {
+      "node_id": "N1-L",
+      "parent_id": "N0",
+      "depth": 1,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.32748538012,
+      "initial_rmp_objective": 14091.290350877194,
+      "fully_priced_lb": 14090.32748538012,
+      "effective_rigorous_lb": 14090.32748538012,
+      "columns_before": 1041,
+      "columns_after": 1042,
+      "generated_columns": 1,
+      "cg_iterations": 2,
+      "pricing_calls": 18,
+      "fractional_route_variables": 66,
+      "selected_branch": {
+        "arc": [
+          "A02",
+          "F024"
+        ],
+        "value": 2.52046783625731
+      },
+      "rmp_seconds": 0.018629,
+      "pricing_seconds": 682.485042,
+      "elapsed_seconds": 682.512932,
+      "final_no_negative_column_gate": true
+    },
+    {
+      "node_id": "N1-R",
+      "parent_id": "N0",
+      "depth": 1,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 4
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.32748538012,
+      "initial_rmp_objective": 14111.477671451357,
+      "fully_priced_lb": 14092.684210526319,
+      "effective_rigorous_lb": 14092.684210526319,
+      "columns_before": 1042,
+      "columns_after": 1046,
+      "generated_columns": 4,
+      "cg_iterations": 3,
+      "pricing_calls": 27,
+      "fractional_route_variables": 68,
+      "selected_branch": {
+        "arc": [
+          "A01",
+          "F011"
+        ],
+        "value": 1.526315789473684
+      },
+      "rmp_seconds": 0.030452,
+      "pricing_seconds": 1523.995311,
+      "elapsed_seconds": 1524.057776,
+      "final_no_negative_column_gate": true
+    }
+  ],
+  "source_sha": "b0dffe1fdd39184e3d627eaeaef7645d67b36a14",
+  "source_dirty": true,
+  "pricing_time_limit_seconds": null
+}

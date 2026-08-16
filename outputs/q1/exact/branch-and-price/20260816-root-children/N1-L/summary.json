@@ -1,0 +1,37 @@
+{
+  "node_id": "N1-L",
+  "parent_id": "N0",
+  "depth": 1,
+  "branch_history": [
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": "<=",
+      "rhs": 3
+    }
+  ],
+  "status": "FULLY_PRICED",
+  "inherited_lb": 14090.32748538012,
+  "initial_rmp_objective": 14091.290350877194,
+  "fully_priced_lb": 14090.32748538012,
+  "effective_rigorous_lb": 14090.32748538012,
+  "columns_before": 1041,
+  "columns_after": 1042,
+  "generated_columns": 1,
+  "cg_iterations": 2,
+  "pricing_calls": 18,
+  "fractional_route_variables": 66,
+  "selected_branch": {
+    "arc": [
+      "A02",
+      "F024"
+    ],
+    "value": 2.52046783625731
+  },
+  "rmp_seconds": 0.018629,
+  "pricing_seconds": 682.485042,
+  "elapsed_seconds": 682.512932,
+  "final_no_negative_column_gate": true
+}

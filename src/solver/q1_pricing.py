@@ -51,6 +51,9 @@ class ExactPricingResult:
     repeated_visit: bool
     certified_no_negative_column: bool
     negative_column_found: bool
+    branch_reduced_cost_contribution: float = 0.0
+    branch_coefficients: tuple[int, ...] = ()
+    route_cost_multiplier: float = 1.0
 
 
 @dataclass(frozen=True)
@@ -74,6 +77,37 @@ class ExactRouteColumn:
             ),
             self.allocation_pattern,
         )
+
+
+@dataclass(frozen=True)
+class ArcBranchRow:
+    """Integer directed-arc usage disjunction row at a B&P node."""
+
+    arc: tuple[str, str]
+    sense: str
+    rhs: int
+
+    def __post_init__(self) -> None:
+        if len(self.arc) != 2:
+            raise ValueError("A branch arc must contain two locations")
+        if self.sense not in ("<=", ">="):
+            raise ValueError("Branch sense must be <= or >=")
+
+    @property
+    def canonical_sign(self) -> float:
+        """Multiplier giving canonical row sign*b*x <= sign*rhs."""
+
+        return 1.0 if self.sense == "<=" else -1.0
+
+    @property
+    def canonical_rhs(self) -> float:
+        return self.canonical_sign * float(self.rhs)
+
+    def coefficient(self, column: ExactRouteColumn) -> int:
+        return column_arc_counts(column).get(self.arc, 0)
+
+    def canonical_coefficient(self, column: ExactRouteColumn) -> float:
+        return self.canonical_sign * self.coefficient(column)
 
 
 def column_arc_counts(column: ExactRouteColumn) -> dict[tuple[str, str], int]:
@@ -295,6 +329,31 @@ def column_reduced_cost(
     return float(duration_minutes) - allocation_reward(pattern, duals)
 
 
+def branch_column_reduced_cost(
+    duration_minutes: int,
+    pattern: Iterable[tuple[str, str, int]],
+    demand_duals: Mapping[tuple[str, str], float],
+    column: ExactRouteColumn,
+    branch_duals: Mapping[ArcBranchRow, float],
+    *,
+    route_cost_multiplier: float = 1.0,
+) -> float:
+    """Reduced cost for canonical branch rows alpha*x<=beta.
+
+    SciPy/HiGHS reports minimization marginals lambda<=0 for these rows, so
+    rc = multiplier*c - pi*a - sum(lambda*alpha).
+    """
+
+    return (
+        float(route_cost_multiplier) * float(duration_minutes)
+        - allocation_reward(pattern, demand_duals)
+        - sum(
+            float(dual) * row.canonical_coefficient(column)
+            for row, dual in branch_duals.items()
+        )
+    )
+
+
 def exact_pricing(
     data: ProblemData,
     duals: Mapping[tuple[str, str], float],
@@ -306,6 +365,8 @@ def exact_pricing(
     time_limit_seconds: float | None = None,
     output_flag: bool = False,
     stop_when_decided: bool = False,
+    branch_duals: Mapping[ArcBranchRow, float] | None = None,
+    route_cost_multiplier: float = 1.0,
 ) -> ExactPricingResult:
     """Globally solve one base/type allocated-sortie pricing subproblem."""
 
@@ -326,6 +387,9 @@ def exact_pricing(
     physics = LegPhysics(data.config, data.matrix)
     builder = _MilpBuilder()
     node_count = len(nodes)
+    active_branch_duals = dict(branch_duals or {})
+    if any(float(value) > 1.0e-7 for value in active_branch_duals.values()):
+        raise ValueError("Canonical <= branch-row duals must be nonpositive")
 
     z = {
         (position, node): builder.variable()
@@ -379,24 +443,43 @@ def exact_pricing(
 
     # Objective: official integer flight minutes + offshore dwell - dual reward.
     for node in nodes:
-        builder.cost[z[(0, node)]] += physics.flight_minutes(
+        builder.cost[z[(0, node)]] += route_cost_multiplier * physics.flight_minutes(
             aircraft_type, base_airport, node
         )
         for position in range(landings):
-            builder.cost[z[(position, node)]] += data.config.stop_without_refuel_minutes
-            builder.cost[q[(position, node)]] += (
+            builder.cost[z[(position, node)]] += (
+                route_cost_multiplier * data.config.stop_without_refuel_minutes
+            )
+            builder.cost[q[(position, node)]] += route_cost_multiplier * (
                 data.config.stop_with_refuel_minutes
                 - data.config.stop_without_refuel_minutes
             )
-            builder.cost[end[(position, node)]] += physics.flight_minutes(
-                aircraft_type, node, base_airport
+            builder.cost[end[(position, node)]] += (
+                route_cost_multiplier
+                * physics.flight_minutes(aircraft_type, node, base_airport)
             )
     for position in range(1, landings):
         for left in nodes:
             for right in nodes:
-                builder.cost[y[(position, left, right)]] += physics.flight_minutes(
-                    aircraft_type, left, right
+                builder.cost[y[(position, left, right)]] += (
+                    route_cost_multiplier
+                    * physics.flight_minutes(aircraft_type, left, right)
                 )
+
+    # Branch term -lambda*s times every real traversal of the directed arc.
+    # Start, inter-position, return and repeated traversals all use the same
+    # coefficient definition as existing Master columns.
+    for row, dual in active_branch_duals.items():
+        traversal_cost = -float(dual) * row.canonical_sign
+        left, right = row.arc
+        if left == base_airport and right in nodes:
+            builder.cost[z[(0, right)]] += traversal_cost
+        if right == base_airport and left in nodes:
+            for position in range(landings):
+                builder.cost[end[(position, left)]] += traversal_cost
+        if left in nodes and right in nodes:
+            for position in range(1, landings):
+                builder.cost[y[(position, left, right)]] += traversal_cost
 
     inf = highspy.kHighsInf
     # Exactly one first landing; later positions are optional and contiguous.
@@ -663,8 +746,22 @@ def exact_pricing(
     if not evaluation.feasible:
         raise RuntimeError(f"Exact pricing produced illegal route: {evaluation.issues}")
     reward = allocation_reward(pattern, duals)
-    reduced_cost = column_reduced_cost(
-        evaluation.total_aircraft_time_minutes, pattern, duals
+    priced_column = ExactRouteColumn(
+        column_id="pricing-verification",
+        base_airport=base_airport,
+        aircraft_type=aircraft_type,
+        stops=tuple(route_stops),
+        allocation_pattern=pattern,
+        duration_minutes=evaluation.total_aircraft_time_minutes,
+        source="pricing-verification",
+    )
+    reduced_cost = branch_column_reduced_cost(
+        evaluation.total_aircraft_time_minutes,
+        pattern,
+        duals,
+        priced_column,
+        active_branch_duals,
+        route_cost_multiplier=route_cost_multiplier,
     )
     if abs(reduced_cost - float(info.objective_function_value)) > 5.0e-6:
         raise RuntimeError(
@@ -695,4 +792,14 @@ def exact_pricing(
             or dual_bound is not None and dual_bound >= -PRICING_TOL
         ),
         negative_column_found=bool(reduced_cost < -PRICING_TOL),
+        branch_reduced_cost_contribution=float(
+            -sum(
+                float(dual) * row.canonical_coefficient(priced_column)
+                for row, dual in active_branch_duals.items()
+            )
+        ),
+        branch_coefficients=tuple(
+            row.coefficient(priced_column) for row in active_branch_duals
+        ),
+        route_cost_multiplier=float(route_cost_multiplier),
     )

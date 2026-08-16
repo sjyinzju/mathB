@@ -1,0 +1,1717 @@
+MIP has 104 rows; 1041 cols; 2596 nonzeros; 1041 integer variables (907 binary)
+Coefficient ranges:
+  Matrix  [1e+00, 2e+01]
+  Cost    [9e+01, 3e+02]
+  Bound   [1e+00, 5e+00]
+  RHS     [1e+00, 5e+01]
+Assessing feasibility of MIP using primal feasibility and integrality tolerance of       1e-08
+Solution has               num          max          sum
+Col     infeasibilities      0            0            0
+Integer infeasibilities      0            0            0
+Row     infeasibilities      0            0            0
+Row     residuals            0            0            0
+Presolving model
+100 rows, 1036 cols, 2587 nonzeros 0s
+98 rows, 959 cols, 2257 nonzeros 0s
+Presolve reductions: rows 98(-6); columns 959(-82); nonzeros 2257(-339) 
+
+MIP start solution is feasible, objective value is 14730
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   98 rows
+   959 cols (850 binary, 109 integer, 0 implied int., 0 continuous, 0 domain fixed)
+   2257 nonzeros
+   Thread count 7 (of 14 threads). Using 1 max workers. Parallel search off
+
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   872             14730             94.08%        0      0      0         0     0.1s
+         0       0         0   0.00%   14200.013631    14730              3.60%        0      0      4       131     0.1s
+
+0.9% inactive integer columns, restarting
+Model after restart has 98 rows, 949 cols (850 bin., 99 int., 0 impl., 0 cont., 0 dom.fix.), and 2237 nonzeros
+
+         0       0         0   0.00%   14660.300891    14730              0.47%      213      0      0      5353     1.6s
+         0       0         0   0.00%   14660.300891    14730              0.47%      213    187      2      6006     1.6s
+        25       0        11  47.63%   14661.641903    14730              0.46%     2093    194   1512     68646     6.7s
+       352      37       146  50.36%   14662.331167    14730              0.46%     3572    352   9286    130575    11.7s
+      1315     126       570  55.76%   14662.331167    14730              0.46%     4181    384   9556    174883    16.8s
+      2000     179       870  56.63%   14662.331167    14730              0.46%     3484    357   9581    208279    21.8s
+      2673     254      1156  58.42%   14663.010047    14730              0.45%     2396    432   7972    238899    26.8s
+      3561     333      1546  60.98%   14665.544748    14730              0.44%     2426    349   8406    284404    32.0s
+ L    3848     353      1676  61.26%   14665.666184    14730              0.44%     2461    346   9846    298624    34.5s
+      4863     450      2108  62.55%   14666.372695    14730              0.43%     1963    400   8878    345892    39.5s
+      5707     519      2474  62.77%   14666.372695    14730              0.43%     2666    404   9664    384372    44.6s
+      6609     587      2878  63.69%   14667.844033    14730              0.42%     2156    359   9919    421387    49.7s
+      7660     673      3339  65.27%   14668.768751    14730              0.42%     2132    364   9222    470984    54.7s
+      8437     741      3680  66.25%   14670.88945     14730              0.40%     2585    411   8718    502534    59.7s
+      9784     846      4285  66.84%   14671.031315    14730              0.40%     2382    296   9901    541821    64.7s
+     11061     933      4869  66.99%   14671.354708    14730              0.40%     2631    373   9742    571831    72.1s
+
+Restarting search from the root node
+Model after restart has 98 rows, 937 cols (840 bin., 97 int., 0 impl., 0 cont., 0 dom.fix.), and 2214 nonzeros
+
+     11158       0         0   0.00%   14671.354708    14730              0.40%      369      0      0    583677    72.5s
+     11158       0         0   0.00%   14671.354708    14730              0.40%      369    178      4    584254    72.5s
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+     12429      91       563  52.72%   14672.444743    14730              0.39%     2088    350   8335    630449    77.5s
+     13566     157      1070  60.55%   14677.108596    14730              0.36%     1648    334   9533    673578    82.5s
+     14844     244      1648  63.94%   14677.253413    14730              0.36%     2416    338   7757    714679    87.5s
+     15839     308      2093  67.94%   14680.548334    14730              0.34%     2700    345   8661    751741    92.5s
+     16824     357      2543  68.95%   14680.872295    14730              0.33%     2096    361   9315    796435    97.6s
+     18051     422      3111  69.76%   14682.263552    14730              0.32%     2183    263   9263    838137   102.6s
+     18971     472      3543  70.10%   14683.410062    14730              0.32%     1957    297   9279    870177   107.7s
+
+Restarting search from the root node
+Model after restart has 98 rows, 918 cols (823 bin., 95 int., 0 impl., 0 cont., 0 dom.fix.), and 2158 nonzeros
+
+     20273       0         0   0.00%   14684.819162    14730              0.31%      396      0      0    903117   112.2s
+     20273       0         0   0.00%   14684.819162    14730              0.31%      396    186      4    903753   112.3s
+WARNING: Solution with objective 14635 has untransformed violations: bound = 0; integrality = 8.003e-11; row = 8
+     21570     130       548  11.29%   14684.819162    14730              0.31%     2095    281   9785    933713   117.3s
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.817e-14; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.817e-14; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 1.817e-14; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 1.817e-14; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 1.817e-14; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 6.523e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 6.523e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 4.263e-14; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 4.619e-14; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 4.086e-14; row = 8
+     23243     326      1270  14.25%   14684.819162    14730              0.31%     3134    326   9585    968062   122.3s
+WARNING: Solution with objective 14689 has untransformed violations: bound = 0; integrality = 5.254e-13; row = 8
+WARNING: Solution with objective 14689 has untransformed violations: bound = 0; integrality = 5.254e-13; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 2.526e-13; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 9.992e-15; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 1.552e-11; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 3.475e-13; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 9.992e-15; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 9.992e-15; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 3.957e-14; row = 8
+     24727     498      1889  14.77%   14684.819162    14730              0.31%     4275    326   8477     1002k   127.3s
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.294e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.294e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.294e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.294e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.294e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 2.293e-10; row = 8
+
+Restarting search from the root node
+Model after restart has 98 rows, 916 cols (822 bin., 94 int., 0 impl., 0 cont., 0 dom.fix.), and 2157 nonzeros
+
+     24817       0         0   0.00%   14684.819162    14730              0.31%      325      0      0     1003k   127.6s
+     24817       0         0   0.00%   14684.819162    14730              0.31%      325    188      4     1003k   127.7s
+WARNING: Solution with objective 14670 has untransformed violations: bound = 0; integrality = 1.46e-11; row = 8
+     25024      33        82   1.18%   14684.819162    14730              0.31%     1903    246   2917     1036k   132.7s
+     26662     218       780  18.76%   14684.819162    14730              0.31%     2205    300   9482     1074k   137.7s
+     28159     387      1400  29.20%   14684.819162    14730              0.31%     2036    332   9052     1121k   142.8s
+     29868     564      2145  30.31%   14684.819162    14730              0.31%     1671    229   9483     1160k   147.8s
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14706 has untransformed violations: bound = 0; integrality = 9.109e-13; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 9.99e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 3.986e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 1.539e-13; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.479e-12; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 2.933e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 9.553e-14; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 6.75e-14; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 4.619e-14; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 4.619e-14; row = 8
+     32080     783      3099  32.17%   14684.819162    14730              0.31%     4323    273   8761     1193k   152.8s
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 3.553e-14; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 3.553e-14; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 4.108e-14; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 7.722e-14; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 3.257e-14; row = 8
+     33881     938      3880  32.25%   14684.819162    14730              0.31%     3069    273   9109     1227k   157.8s
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 1.776e-14; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 1.732e-14; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 1.732e-14; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 7.291e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 6.934e-13; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 1.732e-14; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 1.732e-14; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 1.29e-13; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 9.404e-14; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 1.519e-13; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 2.325e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 9.404e-14; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 1.624e-14; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 9.948e-14; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 6.584e-14; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 9.659e-15; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 9.404e-14; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 2.665e-15; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 2.665e-15; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 6.217e-15; row = 8
+
+Restarting search from the root node
+Model after restart has 98 rows, 916 cols (825 bin., 91 int., 0 impl., 0 cont., 0 dom.fix.), and 2157 nonzeros
+
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+     34791       0         0   0.00%   14684.819162    14730              0.31%      329      0      0     1246k   160.8s
+     34791       0         0   0.00%   14684.819162    14730              0.31%      329    150      4     1247k   160.8s
+     36369     159       674  28.13%   14684.819162    14730              0.31%     3192    270   9748     1285k   165.8s
+     37914     324      1329  31.84%   14684.819162    14730              0.31%     4722    344   9222     1324k   170.8s
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 2.936e-13; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 1.426e-11; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 1.426e-11; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 1.426e-11; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 1.426e-11; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 1.426e-11; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 1.426e-11; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 4.033e-12; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 4.018e-12; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 4.018e-12; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 1.047e-13; row = 8
+WARNING: Solution with objective 14692 has untransformed violations: bound = 0; integrality = 1.48e-12; row = 8
+WARNING: Solution with objective 14692 has untransformed violations: bound = 0; integrality = 1.478e-12; row = 8
+WARNING: Solution with objective 14692 has untransformed violations: bound = 0; integrality = 1.469e-12; row = 8
+WARNING: Solution with objective 14692 has untransformed violations: bound = 0; integrality = 1.478e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 7.261e-14; row = 8
+WARNING: Solution with objective 14672 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14672 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14728 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.47e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.484e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 7.484e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 7.484e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 7.482e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.483e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.483e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.483e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.483e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.483e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.484e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 7.482e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.484e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14702 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 1.681e-11; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 1.538e-11; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 1.538e-11; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 1.538e-11; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 1.538e-11; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 1.538e-11; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 1.538e-11; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.537e-11; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.536e-11; row = 8
+     39699     497      2104  32.48%   14684.819162    14730              0.31%     3844    377   9394     1362k   175.8s
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 5.56e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 5.101e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 1.979e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 2.011e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.982e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.992e-12; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 1.992e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 2.011e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 1.025e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 2.531e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 1.646e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 1.976e-12; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 6.586e-12; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 6.586e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 1.675e-12; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 8.128e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 4.061e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 9.436e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 5.965e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 7.212e-12; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 1.626e-12; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 1.055e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 2.291e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 4.799e-12; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 1.035e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 9.84e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 7.268e-13; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 6.653e-11; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 1.559e-12; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 7.799e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 1.559e-12; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 1.559e-12; row = 8
+WARNING: Solution with objective 14706 has untransformed violations: bound = 0; integrality = 1.677e-12; row = 8
+WARNING: Solution with objective 14706 has untransformed violations: bound = 0; integrality = 1.675e-12; row = 8
+WARNING: Solution with objective 14706 has untransformed violations: bound = 0; integrality = 1.675e-12; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 1.678e-12; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 1.457e-12; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 8.031e-12; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 1.559e-12; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 1.559e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 1.675e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 1.675e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 1.675e-12; row = 8
+     41118     644      2713  39.10%   14684.819162    14730              0.31%     3710    252   9405     1400k   180.8s
+WARNING: Solution with objective 14672 has untransformed violations: bound = 0; integrality = 1.003e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 1.097e-12; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 1.097e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 1.097e-12; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 1.097e-12; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 1.097e-12; row = 8
+WARNING: Solution with objective 14672 has untransformed violations: bound = 0; integrality = 1.191e-12; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 1.144e-12; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 1.144e-12; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 1.144e-12; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 1.144e-12; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 1.097e-12; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 1.144e-12; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 1.144e-12; row = 8
+WARNING: Solution with objective 14693 has untransformed violations: bound = 0; integrality = 1.144e-12; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 1.111e-11; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 4.05e-11; row = 8
+WARNING: Solution with objective 14652 has untransformed violations: bound = 0; integrality = 1.11e-11; row = 8
+WARNING: Solution with objective 14653 has untransformed violations: bound = 0; integrality = 1.11e-11; row = 8
+WARNING: Solution with objective 14653 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 1.111e-11; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 1.107e-11; row = 8
+     42407     761      3269  39.33%   14684.819162    14730              0.31%     3752    373   9279     1435k   185.8s
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.79e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.802e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.801e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.812e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.819e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.982e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 5.046e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 5.074e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 5.073e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.665e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.819e-12; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 5.764e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.368e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 3.318e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.368e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.368e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.018e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.368e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.368e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.368e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.368e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.064e-11; row = 8
+     43669     885      3812  39.49%   14684.819162    14730              0.31%     3687    380   8921     1471k   190.8s
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 5.193e-12; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.064e-11; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 5.19e-12; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 5.19e-12; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 5.19e-12; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.005e-11; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 6.364e-12; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 6.363e-12; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 6.569e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 5.86e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.724e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.719e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.719e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.719e-12; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 2.416e-11; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 3.724e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.719e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.719e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.724e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.724e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.724e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.719e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.719e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.719e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.724e-12; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 8.14e-13; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 8.14e-13; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 8.14e-13; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 8.247e-13; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 8.14e-13; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 8.149e-13; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 7.554e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.214e-12; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 5.214e-12; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 5.214e-12; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 5.214e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.214e-12; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 5.214e-12; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 5.192e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 5.229e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 5.211e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 5.2e-12; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 2.278e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 2.278e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 2.278e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 2.278e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 2.278e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 2.278e-13; row = 8
+     45149    1017      4459  39.79%   14684.819162    14730              0.31%     3124    306   9938     1505k   195.8s
+WARNING: Solution with objective 14693 has untransformed violations: bound = 0; integrality = 2.606e-13; row = 8
+WARNING: Solution with objective 14689 has untransformed violations: bound = 0; integrality = 3.647e-12; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 2.532e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 2.523e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 4.786e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 4.807e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 4.807e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.22e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.195e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.195e-12; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 8.56e-14; row = 8
+     46517    1155      5056  40.23%   14684.819162    14730              0.31%     3993    382   8742     1543k   200.8s
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 1.728e-13; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 1.728e-13; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 1.728e-13; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 1.728e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 8.676e-13; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14693 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14692 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14693 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14692 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 4.707e-14; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 3.872e-13; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 1.03e-11; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 2.958e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 5.455e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 2.914e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 2.92e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 3.698e-12; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 1.23e-11; row = 8
+WARNING: Solution with objective 14693 has untransformed violations: bound = 0; integrality = 2.296e-13; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 2.296e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.296e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 2.296e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 2.24e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 2.24e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 2.296e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 2.296e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 2.296e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 2.245e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 2.296e-13; row = 8
+
+Restarting search from the root node
+Model after restart has 98 rows, 915 cols (824 bin., 91 int., 0 impl., 0 cont., 0 dom.fix.), and 2155 nonzeros
+
+     48228       0         0   0.00%   14684.819162    14730              0.31%      208      0      0     1575k   205.3s
+     48228       0         0   0.00%   14684.819162    14730              0.31%      208    116      4     1575k   205.3s
+WARNING: Solution with objective 14626 has untransformed violations: bound = 0; integrality = 6.573e-14; row = 8
+     49342     126       465   2.89%   14684.819162    14730              0.31%     3978    347   8008     1610k   210.3s
+     51009     295      1187   4.57%   14684.819162    14730              0.31%     3551    304   9697     1648k   215.3s
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 6.994e-15; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 6.994e-15; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 3.746e-14; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 6.783e-14; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 6.994e-15; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 6.994e-15; row = 8
+     53001     514      2034   4.70%   14684.819162    14730              0.31%     4295    324   9846     1686k   220.3s
+     54415     636      2632   6.63%   14684.819162    14730              0.31%     4530    435   9698     1727k   225.3s
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 2.019e-12; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.012e-12; row = 8
+WARNING: Solution with objective 14728 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 8.048e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 5.742e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 1.892e-13; row = 8
+     56105     808      3360   6.98%   14684.819162    14730              0.31%     4607    279   9168     1761k   230.3s
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 3.195e-11; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 2.763e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 2.763e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 2.765e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 2.764e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.761e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.761e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 5.914e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 2.721e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 2.723e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 2.72e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 5.914e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 2.723e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 5.883e-11; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 5.794e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.721e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.736e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 2.722e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 5.295e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.72e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 6.231e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.722e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 7.675e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 9.057e-11; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.704e-12; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.667e-12; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.695e-12; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 2.708e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 2.709e-12; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 1.994e-12; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 1.989e-12; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 1.997e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 1.989e-12; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 1.989e-12; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 1.986e-12; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.38e-12; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.371e-12; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 1.01e-11; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.368e-12; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.367e-12; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 3.367e-12; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 3.367e-12; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 3.367e-12; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.367e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 1.977e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 2.002e-12; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 2.002e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 1.977e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 2.373e-12; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 1.984e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 1.981e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 1.981e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 1.981e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 1.981e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 1.996e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 2.672e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 2.665e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 2.665e-12; row = 8
+WARNING: Solution with objective 14689 has untransformed violations: bound = 0; integrality = 2.66e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 2.672e-12; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.66e-12; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 2.66e-12; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 2.66e-12; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.66e-12; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.66e-12; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 2.676e-12; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 2.642e-12; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 2.676e-12; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 7.27e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 2.671e-12; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 2.671e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 2.644e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 2.658e-12; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 1.716e-12; row = 8
+WARNING: Solution with objective 14692 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14692 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 2.582e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 2.556e-12; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 2.556e-12; row = 8
+     58234    1022      4281   7.00%   14684.819162    14730              0.31%     4035    302   9929     1793k   235.3s
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 2.231e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 1.479e-13; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 1.479e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 5.215e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.479e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.479e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.479e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 1.07e-13; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 3.557e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 1.763e-13; row = 8
+WARNING: Solution with objective 14663 has untransformed violations: bound = 0; integrality = 2.95e-12; row = 8
+WARNING: Solution with objective 14663 has untransformed violations: bound = 0; integrality = 4.93e-12; row = 8
+WARNING: Solution with objective 14663 has untransformed violations: bound = 0; integrality = 3.666e-12; row = 8
+WARNING: Solution with objective 14675 has untransformed violations: bound = 0; integrality = 2.676e-12; row = 8
+WARNING: Solution with objective 14684 has untransformed violations: bound = 0; integrality = 5.894e-12; row = 8
+WARNING: Solution with objective 14684 has untransformed violations: bound = 0; integrality = 2.165e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.067e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.898e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.884e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.884e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.884e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.884e-12; row = 8
+WARNING: Solution with objective 14663 has untransformed violations: bound = 0; integrality = 5.884e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 2.187e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.729e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.49e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.94e-11; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.957e-11; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.918e-11; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.63e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.59e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.92e-11; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 2.623e-13; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 4.194e-13; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 5.775e-13; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 5.247e-13; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 2.581e-13; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 2.565e-13; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 2.106e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.619e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.565e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 5.602e-13; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 7.599e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 5.855e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 4.394e-13; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 6.356e-13; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 6.356e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 6.356e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 9.589e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.706e-13; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 4.103e-13; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 6.356e-13; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 6.356e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 1.464e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 3.11e-12; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+     60081    1195      5092   7.16%   14684.819162    14730              0.31%     4427    253   9894     1827k   240.3s
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.47e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 3.109e-12; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 1.171e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 4.807e-11; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 2.54e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.803e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.804e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 5.068e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 5.066e-11; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 4.476e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.807e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.805e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 8.514e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 4.808e-11; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 2.106e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 2.106e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 4.803e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.069e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 4.803e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 4.523e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 4.803e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 5.326e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 4.805e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 5.066e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.106e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 1.013e-12; row = 8
+WARNING: Solution with objective 14639 has untransformed violations: bound = 0; integrality = 3.419e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 7.07e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 8.12e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.799e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.203e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 5.507e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 5.507e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 5.507e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 9.415e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 7.737e-14; row = 8
+WARNING: Solution with objective 14617 has untransformed violations: bound = 0; integrality = 2.072e-12; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 2.272e-12; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 2.272e-12; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 2.272e-12; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 2.272e-12; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 2.272e-12; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 2.272e-12; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 2.243e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 2.235e-12; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.277e-12; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 2.279e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 2.273e-12; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 2.272e-12; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 8.775e-14; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 1.33e-12; row = 8
+     61614    1317      5769   7.31%   14684.819162    14730              0.31%     4433    280   9883     1859k   245.3s
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 8.775e-14; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 4.281e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 9.219e-14; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 9.029e-14; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 9.243e-14; row = 8
+WARNING: Solution with objective 14665 has untransformed violations: bound = 0; integrality = 9.167e-14; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 9.857e-14; row = 8
+WARNING: Solution with objective 14639 has untransformed violations: bound = 0; integrality = 2.412e-13; row = 8
+WARNING: Solution with objective 14689 has untransformed violations: bound = 0; integrality = 9.903e-14; row = 8
+WARNING: Solution with objective 14702 has untransformed violations: bound = 0; integrality = 9.023e-14; row = 8
+WARNING: Solution with objective 14702 has untransformed violations: bound = 0; integrality = 1.199e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.051e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 1.064e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 7.496e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.47e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 9.057e-14; row = 8
+WARNING: Solution with objective 14617 has untransformed violations: bound = 0; integrality = 4.019e-14; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 5.854e-13; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 1.479e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.002e-12; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 2.562e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 9.023e-14; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.047e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 9.023e-14; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.018e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 5.336e-13; row = 8
+WARNING: Solution with objective 14667 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14668 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14668 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14668 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14668 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.222e-12; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.222e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 7.222e-12; row = 8
+WARNING: Solution with objective 14702 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 7.222e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14688 has untransformed violations: bound = 0; integrality = 7.222e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 7.222e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 7.222e-12; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+WARNING: Solution with objective 14688 has untransformed violations: bound = 0; integrality = 7.222e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 7.222e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.223e-12; row = 8
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+     63413    1469      6563   8.89%   14684.819162    14730              0.31%     4241    367   8874     1888k   250.3s
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 9.985e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 2.489e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 1.182e-11; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.489e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.489e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.489e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 3.647e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.489e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 2.489e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.489e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 1.222e-12; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 2.489e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 3.389e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 2.489e-13; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 1.484e-12; row = 8
+WARNING: Solution with objective 14639 has untransformed violations: bound = 0; integrality = 5.188e-12; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 1.472e-12; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 8.738e-11; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 1.484e-12; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 1.484e-12; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 1.484e-12; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 1.484e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 1.484e-12; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 1.484e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 1.484e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 7.508e-12; row = 8
+WARNING: Solution with objective 14663 has untransformed violations: bound = 0; integrality = 1.483e-12; row = 8
+WARNING: Solution with objective 14620 has untransformed violations: bound = 0; integrality = 6.197e-13; row = 8
+WARNING: Solution with objective 14644 has untransformed violations: bound = 0; integrality = 6.214e-13; row = 8
+WARNING: Solution with objective 14621 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14644 has untransformed violations: bound = 0; integrality = 6.214e-13; row = 8
+WARNING: Solution with objective 14625 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14621 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14621 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14621 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 6.465e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 6.465e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 6.199e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14706 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.869e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 6.209e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.781e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.79e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.781e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 3.781e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 3.781e-13; row = 8
+WARNING: Solution with objective 14643 has untransformed violations: bound = 0; integrality = 3.781e-13; row = 8
+WARNING: Solution with objective 14643 has untransformed violations: bound = 0; integrality = 3.79e-13; row = 8
+WARNING: Solution with objective 14643 has untransformed violations: bound = 0; integrality = 3.79e-13; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 3.781e-13; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 3.781e-13; row = 8
+WARNING: Solution with objective 14642 has untransformed violations: bound = 0; integrality = 3.781e-13; row = 8
+     65603    1622      7545   8.91%   14684.819162    14730              0.31%     3748    311   9339     1922k   255.4s
+WARNING: Solution with objective 14621 has untransformed violations: bound = 0; integrality = 8.267e-13; row = 8
+WARNING: Solution with objective 14621 has untransformed violations: bound = 0; integrality = 9.887e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 6.918e-12; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 1.3e-12; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 3.784e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 3.784e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 3.784e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 3.784e-13; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 3.784e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 3.784e-13; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 3.784e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 7.419e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.779e-13; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.318e-12; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 1.398e-12; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 1.401e-12; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 1.401e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.402e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 1.473e-12; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 1.401e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 7.079e-11; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 1.404e-12; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 1.65e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 1.403e-12; row = 8
+WARNING: Solution with objective 14650 has untransformed violations: bound = 0; integrality = 2.927e-12; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14651 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14650 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14675 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14663 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14663 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14663 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14663 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14675 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 7.079e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 7.021e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 7.021e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 7.021e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 2.379e-12; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 7.135e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 7.021e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 7.135e-13; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 7.428e-13; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 1.325e-12; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 2.377e-12; row = 8
+WARNING: Solution with objective 14688 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14684 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14653 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14675 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14635 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14635 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14636 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 1.439e-12; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14696 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14696 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 7.31e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 7.458e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 7.292e-13; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 7.295e-13; row = 8
+WARNING: Solution with objective 14617 has untransformed violations: bound = 0; integrality = 1.316e-10; row = 8
+     67527    1778      8406   8.97%   14684.819162    14730              0.31%     4359    399   8767     1953k   260.5s
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 9.133e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 3.206e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 3.206e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 3.206e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 3.206e-13; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 3.284e-13; row = 8
+WARNING: Solution with objective 14653 has untransformed violations: bound = 0; integrality = 1.904e-11; row = 8
+WARNING: Solution with objective 14653 has untransformed violations: bound = 0; integrality = 9.193e-12; row = 8
+WARNING: Solution with objective 14653 has untransformed violations: bound = 0; integrality = 3.141e-11; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 3.284e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 3.284e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 1.287e-12; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 3.298e-13; row = 8
+WARNING: Solution with objective 14702 has untransformed violations: bound = 0; integrality = 3.277e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.277e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 3.277e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 3.291e-13; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.59e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 3.492e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 3.217e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 3.213e-12; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.056e-12; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.401e-12; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 4.672e-12; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 3.298e-13; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 3.298e-13; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14692 has untransformed violations: bound = 0; integrality = 3.298e-13; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 3.298e-13; row = 8
+WARNING: Solution with objective 14672 has untransformed violations: bound = 0; integrality = 3.298e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.917e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 1.18e-12; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.833e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14650 has untransformed violations: bound = 0; integrality = 3.497e-13; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 3.313e-13; row = 8
+WARNING: Solution with objective 14651 has untransformed violations: bound = 0; integrality = 2.752e-12; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14651 has untransformed violations: bound = 0; integrality = 1.333e-12; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14696 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14696 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14696 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14714 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14617 has untransformed violations: bound = 0; integrality = 1.102e-14; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14652 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14652 has untransformed violations: bound = 0; integrality = 8.262e-13; row = 8
+WARNING: Solution with objective 14653 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 8.222e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 8.222e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 8.137e-13; row = 8
+WARNING: Solution with objective 14645 has untransformed violations: bound = 0; integrality = 6.182e-12; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 6.151e-12; row = 8
+WARNING: Solution with objective 14645 has untransformed violations: bound = 0; integrality = 6.194e-12; row = 8
+WARNING: Solution with objective 14647 has untransformed violations: bound = 0; integrality = 5.52e-11; row = 8
+WARNING: Solution with objective 14648 has untransformed violations: bound = 0; integrality = 6.491e-12; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 6.317e-12; row = 8
+WARNING: Solution with objective 14646 has untransformed violations: bound = 0; integrality = 6.491e-12; row = 8
+WARNING: Solution with objective 14647 has untransformed violations: bound = 0; integrality = 5.683e-11; row = 8
+WARNING: Solution with objective 14646 has untransformed violations: bound = 0; integrality = 6.491e-12; row = 8
+     69410    1939      9240   9.07%   14684.819162    14730              0.31%     2940    254   9267     1986k   265.5s
+WARNING: Solution with objective 14650 has untransformed violations: bound = 0; integrality = 5.453e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 9.881e-14; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 9.881e-14; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 9.881e-14; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 1.072e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 9.881e-14; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 1.089e-13; row = 8
+WARNING: Solution with objective 14674 has untransformed violations: bound = 0; integrality = 1.047e-12; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 4.187e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 8.53e-14; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 1.446e-12; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 5.438e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 1.633e-12; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 1.077e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 9.803e-14; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 9.77e-14; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 9.77e-14; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 9.77e-14; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 1.035e-13; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 3.93e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 3.709e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.719e-13; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 3.899e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 3.702e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.719e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.269e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 3.754e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.719e-13; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 3.719e-13; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 1.014e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 3.731e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.719e-13; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 3.719e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 1.594e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 9.77e-14; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 3.754e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.719e-13; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 1.05e-13; row = 8
+WARNING: Solution with objective 14617 has untransformed violations: bound = 0; integrality = 1.901e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 3.537e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 4.597e-12; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 1.246e-13; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 1.858e-12; row = 8
+WARNING: Solution with objective 14645 has untransformed violations: bound = 0; integrality = 5.183e-12; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 3.222e-13; row = 8
+WARNING: Solution with objective 14645 has untransformed violations: bound = 0; integrality = 3.222e-13; row = 8
+WARNING: Solution with objective 14646 has untransformed violations: bound = 0; integrality = 3.222e-13; row = 8
+WARNING: Solution with objective 14646 has untransformed violations: bound = 0; integrality = 3.222e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 3.275e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 3.222e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 3.275e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 3.222e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 3.275e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.275e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 3.275e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 3.222e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.275e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 7.665e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.275e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 3.222e-13; row = 8
+WARNING: Solution with objective 14627 has untransformed violations: bound = 0; integrality = 5.581e-12; row = 8
+WARNING: Solution with objective 14627 has untransformed violations: bound = 0; integrality = 1.296e-11; row = 8
+WARNING: Solution with objective 14627 has untransformed violations: bound = 0; integrality = 1.327e-11; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 4.216e-12; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 1.027e-11; row = 8
+WARNING: Solution with objective 14617 has untransformed violations: bound = 0; integrality = 0; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 3.786e-12; row = 8
+WARNING: Solution with objective 14698 has untransformed violations: bound = 0; integrality = 3.811e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 4.005e-12; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 3.919e-12; row = 8
+     71792    2109     10305   9.34%   14684.819162    14730              0.31%     3655    255   9270     2023k   270.5s
+WARNING: Solution with objective 14620 has untransformed violations: bound = 0; integrality = 9.925e-14; row = 8
+WARNING: Solution with objective 14620 has untransformed violations: bound = 0; integrality = 7.353e-14; row = 8
+WARNING: Solution with objective 14620 has untransformed violations: bound = 0; integrality = 7.353e-14; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 4.702e-13; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 7.351e-14; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 7.351e-14; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 7.351e-14; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 4.894e-13; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 1.216e-13; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 7.353e-14; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 7.351e-14; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 7.351e-14; row = 8
+WARNING: Solution with objective 14624 has untransformed violations: bound = 0; integrality = 7.351e-14; row = 8
+WARNING: Solution with objective 14688 has untransformed violations: bound = 0; integrality = 7.351e-14; row = 8
+WARNING: Solution with objective 14688 has untransformed violations: bound = 0; integrality = 7.351e-14; row = 8
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 6.395e-14; row = 8
+WARNING: Solution with objective 14641 has untransformed violations: bound = 0; integrality = 9.37e-14; row = 8
+WARNING: Solution with objective 14620 has untransformed violations: bound = 0; integrality = 8.571e-14; row = 8
+WARNING: Solution with objective 14617 has untransformed violations: bound = 0; integrality = 2.332e-11; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 5.077e-14; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 1.219e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 5.077e-14; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 3.508e-14; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 6.395e-14; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 7.45e-14; row = 8
+WARNING: Solution with objective 14719 has untransformed violations: bound = 0; integrality = 7.153e-14; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 7.153e-14; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 7.848e-13; row = 8
+WARNING: Solution with objective 14696 has untransformed violations: bound = 0; integrality = 5.077e-14; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 4.474e-14; row = 8
+WARNING: Solution with objective 14696 has untransformed violations: bound = 0; integrality = 6.716e-14; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 4.5e-14; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 5.077e-14; row = 8
+WARNING: Solution with objective 14696 has untransformed violations: bound = 0; integrality = 6.506e-13; row = 8
+WARNING: Solution with objective 14696 has untransformed violations: bound = 0; integrality = 5.229e-14; row = 8
+WARNING: Solution with objective 14709 has untransformed violations: bound = 0; integrality = 5.077e-14; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 3.666e-12; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 1.332e-14; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 5.077e-14; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 8.904e-14; row = 8
+WARNING: Solution with objective 14672 has untransformed violations: bound = 0; integrality = 8.904e-14; row = 8
+WARNING: Solution with objective 14672 has untransformed violations: bound = 0; integrality = 1.06e-12; row = 8
+WARNING: Solution with objective 14672 has untransformed violations: bound = 0; integrality = 3.979e-13; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 8.096e-14; row = 8
+WARNING: Solution with objective 14662 has untransformed violations: bound = 0; integrality = 5.802e-12; row = 8
+WARNING: Solution with objective 14656 has untransformed violations: bound = 0; integrality = 4.486e-13; row = 8
+WARNING: Solution with objective 14650 has untransformed violations: bound = 0; integrality = 2.321e-13; row = 8
+WARNING: Solution with objective 14651 has untransformed violations: bound = 0; integrality = 2.052e-12; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 1.614e-12; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 1.185e-13; row = 8
+WARNING: Solution with objective 14654 has untransformed violations: bound = 0; integrality = 1.271e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14650 has untransformed violations: bound = 0; integrality = 1.302e-13; row = 8
+WARNING: Solution with objective 14656 has untransformed violations: bound = 0; integrality = 1.302e-13; row = 8
+WARNING: Solution with objective 14656 has untransformed violations: bound = 0; integrality = 1.302e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 1.121e-11; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 1.314e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 4.34e-13; row = 8
+WARNING: Solution with objective 14687 has untransformed violations: bound = 0; integrality = 1.136e-12; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 1.188e-12; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 1.187e-12; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 1.181e-12; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 1.191e-12; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 1.195e-12; row = 8
+WARNING: Solution with objective 14689 has untransformed violations: bound = 0; integrality = 4.317e-13; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 1.684e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 4.918e-10; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 1.335e-12; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14656 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 2.683e-12; row = 8
+WARNING: Solution with objective 14684 has untransformed violations: bound = 0; integrality = 8.75e-13; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 7.274e-12; row = 8
+WARNING: Solution with objective 14684 has untransformed violations: bound = 0; integrality = 3.302e-12; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 7.443e-12; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 2.291e-12; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 8.586e-13; row = 8
+WARNING: Solution with objective 14684 has untransformed violations: bound = 0; integrality = 9.078e-13; row = 8
+WARNING: Solution with objective 14684 has untransformed violations: bound = 0; integrality = 9.948e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 6.683e-13; row = 8
+WARNING: Solution with objective 14684 has untransformed violations: bound = 0; integrality = 7.985e-13; row = 8
+WARNING: Solution with objective 14684 has untransformed violations: bound = 0; integrality = 5.655e-13; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 3.066e-12; row = 8
+WARNING: Solution with objective 14686 has untransformed violations: bound = 0; integrality = 3.817e-12; row = 8
+WARNING: Solution with objective 14706 has untransformed violations: bound = 0; integrality = 1.152e-12; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.175e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.175e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.175e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 3.358e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.013e-12; row = 8
+WARNING: Solution with objective 14715 has untransformed violations: bound = 0; integrality = 1.013e-12; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14691 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 1.183e-13; row = 8
+WARNING: Solution with objective 14674 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14670 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 1.18e-13; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 3.896e-10; row = 8
+     73473    2248     11046   9.35%   14684.819162    14730              0.31%     4019    416   9984     2050k   279.2s
+WARNING: Solution with objective 14629 has untransformed violations: bound = 0; integrality = 1.249e-12; row = 8
+WARNING: Solution with objective 14629 has untransformed violations: bound = 0; integrality = 2.539e-12; row = 8
+WARNING: Solution with objective 14650 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14628 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14628 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14628 has untransformed violations: bound = 0; integrality = 5.512e-13; row = 8
+WARNING: Solution with objective 14628 has untransformed violations: bound = 0; integrality = 3.197e-13; row = 8
+WARNING: Solution with objective 14652 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14652 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14651 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14651 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14668 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14650 has untransformed violations: bound = 0; integrality = 2.433e-12; row = 8
+WARNING: Solution with objective 14646 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14646 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14667 has untransformed violations: bound = 0; integrality = 3.346e-13; row = 8
+WARNING: Solution with objective 14667 has untransformed violations: bound = 0; integrality = 3.197e-13; row = 8
+WARNING: Solution with objective 14645 has untransformed violations: bound = 0; integrality = 3.197e-13; row = 8
+WARNING: Solution with objective 14668 has untransformed violations: bound = 0; integrality = 3.197e-13; row = 8
+WARNING: Solution with objective 14668 has untransformed violations: bound = 0; integrality = 3.197e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14637 has untransformed violations: bound = 0; integrality = 1.505e-12; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 6.711e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 3.27e-13; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14658 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14678 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14674 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 1.387e-12; row = 8
+WARNING: Solution with objective 14689 has untransformed violations: bound = 0; integrality = 1.973e-12; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 1.879e-12; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 1.893e-12; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 1.893e-12; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 1.797e-12; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 4.405e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 8.377e-13; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 2.087e-12; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 2.038e-12; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 6.076e-13; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14689 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14652 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14646 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14664 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14631 has untransformed violations: bound = 0; integrality = 6.44e-13; row = 8
+WARNING: Solution with objective 14650 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14670 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14637 has untransformed violations: bound = 0; integrality = 1.247e-12; row = 8
+WARNING: Solution with objective 14637 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 3.295e-13; row = 8
+WARNING: Solution with objective 14637 has untransformed violations: bound = 0; integrality = 3.502e-12; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+     76001    2414     12189   9.58%   14684.819162    14730              0.31%     3879    259   9507     2108k   284.2s
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14673 has untransformed violations: bound = 0; integrality = 7.638e-13; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 4.616e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 4.297e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14689 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 1.002e-11; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 1.759e-12; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14694 has untransformed violations: bound = 0; integrality = 3.236e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.19e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.178e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.057e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.079e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.057e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.06e-12; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 1.06e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.17e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 1.079e-12; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 1.057e-12; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 1.22e-12; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 7.727e-13; row = 8
+WARNING: Solution with objective 14656 has untransformed violations: bound = 0; integrality = 6.99e-12; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 2.962e-13; row = 8
+WARNING: Solution with objective 14643 has untransformed violations: bound = 0; integrality = 2.991e-13; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 2.962e-13; row = 8
+WARNING: Solution with objective 14643 has untransformed violations: bound = 0; integrality = 2.962e-13; row = 8
+WARNING: Solution with objective 14643 has untransformed violations: bound = 0; integrality = 2.962e-13; row = 8
+WARNING: Solution with objective 14666 has untransformed violations: bound = 0; integrality = 1.084e-12; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 7.151e-13; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 1.023e-12; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 4.401e-13; row = 8
+WARNING: Solution with objective 14655 has untransformed violations: bound = 0; integrality = 2.991e-13; row = 8
+WARNING: Solution with objective 14728 has untransformed violations: bound = 0; integrality = 2.962e-13; row = 8
+WARNING: Solution with objective 14728 has untransformed violations: bound = 0; integrality = 2.962e-13; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 7.874e-13; row = 8
+WARNING: Solution with objective 14643 has untransformed violations: bound = 0; integrality = 2.991e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.74e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.74e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14728 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.74e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.771e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 2.74e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 2.74e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 2.74e-13; row = 8
+WARNING: Solution with objective 14648 has untransformed violations: bound = 0; integrality = 7.996e-11; row = 8
+WARNING: Solution with objective 14667 has untransformed violations: bound = 0; integrality = 1.772e-12; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 1.785e-12; row = 8
+WARNING: Solution with objective 14695 has untransformed violations: bound = 0; integrality = 3.484e-13; row = 8
+WARNING: Solution with objective 14670 has untransformed violations: bound = 0; integrality = 1.777e-12; row = 8
+WARNING: Solution with objective 14669 has untransformed violations: bound = 0; integrality = 1.926e-12; row = 8
+WARNING: Solution with objective 14648 has untransformed violations: bound = 0; integrality = 1.774e-12; row = 8
+WARNING: Solution with objective 14648 has untransformed violations: bound = 0; integrality = 1.628e-12; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 1.573e-12; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 4.321e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.696e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14725 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 1.171e-12; row = 8
+WARNING: Solution with objective 14728 has untransformed violations: bound = 0; integrality = 3.662e-13; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14710 has untransformed violations: bound = 0; integrality = 2.696e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14722 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14724 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14727 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14726 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 2.4e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.28e-12; row = 8
+WARNING: Solution with objective 14681 has untransformed violations: bound = 0; integrality = 4.239e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+     78143    2575     13142   9.62%   14684.819162    14730              0.31%     4586    225   8960     2138k   289.2s
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14711 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 2.434e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 4.136e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 4.136e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 4.136e-13; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 4.136e-13; row = 8
+WARNING: Solution with objective 14717 has untransformed violations: bound = 0; integrality = 4.136e-13; row = 8
+WARNING: Solution with objective 14716 has untransformed violations: bound = 0; integrality = 4.136e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 5.769e-13; row = 8
+WARNING: Solution with objective 14697 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14675 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 1.511e-12; row = 8
+WARNING: Solution with objective 14676 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14680 has untransformed violations: bound = 0; integrality = 5.766e-13; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 7.9e-12; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 9.66e-13; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 3.288e-13; row = 8
+WARNING: Solution with objective 14656 has untransformed violations: bound = 0; integrality = 8.641e-13; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 8.642e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 8.642e-13; row = 8
+WARNING: Solution with objective 14656 has untransformed violations: bound = 0; integrality = 8.642e-13; row = 8
+WARNING: Solution with objective 14677 has untransformed violations: bound = 0; integrality = 8.642e-13; row = 8
+WARNING: Solution with objective 14656 has untransformed violations: bound = 0; integrality = 8.636e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 1.304e-11; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 8.642e-13; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 8.662e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 8.642e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 1.305e-11; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 1.304e-11; row = 8
+WARNING: Solution with objective 14661 has untransformed violations: bound = 0; integrality = 8.642e-13; row = 8
+WARNING: Solution with objective 14682 has untransformed violations: bound = 0; integrality = 8.693e-13; row = 8
+WARNING: Solution with objective 14657 has untransformed violations: bound = 0; integrality = 8.642e-13; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 1.624e-11; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 1.564e-11; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 1.17e-11; row = 8
+WARNING: Solution with objective 14713 has untransformed violations: bound = 0; integrality = 5.549e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 6.131e-12; row = 8
+WARNING: Solution with objective 14712 has untransformed violations: bound = 0; integrality = 1.825e-11; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14639 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14642 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14642 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14639 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14642 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14642 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 6.484e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14659 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14638 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 3.283e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14703 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.293e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 3.283e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 3.283e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14718 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14679 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14683 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.291e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 3.291e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 3.263e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 3.263e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.263e-13; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 3.263e-13; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 3.263e-13; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 3.263e-13; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 8.375e-13; row = 8
+WARNING: Solution with objective 14699 has untransformed violations: bound = 0; integrality = 1.697e-10; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 2.76e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 2.76e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 2.76e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 2.76e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 2.76e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 5.724e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14704 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14723 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.282e-13; row = 8
+WARNING: Solution with objective 14700 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14701 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+     80279    2714     14117   9.64%   14684.819162    14730              0.31%     3551    286   9733     2168k   294.2s
+WARNING: Solution with objective 14705 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14720 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14721 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14660 has untransformed violations: bound = 0; integrality = 6.05e-13; row = 8
+WARNING: Solution with objective 14690 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14671 has untransformed violations: bound = 0; integrality = 3.268e-13; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 6.317e-12; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.257e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.257e-13; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 4.503e-13; row = 8
+WARNING: Solution with objective 14707 has untransformed violations: bound = 0; integrality = 3.257e-13; row = 8
+WARNING: Solution with objective 14685 has untransformed violations: bound = 0; integrality = 3.257e-13; row = 8
+WARNING: Solution with objective 14729 has untransformed violations: bound = 0; integrality = 1.471e-12; row = 8
+WARNING: Solution with objective 14708 has untransformed violations: bound = 0; integrality = 3.257e-13; row = 8
+
+Restarting search from the root node
+Model after restart has 98 rows, 914 cols (825 bin., 89 int., 0 impl., 0 cont., 0 dom.fix.), and 2153 nonzeros
+
+     80818       0         0   0.00%   14684.819162    14730              0.31%      248      0      0     2175k   295.3s
+     80818       0         0   0.00%   14684.819162    14730              0.31%      248    142      4     2175k   295.3s
+     82300     160       642   7.52%   14684.819162    14730              0.31%     4342    381   9574     2207k   300.0s
+
+Solving report
+  Status            Time limit reached
+  Primal bound      14730
+  Dual bound        14685
+  Gap               0.305%
+  P-D integral      1.03254376866
+  Solution status   feasible
+                    14730 (objective)
+                    0 (bound viol.)
+                    4.03010957939e-13 (int. viol.)
+                    0 (row viol.)
+  Timing            300.00
+                    3.47 (Presolve)
+                        MIP    time [calls] = 0.04 [1]
+                        subMIP time [calls] = 3.43 [572]
+                    296.44 (Solve)
+                        MIP    time [calls] = 269.42 [1]
+                        subMIP time [calls] = 27.02 [242]
+                    0.00 (Postsolve)
+                        MIP    time [calls] = 0.00 [1]
+                        subMIP time [calls] = 0.00 [572]
+  Max sub-MIP depth 10
+  Nodes             82300
+  Repair LPs        1543 (1 feasible; 0 iterations)
+  LP iterations     2207997
+                    331380 (strong br.)
+                    212718 (separation)
+                    141637 (heuristics)
