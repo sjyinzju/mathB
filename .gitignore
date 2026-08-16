@@ -1,3 +1,6 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# 大型实验过程日志（单文件可超100MB，不入版本库）
+candidate-log.jsonl
