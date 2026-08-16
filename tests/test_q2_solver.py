@@ -316,7 +316,7 @@ def test_q2_portfolio_budget_is_deterministic_and_keeps_exploration_distinct() -
         "flow_graph": build_q2_directed_flow_graph(data),
         "portfolio_geometry_slots": 10,
         "portfolio_context_slots": 6,
-        "exploration_slots": 2,
+        "exploration_slots": 1,
         "selection_seed": 91,
     }
     first, _, rows_a = rank_q2_local_sequences(local, routes, **kwargs)
@@ -334,6 +334,51 @@ def test_q2_portfolio_budget_is_deterministic_and_keeps_exploration_distinct() -
         for row in rows_a
         if row["top_k_selected"] and row["portfolio_source"] != "incumbent"
     )
+
+
+def test_q2_ml_hybrid_keeps_geometry_and_exploration_safeguards() -> None:
+    class StubRanker:
+        def score_rows(self, rows):
+            return [
+                float(row.get("feature_service_node_count", 0))
+                + float(row.get("structural_novelty", 0))
+                for row in rows
+            ]
+
+    data = load_problem_data()
+    best = ROOT / "outputs" / "q2" / "best"
+    solution = load_q2_solution(
+        best / "q2-routes.csv", best / "q2-assignments.csv", data
+    )
+    routes = solution.routes[48:52]
+    local = build_q2_local_data(data, routes)
+    kwargs = {
+        "max_sequence_length": 5,
+        "budget": 24,
+        "policy": "hybrid_lr",
+        "flow_graph": build_q2_directed_flow_graph(data),
+        "exploration_slots": 2,
+        "selection_seed": 91,
+        "ml_ranker": StubRanker(),
+        "ml_geometry_safeguard_slots": 2,
+        "search_context": {
+            "iteration": 1,
+            "destroy_operator": "low_utilization_route",
+            "destroy_size": 4,
+        },
+        "context_routes": routes,
+    }
+    first, _, rows_a = rank_q2_local_sequences(local, routes, **kwargs)
+    second, _, rows_b = rank_q2_local_sequences(local, routes, **kwargs)
+    assert first == second
+    assert [row["top_k_selected"] for row in rows_a] == [
+        row["top_k_selected"] for row in rows_b
+    ]
+    selected_sources = {
+        row["portfolio_source"] for row in rows_a if row["top_k_selected"]
+    }
+    assert {"incumbent", "geometry_safeguard", "ml", "exploration"} <= selected_sources
+    assert any(row["rank_score_ml"] > 0 for row in rows_a)
 
 
 def test_q2_structured_neighborhoods_are_deterministic() -> None:

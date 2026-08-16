@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import math
 import random
 import time
@@ -27,6 +28,7 @@ from .q2_flow import (
     q2_sequence_features,
 )
 from .q2_learning import classify_q2_candidate_event
+from .q2_ml import Q2MLRanker
 
 
 DESTROY_OPERATORS = (
@@ -57,6 +59,7 @@ class Q2LnsConfig:
     adaptive_reaction: float = 0.2
     operators: tuple[str, ...] = DESTROY_OPERATORS[:4]
     max_wall_seconds: float | None = None
+    max_exact_evaluated_candidates: int | None = None
     destroy_size_policy: str = "fixed"
     adaptive_destroy_sizes: tuple[int, ...] = (2, 3, 4)
     medium_stagnation: int = 3
@@ -73,6 +76,7 @@ class Q2LnsConfig:
     portfolio_geometry_slots: int = 14
     portfolio_context_slots: int = 6
     exploration_slots: int = 0
+    ml_geometry_safeguard_slots: int = 2
     run_purpose: str = "optimization"
     candidate_logging: bool = True
     censored_log_limit: int = 240
@@ -104,10 +108,17 @@ class Q2LnsConfig:
         if not self.operators:
             raise ValueError("At least one destroy operator is required")
         if self.candidate_policy not in {
-            "geometry", "flow", "context", "portfolio", "enrichment"
+            "geometry",
+            "flow",
+            "context",
+            "portfolio",
+            "enrichment",
+            "hybrid_lr",
+            "hybrid_lightgbm",
         }:
             raise ValueError(
-                "candidate_policy must be geometry, flow, context, portfolio, or enrichment"
+                "candidate_policy must be geometry, flow, context, portfolio, enrichment, "
+                "hybrid_lr, or hybrid_lightgbm"
             )
         if self.operator_selection not in {"round_robin", "adaptive_roulette"}:
             raise ValueError("operator_selection must be round_robin or adaptive_roulette")
@@ -115,6 +126,11 @@ class Q2LnsConfig:
             raise ValueError("adaptive_reaction must be in (0, 1]")
         if self.max_wall_seconds is not None and self.max_wall_seconds <= 0:
             raise ValueError("max_wall_seconds must be positive when provided")
+        if (
+            self.max_exact_evaluated_candidates is not None
+            and self.max_exact_evaluated_candidates < 1
+        ):
+            raise ValueError("max_exact_evaluated_candidates must be positive")
         if self.destroy_size_policy not in {"fixed", "adaptive"}:
             raise ValueError("destroy_size_policy must be fixed or adaptive")
         if not self.adaptive_destroy_sizes or min(self.adaptive_destroy_sizes) < 2:
@@ -137,6 +153,7 @@ class Q2LnsConfig:
             self.portfolio_geometry_slots,
             self.portfolio_context_slots,
             self.exploration_slots,
+            self.ml_geometry_safeguard_slots,
         ) < 0:
             raise ValueError("portfolio slot counts must be nonnegative")
         if self.run_purpose not in {"optimization", "ml_logging", "ml_exploration"}:
@@ -559,6 +576,40 @@ def _rank_percentiles(
     return {sequence: 1.0 - rank / denominator for rank, sequence in enumerate(ordered)}
 
 
+def _ml_scalar(value: object) -> object:
+    if isinstance(value, (dict, list, tuple)):
+        return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return value
+
+
+def _ranking_route_context(
+    routes: Sequence[RoutePlan], data: ProblemData
+) -> dict[str, object]:
+    evaluations = [_route_evaluation(route, data) for route in routes]
+    return {
+        "current_duration_minutes": sum(
+            item.total_aircraft_time_minutes for item in evaluations
+        ),
+        "current_route_count": len(routes),
+        "current_route_passengers": sum(route.passenger_count for route in routes),
+        "current_mean_utilization": round(
+            mean(item.seat_utilization for item in evaluations), 6
+        ),
+        "current_mean_stop_count": round(
+            mean(len(route.service_facilities) for route in routes), 6
+        ),
+        "current_min_residual_slack": min(
+            (_route_residual_capacity(route, data) for route in routes), default=0
+        ),
+        "current_mean_residual_slack": round(
+            mean(_route_residual_capacity(route, data) for route in routes), 6
+        ),
+        "current_land_fraction": round(mean(_land_share(route) for route in routes), 6),
+        "current_aircraft_types": sorted({route.aircraft_type for route in routes}),
+        "current_base_airports": sorted({route.base_airport for route in routes}),
+    }
+
+
 def rank_q2_local_sequences(
     data: ProblemData,
     routes: Sequence[RoutePlan],
@@ -572,6 +623,10 @@ def rank_q2_local_sequences(
     portfolio_context_slots: int = 6,
     exploration_slots: int = 0,
     selection_seed: int = 0,
+    ml_ranker: Q2MLRanker | None = None,
+    ml_geometry_safeguard_slots: int = 2,
+    search_context: dict[str, object] | None = None,
+    context_routes: Sequence[RoutePlan] | None = None,
 ) -> tuple[
     tuple[tuple[str, ...], ...],
     dict[tuple[str, ...], dict[str, object]],
@@ -597,7 +652,8 @@ def rank_q2_local_sequences(
     geometry_rank = _rank_percentiles(geometry_values, higher_is_better=False)
     context_rank: dict[tuple[str, ...], float] = {}
     context_ranked: list[tuple[str, ...]] = []
-    if policy in {"context", "portfolio"}:
+    hybrid_policies = {"hybrid_lr", "hybrid_lightgbm"}
+    if policy in {"context", "portfolio", *hybrid_policies}:
         if flow_graph is None:
             raise ValueError("context candidate policy requires a directed flow graph")
         raw_flow = {
@@ -668,10 +724,132 @@ def rank_q2_local_sequences(
             }
         ranked = sorted(exploratory, key=lambda item: _geometry_score(item, data))
 
+    ml_scores: dict[tuple[str, ...], float] = {}
+    ml_inference_ms = 0.0
+    if policy in hybrid_policies:
+        if ml_ranker is None:
+            raise ValueError(f"{policy} candidate policy requires an ML ranker")
+        route_context = _ranking_route_context(context_routes or routes, data)
+        model_rows: list[dict[str, object]] = []
+        for sequence in exploratory:
+            pairwise = [
+                data.matrix[left][right]
+                for left_index, left in enumerate(sequence)
+                for right in sequence[left_index + 1 :]
+            ]
+            airport_profile = [
+                min(data.matrix[airport][node] for airport in data.config.airports)
+                for node in sequence
+            ]
+            features = {
+                **feature_rows[sequence],
+                "service_node_count": len(sequence),
+                "min_pairwise_distance_km": min(pairwise, default=0.0),
+                "max_pairwise_distance_km": max(pairwise, default=0.0),
+                "min_airport_distance_km": min(airport_profile, default=0.0),
+                "max_airport_distance_km": max(airport_profile, default=0.0),
+                **route_context,
+            }
+            feature_rows[sequence] = features
+            percentile = geometry_rank.get(sequence, 0.0)
+            candidate_source = (
+                "GEOMETRY_TOP"
+                if percentile >= 2.0 / 3.0
+                else "GEOMETRY_MID"
+                if percentile >= 1.0 / 3.0
+                else "GEOMETRY_LOW"
+            )
+            structural_novelty = min(
+                1.0,
+                min(
+                    (
+                        1.0
+                        - len(set(sequence) & set(other))
+                        / max(1, len(set(sequence) | set(other)))
+                        for other in incumbent
+                    ),
+                    default=1.0,
+                ),
+            )
+            model_rows.append(
+                {
+                    **{
+                        f"feature_{key}": _ml_scalar(value)
+                        for key, value in features.items()
+                    },
+                    **{
+                        f"search_{key}": _ml_scalar(value)
+                        for key, value in (search_context or {}).items()
+                    },
+                    "candidate_source": candidate_source,
+                    "geometry_rank_bin": (
+                        "top"
+                        if percentile >= 2.0 / 3.0
+                        else "mid"
+                        if percentile >= 1.0 / 3.0
+                        else "low"
+                    ),
+                    "context_rank_bin": (
+                        "top"
+                        if context_rank.get(sequence, 0.0) >= 2.0 / 3.0
+                        else "mid"
+                        if context_rank.get(sequence, 0.0) >= 1.0 / 3.0
+                        else "low"
+                    ),
+                    "destroy_operator": (search_context or {}).get("destroy_operator"),
+                    "portfolio_source": "ml",
+                    "rank_score_geometry": geometry_rank.get(sequence, 0.0),
+                    "rank_score_context": context_rank.get(sequence, 0.0),
+                    "is_incumbent_sequence": False,
+                    "seen_in_current_solution": False,
+                    "seen_in_elite_pool": False,
+                    "seen_in_previous_run": False,
+                    "sequence_novelty": 1.0,
+                    "structural_novelty": structural_novelty,
+                }
+            )
+        inference_started = time.perf_counter()
+        score_values = ml_ranker.score_rows(model_rows)
+        ml_inference_ms = 1000.0 * (time.perf_counter() - inference_started)
+        ml_scores = dict(zip(exploratory, score_values, strict=True))
+        ranked = sorted(
+            exploratory,
+            key=lambda item: (-ml_scores[item], _geometry_score(item, data), item),
+        )
+
     room = max(0, budget - len(incumbent))
     selected_exploratory: list[tuple[str, ...]] = []
     portfolio_source: dict[tuple[str, ...], str] = {}
-    if policy == "portfolio":
+    if policy in hybrid_policies:
+        geometry_ranked = sorted(exploratory, key=lambda item: _geometry_score(item, data))
+        exploration_reserve = min(exploration_slots, room)
+        safeguard_reserve = min(
+            ml_geometry_safeguard_slots, max(0, room - exploration_reserve)
+        )
+        for sequence in geometry_ranked[:safeguard_reserve]:
+            selected_exploratory.append(sequence)
+            portfolio_source[sequence] = "geometry_safeguard"
+        ml_limit = max(0, room - exploration_reserve)
+        for sequence in ranked:
+            if len(selected_exploratory) >= ml_limit:
+                break
+            if sequence not in selected_exploratory:
+                selected_exploratory.append(sequence)
+                portfolio_source[sequence] = "ml"
+        remaining = [
+            sequence for sequence in exploratory if sequence not in selected_exploratory
+        ]
+        random.Random(selection_seed).shuffle(remaining)
+        for sequence in remaining[:exploration_reserve]:
+            selected_exploratory.append(sequence)
+            portfolio_source[sequence] = "exploration"
+        for sequence in ranked:
+            if len(selected_exploratory) >= room:
+                break
+            if sequence not in selected_exploratory:
+                selected_exploratory.append(sequence)
+                portfolio_source[sequence] = "ml_fill"
+    elif policy == "portfolio":
         geometry_ranked = sorted(exploratory, key=lambda item: _geometry_score(item, data))
         exploration_reserve = min(exploration_slots, room)
         exploit_limit = max(0, room - exploration_reserve)
@@ -699,13 +877,13 @@ def rank_q2_local_sequences(
             if sequence not in selected_exploratory:
                 selected_exploratory.append(sequence)
                 portfolio_source[sequence] = "geometry_fill"
-    if prioritize_four_stop and room and policy != "portfolio":
+    if prioritize_four_stop and room and policy not in {"portfolio", *hybrid_policies}:
         reserved = min(max(1, room // 4), 4)
         selected_exploratory.extend(
             sequence for sequence in ranked if len(sequence) == 4
         )
         selected_exploratory = selected_exploratory[:reserved]
-    if policy != "portfolio":
+    if policy not in {"portfolio", *hybrid_policies}:
         selected_exploratory.extend(
             sequence for sequence in ranked if sequence not in selected_exploratory
         )
@@ -739,6 +917,8 @@ def rank_q2_local_sequences(
                 "rank_before_exact": rank_lookup.get(sequence, 0),
                 "rank_score_geometry": round(geometry_rank.get(sequence, 0.0), 6),
                 "rank_score_context": round(context_rank.get(sequence, 0.0), 6),
+                "rank_score_ml": round(ml_scores.get(sequence, 0.0), 9),
+                "ml_inference_ms": round(ml_inference_ms, 6),
                 "portfolio_source": (
                     "incumbent" if sequence in incumbent else portfolio_source.get(
                         sequence, policy
@@ -862,6 +1042,7 @@ def exact_q2_local_repair(
     selection_seed: int = 0,
     search_context: dict[str, object] | None = None,
     maximum_repaired_routes: int | None = None,
+    ml_ranker: Q2MLRanker | None = None,
 ) -> Q2LocalRepair:
     started = time.perf_counter()
     destroyed = tuple(sorted(set(route_indices)))
@@ -898,6 +1079,10 @@ def exact_q2_local_repair(
             portfolio_context_slots=config.portfolio_context_slots,
             exploration_slots=config.exploration_slots,
             selection_seed=selection_seed,
+            ml_ranker=ml_ranker,
+            ml_geometry_safeguard_slots=config.ml_geometry_safeguard_slots,
+            search_context=search_context,
+            context_routes=affected_routes,
         )
     variants = build_q2_variant_pool(
         local_data,
@@ -968,6 +1153,10 @@ def exact_q2_local_repair(
         "requested_maximum_repaired_routes": maximum_repaired_routes,
         "before_aircraft_minutes": before_aircraft,
         "before_passenger_minutes": before_passenger,
+        "ml_inference_ms": max(
+            (float(row.get("ml_inference_ms", 0.0)) for row in candidate_rows),
+            default=0.0,
+        ),
     }
     if candidate_rows:
         selected_sequences = {
@@ -1380,6 +1569,7 @@ def solve_q2_lns(
     cache: SolverCache | None = None,
     checkpoint_callback: Callable[[Solution, Solution, dict[str, object]], None]
     | None = None,
+    ml_ranker: Q2MLRanker | None = None,
 ) -> Q2LnsResult:
     """Adaptive ALNS with exact local MILP repacking and immutable best."""
     config = config or Q2LnsConfig()
@@ -1389,7 +1579,8 @@ def solve_q2_lns(
     best = initial
     flow_graph = (
         build_q2_directed_flow_graph(data)
-        if config.candidate_policy in {"flow", "context", "portfolio"}
+        if config.candidate_policy
+        in {"flow", "context", "portfolio", "hybrid_lr", "hybrid_lightgbm"}
         or config.candidate_logging
         else None
     )
@@ -1431,6 +1622,7 @@ def solve_q2_lns(
     deteriorating_minutes = 0
     best_after_deterioration = 0
     stop_reason = "iteration_limit"
+    exact_evaluated_total = 0
     for iteration in range(config.iterations):
         if (
             config.max_wall_seconds is not None
@@ -1540,6 +1732,7 @@ def solve_q2_lns(
                     "relink_flag": False,
                     "cross_exchange_flag": operator == "cross_exchange",
                 },
+                ml_ranker=ml_ranker,
             )
         candidate = repair.solution
         temperature_before = temperature
@@ -1651,6 +1844,11 @@ def solve_q2_lns(
             repair.diagnostics.get("compatible_assignments", 0)
         )
         repair_candidate_rows = repair.diagnostics.get("candidate_log", [])
+        if isinstance(repair_candidate_rows, list):
+            exact_evaluated_total += sum(
+                int(row.get("evaluation_state") == "exact_evaluated")
+                for row in repair_candidate_rows
+            )
         if config.candidate_logging and isinstance(repair_candidate_rows, list):
             for row in repair_candidate_rows:
                 sequence = tuple(row.get("candidate_sequence", ()))
@@ -1706,6 +1904,7 @@ def solve_q2_lns(
                 "local_master_size": repair.diagnostics.get(
                     "compatible_assignments", 0
                 ),
+                "ml_inference_ms": repair.diagnostics.get("ml_inference_ms", 0.0),
                 "selected_columns": repair.diagnostics.get("selected_columns", []),
                 "repair_success": repair.diagnostics.get("repair_success", False),
                 "accepted": accepted,
@@ -1757,6 +1956,12 @@ def solve_q2_lns(
                 },
             )
         if (
+            config.max_exact_evaluated_candidates is not None
+            and exact_evaluated_total >= config.max_exact_evaluated_candidates
+        ):
+            stop_reason = "exact_evaluation_budget"
+            break
+        if (
             config.stagnation_patience is not None
             and stagnation >= config.stagnation_patience
         ):
@@ -1804,6 +2009,7 @@ def solve_q2_lns(
                 "config": {
                     "iterations": config.iterations,
                     "max_wall_seconds": config.max_wall_seconds,
+                    "max_exact_evaluated_candidates": config.max_exact_evaluated_candidates,
                     "neighborhood_size": config.neighborhood_size,
                     "destroy_size_policy": config.destroy_size_policy,
                     "adaptive_destroy_sizes": list(config.adaptive_destroy_sizes),
@@ -1829,6 +2035,7 @@ def solve_q2_lns(
                     "portfolio_geometry_slots": config.portfolio_geometry_slots,
                     "portfolio_context_slots": config.portfolio_context_slots,
                     "exploration_slots": config.exploration_slots,
+                    "ml_geometry_safeguard_slots": config.ml_geometry_safeguard_slots,
                     "run_purpose": config.run_purpose,
                     "candidate_logging": config.candidate_logging,
                     "censored_log_limit": config.censored_log_limit,
@@ -1847,6 +2054,7 @@ def solve_q2_lns(
                 "terminal_current_metrics": current.metrics.to_dict(),
                 "first_improvement_seconds": first_improvement_seconds,
                 "time_to_best_seconds": time_to_best_seconds,
+                "exact_evaluated_candidates": exact_evaluated_total,
                 "operator_stats": operator_rows,
                 "destroy_size_stats": destroy_size_rows,
                 "sa": {

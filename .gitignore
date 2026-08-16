@@ -16,3 +16,7 @@ outputs/q2/runs/*q2-round3-*/
 outputs/q2/ml-data-round3/candidate_events.csv
 outputs/q2/runs/20260815-q2-round2-finalist-s13/candidate-log.jsonl
 outputs/q2/runs/20260815-q2-round2-ml-logging-s23/candidate-log.jsonl
+
+# Final ML A/B raw runs remain local; reports, models and selected immutable
+# artifacts are committed explicitly.
+outputs/q2/runs/*q2-final-ml-*

@@ -49,6 +49,7 @@ from .q2_learning import (
     flatten_q2_candidate_event,
     grouped_q2_splits,
 )
+from .q2_ml import Q2MLRanker
 from .q2_round3 import (
     ROUND3_SCHEMA_VERSION,
     PromisingLocalMaster,
@@ -112,6 +113,7 @@ __all__ = [
     "classify_q2_candidate_event",
     "flatten_q2_candidate_event",
     "grouped_q2_splits",
+    "Q2MLRanker",
     "ROUND3_SCHEMA_VERSION",
     "PromisingLocalMaster",
     "PromisingLocalMasterQueue",

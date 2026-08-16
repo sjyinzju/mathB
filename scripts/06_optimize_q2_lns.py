@@ -19,6 +19,7 @@ from src.io_utils import sha256, write_csv, write_json
 from src.solver import (
     DESTROY_OPERATORS,
     Q2LnsConfig,
+    Q2MLRanker,
     SolverCache,
     atomic_promote_q2_run,
     build_q2_directed_flow_graph,
@@ -59,6 +60,7 @@ def main() -> int:
     )
     parser.add_argument("--iterations", type=int, default=24)
     parser.add_argument("--wall-clock-limit", type=float)
+    parser.add_argument("--max-exact-evaluated-candidates", type=int)
     parser.add_argument("--stagnation-patience", type=int)
     parser.add_argument("--checkpoint-interval", type=int, default=5)
     parser.add_argument("--neighborhood-size", type=int, default=3)
@@ -78,7 +80,15 @@ def main() -> int:
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument(
         "--candidate-policy",
-        choices=("geometry", "flow", "context", "portfolio", "enrichment"),
+        choices=(
+            "geometry",
+            "flow",
+            "context",
+            "portfolio",
+            "enrichment",
+            "hybrid_lr",
+            "hybrid_lightgbm",
+        ),
         default="geometry",
     )
     parser.add_argument(
@@ -105,6 +115,8 @@ def main() -> int:
     parser.add_argument("--portfolio-geometry-slots", type=int, default=14)
     parser.add_argument("--portfolio-context-slots", type=int, default=6)
     parser.add_argument("--exploration-slots", type=int, default=0)
+    parser.add_argument("--ml-model", type=Path)
+    parser.add_argument("--ml-geometry-safeguard-slots", type=int, default=2)
     parser.add_argument(
         "--run-purpose",
         choices=("optimization", "ml_logging", "ml_exploration"),
@@ -146,6 +158,7 @@ def main() -> int:
     config = Q2LnsConfig(
         iterations=args.iterations,
         max_wall_seconds=args.wall_clock_limit,
+        max_exact_evaluated_candidates=args.max_exact_evaluated_candidates,
         stagnation_patience=args.stagnation_patience,
         checkpoint_interval=args.checkpoint_interval,
         neighborhood_size=args.neighborhood_size,
@@ -176,6 +189,7 @@ def main() -> int:
         portfolio_geometry_slots=args.portfolio_geometry_slots,
         portfolio_context_slots=args.portfolio_context_slots,
         exploration_slots=args.exploration_slots,
+        ml_geometry_safeguard_slots=args.ml_geometry_safeguard_slots,
         run_purpose=args.run_purpose,
         candidate_logging=not args.no_candidate_logging,
         censored_log_limit=args.censored_log_limit,
@@ -187,6 +201,9 @@ def main() -> int:
         restart_type=args.restart_type,
     )
     cache = SolverCache(data)
+    ml_ranker = Q2MLRanker.load(args.ml_model) if args.ml_model else None
+    if config.candidate_policy.startswith("hybrid_") and ml_ranker is None:
+        raise ValueError("Hybrid candidate policy requires --ml-model")
 
     def checkpoint(current, best, state: dict[str, object]) -> None:
         iteration = int(state["iteration"])
@@ -219,6 +236,7 @@ def main() -> int:
         config=config,
         cache=cache,
         checkpoint_callback=checkpoint,
+        ml_ranker=ml_ranker,
     )
     solution = result.solution
 
@@ -312,6 +330,7 @@ def main() -> int:
             "config": {
                 "iterations": config.iterations,
                 "max_wall_seconds": config.max_wall_seconds,
+                "max_exact_evaluated_candidates": config.max_exact_evaluated_candidates,
                 "stagnation_patience": config.stagnation_patience,
                 "checkpoint_interval": config.checkpoint_interval,
                 "neighborhood_size": config.neighborhood_size,
@@ -342,6 +361,9 @@ def main() -> int:
                 "portfolio_geometry_slots": config.portfolio_geometry_slots,
                 "portfolio_context_slots": config.portfolio_context_slots,
                 "exploration_slots": config.exploration_slots,
+                "ml_geometry_safeguard_slots": config.ml_geometry_safeguard_slots,
+                "ml_model": str(args.ml_model.resolve()) if args.ml_model else None,
+                "ml_model_sha256": sha256(args.ml_model) if args.ml_model else None,
                 "run_purpose": config.run_purpose,
                 "candidate_logging": config.candidate_logging,
                 "censored_log_limit": config.censored_log_limit,
@@ -369,6 +391,10 @@ def main() -> int:
                 "exact_evaluated_candidate_rows": sum(
                     int(row.get("evaluation_state") == "exact_evaluated")
                     for row in result.candidate_log
+                ) if config.candidate_logging else int(
+                    solution.diagnostics.get("q2_lns", {}).get(
+                        "exact_evaluated_candidates", 0
+                    )
                 ),
                 "milp_selected_candidate_rows": sum(
                     int(bool(row.get("milp_selected")))
@@ -408,6 +434,11 @@ def main() -> int:
                 ),
                 "terminal_stagnation": solution.diagnostics.get("q2_lns", {}).get(
                     "terminal_stagnation"
+                ),
+                "ml_inference_seconds": round(
+                    sum(float(row.get("ml_inference_ms", 0.0)) for row in result.iteration_log)
+                    / 1000.0,
+                    6,
                 ),
             },
             "lns_elapsed_seconds": round(result.elapsed_seconds, 6),
