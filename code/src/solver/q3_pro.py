@@ -370,6 +370,15 @@ def long_horizon_alns(
     restart_threshold: int = 80,
     assignment_time_limit_seconds: float = 15.0,
     elite_size: int = 20,
+    operator_initial_weights: dict[str, float] | None = None,
+    normal_group_range: tuple[int, int] = (2, 5),
+    heavy_group_range: tuple[int, int] = (4, 8),
+    cross_day_trials: int = 4,
+    normal_route_limit: int = 100,
+    heavy_route_limit: int = 180,
+    normal_combination_budget: int = 3,
+    heavy_combination_budget: int = 8,
+    reaction_factor: float = 0.15,
 ) -> tuple[list[Q3Flight], ElitePool, dict[str, object]]:
     """Adaptive long-horizon Stage 1 search with elite restarts and heavy ruin."""
 
@@ -396,6 +405,9 @@ def long_horizon_alns(
     stats = {name: OperatorStats() for name in operators}
     stats["exact_lns"].weight = 0.15
     stats["cross_day"].weight = 0.35
+    for name, weight in (operator_initial_weights or {}).items():
+        if name in stats:
+            stats[name].weight = max(0.01, float(weight))
     convergence: list[dict[str, object]] = []
     failure_histogram: Counter[str] = Counter()
     stagnation = 0
@@ -423,7 +435,7 @@ def long_horizon_alns(
                     stage=1,
                     stage1_cap=None,
                     minimum_optional_served=0,
-                    maximum_trials=4,
+                    maximum_trials=cross_day_trials,
                 )
             elif operator == "route_polish":
                 candidate, shorten = shorten_fixed_flight_routes(
@@ -435,7 +447,9 @@ def long_horizon_alns(
                 trace = {"shorten": shorten, "retype": retype}
             else:
                 heavy = operator == "exact_lns" or stagnation >= restart_threshold // 2
-                group_min, group_max = ((4, 8) if heavy else (2, 5))
+                group_min, group_max = (
+                    heavy_group_range if heavy else normal_group_range
+                )
                 rr_operator = "aircraft_chain" if operator == "exact_lns" else operator
                 candidate, trace = generalized_multiflight_ruin_recreate(
                     current,
@@ -447,13 +461,17 @@ def long_horizon_alns(
                     group_max=group_max,
                     maximum_trials=1,
                     maximum_neighbors=14 if heavy else 10,
-                    route_limit=180 if heavy else 100,
+                    route_limit=heavy_route_limit if heavy else normal_route_limit,
                     assignment_time_limit_seconds=min(
                         assignment_time_limit_seconds, 5.0 if heavy else 3.0
                     ),
                     operator=rr_operator,
                     seed=seed + iteration,
-                    combination_budget=8 if heavy else 3,
+                    combination_budget=(
+                        heavy_combination_budget
+                        if heavy
+                        else normal_combination_budget
+                    ),
                     max_replacements=5 if heavy else 4,
                 )
             candidate_metrics = schedule_metrics(candidate, people)
@@ -487,7 +505,8 @@ def long_horizon_alns(
         runtime = time.perf_counter() - op_started
         op.total_runtime += runtime
         reward = 8.0 if global_improvement else 4.0 if accepted else 0.5 if candidate_key == before_key else 0.0
-        op.weight = max(0.05, 0.85 * op.weight + 0.15 * reward)
+        alpha = min(1.0, max(0.0, reaction_factor))
+        op.weight = max(0.05, (1.0 - alpha) * op.weight + alpha * reward)
 
         restarted = False
         if stagnation >= restart_threshold and pool.records:
@@ -521,6 +540,17 @@ def long_horizon_alns(
         "wall_time_seconds": round(time.perf_counter() - started, 6),
         "seed": seed,
         "restart_threshold": restart_threshold,
+        "configuration": {
+            "operator_initial_weights": operator_initial_weights or {},
+            "normal_group_range": list(normal_group_range),
+            "heavy_group_range": list(heavy_group_range),
+            "cross_day_trials": cross_day_trials,
+            "normal_route_limit": normal_route_limit,
+            "heavy_route_limit": heavy_route_limit,
+            "normal_combination_budget": normal_combination_budget,
+            "heavy_combination_budget": heavy_combination_budget,
+            "reaction_factor": reaction_factor,
+        },
         "restarts": restarts,
         "global_improvements": improvements,
         "operator_stats": {name: asdict(value) for name, value in stats.items()},

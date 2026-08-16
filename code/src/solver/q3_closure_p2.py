@@ -616,6 +616,20 @@ def _concrete_options(
     return options
 
 
+def replacement_time_admissible(stage: int, replacement_time: int, old_time: int) -> bool:
+    """Primary-time gate used before an expensive assignment solve.
+
+    Stage 2 may improve its leading optional-cardinality objective at equal
+    aircraft time. Stage 1 cannot, because aircraft time is its leading term.
+    """
+
+    if stage == 1:
+        return replacement_time < old_time
+    if stage == 2:
+        return replacement_time <= old_time
+    raise ValueError(f"unsupported Q3 stage: {stage}")
+
+
 def generalized_multiflight_ruin_recreate(
     baseline: Sequence[Q3Flight],
     people: dict[str, Q3Person],
@@ -768,7 +782,18 @@ def generalized_multiflight_ruin_recreate(
                         examined += 1
                         if examined > combination_budget:
                             break
-                        if sum(option.timing.duration for option in option_set) >= old_time:
+                        replacement_time = sum(
+                            option.timing.duration for option in option_set
+                        )
+                        # Stage 1 requires a strict primary-objective reduction.
+                        # Stage 2 is lexicographic in optional cardinality first,
+                        # so an equal-time structural exchange can be a genuine
+                        # improvement.  V1 rejected those moves before solving
+                        # the assignment master, which excluded precisely the
+                        # fixed-cap rescue neighbourhood needed by V2.
+                        if not replacement_time_admissible(
+                            stage, replacement_time, old_time
+                        ):
                             continue
                         if not _no_conflict(option_set, data.config.turnaround_minutes):
                             continue
