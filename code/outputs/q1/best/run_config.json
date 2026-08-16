@@ -1,32 +1,66 @@
 {
-  "method": "q1_b2_alns_balanced",
-  "initial_solution": "q1_b1_generalized_savings",
-  "deterministic_given_seed": true,
-  "stage_1": {
-    "seed": 0,
-    "iterations": 60,
-    "min_destroy_routes": 2,
-    "max_destroy_routes": 3,
-    "max_service_nodes": 2,
-    "repair_time_limit_seconds": 3.0,
-    "time_limit_seconds": 600.0,
-    "measured_elapsed_seconds": 295.693816
-  },
-  "stage_2": {
-    "seed": 1,
-    "iterations": 60,
-    "min_destroy_routes": 3,
-    "max_destroy_routes": 4,
-    "max_service_nodes": 2,
-    "repair_time_limit_seconds": 5.0,
-    "time_limit_seconds": 900.0,
-    "measured_elapsed_seconds": 690.20117
-  },
-  "total_alns_elapsed_seconds": 985.894986,
+  "run_id": "20260814-b11-final-relocate",
+  "method": "q1_b2_batch_relocation_vnd",
+  "git_commit": "1bfa548ca7c74eee518d58e7150b55cb07c3d427",
+  "git_dirty": true,
+  "problem_config_sha256": "0ef7bec7ea6c152aa2d11e754124fc3c7c3bdd211b0cadf0353ae7044f6fbf3b",
+  "seed": 0,
   "secondary_order": [
     "total_passenger_travel_time_minutes",
     "total_flights",
     "total_fuel_consumption_kg",
     "seat_utilization"
-  ]
+  ],
+  "savings": false,
+  "start_best": true,
+  "relocate": true,
+  "ejection": false,
+  "max_neighbors": 8,
+  "max_relocation_targets": 2,
+  "max_relocation_iterations": 8,
+  "max_ejection_targets": 6,
+  "max_ejection_iterations": 15,
+  "deterministic": true,
+  "passenger_count": 1600,
+  "solve_seconds": 84.880781,
+  "elapsed_seconds": 84.903778,
+  "diagnostics": {
+    "loaded_from": "D:\\Desktop\\B题\\outputs\\q1\\best",
+    "batch_relocation": {
+      "candidate_moves": 2943,
+      "lower_bound_pruned": 1200,
+      "feasible_moves": 1743,
+      "accepted_moves": 3,
+      "moved_passengers": 7,
+      "cross_airport_moves": 1,
+      "route_evaluations": 5417,
+      "primary_improvement_minutes": 28
+    },
+    "batch_relocation_moves": [
+      {
+        "iteration": 1,
+        "origin_base": "A02",
+        "target_base": "A02",
+        "destination": "F019",
+        "passengers": 3,
+        "aircraft_time_improvement_minutes": 13
+      },
+      {
+        "iteration": 2,
+        "origin_base": "A02",
+        "target_base": "A02",
+        "destination": "F024",
+        "passengers": 3,
+        "aircraft_time_improvement_minutes": 7
+      },
+      {
+        "iteration": 3,
+        "origin_base": "A01",
+        "target_base": "A02",
+        "destination": "F024",
+        "passengers": 1,
+        "aircraft_time_improvement_minutes": 8
+      }
+    ]
+  }
 }

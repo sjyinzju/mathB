@@ -1,6 +1,0 @@
-﻿operator,weight,calls,accepted,improved,new_global_best
-land_reassignment,1.0,5,5,0,0
-low_utilization,2.657031,22,22,6,5
-random_routes,1.0,6,6,0,0
-related_routes,2.211719,15,15,3,3
-worst_time_per_person,1.90625,12,10,1,1

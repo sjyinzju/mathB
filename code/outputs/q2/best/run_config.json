@@ -10,7 +10,7 @@
     "backend": "scipy.optimize.milp/HiGHS"
   },
   "source": {
-    "directory": "outputs/q2/runs/20260816-q2-round3-final-geometry-s505",
+    "directory": "C:\\Users\\shiju\\.codex\\visualizations\\2026\\08\\15\\01a00403-1d45-7c22-a8e0-9e8fe72ca2af\\q2-round3-worktree\\outputs\\q2\\runs\\20260816-q2-round3-final-geometry-s505",
     "routes_sha256": "fed7a5f6e8d30ff05b2c4309df38d72c5e0d5025cb6a957088dcefb17f3c2a65",
     "assignments_sha256": "5d4af061ecf5affb0185d57a62b3e1ae61aefd87a99b649a0b897edb48c65b70",
     "metrics": {
