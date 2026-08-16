@@ -13,7 +13,7 @@ Validator 重新计算，1600 人全部服务且无约束错误。
 - `scripts/04_solve_q1_alns.py`：B0、B1、ALNS、导出和 Validator 的统一入口；
 - `scripts/plot_q1_alns.py`：合并多阶段日志并生成论文收敛图；
 - `outputs/q1/alns_best/`：最终路线、人员分配、指标、校验报告和收敛数据；
-- `paper/q1_alns_revision.tex`：与真实代码一致的可用论文正文。
+- `archive/paper-drafts/q1_alns_revision.tex`：与真实代码一致的可用论文正文。
 
 ## 环境与运行
 
