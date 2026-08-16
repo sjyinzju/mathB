@@ -1,6 +1,7 @@
 # 2026 年度“策联杯”数学建模精英联赛 B 题：海上油田人员直升机运载计划编排
 
-本仓库为最终整合版（`main` 分支），包含论文（`main.tex`）、
+本仓库为最终整合版（`main` 分支），包含最终提交论文
+（`B20260640.pdf` 与 `B20260640/`：tex 源码、图、参考文献、AI 工具使用详情）、
 三问全部求解代码（`code/`）、已验证结果产物（`code/outputs/`）与提交文件（`submission/`）。
 
 ## Problem Summary
@@ -45,7 +46,8 @@ Q3 算法演进链：30546（旧深度解）→ 29659（Closure--P2）→ 29155�
 ## Repository Structure
 
 ```
-main.tex / figures/ / references.bib   论文与图（图均由 figures/*.csv 可复现生成）
+B20260640.pdf                          最终提交论文 PDF
+B20260640/                             论文源码包（B20260640.tex / references.bib / figures/ / AI工具使用详情.pdf）
 problem/official/                      官方题目 PDF 与附件（原始材料，勿改）
 code/src/solver/                       三问求解核心（q1_or、q2*、q3*、q3_pro*）
 code/src/validation/                   独立 Validator
@@ -91,9 +93,9 @@ python scripts\validate_solution.py --question q3 --routes outputs\q3\q3-pro-v2\
 
 ## Paper
 
-`xelatex + bibtex`（或 `latexmk -xelatex -bibtex`）编译 `main.tex`。
-附录含全部源码（约 780 页）。已知事项：正文+参考文献合计 42 页，超出官方 30 页
-限制，为整合前既有问题，由队伍后续压缩。
+最终提交论文为 `B20260640.pdf`（另见 `B20260640/AI工具使用详情.pdf` 合规材料）；
+如需重新编译，用 `xelatex + bibtex`（或 `latexmk -xelatex -bibtex`）编译
+`B20260640/B20260640.tex`。论文图位于 `B20260640/figures/`。
 
 ## Provenance
 
