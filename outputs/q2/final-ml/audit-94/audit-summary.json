@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "metrics": {
+    "total_aircraft_time_minutes": 17076,
+    "total_passenger_travel_time_minutes": 253414,
+    "total_flights": 94,
+    "total_fuel_consumption_kg": 131721.5,
+    "seat_utilization": 0.9305132228621191,
+    "served_passengers": 4000
+  },
+  "route_count": 94,
+  "basin_fingerprint": "d995f844b6ef4f3cce9b8f91ca9e3eab9db2ad369aec39c98bc8d0b02a6988b1",
+  "top_absorption_routes": [
+    {
+      "route_index": 91,
+      "rank": 1,
+      "score": 0.840053763,
+      "aircraft_time": 219,
+      "passenger_count": 28,
+      "utilization": 0.8679039301310044,
+      "land_fraction": 1.0,
+      "base_airport": "A03",
+      "service_sequence": "F040|F044"
+    },
+    {
+      "route_index": 70,
+      "rank": 2,
+      "score": 0.72983871,
+      "aircraft_time": 184,
+      "passenger_count": 32,
+      "utilization": 0.9980992844364938,
+      "land_fraction": 1.0,
+      "base_airport": "A03",
+      "service_sequence": "F038|F051"
+    },
+    {
+      "route_index": 90,
+      "rank": 3,
+      "score": 0.72983871,
+      "aircraft_time": 214,
+      "passenger_count": 32,
+      "utilization": 0.9372047244094488,
+      "land_fraction": 0.65625,
+      "base_airport": "A03",
+      "service_sequence": "F045|F044|F041"
+    },
+    {
+      "route_index": 78,
+      "rank": 4,
+      "score": 0.712365591,
+      "aircraft_time": 215,
+      "passenger_count": 32,
+      "utilization": 0.8340212264150944,
+      "land_fraction": 0.625,
+      "base_airport": "A01",
+      "service_sequence": "F002|F011|F001"
+    },
+    {
+      "route_index": 80,
+      "rank": 5,
+      "score": 0.705645161,
+      "aircraft_time": 200,
+      "passenger_count": 38,
+      "utilization": 1.0,
+      "land_fraction": 0.8947368421052632,
+      "base_airport": "A02",
+      "service_sequence": "F023|F031"
+    },
+    {
+      "route_index": 79,
+      "rank": 6,
+      "score": 0.697580645,
+      "aircraft_time": 182,
+      "passenger_count": 32,
+      "utilization": 0.9752697841726619,
+      "land_fraction": 0.875,
+      "base_airport": "A02",
+      "service_sequence": "F031|F052"
+    },
+    {
+      "route_index": 93,
+      "rank": 7,
+      "score": 0.688172043,
+      "aircraft_time": 301,
+      "passenger_count": 41,
+      "utilization": 0.6826054972246371,
+      "land_fraction": 0.4634146341463415,
+      "base_airport": "A03",
+      "service_sequence": "F037|F040|F042|F044"
+    },
+    {
+      "route_index": 36,
+      "rank": 8,
+      "score": 0.655913978,
+      "aircraft_time": 182,
+      "passenger_count": 24,
+      "utilization": 0.7314981949458483,
+      "land_fraction": 1.0,
+      "base_airport": "A03",
+      "service_sequence": "F045|F038"
+    },
+    {
+      "route_index": 72,
+      "rank": 9,
+      "score": 0.654569892,
+      "aircraft_time": 195,
+      "passenger_count": 32,
+      "utilization": 0.9536790780141844,
+      "land_fraction": 0.625,
+      "base_airport": "A03",
+      "service_sequence": "F038|F048|F046"
+    },
+    {
+      "route_index": 58,
+      "rank": 10,
+      "score": 0.647849462,
+      "aircraft_time": 207,
+      "passenger_count": 32,
+      "utilization": 0.8690580985915493,
+      "land_fraction": 0.90625,
+      "base_airport": "A01",
+      "service_sequence": "F007|F013|F010"
+    },
+    {
+      "route_index": 84,
+      "rank": 11,
+      "score": 0.641129032,
+      "aircraft_time": 182,
+      "passenger_count": 36,
+      "utilization": 0.6708860759493671,
+      "land_fraction": 0.5277777777777778,
+      "base_airport": "A02",
+      "service_sequence": "F029|F021|F036"
+    },
+    {
+      "route_index": 77,
+      "rank": 12,
+      "score": 0.630376344,
+      "aircraft_time": 209,
+      "passenger_count": 38,
+      "utilization": 1.0,
+      "land_fraction": 0.8421052631578947,
+      "base_airport": "A01",
+      "service_sequence": "F013"
+    }
+  ]
+}

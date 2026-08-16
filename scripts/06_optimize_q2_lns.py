@@ -435,6 +435,12 @@ def main() -> int:
                 "terminal_stagnation": solution.diagnostics.get("q2_lns", {}).get(
                     "terminal_stagnation"
                 ),
+                "first_improvement_seconds": solution.diagnostics.get("q2_lns", {}).get(
+                    "first_improvement_seconds"
+                ),
+                "time_to_best_seconds": solution.diagnostics.get("q2_lns", {}).get(
+                    "time_to_best_seconds"
+                ),
                 "ml_inference_seconds": round(
                     sum(float(row.get("ml_inference_ms", 0.0)) for row in result.iteration_log)
                     / 1000.0,

@@ -1,0 +1,6 @@
+stage,policy,aircraft_time,passenger_time,flights,fuel_kg,utilization,validator
+round3_frozen,geometry,17218,254656,95,132473.9,0.9270255505126912,PASS
+online_lr_secondary,hybrid_lr,17218,254538,95,132479.7,0.9276894667174044,PASS
+extended_lr_s731,hybrid_lr,17107,254303,94,131917.0,0.9289510250275911,PASS
+extended_geometry_s732,geometry,17085,254192,94,131443.1,0.9336459,PASS
+final_extended_lr_s732,hybrid_lr,17076,253414,94,131721.5,0.9305132228621191,PASS
