@@ -1,0 +1,62 @@
+{
+  "node_id": "N3-LLL",
+  "parent_id": "N2-LL",
+  "depth": 3,
+  "branch_history": [
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": "<=",
+      "rhs": 3
+    },
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": "<=",
+      "rhs": 2
+    },
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": "<=",
+      "rhs": 1
+    }
+  ],
+  "status": "FULLY_PRICED",
+  "inherited_lb": 14090.327485380118,
+  "fully_priced_lb": 14091.368421052632,
+  "effective_rigorous_lb": 14091.368421052632,
+  "fathom_reason": null,
+  "fractional_route_variables": 68,
+  "selected_branch": {
+    "arc": [
+      "A01",
+      "F024"
+    ],
+    "value": 1.4967511371020144
+  },
+  "cg_iterations": 2,
+  "pricing_calls": 18,
+  "generated_columns": 2,
+  "rmp_seconds": 0.013782,
+  "pricing_seconds": 802.511819,
+  "elapsed_seconds": 802.549382,
+  "integer_heuristic": {
+    "outcome": "UNKNOWN",
+    "objective": null,
+    "model_status": "Time limit reached",
+    "elapsed_seconds": 30.010133,
+    "mip_start_feasible_for_model": false
+  },
+  "validator": null,
+  "children": [
+    "N4-LLLL",
+    "N4-LLLR"
+  ]
+}

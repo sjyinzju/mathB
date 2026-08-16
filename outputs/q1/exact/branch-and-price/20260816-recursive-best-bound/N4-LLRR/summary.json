@@ -1,0 +1,70 @@
+{
+  "node_id": "N4-LLRR",
+  "parent_id": "N3-LLR",
+  "depth": 4,
+  "branch_history": [
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": "<=",
+      "rhs": 3
+    },
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": "<=",
+      "rhs": 2
+    },
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": ">=",
+      "rhs": 2
+    },
+    {
+      "arc": [
+        "A02",
+        "F035"
+      ],
+      "sense": ">=",
+      "rhs": 1
+    }
+  ],
+  "status": "FULLY_PRICED",
+  "inherited_lb": 14090.327485380118,
+  "fully_priced_lb": 14090.32748538012,
+  "effective_rigorous_lb": 14090.32748538012,
+  "fathom_reason": null,
+  "fractional_route_variables": 70,
+  "selected_branch": {
+    "arc": [
+      "A02",
+      "F034"
+    ],
+    "value": 0.52046783625731
+  },
+  "cg_iterations": 2,
+  "pricing_calls": 18,
+  "generated_columns": 1,
+  "rmp_seconds": 0.01198,
+  "pricing_seconds": 909.975143,
+  "elapsed_seconds": 910.015976,
+  "integer_heuristic": {
+    "outcome": "UNKNOWN",
+    "objective": null,
+    "model_status": "Time limit reached",
+    "elapsed_seconds": 30.010942,
+    "mip_start_feasible_for_model": false
+  },
+  "validator": null,
+  "children": [
+    "N5-LLRRL",
+    "N5-LLRRR"
+  ]
+}

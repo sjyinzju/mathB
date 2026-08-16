@@ -1,7 +1,7 @@
 {
   "status": "BRANCH_AND_PRICE_INCOMPLETE",
   "global_ub": 14730,
-  "global_lb": 14090.327485380118,
+  "global_lb": 14090.32748538012,
   "processed_nodes": [
     {
       "node_id": "N2-LL",
@@ -56,9 +56,271 @@
         "N3-LLL",
         "N3-LLR"
       ]
-    }
-  ],
-  "open_node_queue": [
+    },
+    {
+      "node_id": "N3-LLL",
+      "parent_id": "N2-LL",
+      "depth": 3,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 1
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.327485380118,
+      "fully_priced_lb": 14091.368421052632,
+      "effective_rigorous_lb": 14091.368421052632,
+      "fathom_reason": null,
+      "fractional_route_variables": 68,
+      "selected_branch": {
+        "arc": [
+          "A01",
+          "F024"
+        ],
+        "value": 1.4967511371020144
+      },
+      "cg_iterations": 2,
+      "pricing_calls": 18,
+      "generated_columns": 2,
+      "rmp_seconds": 0.013782,
+      "pricing_seconds": 802.511819,
+      "elapsed_seconds": 802.549382,
+      "integer_heuristic": {
+        "outcome": "UNKNOWN",
+        "objective": null,
+        "model_status": "Time limit reached",
+        "elapsed_seconds": 30.010133,
+        "mip_start_feasible_for_model": false
+      },
+      "validator": null,
+      "children": [
+        "N4-LLLL",
+        "N4-LLLR"
+      ]
+    },
+    {
+      "node_id": "N3-LLR",
+      "parent_id": "N2-LL",
+      "depth": 3,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.327485380118,
+      "fully_priced_lb": 14090.327485380118,
+      "effective_rigorous_lb": 14090.327485380118,
+      "fathom_reason": null,
+      "fractional_route_variables": 68,
+      "selected_branch": {
+        "arc": [
+          "A02",
+          "F035"
+        ],
+        "value": 0.5204678362573101
+      },
+      "cg_iterations": 1,
+      "pricing_calls": 9,
+      "generated_columns": 0,
+      "rmp_seconds": 0.005673,
+      "pricing_seconds": 400.785448,
+      "elapsed_seconds": 400.80424,
+      "integer_heuristic": {
+        "outcome": "UNKNOWN",
+        "objective": null,
+        "model_status": "Time limit reached",
+        "elapsed_seconds": 30.007682,
+        "mip_start_feasible_for_model": false
+      },
+      "validator": null,
+      "children": [
+        "N4-LLRL",
+        "N4-LLRR"
+      ]
+    },
+    {
+      "node_id": "N4-LLRL",
+      "parent_id": "N3-LLR",
+      "depth": 4,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.327485380118,
+      "fully_priced_lb": 14091.36842105263,
+      "effective_rigorous_lb": 14091.36842105263,
+      "fathom_reason": null,
+      "fractional_route_variables": 64,
+      "selected_branch": {
+        "arc": [
+          "A01",
+          "F024"
+        ],
+        "value": 1.4967511371020144
+      },
+      "cg_iterations": 1,
+      "pricing_calls": 9,
+      "generated_columns": 0,
+      "rmp_seconds": 0.0055,
+      "pricing_seconds": 683.277682,
+      "elapsed_seconds": 683.298563,
+      "integer_heuristic": {
+        "outcome": "UNKNOWN",
+        "objective": null,
+        "model_status": "Time limit reached",
+        "elapsed_seconds": 30.021138,
+        "mip_start_feasible_for_model": false
+      },
+      "validator": null,
+      "children": [
+        "N5-LLRLL",
+        "N5-LLRLR"
+      ]
+    },
+    {
+      "node_id": "N4-LLRR",
+      "parent_id": "N3-LLR",
+      "depth": 4,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.327485380118,
+      "fully_priced_lb": 14090.32748538012,
+      "effective_rigorous_lb": 14090.32748538012,
+      "fathom_reason": null,
+      "fractional_route_variables": 70,
+      "selected_branch": {
+        "arc": [
+          "A02",
+          "F034"
+        ],
+        "value": 0.52046783625731
+      },
+      "cg_iterations": 2,
+      "pricing_calls": 18,
+      "generated_columns": 1,
+      "rmp_seconds": 0.01198,
+      "pricing_seconds": 909.975143,
+      "elapsed_seconds": 910.015976,
+      "integer_heuristic": {
+        "outcome": "UNKNOWN",
+        "objective": null,
+        "model_status": "Time limit reached",
+        "elapsed_seconds": 30.010942,
+        "mip_start_feasible_for_model": false
+      },
+      "validator": null,
+      "children": [
+        "N5-LLRRL",
+        "N5-LLRRR"
+      ]
+    },
     {
       "node_id": "N2-LR",
       "parent_id": "N1-L",
@@ -81,10 +343,304 @@
           "rhs": 3
         }
       ],
+      "status": "FULLY_PRICED",
       "inherited_lb": 14090.32748538012,
-      "status": "OPEN_UNPRICED",
-      "bound_provenance": "INHERITED"
+      "fully_priced_lb": 14090.32748538012,
+      "effective_rigorous_lb": 14090.32748538012,
+      "fathom_reason": null,
+      "fractional_route_variables": 67,
+      "selected_branch": {
+        "arc": [
+          "A02",
+          "F035"
+        ],
+        "value": 0.5204678362573101
+      },
+      "cg_iterations": 1,
+      "pricing_calls": 9,
+      "generated_columns": 0,
+      "rmp_seconds": 0.006624,
+      "pricing_seconds": 406.023088,
+      "elapsed_seconds": 406.040566,
+      "integer_heuristic": {
+        "outcome": "UNKNOWN",
+        "objective": null,
+        "model_status": "Time limit reached",
+        "elapsed_seconds": 30.008114,
+        "mip_start_feasible_for_model": false
+      },
+      "validator": null,
+      "children": [
+        "N3-LRL",
+        "N3-LRR"
+      ]
     },
+    {
+      "node_id": "N3-LRL",
+      "parent_id": "N2-LR",
+      "depth": 3,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.32748538012,
+      "fully_priced_lb": 14090.327485380118,
+      "effective_rigorous_lb": 14090.327485380118,
+      "fathom_reason": null,
+      "fractional_route_variables": 67,
+      "selected_branch": {
+        "arc": [
+          "A02",
+          "F034"
+        ],
+        "value": 0.5204678362573101
+      },
+      "cg_iterations": 1,
+      "pricing_calls": 9,
+      "generated_columns": 0,
+      "rmp_seconds": 0.006063,
+      "pricing_seconds": 966.789003,
+      "elapsed_seconds": 966.811415,
+      "integer_heuristic": {
+        "outcome": "UNKNOWN",
+        "objective": null,
+        "model_status": "Time limit reached",
+        "elapsed_seconds": 30.016754,
+        "mip_start_feasible_for_model": false
+      },
+      "validator": null,
+      "children": [
+        "N4-LRLL",
+        "N4-LRLR"
+      ]
+    },
+    {
+      "node_id": "N4-LRLL",
+      "parent_id": "N3-LRL",
+      "depth": 4,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A02",
+            "F034"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.327485380118,
+      "fully_priced_lb": 14091.36842105263,
+      "effective_rigorous_lb": 14091.36842105263,
+      "fathom_reason": null,
+      "fractional_route_variables": 66,
+      "selected_branch": {
+        "arc": [
+          "A01",
+          "F024"
+        ],
+        "value": 1.4967511371020144
+      },
+      "cg_iterations": 1,
+      "pricing_calls": 9,
+      "generated_columns": 0,
+      "rmp_seconds": 0.013696,
+      "pricing_seconds": 617.226314,
+      "elapsed_seconds": 617.29244,
+      "integer_heuristic": {
+        "outcome": "UNKNOWN",
+        "objective": null,
+        "model_status": "Time limit reached",
+        "elapsed_seconds": 30.022074,
+        "mip_start_feasible_for_model": false
+      },
+      "validator": null,
+      "children": [
+        "N5-LRLLL",
+        "N5-LRLLR"
+      ]
+    },
+    {
+      "node_id": "N4-LRLR",
+      "parent_id": "N3-LRL",
+      "depth": 4,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A02",
+            "F034"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.327485380118,
+      "fully_priced_lb": 14092.684210526319,
+      "effective_rigorous_lb": 14092.684210526319,
+      "fathom_reason": null,
+      "fractional_route_variables": 68,
+      "selected_branch": {
+        "arc": [
+          "A01",
+          "F011"
+        ],
+        "value": 1.526315789473684
+      },
+      "cg_iterations": 2,
+      "pricing_calls": 18,
+      "generated_columns": 2,
+      "rmp_seconds": 0.01526,
+      "pricing_seconds": 1358.639705,
+      "elapsed_seconds": 1358.694972,
+      "integer_heuristic": {
+        "outcome": "PROVEN_POOL_INFEASIBLE",
+        "objective": null,
+        "model_status": "Infeasible",
+        "elapsed_seconds": 9.277416,
+        "mip_start_feasible_for_model": false
+      },
+      "validator": null,
+      "children": [
+        "N5-LRLRL",
+        "N5-LRLRR"
+      ]
+    },
+    {
+      "node_id": "N3-LRR",
+      "parent_id": "N2-LR",
+      "depth": 3,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        }
+      ],
+      "status": "FULLY_PRICED",
+      "inherited_lb": 14090.32748538012,
+      "fully_priced_lb": 14092.684210526317,
+      "effective_rigorous_lb": 14092.684210526317,
+      "fathom_reason": null,
+      "fractional_route_variables": 71,
+      "selected_branch": {
+        "arc": [
+          "A01",
+          "F011"
+        ],
+        "value": 1.526315789473684
+      },
+      "cg_iterations": 1,
+      "pricing_calls": 9,
+      "generated_columns": 0,
+      "rmp_seconds": 0.00604,
+      "pricing_seconds": 542.419135,
+      "elapsed_seconds": 542.43845,
+      "integer_heuristic": {
+        "outcome": "UNKNOWN",
+        "objective": null,
+        "model_status": "Time limit reached",
+        "elapsed_seconds": 30.010774,
+        "mip_start_feasible_for_model": false
+      },
+      "validator": null,
+      "children": [
+        "N4-LRRL",
+        "N4-LRRR"
+      ]
+    }
+  ],
+  "open_node_queue": [
     {
       "node_id": "N2-RL",
       "parent_id": "N1-R",
@@ -138,9 +694,9 @@
       "bound_provenance": "INHERITED"
     },
     {
-      "node_id": "N3-LLL",
-      "parent_id": "N2-LL",
-      "depth": 3,
+      "node_id": "N4-LLLL",
+      "parent_id": "N3-LLL",
+      "depth": 4,
       "branch_history": [
         {
           "arc": [
@@ -165,16 +721,66 @@
           ],
           "sense": "<=",
           "rhs": 1
+        },
+        {
+          "arc": [
+            "A01",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 1
         }
       ],
-      "inherited_lb": 14090.327485380118,
+      "inherited_lb": 14091.368421052632,
       "status": "OPEN_UNPRICED",
       "bound_provenance": "INHERITED"
     },
     {
-      "node_id": "N3-LLR",
-      "parent_id": "N2-LL",
-      "depth": 3,
+      "node_id": "N4-LLLR",
+      "parent_id": "N3-LLL",
+      "depth": 4,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 1
+        },
+        {
+          "arc": [
+            "A01",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        }
+      ],
+      "inherited_lb": 14091.368421052632,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N5-LLRLL",
+      "parent_id": "N4-LLRL",
+      "depth": 5,
       "branch_history": [
         {
           "arc": [
@@ -199,9 +805,459 @@
           ],
           "sense": ">=",
           "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A01",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 1
         }
       ],
-      "inherited_lb": 14090.327485380118,
+      "inherited_lb": 14091.36842105263,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N5-LLRLR",
+      "parent_id": "N4-LLRL",
+      "depth": 5,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A01",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        }
+      ],
+      "inherited_lb": 14091.36842105263,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N5-LLRRL",
+      "parent_id": "N4-LLRR",
+      "depth": 5,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        },
+        {
+          "arc": [
+            "A02",
+            "F034"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        }
+      ],
+      "inherited_lb": 14090.32748538012,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N5-LLRRR",
+      "parent_id": "N4-LLRR",
+      "depth": 5,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        },
+        {
+          "arc": [
+            "A02",
+            "F034"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        }
+      ],
+      "inherited_lb": 14090.32748538012,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N5-LRLLL",
+      "parent_id": "N4-LRLL",
+      "depth": 5,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A02",
+            "F034"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A01",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 1
+        }
+      ],
+      "inherited_lb": 14091.36842105263,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N5-LRLLR",
+      "parent_id": "N4-LRLL",
+      "depth": 5,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A02",
+            "F034"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A01",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        }
+      ],
+      "inherited_lb": 14091.36842105263,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N5-LRLRL",
+      "parent_id": "N4-LRLR",
+      "depth": 5,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A02",
+            "F034"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        },
+        {
+          "arc": [
+            "A01",
+            "F011"
+          ],
+          "sense": "<=",
+          "rhs": 1
+        }
+      ],
+      "inherited_lb": 14092.684210526319,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N5-LRLRR",
+      "parent_id": "N4-LRLR",
+      "depth": 5,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": "<=",
+          "rhs": 0
+        },
+        {
+          "arc": [
+            "A02",
+            "F034"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        },
+        {
+          "arc": [
+            "A01",
+            "F011"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        }
+      ],
+      "inherited_lb": 14092.684210526319,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N4-LRRL",
+      "parent_id": "N3-LRR",
+      "depth": 4,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        },
+        {
+          "arc": [
+            "A01",
+            "F011"
+          ],
+          "sense": "<=",
+          "rhs": 1
+        }
+      ],
+      "inherited_lb": 14092.684210526317,
+      "status": "OPEN_UNPRICED",
+      "bound_provenance": "INHERITED"
+    },
+    {
+      "node_id": "N4-LRRR",
+      "parent_id": "N3-LRR",
+      "depth": 4,
+      "branch_history": [
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": "<=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F024"
+          ],
+          "sense": ">=",
+          "rhs": 3
+        },
+        {
+          "arc": [
+            "A02",
+            "F035"
+          ],
+          "sense": ">=",
+          "rhs": 1
+        },
+        {
+          "arc": [
+            "A01",
+            "F011"
+          ],
+          "sense": ">=",
+          "rhs": 2
+        }
+      ],
+      "inherited_lb": 14092.684210526317,
       "status": "OPEN_UNPRICED",
       "bound_provenance": "INHERITED"
     }
@@ -216,6 +1272,96 @@
       "rigorous_gap_over_ub": 0.04342651151526696,
       "global_columns": 1047,
       "total_generated_after_root": 6
+    },
+    {
+      "elapsed_seconds": 832.621229,
+      "processed_nodes": 5,
+      "open_nodes": 6,
+      "global_lb": 14090.327485380118,
+      "global_ub": 14730,
+      "rigorous_gap_over_ub": 0.04342651151526696,
+      "global_columns": 1049,
+      "total_generated_after_root": 8
+    },
+    {
+      "elapsed_seconds": 1263.624682,
+      "processed_nodes": 6,
+      "open_nodes": 7,
+      "global_lb": 14090.327485380118,
+      "global_ub": 14730,
+      "rigorous_gap_over_ub": 0.04342651151526696,
+      "global_columns": 1049,
+      "total_generated_after_root": 8
+    },
+    {
+      "elapsed_seconds": 1977.146383,
+      "processed_nodes": 7,
+      "open_nodes": 8,
+      "global_lb": 14090.327485380118,
+      "global_ub": 14730,
+      "rigorous_gap_over_ub": 0.04342651151526696,
+      "global_columns": 1049,
+      "total_generated_after_root": 8
+    },
+    {
+      "elapsed_seconds": 2917.369428,
+      "processed_nodes": 8,
+      "open_nodes": 9,
+      "global_lb": 14090.32748538012,
+      "global_ub": 14730,
+      "rigorous_gap_over_ub": 0.04342651151526684,
+      "global_columns": 1050,
+      "total_generated_after_root": 9
+    },
+    {
+      "elapsed_seconds": 3353.603068,
+      "processed_nodes": 9,
+      "open_nodes": 10,
+      "global_lb": 14090.32748538012,
+      "global_ub": 14730,
+      "rigorous_gap_over_ub": 0.04342651151526684,
+      "global_columns": 1050,
+      "total_generated_after_root": 9
+    },
+    {
+      "elapsed_seconds": 4350.720981,
+      "processed_nodes": 10,
+      "open_nodes": 11,
+      "global_lb": 14090.327485380118,
+      "global_ub": 14730,
+      "rigorous_gap_over_ub": 0.04342651151526696,
+      "global_columns": 1050,
+      "total_generated_after_root": 9
+    },
+    {
+      "elapsed_seconds": 4998.289226,
+      "processed_nodes": 11,
+      "open_nodes": 12,
+      "global_lb": 14090.327485380118,
+      "global_ub": 14730,
+      "rigorous_gap_over_ub": 0.04342651151526696,
+      "global_columns": 1050,
+      "total_generated_after_root": 9
+    },
+    {
+      "elapsed_seconds": 6366.477236,
+      "processed_nodes": 12,
+      "open_nodes": 13,
+      "global_lb": 14090.32748538012,
+      "global_ub": 14730,
+      "rigorous_gap_over_ub": 0.04342651151526684,
+      "global_columns": 1052,
+      "total_generated_after_root": 11
+    },
+    {
+      "elapsed_seconds": 6939.12826,
+      "processed_nodes": 13,
+      "open_nodes": 14,
+      "global_lb": 14090.32748538012,
+      "global_ub": 14730,
+      "rigorous_gap_over_ub": 0.04342651151526684,
+      "global_columns": 1052,
+      "total_generated_after_root": 11
     }
   ],
   "generated_columns": [
@@ -454,10 +1600,195 @@
       ],
       "duration_minutes": 193,
       "source": "branch_price_N2-LL_iteration_0"
+    },
+    {
+      "column_id": "Q1X-99b3bd031d437c7f",
+      "base_airport": "A01",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F024",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A01",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F024",
+          18
+        ]
+      ],
+      "duration_minutes": 144,
+      "source": "branch_price_N3-LLL_iteration_0"
+    },
+    {
+      "column_id": "Q1X-a668200bf73ecb67",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F027",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F024",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F024",
+          1
+        ],
+        [
+          "LAND",
+          "F024",
+          18
+        ]
+      ],
+      "duration_minutes": 160,
+      "source": "branch_price_N3-LLL_iteration_0"
+    },
+    {
+      "column_id": "Q1X-29b9eff876a30b95",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F035",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F024",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "A02",
+          "F035",
+          1
+        ],
+        [
+          "LAND",
+          "F035",
+          18
+        ]
+      ],
+      "duration_minutes": 201,
+      "source": "branch_price_N4-LLRR_iteration_0"
+    },
+    {
+      "column_id": "Q1X-8298292153cf0c36",
+      "base_airport": "A02",
+      "aircraft_type": "T2",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F034",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F024",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F034",
+          16
+        ]
+      ],
+      "duration_minutes": 171,
+      "source": "branch_price_N4-LRLR_iteration_0"
+    },
+    {
+      "column_id": "Q1X-bf5bfb5ee306f4ec",
+      "base_airport": "A02",
+      "aircraft_type": "T3",
+      "stops": [
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        },
+        {
+          "facility_id": "F034",
+          "refuel": false,
+          "is_service": true
+        },
+        {
+          "facility_id": "F024",
+          "refuel": true,
+          "is_service": false
+        },
+        {
+          "facility_id": "A02",
+          "refuel": false,
+          "is_service": false
+        }
+      ],
+      "allocation_pattern": [
+        [
+          "LAND",
+          "F034",
+          19
+        ]
+      ],
+      "duration_minutes": 193,
+      "source": "branch_price_N4-LRLR_iteration_0"
     }
   ],
-  "global_column_registry_size": 1047,
+  "global_column_registry_size": 1052,
   "node_selection": "best-bound-first, then shallow depth, then node_id",
-  "source_sha": "b0dffe1fdd39184e3d627eaeaef7645d67b36a14",
+  "source_sha": "0bf403a9494169135027abd40c38d1c953fd2e84",
   "source_dirty": true
 }

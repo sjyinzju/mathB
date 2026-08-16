@@ -207,7 +207,10 @@ def main() -> int:
         _, _, _, node = heapq.heappop(heap)
         open_nodes = [candidate for candidate in open_nodes if candidate.node_id != node.node_id]
         node_dir = run_dir / node.node_id
-        node_dir.mkdir()
+        # exist_ok: a killed earlier resume can leave the empty node directory
+        # behind without ever writing its checkpoint record; iteration
+        # artifacts are idempotent JSON/CSV overwrites.
+        node_dir.mkdir(exist_ok=True)
         result = solve_fully_priced_node(data, registry, node, workers=args.workers)
         registry.extend(result.generated_columns)
         _write_iteration_artifacts(node_dir, result)

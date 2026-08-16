@@ -1,0 +1,70 @@
+{
+  "node_id": "N4-LRLR",
+  "parent_id": "N3-LRL",
+  "depth": 4,
+  "branch_history": [
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": "<=",
+      "rhs": 3
+    },
+    {
+      "arc": [
+        "A02",
+        "F024"
+      ],
+      "sense": ">=",
+      "rhs": 3
+    },
+    {
+      "arc": [
+        "A02",
+        "F035"
+      ],
+      "sense": "<=",
+      "rhs": 0
+    },
+    {
+      "arc": [
+        "A02",
+        "F034"
+      ],
+      "sense": ">=",
+      "rhs": 1
+    }
+  ],
+  "status": "FULLY_PRICED",
+  "inherited_lb": 14090.327485380118,
+  "fully_priced_lb": 14092.684210526319,
+  "effective_rigorous_lb": 14092.684210526319,
+  "fathom_reason": null,
+  "fractional_route_variables": 68,
+  "selected_branch": {
+    "arc": [
+      "A01",
+      "F011"
+    ],
+    "value": 1.526315789473684
+  },
+  "cg_iterations": 2,
+  "pricing_calls": 18,
+  "generated_columns": 2,
+  "rmp_seconds": 0.01526,
+  "pricing_seconds": 1358.639705,
+  "elapsed_seconds": 1358.694972,
+  "integer_heuristic": {
+    "outcome": "PROVEN_POOL_INFEASIBLE",
+    "objective": null,
+    "model_status": "Infeasible",
+    "elapsed_seconds": 9.277416,
+    "mip_start_feasible_for_model": false
+  },
+  "validator": null,
+  "children": [
+    "N5-LRLRL",
+    "N5-LRLRR"
+  ]
+}

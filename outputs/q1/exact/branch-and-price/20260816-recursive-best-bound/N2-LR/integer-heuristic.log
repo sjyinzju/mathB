@@ -1,0 +1,59 @@
+MIP has 107 rows; 1050 cols; 3719 nonzeros; 1050 integer variables (915 binary)
+Coefficient ranges:
+  Matrix  [1e+00, 3e+02]
+  Cost    [9e+01, 3e+02]
+  Bound   [1e+00, 5e+00]
+  RHS     [1e+00, 1e+04]
+Presolving model
+104 rows, 1045 cols, 3704 nonzeros 0s
+100 rows, 966 cols, 3099 nonzeros 0s
+Presolve reductions: rows 100(-7); columns 966(-84); nonzeros 3099(-620) 
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   100 rows
+   966 cols (856 binary, 110 integer, 0 implied int., 0 continuous, 0 domain fixed)
+   3099 nonzeros
+   Thread count 7 (of 14 threads). Using 1 max workers. Parallel search off
+
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   872             inf                  inf        0      0      0         0     0.1s
+         0       0         0   0.00%   14202.032877    inf                  inf        0      0      4       143     0.1s
+        15       0         6  18.36%   14674.500422    inf                  inf     5870    219    597     51305     5.4s
+       205      20        90  50.22%   14680.525956    inf                  inf     3462    480   2326    125181    10.9s
+       803      44       372  64.24%   14680.525956    inf                  inf     3994    402   4817    176181    15.9s
+      1552      93       718  83.04%   14683.582063    inf                  inf     2755    412   7175    221542    20.9s
+      2117     115       986  84.38%   14689.396592    inf                  inf     3432    372   8684    264120    25.9s
+      2831     178      1307  85.53%   14692.740749    inf                  inf     3378    309   9088    302955    30.0s
+
+Solving report
+  Status            Time limit reached
+  Primal bound      inf
+  Dual bound        14693
+  Gap               inf
+  P-D integral      0
+  Solution status   -
+  Timing            30.00
+                    0.96 (Presolve)
+                        MIP    time [calls] = 0.05 [1]
+                        subMIP time [calls] = 0.91 [60]
+                    29.03 (Solve)
+                        MIP    time [calls] = 26.12 [1]
+                        subMIP time [calls] = 2.91 [31]
+                    0.00 (Postsolve)
+                        MIP    time [calls] = 0.00 [1]
+                        subMIP time [calls] = 0.00 [60]
+  Max sub-MIP depth 6
+  Nodes             2831
+  Repair LPs        0
+  LP iterations     302955
+                    153616 (strong br.)
+                    15422 (separation)
+                    16400 (heuristics)

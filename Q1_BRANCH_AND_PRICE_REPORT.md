@@ -39,9 +39,15 @@ Node selection 为 best-bound-first，然后浅 depth、node id。默认 branchi
 
 首个递归节点 `N2-LL` 的 history 为 `A02→F024 <=3, <=2`。该节点经过 2 轮、18 次 exact pricing、生成 1 列后 fully priced，LB 为 `14090.327485380118`，含 66 个 fractional variables，不能 fathom；30 秒 node integer RMP 没有找到 strict improvement。它在同一 arc 的 `1.5204678363` usage 上生成 `N3-LLL <=1` 与 `N3-LLR >=2`。
 
-当前统计：fully-priced processed nodes = 4（root、N1-L、N1-R、N2-LL）；open nodes = 5；bound/infeasibility/integrality fathomed 均为 0；max processed depth = 2，max open depth = 3；global registry = 1,047 columns；root 后 branch-specific generated columns = 6。完整 root pricing 144 次，加 branch-aware pricing 63 次，总 exact pricing calls = 207；总 exact generated columns = 44。
+### Fast Oracle Resumption（2026-08-16 晚）
 
-当前 open queue：`N2-LR`、`N2-RL`、`N2-RR`、`N3-LLL`、`N3-LLR`。未 fully-priced nodes 仅使用 inherited rigorous bound，未冒充 child LP bound。
+Fast exact pricing oracle 认证通过（见 `Q1_FAST_PRICING_REPORT.md`，Gate 8.2 36/36，commit `0bf403a`）后，checkpoint `20260816-recursive-best-bound` 恢复。截至 20:27，fully-priced processed nodes 共 9 个（root、N1-L、N1-R、N2-LL + 恢复后 8 个：N3-LLL、N3-LLR、N4-LLRL、N4-LLRR、N2-LR、N3-LRL、N4-LRLL、N4-LRLR）；open nodes = 13；bound/infeasibility/integrality fathomed 均为 0；max processed depth = 4；global registry = 1,052 columns；root 后 branch-specific generated columns = 11。
+
+原始 5 个 open nodes 中 3 个已 fully priced（N3-LLL、N3-LLR、N2-LR）；N2-RL、N2-RR（inherited LB 14092.684）被 best-bound 排序持续压后，因为每个已处理节点都派生一个 LB ≈ 14090.327 的 child，低界侧队列不减反增。
+
+**Arc branching bound gain 实测（恢复后 8 节点）**：同一 arc 左子 +1.041、右子 0.000 的退化模式反复出现（N3-LLL/N3-LLR、N4-LLRL/N4-LLRR、N4-LRLL/N4-LRLR 为 +1.041/+0.000 或 +1.041/+2.357），平均 gain ≈ 0.82 分钟/节点，而 bound fathom 需要约 640 分钟的界提升。树按每处理 1 节点 +1 open 的速率自然爆炸。这正是 handoff §15 预判的「Arc Branching 加强后仍树爆炸」场景：pricing 已快（401–1,217 秒/节点），processed nodes 已成规模，但 Global LB 提升极慢 → 下一阶段是 P2 Valid Inequality / Cut Audit。
+
+当前 open queue（13）：`N2-RL`、`N2-RR`、`N4-LLLL`、`N4-LLLR`、`N5-LLRLL`、`N5-LLRLR`、`N5-LLRRL`、`N5-LLRRR`、`N3-LRR` 及后续派生节点。未 fully-priced nodes 仅使用 inherited rigorous bound，未冒充 child LP bound。搜索进程在后台持续运行并逐节点 checkpoint。
 
 ## Primal Incumbents
 
@@ -51,15 +57,19 @@ Validated incumbent 仍为 frozen 14,730 / passenger 121,363 / 89 flights / 118,
 
 ## Runtime and Bottleneck
 
-三个 branch-aware fully-priced nodes的 RMP 时间合计 0.12622 秒，exact pricing 时间合计 3,423.323801 秒；在二者合计中 pricing 占 **99.9963%**。N1-L、N1-R、N2-LL elapsed 分别为 682.51、1,524.06、1,216.97 秒。继续逐节点使用当前 position-indexed MILP oracle 没有改善 global LB，并会以约 10–25 分钟/节点扩张树。
+MILP 时代（N1-L、N1-R、N2-LL）：RMP 合计 0.12622 秒，exact pricing 合计 3,423.32 秒，pricing 占 **99.9963%**；节点 elapsed 682.51、1,524.06、1,216.97 秒。
 
-Limited strong branching、pseudo-cost 和 dual stabilization 没有启用。原因不是将 probe 当证明，而是每个 exact node pricing 已是绝对瓶颈；此时增加多 child probes 会成倍放大成本。当前最值得做的唯一 proof optimization 是实现 exact DP/label-setting pricing oracle，并以现有 MILP oracle进行 exhaustive/randomized/full-instance cross-check；性能下降到可接受水平后，再恢复 checkpoint 并加入 limited strong branching。
+Fast oracle 恢复后：8 个新节点 pricing 合计 6,145 秒（401–1,359 秒/节点，均值 ~768 秒），Gate 认证口径下 fast/MILP 总墙钟 1,798.6 s / 5,425.2 s = **3.0x**。pricing 仍是主导成本，但已不是速率限制；新的速率限制是 **branching 质量**（界增益 ~0.82 分钟/节点 vs 需要 ~640 分钟）。
+
+Limited strong branching、pseudo-cost 和 dual stabilization 没有启用。P0 阶段的目标（exact DP pricing oracle + 完整 cross-check + checkpoint 恢复）已全部完成；下一唯一值得做的是 P2 cut audit：分析 fractional root/node 解为何 LP 能到 14,090 而 integer 必须接近 14,730，寻找对本 aggregated allocation formulation 有效且 pricing coefficient 可精确处理的 valid inequalities（见 `Q1_FAST_PRICING_REPORT.md` §7 与 handoff §P2）。
 
 ## Final Proof State
 
-Global LB = `14090.327485380118`，validated Global UB = `14730`，rigorous gap = `4.3426512%`。Objective 为整数分钟，bound fathom 使用 `ceil(LB - 1e-6) >= UB`；当前不满足。剩余 open nodes = 5。
+Global LB = `14090.32748538012`，validated Global UB = `14730`，rigorous gap = `4.3426512%`。Objective 为整数分钟，bound fathom 使用 `ceil(LB - 1e-6) >= UB`；当前不满足。剩余 open nodes = 13（后台搜索持续中，逐节点 checkpoint）。
 
 `GLOBAL_OPTIMALITY_STATUS = BRANCH_AND_PRICE_INCOMPLETE`。
+
+`FAST_PRICING_STATUS = CERTIFIED_EXACT`（2026-08-16，Gate 8.2 36/36 + 16/16 单测 + 400-trial Pareto 属性测试；详见 `Q1_FAST_PRICING_REPORT.md`）。
 
 机器证据：
 

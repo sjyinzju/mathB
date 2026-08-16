@@ -1,0 +1,11 @@
+{
+  "phase": "PHASE_II",
+  "rmp_objective": 14096.312865497077,
+  "added_column_ids": [
+    "Q1X-99b3bd031d437c7f",
+    "Q1X-a668200bf73ecb67"
+  ],
+  "all_pricing_optimal": true,
+  "minimum_reduced_cost": -9.0,
+  "elapsed_seconds": 394.353277
+}
